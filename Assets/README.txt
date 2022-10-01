@@ -1,0 +1,1 @@
+To set to thumbstick, Action Map > Action>Action Type = Value, Control Type = Stick
