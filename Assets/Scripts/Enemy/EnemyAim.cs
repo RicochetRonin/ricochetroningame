@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Aim : MonoBehaviour
+public class EnemyAim : MonoBehaviour
 {
-    [Header("Private Components")]
     private GameObject target;
 
-    public Vector3 aimDirection;
+    [HideInInspector] public Vector3 aimDirection;
     private void Start()
     {
 

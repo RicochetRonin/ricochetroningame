@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Shoot : MonoBehaviour
+public class EnemyShoot : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject bulletPrefab;
+    
+    [Header("Settings")]
     [SerializeField] private float fireRate = 3f;
     [SerializeField] private bool canAttack = true;
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (canAttack)
@@ -17,13 +19,11 @@ public class Enemy_Shoot : MonoBehaviour
             canAttack = false;
             StartCoroutine("ResetCoolDown");
         }
-        
     }
 
     IEnumerator ResetCoolDown()
     {
         yield return new WaitForSeconds(fireRate);
         canAttack = true;
-        
     }
 }

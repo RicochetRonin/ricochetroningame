@@ -76,9 +76,27 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""id"": ""2a5b2d4b-8b72-4329-887b-0175f9592f7f"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
                     ""id"": ""4d69b009-f0f0-41a7-8f2a-657d4e434799"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb73ca5f-7955-49aa-becb-486fca34c443"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WallGrab"",
+                    ""type"": ""Button"",
+                    ""id"": ""0dc362f9-8784-47f1-a009-6c9a9d685f33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -88,14 +106,113 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""9da6bec7-02cc-4678-8011-227a249de699"",
-                    ""path"": """",
+                    ""id"": ""282dacca-b804-4570-997b-27dbe6a92ca8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0615cae6-d9e5-459d-8c8f-68527fcb95d6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a791bf5-bd7f-4ff8-af98-e30b56be8735"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WallGrab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e408fb77-2dd9-4b53-8530-5571d5f8dc19"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WallGrab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f1f32fb-bb44-4acc-991b-43afa9f4f190"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""17d667b4-f75b-4708-acbe-3d772c94b84e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7d40040e-90ba-4b60-bd20-0c023ec8a85c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4ea6bf1d-bc91-43ee-ae0b-7fe88d1f40ae"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""075529d3-520d-49c0-8186-fd16059a2428"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""09998936-36bb-4a53-a79e-6df4f2eb7551"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -104,18 +221,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""id"": ""d2e792a3-566c-4d82-8c8b-10805fcfba52"",
             ""actions"": [
                 {
-                    ""name"": ""Gamepad"",
+                    ""name"": ""Reflect"",
                     ""type"": ""Button"",
                     ""id"": ""cb895ed9-c51d-4b3e-a666-0ac4f51231a7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Mouse"",
-                    ""type"": ""Button"",
-                    ""id"": ""cb7cc7b7-ce0c-4871-b6fb-54828468d5b6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -125,23 +233,23 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2ff505b2-c3c3-4188-97f6-4c29096ac974"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Gamepad"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bd858a80-2d19-42ad-92e5-15c43aec0484"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Reflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ff505b2-c3c3-4188-97f6-4c29096ac974"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reflect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -156,11 +264,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Aiming_Mouse = m_Aiming.FindAction("Mouse", throwIfNotFound: true);
         // Moving
         m_Moving = asset.FindActionMap("Moving", throwIfNotFound: true);
-        m_Moving_Newaction = m_Moving.FindAction("New action", throwIfNotFound: true);
+        m_Moving_Move = m_Moving.FindAction("Move", throwIfNotFound: true);
+        m_Moving_Jump = m_Moving.FindAction("Jump", throwIfNotFound: true);
+        m_Moving_WallGrab = m_Moving.FindAction("WallGrab", throwIfNotFound: true);
         // Attacking
         m_Attacking = asset.FindActionMap("Attacking", throwIfNotFound: true);
-        m_Attacking_Gamepad = m_Attacking.FindAction("Gamepad", throwIfNotFound: true);
-        m_Attacking_Mouse = m_Attacking.FindAction("Mouse", throwIfNotFound: true);
+        m_Attacking_Reflect = m_Attacking.FindAction("Reflect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,12 +370,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     // Moving
     private readonly InputActionMap m_Moving;
     private IMovingActions m_MovingActionsCallbackInterface;
-    private readonly InputAction m_Moving_Newaction;
+    private readonly InputAction m_Moving_Move;
+    private readonly InputAction m_Moving_Jump;
+    private readonly InputAction m_Moving_WallGrab;
     public struct MovingActions
     {
         private @PlayerControls m_Wrapper;
         public MovingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Moving_Newaction;
+        public InputAction @Move => m_Wrapper.m_Moving_Move;
+        public InputAction @Jump => m_Wrapper.m_Moving_Jump;
+        public InputAction @WallGrab => m_Wrapper.m_Moving_WallGrab;
         public InputActionMap Get() { return m_Wrapper.m_Moving; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -276,16 +389,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MovingActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnNewaction;
+                @Move.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
+                @WallGrab.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
+                @WallGrab.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
+                @WallGrab.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
             }
             m_Wrapper.m_MovingActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @WallGrab.started += instance.OnWallGrab;
+                @WallGrab.performed += instance.OnWallGrab;
+                @WallGrab.canceled += instance.OnWallGrab;
             }
         }
     }
@@ -294,14 +419,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     // Attacking
     private readonly InputActionMap m_Attacking;
     private IAttackingActions m_AttackingActionsCallbackInterface;
-    private readonly InputAction m_Attacking_Gamepad;
-    private readonly InputAction m_Attacking_Mouse;
+    private readonly InputAction m_Attacking_Reflect;
     public struct AttackingActions
     {
         private @PlayerControls m_Wrapper;
         public AttackingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Gamepad => m_Wrapper.m_Attacking_Gamepad;
-        public InputAction @Mouse => m_Wrapper.m_Attacking_Mouse;
+        public InputAction @Reflect => m_Wrapper.m_Attacking_Reflect;
         public InputActionMap Get() { return m_Wrapper.m_Attacking; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -311,22 +434,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_AttackingActionsCallbackInterface != null)
             {
-                @Gamepad.started -= m_Wrapper.m_AttackingActionsCallbackInterface.OnGamepad;
-                @Gamepad.performed -= m_Wrapper.m_AttackingActionsCallbackInterface.OnGamepad;
-                @Gamepad.canceled -= m_Wrapper.m_AttackingActionsCallbackInterface.OnGamepad;
-                @Mouse.started -= m_Wrapper.m_AttackingActionsCallbackInterface.OnMouse;
-                @Mouse.performed -= m_Wrapper.m_AttackingActionsCallbackInterface.OnMouse;
-                @Mouse.canceled -= m_Wrapper.m_AttackingActionsCallbackInterface.OnMouse;
+                @Reflect.started -= m_Wrapper.m_AttackingActionsCallbackInterface.OnReflect;
+                @Reflect.performed -= m_Wrapper.m_AttackingActionsCallbackInterface.OnReflect;
+                @Reflect.canceled -= m_Wrapper.m_AttackingActionsCallbackInterface.OnReflect;
             }
             m_Wrapper.m_AttackingActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Gamepad.started += instance.OnGamepad;
-                @Gamepad.performed += instance.OnGamepad;
-                @Gamepad.canceled += instance.OnGamepad;
-                @Mouse.started += instance.OnMouse;
-                @Mouse.performed += instance.OnMouse;
-                @Mouse.canceled += instance.OnMouse;
+                @Reflect.started += instance.OnReflect;
+                @Reflect.performed += instance.OnReflect;
+                @Reflect.canceled += instance.OnReflect;
             }
         }
     }
@@ -338,11 +455,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     }
     public interface IMovingActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnWallGrab(InputAction.CallbackContext context);
     }
     public interface IAttackingActions
     {
-        void OnGamepad(InputAction.CallbackContext context);
-        void OnMouse(InputAction.CallbackContext context);
+        void OnReflect(InputAction.CallbackContext context);
     }
 }

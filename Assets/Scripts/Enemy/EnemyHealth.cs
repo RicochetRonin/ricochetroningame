@@ -1,15 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    [Header("Private Components")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [Header("References")]
+    [SerializeField] private SpriteRenderer enemyGraphics;
 
     [Header("Stats")]
-    [SerializeField] private float health = 20f;
-    [SerializeField] private float maxHealth = 20f;
+    [SerializeField] private float health = 3f;
+    [SerializeField] private float maxHealth = 3f;
     [SerializeField] private float iframes = 0.5f;
     [SerializeField] private bool canTakeDamage = true;
 
@@ -31,12 +31,12 @@ public class Enemy_Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
 
-        if (canTakeDamage == true)
+        if (canTakeDamage)
         {
 
             health -= damage;
 
-            spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
+            enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
             canTakeDamage = false;
         }
@@ -57,7 +57,7 @@ public class Enemy_Health : MonoBehaviour
         yield return new WaitForSeconds(iframes);
         canTakeDamage = true;
         float colorMultiplier = health / maxHealth;
-        spriteRenderer.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier, 1f);
+        enemyGraphics.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier);
 
     }
 }

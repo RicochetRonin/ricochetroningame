@@ -14,6 +14,7 @@ public class Cube : MonoBehaviour
     [SerializeField] private float speed; 
     [Tooltip("Float between 0-360 works best, negative for reverse rotation")][SerializeField] private float rotateSpeed;
 
+    //To add 2D Vector Action, used drop down on "+"
     private Vector2 _move;
     private Vector2 _rotate;
     
