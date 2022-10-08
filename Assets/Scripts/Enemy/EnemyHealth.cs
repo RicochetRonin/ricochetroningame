@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
 
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
 
     }
 

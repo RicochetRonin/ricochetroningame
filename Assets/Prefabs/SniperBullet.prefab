@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5189557039531396949}
   - component: {fileID: 801746722014634691}
   m_Layer: 7
-  m_Name: EnemyBullet
+  m_Name: SniperBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,14 +52,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerBullet: 0
-  damage: 5
-  speed: 10
+  damage: 10
+  speed: 30
   size: {x: 0, y: 0, z: 0}
   reflectForce: 1.15
   direction: {x: 0, y: 0}
-  maxReflects: 5
-  color1: {r: 1, g: 0, b: 0, a: 1}
-  color2: {r: 1, g: 0.5803922, b: 0.5803922, a: 1}
+  maxReflects: 2
+  color1: {r: 0.9509299, g: 1, b: 0, a: 1}
+  color2: {r: 0.98677397, g: 1, b: 0.740566, a: 1}
   blinkRate: 1
 --- !u!58 &1727568596402683697
 CircleCollider2D:
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 63e8537d50527a443991ef7de69a1f05, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9490197, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
