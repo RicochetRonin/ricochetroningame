@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame ()
     {
-        SceneManager.LoadScene("Level01"); //Can do name, build index, etc...
+        SceneManager.LoadScene("Enemy Test"); //Can do name, build index, etc...
     }
 
     public void ExitGame()
