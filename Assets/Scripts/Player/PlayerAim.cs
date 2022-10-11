@@ -8,7 +8,7 @@ public class PlayerAim : MonoBehaviour
 {
     private PlayerControls _playerControls;
 
-    private Vector2 _mouseDirection, _gamepadDirection;
+    private Vector2 _mouseDirection, _gamepadDirection, _mousePosition;
     [HideInInspector] public Vector2 aimDirection;
 
     #region Initialization
@@ -32,6 +32,7 @@ public class PlayerAim : MonoBehaviour
 
         _playerControls.Aiming.Mouse.performed += context => _mouseDirection = context.ReadValue<Vector2>();
         _playerControls.Aiming.Mouse.canceled += context => _mouseDirection = context.ReadValue<Vector2>();
+        
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -64,8 +65,28 @@ public class PlayerAim : MonoBehaviour
 
     void AimMouse()
     {
-        var newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
-        transform.eulerAngles = new Vector3(0f, 0f, (-Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg) + 90);
+        //var newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
+        Vector2 camPos = mainCam.transform.position;
+        var newDir = (_mouseDirection - camPos).normalized;
+        
+        //transform.rotation = Quaternion.Euler(0, 0, CalcAimDirection2());
+        //transform.eulerAngles = new Vector3(0f, 0f, CalcAimDirection2());
+
+        transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg + 90);
+        //transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg);
+        
+        //transform.eulerAngles = new Vector3(0f, 0f, (-Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg + 90));
+        //Debug.Log(new Vector3(0f, 0f, (-Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg) + 90));
+    }
+
+    [SerializeField] private Camera mainCam;
+    private float CalcAimDirection2()
+    {
+        Vector2 camPos = mainCam.transform.position;
+        aimDirection = (_mouseDirection - camPos).normalized;
+        Debug.DrawRay(transform.position, aimDirection, Color.blue);
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        return angle;
     }
     
     private float CalcAimDirection()
