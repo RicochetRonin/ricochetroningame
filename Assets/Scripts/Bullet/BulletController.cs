@@ -158,8 +158,11 @@ public class BulletController : MonoBehaviour
         {
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
 
+            //Debug.Log(playerAim.aimDirection.y);
+            //Debug.Log(playerAim.aimDirection.x);
             float angle = Mathf.Atan2(playerAim.aimDirection.y, playerAim.aimDirection.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
+            //Debug.Log(angle);
+            transform.eulerAngles = new Vector3(0f, 0f, angle);
             Debug.DrawRay(transform.position, playerAim.aimDirection, Color.green);
             
             //speed *= reflectForce;
@@ -174,6 +177,7 @@ public class BulletController : MonoBehaviour
             
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
 
+            
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
             Debug.DrawRay(transform.position, enemyAim.aimDirection, Color.green);
