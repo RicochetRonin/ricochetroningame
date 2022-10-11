@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] protected GameObject bulletPrefab;
     
     [Header("Settings")]
-    [SerializeField] private float fireRate = 3f;
-    [SerializeField] private bool canAttack = true;
+    [SerializeField] protected float fireRate = 3f;
+    [SerializeField] protected bool canAttack = true;
     
     void Update()
     {
