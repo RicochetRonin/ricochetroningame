@@ -65,9 +65,9 @@ public class PlayerAim : MonoBehaviour
 
     void AimMouse()
     {
-        //var newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
-        Vector2 camPos = mainCam.transform.position;
-        var newDir = (_mouseDirection - camPos).normalized;
+        var newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
+        //Vector2 camPos = mainCam.transform.position;
+        //var newDir = (_mouseDirection - camPos).normalized;
         
         //transform.rotation = Quaternion.Euler(0, 0, CalcAimDirection2());
         //transform.eulerAngles = new Vector3(0f, 0f, CalcAimDirection2());
