@@ -1,4 +1,0 @@
-repository "bullethell_platformer@douglasngo@cloud"
-  path "/"
-    smartbranch "/main/Development" 
-     

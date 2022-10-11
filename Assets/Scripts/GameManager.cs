@@ -12,6 +12,12 @@ public enum CurrentInput
 }
 public class GameManager : MonoBehaviour
 {
+
+    private PlayerControls _playerControls;
+    private bool _isPaused;
+
+    public GameObject PauseMenu;
+
     #region Singleton
 
     public static GameManager Instance;
@@ -23,6 +29,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        _playerControls = new PlayerControls();
+        _isPaused = false;
+
+        _playerControls.Pausing.Pause.performed += _ => PauseGame();
     }
 
     #endregion
@@ -35,17 +46,17 @@ public class GameManager : MonoBehaviour
         Debug.Log(input);
         SetCurrentInput(input.currentControlScheme);
     }
-
+    */
     private void OnEnable()
     {
-        InputUser.onChange += onInputDeviceChange;
+        _playerControls.Pausing.Enable();
     }
 
     private void OnDisable()
     {
-        InputUser.onChange -= onInputDeviceChange;
+        _playerControls.Pausing.Disable();
     }
-
+    /*
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device)
     {
         if (change == InputUserChange.ControlSchemeChanged) 
@@ -68,4 +79,33 @@ public class GameManager : MonoBehaviour
         }
     }
     */
+
+    private void Update()
+    {
+
+    }
+
+    public void PauseGame()
+    {
+        if (_isPaused)
+        {
+            _isPaused = false;
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+        }
+        else
+        {
+            _isPaused = true;
+            Time.timeScale = 0;
+            PauseMenu.SetActive(true);
+        }
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Quitting Game");
+        Application.Quit();
+    }
+
+
 }
