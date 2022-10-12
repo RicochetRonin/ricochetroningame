@@ -34,8 +34,6 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
-    [SerializeField] private Color color1, color2;
-    [SerializeField] private float blinkRate;
     private float _reflectCount = 0f;
     private void Awake()
     {
@@ -49,28 +47,6 @@ public class BulletController : MonoBehaviour
         Movement();
         RaycastReflect();
         //Death();
-
-        /*
-        if (playerBullet) return;
-        if (!_blinking)
-        {
-            InvokeRepeating("Blink", 0f, blinkRate);
-        }
-        */
-    }
-
-    void Blink()
-    {
-        _blinking = true;
-        _spriteRenderer.color = color1;
-        StartCoroutine("ResetColor");
-    }
-
-    IEnumerator ResetColor()
-    {
-        _spriteRenderer.color = color2;
-        yield return new WaitForSeconds(blinkRate);
-        _blinking = false;
     }
 
     private void Movement()
@@ -157,19 +133,15 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
-
-            //Debug.Log(playerAim.aimDirection.y);
-            //Debug.Log(playerAim.aimDirection.x);
-            float angle = Mathf.Atan2(playerAim.aimDirection.y, playerAim.aimDirection.x) * Mathf.Rad2Deg;
-            //Debug.Log(angle);
-            transform.eulerAngles = new Vector3(0f, 0f, angle);
-            Debug.DrawRay(transform.position, playerAim.aimDirection, Color.green);
             
+            transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+            /*
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
             
             _reflectCount++;
+            */
         }
 
         if (collision.gameObject.CompareTag(("EnemyHitBox")))

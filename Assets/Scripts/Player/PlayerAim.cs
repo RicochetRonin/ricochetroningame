@@ -9,7 +9,7 @@ public class PlayerAim : MonoBehaviour
     private PlayerControls _playerControls;
 
     private Vector2 _mouseDirection, _gamepadDirection, _mousePosition;
-    [HideInInspector] public Vector2 aimDirection;
+    [HideInInspector] public Vector2 aimDirection, newDir;
 
     #region Initialization
 
@@ -65,18 +65,9 @@ public class PlayerAim : MonoBehaviour
 
     void AimMouse()
     {
-        var newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
-        //Vector2 camPos = mainCam.transform.position;
-        //var newDir = (_mouseDirection - camPos).normalized;
-        
-        //transform.rotation = Quaternion.Euler(0, 0, CalcAimDirection2());
-        //transform.eulerAngles = new Vector3(0f, 0f, CalcAimDirection2());
+        newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
 
         transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg + 90);
-        //transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg);
-        
-        //transform.eulerAngles = new Vector3(0f, 0f, (-Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg + 90));
-        //Debug.Log(new Vector3(0f, 0f, (-Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg) + 90));
     }
 
     [SerializeField] private Camera mainCam;
@@ -87,36 +78,5 @@ public class PlayerAim : MonoBehaviour
         Debug.DrawRay(transform.position, aimDirection, Color.blue);
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         return angle;
-    }
-    
-    private float CalcAimDirection()
-    {
-        Vector3 mousePosition = GetMouseWorldPosition();
-
-        aimDirection = (mousePosition - Camera.main.transform.position).normalized;
-        Debug.DrawRay(transform.position, aimDirection, Color.blue);
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        return angle;
-        
-    }
-    public static Vector3 GetMouseWorldPosition()
-    {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
-    }
-    public static Vector3 GetMouseWorldPositionWithZ()
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-    }
-    public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
-    }
-
-    public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
-    {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-        return worldPosition;
     }
 }

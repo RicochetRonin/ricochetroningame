@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Jump()
     {
-        if (coll.onGround)
+        //if (coll.onGround)
         {
             rb.velocity = Vector2.up * jumpVelocity; 
         }
