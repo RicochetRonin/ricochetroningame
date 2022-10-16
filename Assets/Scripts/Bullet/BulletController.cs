@@ -115,13 +115,14 @@ public class BulletController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerHurtBox") && gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag("PlayerHurtBox") && collision.gameObject.GetComponentInChildren<PlayerHealth>().getCanTakeDamage() && gameObject.CompareTag("EnemyBullet"))
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
 
         }
+
         if (collision.gameObject.CompareTag("EnemyHurtBox") && gameObject.CompareTag("PlayerBullet"))
         {
 
