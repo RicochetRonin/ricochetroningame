@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,5 +65,15 @@ public class PlayerHealth : MonoBehaviour
         float colorMultiplier = health / maxHealth;
         spriteRenderer.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier, 1f);
 
+    }
+
+    public void setCanTakeDamage(bool canTakeDamage)
+    {
+        this.canTakeDamage = canTakeDamage;
+    }
+
+    public bool getCanTakeDamage()
+    {
+        return this.canTakeDamage;
     }
 }

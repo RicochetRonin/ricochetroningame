@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -14,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerControls _playerControls;
     private Vector2 _move;
+    private PlayerHealth playerHealth;
+    private UnityEngine.InputSystem.InputAction.CallbackContext _dash;
+    private float dashWait;
+    private bool canDash;
+    private bool isDashing;
+
 
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
@@ -21,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpVelocity = 10f;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
+    [SerializeField] private float dashForce = 2f;
+    [SerializeField] private float dashTime = 2f;
+    [SerializeField] private float dashCoolDown = 2f;
 
     [Header("Booleans")]
     public bool wallGrab;
@@ -44,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         
         coll = GetComponent<PlayerWallCheck>();
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponentInChildren<PlayerHealth>();
+        canDash = true;
     }
 
     void SetControls()
@@ -55,17 +67,28 @@ public class PlayerMovement : MonoBehaviour
 
         _playerControls.Moving.Jump.performed += _ => Jump();
         _playerControls.Moving.Jump.performed += _ => WallGrab();
+        _playerControls.Moving.Dash.performed += _ => StartCoroutine(Dash());
+
     }
+
 
     #endregion
 
     void Update()
     {
+
+        Debug.Log(playerHealth.getCanTakeDamage());
+
+        if (isDashing)
+        {
+            return;
+        }
+
         Vector2 dir = new Vector2(_move.x, _move.y);
-        
         Move(dir);
         //WallGrab();
         JumpCheck();
+
     }
 
     #region MovementFunctions
@@ -96,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.up * jumpVelocity; 
         }
     }
+
 
     private void WallGrab()
     {
@@ -143,7 +167,33 @@ public class PlayerMovement : MonoBehaviour
         velocity = new Vector2(push, -slideSpeed);
         rb.velocity = velocity;
     }
-    
+
+    private IEnumerator Dash()
+    {
+        //Debug.Log("Dash pressed");
+        //Debug.Log("isDashing " + isDashing);
+        //Debug.Log("canDash " + canDash);
+        //Debug.Log("Dash " + canDash);
+        //Debug.Log("X" + _move.x);
+
+        if (canDash && _move.x != 0)
+        {
+            canDash = false;
+            isDashing = true;
+            playerHealth.setCanTakeDamage(false);
+            float origGrav = rb.gravityScale;
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
+            yield return new WaitForSeconds(dashTime);
+            playerHealth.setCanTakeDamage(true);
+            isDashing = false;
+            rb.gravityScale = origGrav;
+            yield return new WaitForSeconds(dashCoolDown);
+            canDash = true;
+        }
+
+    }
+
     #endregion
 
 }
