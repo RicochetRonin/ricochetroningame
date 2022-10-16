@@ -100,8 +100,10 @@ MonoBehaviour:
   speed: 10
   slideSpeed: 3
   jumpVelocity: 12.5
+  maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  _playerHealth: {fileID: 5446883132143224771}
   wallGrab: 0
   wallSlide: 0
 --- !u!114 &5446883131945973378
@@ -203,7 +205,9 @@ MonoBehaviour:
   maxHealth: 20
   iframes: 0.5
   canTakeDamage: 1
+  deathDelay: 2
   spriteRenderer: {fileID: 5446883133848638611}
+  player: {fileID: 5446883131945973391}
 --- !u!1 &5446883132418489050
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
+  newDir: {x: 0, y: 0}
+  mainCam: {fileID: 0}
 --- !u!1 &5446883132441753996
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
 
+    [Header("References")] [SerializeField]
+    private PlayerHealth _playerHealth;
+
+    private bool canMove = true;
     private int jumpCount = 0;
     
     [Header("Booleans")]
@@ -34,11 +38,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _playerControls.Moving.Enable();
+
+        _playerHealth.onDeath += SetCanMove;
     }
 
     private void OnDisable()
     {
         _playerControls.Moving.Disable();
+        
+        _playerHealth.onDeath -= SetCanMove;
     }
 
     private void Awake()
@@ -64,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
+        
         Vector2 dir = new Vector2(_move.x, _move.y);
         
         Move(dir);
@@ -74,6 +84,11 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCount = 1;
         }
+    }
+
+    void SetCanMove()
+    {
+        canMove = false;
     }
 
     #region MovementFunctions
