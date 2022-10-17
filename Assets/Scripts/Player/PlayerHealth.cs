@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,6 +64,14 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(deathDelay);
         Destroy(player);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("KillBox"))
+        {
+            StartCoroutine("DeathSequence");
+        }
     }
 
     private IEnumerator ResetColor()
