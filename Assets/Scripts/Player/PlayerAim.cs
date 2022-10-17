@@ -11,6 +11,8 @@ public class PlayerAim : MonoBehaviour
     private Vector2 _mouseDirection, _gamepadDirection, _mousePosition;
     [HideInInspector] public Vector2 aimDirection, newDir;
 
+    public bool usingController;
+
     #region Initialization
 
     private void OnEnable()
@@ -45,6 +47,7 @@ public class PlayerAim : MonoBehaviour
     {
         if (Gamepad.current == null)
         {
+            usingController = false;
             AimMouse();
             aimDirection = _mouseDirection;
             //angle = CalcAimDirection();
@@ -52,6 +55,7 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
+            usingController = true;
             AimGamepad();
             aimDirection = _gamepadDirection;
             
@@ -60,6 +64,8 @@ public class PlayerAim : MonoBehaviour
 
     void AimGamepad()
     {
+        newDir = _gamepadDirection;
+        
         transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(_gamepadDirection.x, _gamepadDirection.y) * Mathf.Rad2Deg);
     }
 

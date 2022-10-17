@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
             canTakeDamage = false;
-            healthBar.SetPlayerHealth(health);
+            //healthBar.SetPlayerHealth(health);
         }
 
 

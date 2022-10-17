@@ -133,9 +133,21 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
+            gameObject.tag = "PlayerBullet";
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
-            
-            transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+            Debug.Log(playerAim.usingController);
+
+            if (playerAim.usingController)
+            {
+                transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+            }
+
+            _spriteRenderer.color = Color.green;
+
             /*
             //speed *= reflectForce;
             //IncreaseAfterReflect();
@@ -147,9 +159,10 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
-            
+            gameObject.tag = "EnemyBullet";
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
-
+            
+            _spriteRenderer.color = Color.red;
             
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
