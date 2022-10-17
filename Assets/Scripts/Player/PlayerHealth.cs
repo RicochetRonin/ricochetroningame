@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
+    public Health healthBar; //Attach UI/Health to this slot
+
     //Attach to the HurtBox Gameobject, child of Player, with BoxCollider2D,and Sprite Renderer
     public delegate void OnDeath();
     public event OnDeath onDeath;
@@ -25,9 +27,8 @@ public class PlayerHealth : MonoBehaviour
     
     private void Start()
     {
-        
         health = maxHealth;
-
+        healthBar.SetPlayerHealth(health);
     }
 
     private void Update()
@@ -48,8 +49,9 @@ public class PlayerHealth : MonoBehaviour
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
             canTakeDamage = false;
+            healthBar.SetPlayerHealth(health);
         }
-        
+
 
     }
 
@@ -82,5 +84,15 @@ public class PlayerHealth : MonoBehaviour
         float colorMultiplier = health / maxHealth;
         spriteRenderer.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier, 1f);
 
+    }
+
+    public void setCanTakeDamage(bool canTakeDamage)
+    {
+        this.canTakeDamage = canTakeDamage;
+    }
+
+    public bool getCanTakeDamage()
+    {
+        return this.canTakeDamage;
     }
 }
