@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
+  enemy: {fileID: 4780582318247601425}
   health: 20
   maxHealth: 20
   iframes: 0.5

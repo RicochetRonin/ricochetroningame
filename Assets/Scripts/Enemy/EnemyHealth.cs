@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private SpriteRenderer enemyGraphics;
+    [SerializeField] private GameObject enemy;
 
     [Header("Stats")]
     [SerializeField] private float health = 3f;
@@ -47,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
 
-        //Debug.Log("Dead");
+        Destroy(enemy);
 
     }
 
