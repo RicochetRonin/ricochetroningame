@@ -26,12 +26,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
+    [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
 
+    private int jumpCount = 0;
+    
     [Header("Booleans")]
     public bool wallGrab;
     public bool wallSlide;
@@ -88,7 +91,11 @@ public class PlayerMovement : MonoBehaviour
         Move(dir);
         //WallGrab();
         JumpCheck();
-
+        
+        if (coll.onGround || coll.onWall)
+        {
+            jumpCount = 1;
+        }
     }
 
     #region MovementFunctions
@@ -114,9 +121,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void Jump()
     {
-        //if (coll.onGround)
+        if (jumpCount < maxJumps)
         {
-            rb.velocity = Vector2.up * jumpVelocity; 
+            rb.velocity = Vector2.up * jumpVelocity;
+            jumpCount++;
+            //Debug.Log(jumpCount);
         }
     }
 
@@ -126,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         if (coll.onWall && _playerControls.Moving.WallGrab.triggered)
         {
             wallGrab = true;
-            wallSlide = false;
+            //wallSlide = false;
         }
 
         //gravityScale is not set back after wall grabbing
@@ -143,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, _move.y * (speed * speedModifier));
         }
 
+        /*
         if (coll.onWall && !coll.onGround)
         {
             if (_move.x != 0 && !wallGrab)
@@ -156,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallSlide = false;
         }
+        */
     }
 
     private void WallSlide()
