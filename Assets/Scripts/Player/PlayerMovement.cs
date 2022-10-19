@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(playerHealth.getCanTakeDamage());
+        //Debug.Log(playerHealth.getCanTakeDamage());
 
         if (isDashing)
         {
