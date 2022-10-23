@@ -222,9 +222,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 5446883132253176085}
   smoothTime: 0.2
-  L_wall: {fileID: 6689230964714023892}
-  R_wall: {fileID: 6689230966001500178}
-  scene_camera: {fileID: 1537604269}
+  Leftwall: {fileID: 6689230964714023892}
+  RightWall: {fileID: 6689230966001500178}
+  SceneCamera: {fileID: 1537604269}
 --- !u!114 &16987161223351996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,6 +1173,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9078825028288994311, guid: ed65ded433c66ab48bb7aed53a44deb3, type: 3}
   fireRate: 3
   canAttack: 1
+  firstShotDelay: 2
 --- !u!4 &1802698918329334148
 Transform:
   m_ObjectHideFlags: 0
@@ -1432,7 +1433,9 @@ MonoBehaviour:
   maxHealth: 20
   iframes: 0.5
   canTakeDamage: 1
+  deathDelay: 2
   spriteRenderer: {fileID: 5446883133572850440}
+  player: {fileID: 0}
 --- !u!1 &5446883132253176084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,6 +1542,7 @@ MonoBehaviour:
   dashForce: 2
   dashTime: 2
   dashCoolDown: 2
+  _playerHealth: {fileID: 0}
   wallGrab: 0
   wallSlide: 0
 --- !u!114 &5446883132253176089
@@ -1694,6 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
   newDir: {x: 0, y: 0}
+  usingController: 0
   mainCam: {fileID: 0}
 --- !u!1 &5446883133572850438
 GameObject:
