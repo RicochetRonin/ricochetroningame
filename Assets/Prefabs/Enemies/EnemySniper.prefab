@@ -62,7 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
-  health: 20
+  enemy: {fileID: 0}
+  health: 2
   maxHealth: 20
   iframes: 0.5
   canTakeDamage: 1
@@ -163,9 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f685800366b4d8145a82e9dcb2256058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeStartColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeEndColor: {r: 1, g: 0.95686066, b: 0, a: 1}
-  fadeDuration: 10
 --- !u!1 &4780582318247601425
 GameObject:
   m_ObjectHideFlags: 0
