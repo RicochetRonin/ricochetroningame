@@ -9,8 +9,20 @@ public class EnemyShoot : MonoBehaviour
     
     [Header("Settings")]
     [SerializeField] protected float fireRate = 3f;
-    [SerializeField] protected bool canAttack = true;
-    
+    [SerializeField] protected bool canAttack = false;
+    [SerializeField] protected float firstShotDelay = 2f;
+
+    void OnEnable()
+    {
+        StartCoroutine("SetCanAttack");
+    }
+
+    IEnumerator SetCanAttack()
+    {
+        yield return new WaitForSeconds(firstShotDelay);
+        canAttack = true;
+
+    }
     void Update()
     {
         if (canAttack)

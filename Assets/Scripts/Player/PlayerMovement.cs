@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     //Code from Celeste's Movement by Mix and Jam: https://www.youtube.com/watch?v=STyY26a_dPY&ab_channel=MixandJam
     //Code from Better Jumping in Unity With Four Lines of Code by Board To Bits Games: https://www.youtube.com/watch?v=7KiK0Aqtmzc&ab_channel=BoardToBitsGames
-    
+
+    public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
+
     //Attach to the Player Gameobject, with Rigidbody2D, BoxCollider2D, and Transform
     [Header("Private Components")]
     private PlayerWallCheck coll;
@@ -33,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
 
+    [Header("References")] [SerializeField]
+    private PlayerHealth _playerHealth;
+
+    private bool canMove = true;
     private int jumpCount = 0;
     
     [Header("Booleans")]
@@ -44,11 +50,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _playerControls.Moving.Enable();
+
+        _playerHealth.onDeath += SetCanMove;
     }
 
     private void OnDisable()
     {
         _playerControls.Moving.Disable();
+        
+        _playerHealth.onDeath -= SetCanMove;
     }
 
     private void Awake()
@@ -80,13 +90,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+
         //Debug.Log(playerHealth.getCanTakeDamage());
+
+        if (!canMove) return;
+
 
         if (isDashing)
         {
             return;
         }
-
         Vector2 dir = new Vector2(_move.x, _move.y);
         Move(dir);
         //WallGrab();
@@ -96,6 +109,13 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCount = 1;
         }
+
+        dashCooldownText.SetCooldown(canDash);
+    }
+
+    void SetCanMove()
+    {
+        canMove = false;
     }
 
     #region MovementFunctions

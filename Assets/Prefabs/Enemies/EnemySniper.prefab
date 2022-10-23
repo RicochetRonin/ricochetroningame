@@ -62,8 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
-  health: 20
-  maxHealth: 20
+  enemy: {fileID: 4780582318247601425}
+  health: 3
+  maxHealth: 3
   iframes: 0.5
   canTakeDamage: 1
 --- !u!1 &2842375103567256842
@@ -163,9 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f685800366b4d8145a82e9dcb2256058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeStartColor: {r: 1, g: 1, b: 1, a: 1}
-  fadeEndColor: {r: 1, g: 0.95686066, b: 0, a: 1}
-  fadeDuration: 10
 --- !u!1 &4780582318247601425
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +298,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9078825028288994311, guid: 5feb364ac12050d459b495febbdee958, type: 3}
   fireRate: 10
   canAttack: 1
+  firstShotDelay: 2
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   chargeColor: {r: 0.97264934, g: 1, b: 0, a: 1}
   colorController: {fileID: 314883482037139530}
