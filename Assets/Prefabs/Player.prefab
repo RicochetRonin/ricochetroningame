@@ -97,12 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325abc554e5da2c4e902959cdf5ed83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashCooldownText: {fileID: 0}
   speed: 10
   slideSpeed: 3
   jumpVelocity: 12.5
   maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  dashForce: 4
+  dashTime: 0.1
+  dashCoolDown: 0.5
   _playerHealth: {fileID: 5446883132143224771}
   wallGrab: 0
   wallSlide: 0
@@ -201,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759fa42b29f3d5146a2ac283b4959a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   health: 20
   maxHealth: 20
   iframes: 0.5
@@ -256,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
   newDir: {x: 0, y: 0}
+  usingController: 0
   mainCam: {fileID: 0}
 --- !u!1 &5446883132441753996
 GameObject:

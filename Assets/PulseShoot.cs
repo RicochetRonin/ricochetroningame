@@ -25,7 +25,7 @@ public class PulseShoot : EnemyShoot
 
    private void PulseSpawn()
     {
-        Debug.Log("Pulse called");
+        //Debug.Log("Pulse called");
         float angleStep = 360 / numProjectiles;
         float angle = 0;
         float rotation;
@@ -40,7 +40,7 @@ public class PulseShoot : EnemyShoot
         {
             for (int i = 0; i < numProjectiles; i++)
             {
-                Debug.Log("Shooting " + i);
+                //Debug.Log("Shooting " + i);
                 Instantiate(bulletPrefab, transform.parent.position, currTransformRotation);
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;
