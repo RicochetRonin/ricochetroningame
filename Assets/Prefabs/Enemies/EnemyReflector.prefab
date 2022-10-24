@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 278410013476090271}
   - component: {fileID: 278410013476090265}
   - component: {fileID: 278410013476090270}
-  - component: {fileID: 4379590840252267796}
+  - component: {fileID: 1258099022}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: EnemyHitBox
@@ -113,7 +113,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 4, y: -5}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 1
---- !u!114 &4379590840252267796
+--- !u!114 &1258099022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 1038390822030671773}
   m_Layer: 0
   m_Name: EnemyAim
-  m_TagString: Untagged
+  m_TagString: EnemyHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 278410013629806294}
-  enemy: {fileID: 0}
-  health: 2
-  maxHealth: 20
+  enemy: {fileID: 278410013687012187}
+  health: 3
+  maxHealth: 3
   iframes: 0.5
   canTakeDamage: 1
