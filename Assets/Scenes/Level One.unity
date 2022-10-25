@@ -1752,6 +1752,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1471483730421787646, guid: bfd139b4981bcf74f8cf1aaa91747920, type: 3}
   m_PrefabInstance: {fileID: 441539050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &449416022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 223937094354299777, guid: ad85b20f9963e4f43b4aeda6dd6a284d, type: 3}
+  m_PrefabInstance: {fileID: 160567314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1a87ece3ea8f94aaa588aa436dd77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452314398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6706,6 +6717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: dashCooldownText
+      value: 
+      objectReference: {fileID: 449416022}
     - target: {fileID: 5446883131945973390, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: m_RootOrder
       value: 1
