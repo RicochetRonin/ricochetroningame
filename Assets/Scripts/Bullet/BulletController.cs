@@ -157,6 +157,24 @@ public class BulletController : MonoBehaviour
             */
         }
 
+        if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
+        {
+            Debug.Log("EnemyBullet detects OmniReflect collider");
+            gameObject.tag = "PlayerBullet";
+
+            transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(collision.transform.position.x, collision.transform.position.y) * Mathf.Rad2Deg - 180);
+
+            _spriteRenderer.color = Color.green;
+
+            /*
+            //speed *= reflectForce;
+            //IncreaseAfterReflect();
+            //Debug.Log("Hit Bullet");
+            
+            _reflectCount++;
+            */
+        }
+
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
             gameObject.tag = "EnemyBullet";

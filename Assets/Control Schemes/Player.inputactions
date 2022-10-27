@@ -215,7 +215,7 @@
                 {
                     "name": "",
                     "id": "725b0ec6-bd6e-4d85-b0ae-f4b985831e34",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -298,6 +298,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Abilities",
+            "id": "2e43fd17-c45c-4354-b512-b230eaec2486",
+            "actions": [
+                {
+                    "name": "OmniReflect",
+                    "type": "Button",
+                    "id": "f6b76017-0485-4b16-af4c-a339da7570d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1ad77b9-12f6-4a33-89f6-23424a95bd80",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OmniReflect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a84852cd-4101-4064-a0e0-6af37e010a0a",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OmniReflect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
