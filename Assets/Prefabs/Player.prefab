@@ -10185,7 +10185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a90fcf17378df4a8660620d613f54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimGraphics: {fileID: 5446883133551815285}
+  _aim: {fileID: 5446883132418489050}
+  _aimGraphics: {fileID: 5446883133551815285}
   _omniReflectHitBox: {fileID: 8746761832924246201}
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}

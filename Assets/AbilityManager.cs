@@ -5,7 +5,8 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject aimGraphics;
+    [SerializeField] private GameObject _aim;
+    [SerializeField] private GameObject _aimGraphics;
     [SerializeField] private GameObject _omniReflectHitBox;
     [SerializeField] private GameObject _omniReflectGraphics;
     [SerializeField] private CircleCollider2D _omniReflectCollider;
@@ -41,7 +42,7 @@ public class AbilityManager : MonoBehaviour
         _omniReflectCollider.enabled = false;
         _omniReflectGraphics.SetActive(false);
 
-        _playerControls.Abilities.OmniReflect.performed += _ => OmniReflect();
+        _playerControls.Abilities.OmniReflect.performed += _ => StartCoroutine(OmniReflect());
 
         omniReflectActive = false;
     }
@@ -57,7 +58,7 @@ public class AbilityManager : MonoBehaviour
     
     }
 
-    private void OmniReflect()
+    private IEnumerator OmniReflect()
     {
         Debug.Log("OmniReflect called");
         Debug.Log("Current Omni Reflect pouch " + currentOmniReflectCapacity);
@@ -67,19 +68,13 @@ public class AbilityManager : MonoBehaviour
             currentOmniReflectCapacity -= 1;
             omniReflectActive = true;
             _omniReflectGraphics.SetActive(true);
-            aimGraphics.SetActive(false);
-            StartCoroutine(ResetOmniReflect());
+            _aim.SetActive(false);
+            yield return new WaitForSeconds(omniReflectDuration);
+            _omniReflectCollider.enabled = false;
+            Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
+            _omniReflectGraphics.SetActive(false);
+            _aim.SetActive(true);
+            omniReflectActive = false;
         }
-    }
-
-    private IEnumerator ResetOmniReflect()
-    {
-        Debug.Log("Inside the reset");
-        yield return new WaitForSeconds(omniReflectDuration);
-        _omniReflectCollider.enabled = false;
-        Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
-        _omniReflectGraphics.SetActive(false);
-        aimGraphics.SetActive(true);
-        omniReflectActive = false;
     }
 }
