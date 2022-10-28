@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
+
+    [Header("Private Components")]
+    private bool canOmniReflect;
+    private bool omniReflectActive;
+
     [Header("References")]
     [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _aimGraphics;
@@ -14,9 +19,9 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float omniReflectDuration = 5f;
+    [SerializeField] private float omniReflectCooldown = 30f;
     [SerializeField] private int maxOmniRelectCapacity = 5;
     [SerializeField] private int currentOmniReflectCapacity = 1;
-    [SerializeField] private bool omniReflectActive;
 
     private PlayerControls _playerControls;
     
@@ -45,6 +50,7 @@ public class AbilityManager : MonoBehaviour
         _playerControls.Abilities.OmniReflect.performed += _ => StartCoroutine(OmniReflect());
 
         omniReflectActive = false;
+        canOmniReflect = true;
     }
 
     #endregion
@@ -62,11 +68,12 @@ public class AbilityManager : MonoBehaviour
     {
         Debug.Log("OmniReflect called");
         Debug.Log("Current Omni Reflect pouch " + currentOmniReflectCapacity);
-        if (currentOmniReflectCapacity > 0 && !omniReflectActive)
+        if (canOmniReflect)
         {
+            canOmniReflect = false;
+            omniReflectActive = true;
             _omniReflectCollider.enabled = true;
             currentOmniReflectCapacity -= 1;
-            omniReflectActive = true;
             _omniReflectGraphics.SetActive(true);
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
@@ -75,6 +82,8 @@ public class AbilityManager : MonoBehaviour
             _omniReflectGraphics.SetActive(false);
             _aim.SetActive(true);
             omniReflectActive = false;
+            yield return new WaitForSeconds(omniReflectCooldown);
+            canOmniReflect = true;
         }
     }
 }

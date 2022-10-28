@@ -34,12 +34,17 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
+    [SerializeField] private float muzzleFlashTime = 0.1f;
+    [SerializeField] private Color muzzleColor1 = Color.white;
+    [SerializeField] private Color muzzleColor2 = Color.black;
+
     private float _reflectCount = 0f;
     private void Awake()
     {
         previousPos = transform.position;
         direction = Vector2.up;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine("MuzzleFlash");
     }
 
     private void FixedUpdate()
@@ -92,6 +97,16 @@ public class BulletController : MonoBehaviour
             deathEffect.transform.localScale *= (1.05f * _reflectCount);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
+    }
+
+    private IEnumerator MuzzleFlash()
+    {
+        Color origColor = _spriteRenderer.color;
+        _spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(muzzleFlashTime);
+        _spriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(muzzleFlashTime);
+        _spriteRenderer.color = origColor;
     }
     private Vector3 CalcDirection()
     {
@@ -157,23 +172,26 @@ public class BulletController : MonoBehaviour
             */
         }
 
+        
         if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
         {
-            Debug.Log("EnemyBullet detects OmniReflect collider");
             gameObject.tag = "PlayerBullet";
-
-            transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(collision.transform.position.x, collision.transform.position.y) * Mathf.Rad2Deg - 180);
-
             _spriteRenderer.color = Color.green;
+            //Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
+            //Debug.Log("Bullet " + transform.position);
 
-            /*
-            //speed *= reflectForce;
-            //IncreaseAfterReflect();
-            //Debug.Log("Hit Bullet");
-            
-            _reflectCount++;
-            */
+            Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
+            var rot = - Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
+            //Debug.Log("Reflect direction" + reflectDirection);
+            //Debug.Log(rot);
+            transform.eulerAngles = new Vector3(0, 0, rot);
+
+            //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
+
+
+
         }
+
 
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {

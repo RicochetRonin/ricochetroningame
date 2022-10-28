@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _move;
     private PlayerHealth playerHealth;
     private UnityEngine.InputSystem.InputAction.CallbackContext _dash;
-    private float dashWait;
     private bool canDash;
     private bool isDashing;
 
