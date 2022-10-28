@@ -11,6 +11,7 @@ TagManager:
   - PlayerHurtBox
   - EnemyHurtBox
   - KillBox
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Bullet
   - Ground
   - Aim
-  - 
+  - Pixel Art
   - 
   - 
   - 
