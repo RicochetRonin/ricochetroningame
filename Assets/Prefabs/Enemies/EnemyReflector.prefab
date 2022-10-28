@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebc45995bcb39c4ebe1b184df14be82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAim: 1
   aimDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &278410014205702752
 GameObject:
