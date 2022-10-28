@@ -116,11 +116,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
     }
 
-    void SetCanMove()
-    {
-        canMove = false;
-    }
-
     #region MovementFunctions
     
     private void Move(Vector2 dir)
