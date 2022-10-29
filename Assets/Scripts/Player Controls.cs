@@ -237,7 +237,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""725b0ec6-bd6e-4d85-b0ae-f4b985831e34"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -324,6 +324,45 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Abilities"",
+            ""id"": ""2e43fd17-c45c-4354-b512-b230eaec2486"",
+            ""actions"": [
+                {
+                    ""name"": ""OmniReflect"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6b76017-0485-4b16-af4c-a339da7570d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d1ad77b9-12f6-4a33-89f6-23424a95bd80"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OmniReflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a84852cd-4101-4064-a0e0-6af37e010a0a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OmniReflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -344,6 +383,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Pausing
         m_Pausing = asset.FindActionMap("Pausing", throwIfNotFound: true);
         m_Pausing_Pause = m_Pausing.FindAction("Pause", throwIfNotFound: true);
+        // Abilities
+        m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
+        m_Abilities_OmniReflect = m_Abilities.FindAction("OmniReflect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -563,6 +605,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PausingActions @Pausing => new PausingActions(this);
+
+    // Abilities
+    private readonly InputActionMap m_Abilities;
+    private IAbilitiesActions m_AbilitiesActionsCallbackInterface;
+    private readonly InputAction m_Abilities_OmniReflect;
+    public struct AbilitiesActions
+    {
+        private @PlayerControls m_Wrapper;
+        public AbilitiesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OmniReflect => m_Wrapper.m_Abilities_OmniReflect;
+        public InputActionMap Get() { return m_Wrapper.m_Abilities; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AbilitiesActions set) { return set.Get(); }
+        public void SetCallbacks(IAbilitiesActions instance)
+        {
+            if (m_Wrapper.m_AbilitiesActionsCallbackInterface != null)
+            {
+                @OmniReflect.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+                @OmniReflect.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+                @OmniReflect.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+            }
+            m_Wrapper.m_AbilitiesActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OmniReflect.started += instance.OnOmniReflect;
+                @OmniReflect.performed += instance.OnOmniReflect;
+                @OmniReflect.canceled += instance.OnOmniReflect;
+            }
+        }
+    }
+    public AbilitiesActions @Abilities => new AbilitiesActions(this);
     public interface IAimingActions
     {
         void OnGamepad(InputAction.CallbackContext context);
@@ -582,5 +657,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPausingActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IAbilitiesActions
+    {
+        void OnOmniReflect(InputAction.CallbackContext context);
     }
 }

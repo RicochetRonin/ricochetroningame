@@ -7,8 +7,10 @@ public class PulseShoot : EnemyShoot
 {
 
     [SerializeField] protected int numProjectiles = 6;
-    [SerializeField] protected int numBursts = 3;
-    [SerializeField] protected float burstRate = 1f;
+    [SerializeField] protected int numPulse = 3;
+    [SerializeField] protected float timeBetweenPulse = 2f;
+    [SerializeField] protected float pulseRadius = 1f;
+
 
 
 
@@ -27,26 +29,29 @@ public class PulseShoot : EnemyShoot
     {
         //Debug.Log("Pulse called");
         float angleStep = 360 / numProjectiles;
-        float angle = 0;
-        float rotation;
-        Vector2 currEuler;
-        Vector2 newEuler;
+        float currAngle = 0;
         Quaternion newTransformRotation;
-        Quaternion currTransformRotation = transform.rotation;
-        Quaternion newParentTransformRotation;
-        Quaternion currParentTransformRotation = transform.parent.transform.rotation;
+        Quaternion currTransformRotation = transform.parent.transform.rotation;
 
-        for (int j = 0; j < numBursts; j++)
+        for (int j = 0; j <= numPulse; j++)
         {
             for (int i = 0; i < numProjectiles; i++)
             {
                 //Debug.Log("Shooting " + i);
-                Instantiate(bulletPrefab, transform.parent.position, currTransformRotation);
+                var offSetx = pulseRadius * Mathf.Cos(currAngle * Mathf.Deg2Rad);
+                var offSety = pulseRadius * Mathf.Sin(currAngle * Mathf.Deg2Rad);
+                var spawnPosition = transform.parent.transform.parent.position;
+                spawnPosition.x += offSetx;
+                spawnPosition.y += offSety;
+                Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;
+                currAngle += angleStep;
             }
-            new WaitForSeconds(burstRate);
+            new WaitForSeconds(timeBetweenPulse);
         }
+
+
         
     }
 }
