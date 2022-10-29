@@ -23,6 +23,8 @@ public class PlayerWallCheck : MonoBehaviour
     void Update()
     {
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+        var collider = Physics2D.OverlapCircle((Vector2) transform.position + bottomOffset, collisionRadius);
+        Debug.Log(collider);
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
                  || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 

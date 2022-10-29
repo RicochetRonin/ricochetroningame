@@ -10170,7 +10170,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3470888367668905227}
-  - {fileID: 3215566865061657272}
+  - {fileID: 492995124780970292}
   m_Father: {fileID: 5446883131945973390}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10204,7 +10204,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3215566865061657272}
+  - component: {fileID: 492995124780970292}
   - component: {fileID: 4655902735363691243}
   m_Layer: 0
   m_Name: OmniReflectHitBox
@@ -10213,8 +10213,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3215566865061657272
-RectTransform:
+--- !u!4 &492995124780970292
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10228,11 +10228,6 @@ RectTransform:
   m_Father: {fileID: 1503878402472839287}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!58 &4655902735363691243
 CircleCollider2D:
   m_ObjectHideFlags: 0
