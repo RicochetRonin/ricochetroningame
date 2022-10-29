@@ -150,7 +150,7 @@ public class BulletController : MonoBehaviour
         {
             gameObject.tag = "PlayerBullet";
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
-            Debug.Log(playerAim.usingController);
+            //Debug.Log(playerAim.usingController);
 
             if (playerAim.usingController)
             {
