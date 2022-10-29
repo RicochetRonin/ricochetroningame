@@ -51,6 +51,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
+  omniReflectMask:
+    serializedVersion: 2
+    m_Bits: 1024
   playerBullet: 0
   damage: 2.5
   speed: 7.5
@@ -58,9 +61,6 @@ MonoBehaviour:
   reflectForce: 1.15
   direction: {x: 0, y: 0}
   maxReflects: 3
-  color1: {r: 1, g: 0, b: 0.7054534, a: 1}
-  color2: {r: 1, g: 0.5803922, b: 0.9519557, a: 1}
-  blinkRate: 1
 --- !u!58 &1727568596402683697
 CircleCollider2D:
   m_ObjectHideFlags: 0
