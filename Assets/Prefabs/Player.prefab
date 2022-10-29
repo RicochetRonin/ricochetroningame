@@ -9734,6 +9734,7 @@ MonoBehaviour:
   dashTime: 0.1
   dashCoolDown: 0.5
   _playerHealth: {fileID: 5446883132143224771}
+  canMove: 1
   wallGrab: 0
   wallSlide: 0
 --- !u!114 &5446883131945973378
@@ -9839,6 +9840,8 @@ MonoBehaviour:
   deathDelay: 2
   spriteRenderer: {fileID: 5446883133848638611}
   player: {fileID: 5446883131945973391}
+  _movement: {fileID: 5446883131945973379}
+  _playerReflect: {fileID: 5446883132441753985}
 --- !u!1 &5446883132418489050
 GameObject:
   m_ObjectHideFlags: 0
@@ -9930,7 +9933,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446883132441753996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -9972,6 +9975,7 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 512
+  canReflect: 1
 --- !u!1 &5446883133551815285
 GameObject:
   m_ObjectHideFlags: 0
@@ -10254,7 +10258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009320694846350410}
   - component: {fileID: 6925404656110073979}
-  - component: {fileID: 6268041005690099645}
+  - component: {fileID: 5597837256031725865}
   m_Layer: 0
   m_Name: PlayerDetection
   m_TagString: Untagged
@@ -10293,7 +10297,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13
---- !u!114 &6268041005690099645
+--- !u!114 &5597837256031725865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10302,6 +10306,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9189916147902147113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80dc58ff736db8c47a2a6429878e78ce, type: 3}
+  m_Script: {fileID: 11500000, guid: a98bf4d09ff4b1848ac28ff6375bc928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

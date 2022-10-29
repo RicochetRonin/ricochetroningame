@@ -63,8 +63,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 0}
-  health: 20
-  maxHealth: 20
+  health: 5
+  maxHealth: 5
   iframes: 0.5
   canTakeDamage: 1
 --- !u!1 &2842375103567256842
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802698917317431748}
   - component: {fileID: 4406880241685989733}
-  - component: {fileID: 6605218426536964395}
+  - component: {fileID: 1390960389924363331}
   m_Layer: 0
   m_Name: ShotSpawn
   m_TagString: Untagged
@@ -270,7 +270,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6605218426536964395
+--- !u!114 &1390960389924363331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6984183344757196110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a9295b9a7edc94e94761ca1bf699c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6faf0862c712b974aa18e0f177b82b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9078825028288994311, guid: ed65ded433c66ab48bb7aed53a44deb3, type: 3}
+  bulletPrefab: {fileID: 0}
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2

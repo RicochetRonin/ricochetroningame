@@ -12,6 +12,7 @@ TagManager:
   - EnemyHurtBox
   - KillBox
   - OmniReflectHitBox
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Ground
   - Aim
   - Abilities
-  - 
+  - CameraConfiner
   - 
   - 
   - 

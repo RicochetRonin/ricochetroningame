@@ -16,6 +16,8 @@ public class PlayerReflect : MonoBehaviour
     [Header("Settings")] [SerializeField] private float detectCoolDown;
     [SerializeField] private Color _color;
     [SerializeField] private LayerMask groundLayer, aimLayer;
+
+    public bool canReflect;
     
     #region Initialization
     
@@ -46,7 +48,9 @@ public class PlayerReflect : MonoBehaviour
     
     private void Detect()
     {
-        //Debug.Log("Detect");
+        if (!canReflect) return;
+        
+        Debug.Log("Detect");
         _reflectParticleSystem.Play();
         _collider.enabled = true;
         _color.a = 0.25f;

@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
 
-    private bool canMove = true;
+    public bool canMove = true;
     private int jumpCount = 0;
     
     [Header("Booleans")]

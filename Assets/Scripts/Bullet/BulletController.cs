@@ -130,6 +130,8 @@ public class BulletController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision);
+        
         if (collision.gameObject.CompareTag("PlayerHurtBox") && collision.gameObject.GetComponentInChildren<PlayerHealth>().getCanTakeDamage() && gameObject.CompareTag("EnemyBullet"))
         {
 
