@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 5403311161724264871}
   m_Layer: 0
   m_Name: EnemyPulse
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,8 +287,9 @@ MonoBehaviour:
   canAttack: 1
   firstShotDelay: 2
   numProjectiles: 6
-  numBursts: 3
-  burstRate: 1
+  numPulse: 3
+  timeBetweenPulse: 2
+  pulseRadius: 1
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
