@@ -135,7 +135,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.Despawn(gameObject);
 
         }
@@ -144,7 +144,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.Despawn(gameObject);
 
         }
