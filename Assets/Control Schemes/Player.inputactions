@@ -72,15 +72,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WallGrab",
-                    "type": "Button",
-                    "id": "0dc362f9-8784-47f1-a009-6c9a9d685f33",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "d0573850-6a6e-4c63-aa13-1468054ecbac",
@@ -110,28 +101,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1a791bf5-bd7f-4ff8-af98-e30b56be8735",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e408fb77-2dd9-4b53-8530-5571d5f8dc19",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallGrab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -204,7 +173,7 @@
                 {
                     "name": "",
                     "id": "ca615ccd-d3d8-4daa-93cb-3f87ff6e4bac",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

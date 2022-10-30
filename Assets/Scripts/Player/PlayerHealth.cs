@@ -60,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         canTakeDamage = false;
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
         onDeath?.Invoke();
         _movement.canMove = false;
         _playerReflect.canReflect = false;

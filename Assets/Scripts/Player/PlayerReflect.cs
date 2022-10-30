@@ -50,7 +50,7 @@ public class PlayerReflect : MonoBehaviour
     {
         if (!canReflect) return;
         
-        Debug.Log("Detect");
+        //Debug.Log("Detect");
         _reflectParticleSystem.Play();
         _collider.enabled = true;
         _color.a = 0.25f;

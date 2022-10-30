@@ -24,14 +24,13 @@ public class BulletController : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
 
     [HideInInspector] public bool playerBullet = false;
-    private bool _blinking = false;
     private SpriteRenderer _spriteRenderer;
     
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
     [SerializeField] private float speed = 5f;
     [SerializeField] private Vector3 size;
-    [SerializeField] private float reflectForce = 1.15f;
+    //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
     [SerializeField] private float muzzleFlashTime = 0.1f;
@@ -130,7 +129,7 @@ public class BulletController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
+        //Debug.Log(collision);
         
         if (collision.gameObject.CompareTag("PlayerHurtBox") && collision.gameObject.GetComponentInChildren<PlayerHealth>().getCanTakeDamage() && gameObject.CompareTag("EnemyBullet"))
         {

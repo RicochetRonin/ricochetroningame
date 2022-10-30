@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6640215520641126131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.244551, y: -7.742376, z: -10.123367}
+  m_LocalPosition: {x: -0.00000047683716, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7283005366104439351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.244551, y: -7.742376, z: -10.123367}
+  m_LocalPosition: {x: -0.00000047683716, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 8449916652846715736}
   - component: {fileID: 8449916652846715737}
   - component: {fileID: 8449916652846715738}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Confiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -90,18 +90,18 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log(playerHealth.getCanTakeDamage());
-
+        JumpCheck();
+        
         if (!canMove) return;
-
+        
         if (isDashing)
         {
             return;
         }
+        
         Vector2 dir = new Vector2(_move.x, _move.y);
         Move(dir);
-        //WallGrab();
-        JumpCheck();
-        
+
         if (coll.onGround || coll.onWall)
         {
             jumpCount = 1;
@@ -145,20 +145,24 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(jumpCount);
         }
     }
-
-
+    
     private void WallGrab()
     {
-        if (coll.onWall && _playerControls.Moving.WallGrab.triggered)
+        
+        if (coll.onWall) // && _playerControls.Moving.WallGrab.triggered
         {
+            //Debug.Log("Wall Grab");
             wallGrab = true;
             //wallSlide = false;
         }
-
-        //gravityScale is not set back after wall grabbing
+        else
+        {
+            wallGrab = false;
+        }
+        
         if (wallGrab)
         {
-            rb.gravityScale = 0;
+            //rb.gravityScale = 0;
             if (_move.x > .2f || _move.x < -.2f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -169,31 +173,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, _move.y * (speed * speedModifier));
         }
 
-        /*
-        if (coll.onWall && !coll.onGround)
-        {
-            if (_move.x != 0 && !wallGrab)
-            {
-                wallSlide = true;
-                WallSlide();
-            }
-        }
-
-        if (!coll.onWall || coll.onGround)
-        {
-            wallSlide = false;
-        }
-        */
-    }
-
-    private void WallSlide()
-    {
-        var velocity = rb.velocity;
-        bool pushingWall = (velocity.x > 0 && coll.onRightWall) || (velocity.x < 0 && coll.onLeftWall);
-        float push = pushingWall ? 0 : velocity.x;
-
-        velocity = new Vector2(push, -slideSpeed);
-        rb.velocity = velocity;
+        //rb.gravityScale = 1;
+        //rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        //Debug.Log(rb.gravityScale);
     }
 
     private IEnumerator Dash()
@@ -209,13 +191,18 @@ public class PlayerMovement : MonoBehaviour
             canDash = false;
             isDashing = true;
             playerHealth.setCanTakeDamage(false);
-            float origGrav = rb.gravityScale;
+            //float origGrav = rb.gravityScale;
+
             rb.gravityScale = 0;
             rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
             yield return new WaitForSeconds(dashTime);
             playerHealth.setCanTakeDamage(true);
             isDashing = false;
-            rb.gravityScale = origGrav;
+            
+            rb.gravityScale = 1;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            //rb.gravityScale = origGrav;
+            
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
         }
