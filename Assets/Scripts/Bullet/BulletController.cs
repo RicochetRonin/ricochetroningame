@@ -91,6 +91,7 @@ public class BulletController : MonoBehaviour
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             //Instantiate(deathEffect, transform.position, Quaternion.identity);
             MasterPool.Despawn(gameObject);
+            _reflectCount = 0;
         }
     }
 
@@ -122,8 +123,10 @@ public class BulletController : MonoBehaviour
 
     }
     
-    public void SetPlayerTag()
+    public void SetFriendly()
     {
+        Debug.Log("Set Friendly");
+        
         _spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log(_spriteRenderer);
         
@@ -131,8 +134,9 @@ public class BulletController : MonoBehaviour
         _spriteRenderer.color = Color.green;
     }
     
-    public void SetEnemyTag()
+    public void SetHostile()
     {
+        Debug.Log("Set Hostile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log(_spriteRenderer);
         
@@ -176,7 +180,7 @@ public class BulletController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
 
-            SetPlayerTag();
+            SetFriendly();
 
             /*
             //speed *= reflectForce;
@@ -213,7 +217,7 @@ public class BulletController : MonoBehaviour
         {
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
             
-            SetPlayerTag();
+            SetHostile();
             
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);

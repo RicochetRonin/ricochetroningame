@@ -20,14 +20,18 @@ public static class MasterPool
             else
             {
                 obj = pools[key].inactive.Pop();
+                
+                obj.GetComponent<BulletController>().SetHostile();
                 obj.transform.position = pos;
                 obj.transform.rotation = rot;
                 obj.SetActive(true);
+                
             }
         }
         else
         {
             GameObject newParent = new GameObject($"{key}_POOL");
+
             Object.Instantiate(bullet, pos, rot, newParent.transform);
             BulletPool newPool = new BulletPool(newParent);
             pools.Add(key, newPool);
