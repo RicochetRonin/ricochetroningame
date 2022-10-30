@@ -136,7 +136,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            Destroy(gameObject);
+            MasterPool.Despawn(gameObject);
 
         }
 
@@ -144,7 +144,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            Destroy(gameObject);
+            MasterPool.Despawn(gameObject);
 
         }
 
