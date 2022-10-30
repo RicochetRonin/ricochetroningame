@@ -15,7 +15,8 @@ public class SniperShoot : EnemyShoot
     {
         if (canAttack)
         {   
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            //Instantiate(bulletPrefab, transform.position, transform.rotation);
+            MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
             canAttack = false;
             StartCoroutine("ResetCoolDown");
             StartCoroutine(colorController.FadeColor(defaultColor, chargeColor, fireRate));

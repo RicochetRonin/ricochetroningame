@@ -50,7 +50,7 @@ public class BulletController : MonoBehaviour
     {
         Movement();
         RaycastReflect();
-        //Death();
+        Death();
     }
 
     private void Movement()
@@ -87,14 +87,14 @@ public class BulletController : MonoBehaviour
         Vector3 size = transform.localScale;
         damage = Mathf.Floor(damage * 1.1f);
     }
-
+    
     void Death()
     {
         if (_reflectCount >= maxReflects)
         {
-            Destroy(gameObject);
-            deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            //Instantiate(deathEffect, transform.position, Quaternion.identity);
+            MasterPool.Despawn(gameObject);
         }
     }
 
@@ -135,6 +135,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.Despawn(gameObject);
 
         }
@@ -143,6 +144,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.Despawn(gameObject);
 
         }

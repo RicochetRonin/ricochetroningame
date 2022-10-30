@@ -19,6 +19,7 @@ public class PulseShoot : EnemyShoot
         if (canAttack)
         {
             //Instantiate(bulletPrefab, transform.position, transform.rotation);
+            MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
             StartCoroutine("PulseSpawn");
             canAttack = false;
             StartCoroutine("ResetCoolDown");
@@ -43,7 +44,8 @@ public class PulseShoot : EnemyShoot
                 var spawnPosition = transform.parent.transform.parent.position;
                 spawnPosition.x += offSetx;
                 spawnPosition.y += offSety;
-                Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
+                MasterPool.Spawn(bulletPrefab, spawnPosition, currTransformRotation);
+                //Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;
                 currAngle += angleStep;
