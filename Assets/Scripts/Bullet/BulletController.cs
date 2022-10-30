@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -23,7 +20,7 @@ public class BulletController : MonoBehaviour
     //whatever layer the bullets should reflect on
     [SerializeField] private LayerMask collisionMask;
 
-    [HideInInspector] public bool playerBullet = false;
+    [HideInInspector] public bool playerBullet;
     private SpriteRenderer _spriteRenderer;
     
     [Header("Settings")]
@@ -37,12 +34,11 @@ public class BulletController : MonoBehaviour
     [SerializeField] private Color muzzleColor1 = Color.white;
     [SerializeField] private Color muzzleColor2 = Color.black;
 
-    private float _reflectCount = 0f;
+    private float _reflectCount;
     private void Awake()
     {
         previousPos = transform.position;
         direction = Vector2.up;
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine("MuzzleFlash");
     }
 
@@ -126,6 +122,23 @@ public class BulletController : MonoBehaviour
 
     }
     
+    public void SetPlayerTag()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        //Debug.Log(_spriteRenderer);
+        
+        gameObject.tag = "PlayerBullet";
+        _spriteRenderer.color = Color.green;
+    }
+    
+    public void SetEnemyTag()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        //Debug.Log(_spriteRenderer);
+        
+        gameObject.tag = "EnemyBullet";
+        _spriteRenderer.color = Color.red;
+    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -151,7 +164,6 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
-            gameObject.tag = "PlayerBullet";
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
             //Debug.Log(playerAim.usingController);
 
@@ -164,7 +176,7 @@ public class BulletController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
 
-            _spriteRenderer.color = Color.green;
+            SetPlayerTag();
 
             /*
             //speed *= reflectForce;
@@ -173,9 +185,10 @@ public class BulletController : MonoBehaviour
             
             _reflectCount++;
             */
+            
         }
 
-        
+
         if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
         {
             gameObject.tag = "PlayerBullet";
@@ -198,10 +211,9 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
-            gameObject.tag = "EnemyBullet";
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
             
-            _spriteRenderer.color = Color.red;
+            SetPlayerTag();
             
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);

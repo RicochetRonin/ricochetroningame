@@ -19,7 +19,10 @@ public class PulseShoot : EnemyShoot
         if (canAttack)
         {
             //Instantiate(bulletPrefab, transform.position, transform.rotation);
+            
+            bulletPrefab.GetComponent<BulletController>().SetEnemyTag();
             MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
+
             StartCoroutine("PulseSpawn");
             canAttack = false;
             StartCoroutine("ResetCoolDown");

@@ -55,7 +55,6 @@ MonoBehaviour:
   damage: 1
   speed: 10
   size: {x: 0, y: 0, z: 0}
-  reflectForce: 1.15
   direction: {x: 0, y: 0}
   maxReflects: 5
   muzzleFlashTime: 0.01
