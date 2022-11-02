@@ -64,12 +64,12 @@ public class BulletController : MonoBehaviour
         if (hit.collider != null)
         {
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
-            Debug.DrawRay(transform.position, reflectDir, Color.blue);
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
             
             transform.eulerAngles = new Vector3(0, 0, rot);
 
+            Debug.DrawRay(transform.position, reflectDir, Color.blue);
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             _reflectCount++;
@@ -168,8 +168,9 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
-            playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
             //Debug.Log(playerAim.usingController);
+            
+            playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
 
             if (playerAim.usingController)
             {
