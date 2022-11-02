@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash;
     private bool isDashing;
     private bool isFacingRight;
+    private int isFacingRightInt;
 
 
     [Header("Stats")]
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         playerHealth = GetComponentInChildren<PlayerHealth>();
         canDash = true;
         isFacingRight = true;
+        isFacingRightInt = 1;
     }
 
     void SetControls()
@@ -126,12 +128,14 @@ public class PlayerMovement : MonoBehaviour
         if (dir.x > 0 && !isFacingRight)
         {
             isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
         }
 
         else if (dir.x < 0 && isFacingRight)
         {
             isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
         }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
@@ -203,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Dash " + canDash);
         //Debug.Log("X" + _move.x);
 
-        if (canDash && _move.x != 0)
+        if (canDash)
         {
             canDash = false;
             isDashing = true;
@@ -211,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
             //float origGrav = rb.gravityScale;
 
             rb.gravityScale = 0;
-            rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
+            rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
             yield return new WaitForSeconds(dashTime);
             playerHealth.setCanTakeDamage(true);
             isDashing = false;
