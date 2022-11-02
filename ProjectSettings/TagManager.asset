@@ -11,6 +11,7 @@ TagManager:
   - PlayerHurtBox
   - EnemyHurtBox
   - KillBox
+  - OmniReflectHitBox
   - Enemy
   layers:
   - Default
@@ -23,8 +24,8 @@ TagManager:
   - Bullet
   - Ground
   - Aim
-  - Pixel Art
-  - 
+  - Abilities
+  - CameraConfiner
   - 
   - 
   - 

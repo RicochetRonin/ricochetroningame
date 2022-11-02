@@ -24,7 +24,9 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private GameObject player;
-    
+    [SerializeField] private PlayerMovement _movement;
+    [SerializeField] private PlayerReflect _playerReflect;
+        
     private void Start()
     {
         health = maxHealth;
@@ -58,8 +60,10 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         canTakeDamage = false;
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
         onDeath?.Invoke();
+        _movement.canMove = false;
+        _playerReflect.canReflect = false;
         //Sound Effect
         //Particle effect
         //Start Animation

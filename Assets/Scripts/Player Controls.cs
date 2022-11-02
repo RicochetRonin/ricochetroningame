@@ -94,15 +94,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""WallGrab"",
-                    ""type"": ""Button"",
-                    ""id"": ""0dc362f9-8784-47f1-a009-6c9a9d685f33"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""d0573850-6a6e-4c63-aa13-1468054ecbac"",
@@ -116,7 +107,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""282dacca-b804-4570-997b-27dbe6a92ca8"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -132,28 +123,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1a791bf5-bd7f-4ff8-af98-e30b56be8735"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WallGrab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e408fb77-2dd9-4b53-8530-5571d5f8dc19"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WallGrab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -224,9 +193,64 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""627ca85c-59be-47b2-868d-619ab9a73cc9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2ce9aca3-3db5-4b1d-9904-c80a1c1c0ae1"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2b7bf17a-22fd-458a-abe9-5eecb1c1790d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""63c0ff1f-0150-4975-9dd5-525a271de099"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1c7ec684-e760-4528-8a13-049b91b5b100"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""ca615ccd-d3d8-4daa-93cb-3f87ff6e4bac"",
-                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -237,7 +261,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""725b0ec6-bd6e-4d85-b0ae-f4b985831e34"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -324,6 +348,45 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Abilities"",
+            ""id"": ""2e43fd17-c45c-4354-b512-b230eaec2486"",
+            ""actions"": [
+                {
+                    ""name"": ""OmniReflect"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6b76017-0485-4b16-af4c-a339da7570d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d1ad77b9-12f6-4a33-89f6-23424a95bd80"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OmniReflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a84852cd-4101-4064-a0e0-6af37e010a0a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OmniReflect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -336,7 +399,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Moving = asset.FindActionMap("Moving", throwIfNotFound: true);
         m_Moving_Move = m_Moving.FindAction("Move", throwIfNotFound: true);
         m_Moving_Jump = m_Moving.FindAction("Jump", throwIfNotFound: true);
-        m_Moving_WallGrab = m_Moving.FindAction("WallGrab", throwIfNotFound: true);
         m_Moving_Dash = m_Moving.FindAction("Dash", throwIfNotFound: true);
         // Attacking
         m_Attacking = asset.FindActionMap("Attacking", throwIfNotFound: true);
@@ -344,6 +406,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Pausing
         m_Pausing = asset.FindActionMap("Pausing", throwIfNotFound: true);
         m_Pausing_Pause = m_Pausing.FindAction("Pause", throwIfNotFound: true);
+        // Abilities
+        m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
+        m_Abilities_OmniReflect = m_Abilities.FindAction("OmniReflect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -446,7 +511,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IMovingActions m_MovingActionsCallbackInterface;
     private readonly InputAction m_Moving_Move;
     private readonly InputAction m_Moving_Jump;
-    private readonly InputAction m_Moving_WallGrab;
     private readonly InputAction m_Moving_Dash;
     public struct MovingActions
     {
@@ -454,7 +518,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public MovingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Moving_Move;
         public InputAction @Jump => m_Wrapper.m_Moving_Jump;
-        public InputAction @WallGrab => m_Wrapper.m_Moving_WallGrab;
         public InputAction @Dash => m_Wrapper.m_Moving_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Moving; }
         public void Enable() { Get().Enable(); }
@@ -471,9 +534,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
-                @WallGrab.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
-                @WallGrab.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
-                @WallGrab.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnWallGrab;
                 @Dash.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnDash;
@@ -487,9 +547,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @WallGrab.started += instance.OnWallGrab;
-                @WallGrab.performed += instance.OnWallGrab;
-                @WallGrab.canceled += instance.OnWallGrab;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
@@ -563,6 +620,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PausingActions @Pausing => new PausingActions(this);
+
+    // Abilities
+    private readonly InputActionMap m_Abilities;
+    private IAbilitiesActions m_AbilitiesActionsCallbackInterface;
+    private readonly InputAction m_Abilities_OmniReflect;
+    public struct AbilitiesActions
+    {
+        private @PlayerControls m_Wrapper;
+        public AbilitiesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OmniReflect => m_Wrapper.m_Abilities_OmniReflect;
+        public InputActionMap Get() { return m_Wrapper.m_Abilities; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AbilitiesActions set) { return set.Get(); }
+        public void SetCallbacks(IAbilitiesActions instance)
+        {
+            if (m_Wrapper.m_AbilitiesActionsCallbackInterface != null)
+            {
+                @OmniReflect.started -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+                @OmniReflect.performed -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+                @OmniReflect.canceled -= m_Wrapper.m_AbilitiesActionsCallbackInterface.OnOmniReflect;
+            }
+            m_Wrapper.m_AbilitiesActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OmniReflect.started += instance.OnOmniReflect;
+                @OmniReflect.performed += instance.OnOmniReflect;
+                @OmniReflect.canceled += instance.OnOmniReflect;
+            }
+        }
+    }
+    public AbilitiesActions @Abilities => new AbilitiesActions(this);
     public interface IAimingActions
     {
         void OnGamepad(InputAction.CallbackContext context);
@@ -572,7 +662,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnWallGrab(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
     }
     public interface IAttackingActions
@@ -582,5 +671,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPausingActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IAbilitiesActions
+    {
+        void OnOmniReflect(InputAction.CallbackContext context);
     }
 }

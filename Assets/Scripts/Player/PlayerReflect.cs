@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerReflect : MonoBehaviour
 {
     [Header("References")]
-    [Tooltip("The sprite to change colors when detecting")][SerializeField] private SpriteRenderer _spriteRenderer;
+    [Tooltip("The sprite to change colors when detecting")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private ParticleSystem _reflectParticleSystem;
     private Collider2D _collider;
 
     private PlayerControls _playerControls;
@@ -14,6 +16,8 @@ public class PlayerReflect : MonoBehaviour
     [Header("Settings")] [SerializeField] private float detectCoolDown;
     [SerializeField] private Color _color;
     [SerializeField] private LayerMask groundLayer, aimLayer;
+
+    public bool canReflect;
     
     #region Initialization
     
@@ -44,7 +48,10 @@ public class PlayerReflect : MonoBehaviour
     
     private void Detect()
     {
+        if (!canReflect) return;
+        
         //Debug.Log("Detect");
+        _reflectParticleSystem.Play();
         _collider.enabled = true;
         _color.a = 0.25f;
         StartCoroutine("WaitForCoolDown");
@@ -56,7 +63,7 @@ public class PlayerReflect : MonoBehaviour
         _collider.enabled = false;
         _color.a = 0.5f;
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))

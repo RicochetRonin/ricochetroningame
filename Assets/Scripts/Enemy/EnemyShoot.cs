@@ -27,7 +27,9 @@ public class EnemyShoot : MonoBehaviour
     {
         if (canAttack)
         {
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            //bulletPrefab.GetComponent<BulletController>().SetHostile();
+            MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
+            
             canAttack = false;
             StartCoroutine("ResetCoolDown");
         }

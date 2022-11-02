@@ -72,15 +72,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WallGrab",
-                    "type": "Button",
-                    "id": "0dc362f9-8784-47f1-a009-6c9a9d685f33",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "d0573850-6a6e-4c63-aa13-1468054ecbac",
@@ -94,7 +85,7 @@
                 {
                     "name": "",
                     "id": "282dacca-b804-4570-997b-27dbe6a92ca8",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,28 +101,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1a791bf5-bd7f-4ff8-af98-e30b56be8735",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e408fb77-2dd9-4b53-8530-5571d5f8dc19",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WallGrab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -202,9 +171,64 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "627ca85c-59be-47b2-868d-619ab9a73cc9",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "2ce9aca3-3db5-4b1d-9904-c80a1c1c0ae1",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "2b7bf17a-22fd-458a-abe9-5eecb1c1790d",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "63c0ff1f-0150-4975-9dd5-525a271de099",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "1c7ec684-e760-4528-8a13-049b91b5b100",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "ca615ccd-d3d8-4daa-93cb-3f87ff6e4bac",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -215,7 +239,7 @@
                 {
                     "name": "",
                     "id": "725b0ec6-bd6e-4d85-b0ae-f4b985831e34",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -298,6 +322,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Abilities",
+            "id": "2e43fd17-c45c-4354-b512-b230eaec2486",
+            "actions": [
+                {
+                    "name": "OmniReflect",
+                    "type": "Button",
+                    "id": "f6b76017-0485-4b16-af4c-a339da7570d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1ad77b9-12f6-4a33-89f6-23424a95bd80",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OmniReflect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a84852cd-4101-4064-a0e0-6af37e010a0a",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OmniReflect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

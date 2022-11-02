@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -23,30 +20,33 @@ public class BulletController : MonoBehaviour
     //whatever layer the bullets should reflect on
     [SerializeField] private LayerMask collisionMask;
 
-    [HideInInspector] public bool playerBullet = false;
-    private bool _blinking = false;
+    [HideInInspector] public bool playerBullet;
     private SpriteRenderer _spriteRenderer;
     
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
     [SerializeField] private float speed = 5f;
     [SerializeField] private Vector3 size;
-    [SerializeField] private float reflectForce = 1.15f;
+    //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
-    private float _reflectCount = 0f;
+    [SerializeField] private float muzzleFlashTime = 0.1f;
+    [SerializeField] private Color muzzleColor1 = Color.white;
+    [SerializeField] private Color muzzleColor2 = Color.black;
+
+    private float _reflectCount;
     private void Awake()
     {
         previousPos = transform.position;
         direction = Vector2.up;
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine("MuzzleFlash");
     }
 
     private void FixedUpdate()
     {
         Movement();
         RaycastReflect();
-        //Death();
+        Death();
     }
 
     private void Movement()
@@ -83,15 +83,26 @@ public class BulletController : MonoBehaviour
         Vector3 size = transform.localScale;
         damage = Mathf.Floor(damage * 1.1f);
     }
-
+    
     void Death()
     {
         if (_reflectCount >= maxReflects)
         {
-            Destroy(gameObject);
-            deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            //Instantiate(deathEffect, transform.position, Quaternion.identity);
+            MasterPool.Despawn(gameObject);
+            _reflectCount = 0;
         }
+    }
+
+    private IEnumerator MuzzleFlash()
+    {
+        Color origColor = _spriteRenderer.color;
+        _spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(muzzleFlashTime);
+        _spriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(muzzleFlashTime);
+        _spriteRenderer.color = origColor;
     }
     private Vector3 CalcDirection()
     {
@@ -112,14 +123,37 @@ public class BulletController : MonoBehaviour
 
     }
     
+    public void SetFriendly()
+    {
+        Debug.Log("Set Friendly");
+        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        //Debug.Log(_spriteRenderer);
+        
+        gameObject.tag = "PlayerBullet";
+        _spriteRenderer.color = Color.green;
+    }
+    
+    public void SetHostile()
+    {
+        Debug.Log("Set Hostile");
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        //Debug.Log(_spriteRenderer);
+        
+        gameObject.tag = "EnemyBullet";
+        _spriteRenderer.color = Color.red;
+    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log(collision);
+        
         if (collision.gameObject.CompareTag("PlayerHurtBox") && collision.gameObject.GetComponentInChildren<PlayerHealth>().getCanTakeDamage() && gameObject.CompareTag("EnemyBullet"))
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
-            Destroy(gameObject);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            MasterPool.Despawn(gameObject);
 
         }
 
@@ -127,13 +161,13 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            Destroy(gameObject);
+            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+            MasterPool.Despawn(gameObject);
 
         }
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
-            gameObject.tag = "PlayerBullet";
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
             //Debug.Log(playerAim.usingController);
 
@@ -146,7 +180,7 @@ public class BulletController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
 
-            _spriteRenderer.color = Color.green;
+            SetFriendly();
 
             /*
             //speed *= reflectForce;
@@ -155,14 +189,35 @@ public class BulletController : MonoBehaviour
             
             _reflectCount++;
             */
+            
         }
+
+
+        if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
+        {
+            gameObject.tag = "PlayerBullet";
+            _spriteRenderer.color = Color.green;
+            //Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
+            //Debug.Log("Bullet " + transform.position);
+
+            Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
+            var rot = - Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
+            //Debug.Log("Reflect direction" + reflectDirection);
+            //Debug.Log(rot);
+            transform.eulerAngles = new Vector3(0, 0, rot);
+
+            //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
+
+
+
+        }
+
 
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
-            gameObject.tag = "EnemyBullet";
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
             
-            _spriteRenderer.color = Color.red;
+            SetHostile();
             
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
