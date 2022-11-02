@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         _playerControls = new PlayerControls();
         _isPaused = false;
