@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private UnityEngine.InputSystem.InputAction.CallbackContext _dash;
     private bool canDash;
     private bool isDashing;
+    private bool isFacingRight;
 
 
     [Header("Stats")]
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
+    public SpriteRenderer _spriteRenderer;
+    public Animator _animator;
 
     public bool canMove = true;
     private int jumpCount = 0;
@@ -68,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
         canDash = true;
+        isFacingRight = true;
     }
 
     void SetControls()
@@ -119,7 +123,20 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move(Vector2 dir)
     {
+        if (dir.x > 0 && !isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            _spriteRenderer.flipX = false;
+        }
+
+        else if (dir.x < 0 && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            _spriteRenderer.flipX = true;
+        }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        Debug.Log("B " + dir.x * speed);
+        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
     }
 
     private void JumpCheck()

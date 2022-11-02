@@ -231,6 +231,14 @@ PrefabInstance:
       propertyPath: m_EdgeRadius
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5446883133848638611, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077390754634076757, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 64657cf6c661ad24dbbf7b20166574ce, type: 2}
     - target: {fileID: 8431895205352310259, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: looping
       value: 1
