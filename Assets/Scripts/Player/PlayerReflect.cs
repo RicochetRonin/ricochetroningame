@@ -9,6 +9,8 @@ public class PlayerReflect : MonoBehaviour
     [Tooltip("The sprite to change colors when detecting")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ParticleSystem _reflectParticleSystem;
+    [SerializeField] private GameObject _hitParticleSytem;
+
     private Collider2D _collider;
 
     private PlayerControls _playerControls;
@@ -66,12 +68,21 @@ public class PlayerReflect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("COLLISION " + other.tag);
         if (other.CompareTag("EnemyBullet"))
         {
             //TODO: Change from being a GetComponent to switching the case of the bullet
             other.GetComponent<SpriteRenderer>().color = Color.green;
             _spriteRenderer.sortingOrder = 0;
             other.tag = "PlayerBullet";
+        }
+
+        if (other.CompareTag("PlayerBullet"))
+        {
+            //TODO: Change from being a GetComponent to switching the case of the bullet
+            Debug.Log("SHOULD SEE HIT EFFECT");
+            GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
+            particle.GetComponent<ParticleSystem>().Play();
         }
     }
 }
