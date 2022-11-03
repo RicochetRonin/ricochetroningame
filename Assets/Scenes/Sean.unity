@@ -146,6 +146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 16987162286892796, guid: a9258fbc1f699ea4d8cd97c81983639f, type: 3}
+      propertyPath: canTakeDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4780582318247601425, guid: a9258fbc1f699ea4d8cd97c81983639f, type: 3}
       propertyPath: m_Name
       value: EnemyShooter
@@ -308,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 1603316385}
     - target: {fileID: 5446883131945973390, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5446883131945973390, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1019,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169822700245057150, guid: ad85b20f9963e4f43b4aeda6dd6a284d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5169822700245057150, guid: ad85b20f9963e4f43b4aeda6dd6a284d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1839,7 +1843,7 @@ PrefabInstance:
       objectReference: {fileID: 248447984}
     - target: {fileID: 9043569122384486513, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9043569122384486513, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: m_LocalPosition.x
