@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
-        Debug.Log("B " + dir.x * speed);
+        //Debug.Log("B " + dir.x * speed);
         _animator.SetFloat("Speed", Mathf.Abs(dir.x));
     }
 
