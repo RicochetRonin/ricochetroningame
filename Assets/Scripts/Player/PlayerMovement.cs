@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 
@@ -27,22 +28,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
+    [SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
+    [SerializeField] private float wallJumpTime;
+    private float wallJumpCounter;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
-
+    [SerializeField] private PlayerAim _playerAim;
+    
     public bool canMove = true;
     private int jumpCount = 0;
+    [SerializeField] private LayerMask collisionMask;
     
     [Header("Booleans")]
     public bool wallGrab;
-    public bool wallSlide;
+    public bool wallJump;
 
     #region Initialization
 
@@ -78,9 +84,7 @@ public class PlayerMovement : MonoBehaviour
         _playerControls.Moving.Move.canceled += context => _move = Vector2.zero;
 
         _playerControls.Moving.Jump.performed += _ => Jump();
-        _playerControls.Moving.Jump.performed += _ => WallGrab();
         _playerControls.Moving.Dash.performed += _ => StartCoroutine(Dash());
-
     }
 
 
@@ -140,42 +144,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            rb.velocity = Vector2.up * jumpVelocity;
+            if (coll.onRightWall && !coll.onGround)
+            {
+                rb.AddForce((Vector2.up + Vector2.left) * jumpVelocity * wallJumpDistance);
+                
+                //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
+                
+                Debug.LogFormat("Velocity: {0}", rb.velocity);
+                Debug.Log("Wall jump left");
+            }
+            else if (coll.onLeftWall && !coll.onGround)
+            {
+                rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
+                
+                //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.right * wallJumpDistance));
+                
+                Debug.LogFormat("Velocity: {0}", rb.velocity);
+                Debug.Log("Wall jump right");
+            }
+            else
+            {
+                rb.velocity = Vector2.up * jumpVelocity; 
+            }
+            
             jumpCount++;
             //Debug.Log(jumpCount);
         }
-    }
-    
-    private void WallGrab()
-    {
-        
-        if (coll.onWall) // && _playerControls.Moving.WallGrab.triggered
-        {
-            //Debug.Log("Wall Grab");
-            wallGrab = true;
-            //wallSlide = false;
-        }
-        else
-        {
-            wallGrab = false;
-        }
-        
-        if (wallGrab)
-        {
-            //rb.gravityScale = 0;
-            if (_move.x > .2f || _move.x < -.2f)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-            }
-
-            float speedModifier = _move.y > 0 ? .5f : 1;
-
-            rb.velocity = new Vector2(rb.velocity.x, _move.y * (speed * speedModifier));
-        }
-
-        //rb.gravityScale = 1;
-        //rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        //Debug.Log(rb.gravityScale);
     }
 
     private IEnumerator Dash()
