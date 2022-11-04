@@ -125,7 +125,7 @@ public class BulletController : MonoBehaviour
     
     public void SetFriendly()
     {
-        Debug.Log("Set Friendly");
+        //Debug.Log("Set Friendly");
         
         _spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log(_spriteRenderer);

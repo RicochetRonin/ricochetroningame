@@ -25,4 +25,9 @@ public class EnemyAim : MonoBehaviour
         }
 
     }
+
+    public void setCanAim(bool aim)
+    {
+        canAim = aim;
+    }
 }
