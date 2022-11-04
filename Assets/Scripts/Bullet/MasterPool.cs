@@ -6,11 +6,14 @@ public static class MasterPool
 {
     private static Dictionary<string, BulletPool> pools = new Dictionary<string, BulletPool>();
 
-    public static void Spawn(GameObject bullet, Vector3 pos, Quaternion rot)
+        public static void Spawn(GameObject bullet, Vector3 pos, Quaternion rot)
     {
         GameObject obj;
         string key = bullet.name.Replace("(Clone)", "");
-
+        if (GameObject.Find($"{key}_POOL") == null)
+        {
+            pools.Clear();
+        }
         if (pools.ContainsKey(key))
         {
             if (pools[key].inactive.Count == 0)

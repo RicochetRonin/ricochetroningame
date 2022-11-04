@@ -22,7 +22,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float omniReflectCooldown = 30f;
 
     private PlayerControls _playerControls;
-    
+
+    public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
+
 
     #region Initialization
 
@@ -55,6 +57,7 @@ public class AbilityManager : MonoBehaviour
 
     private void Update()
     {
+        omniCooldownText.SetCooldown(canOmniReflect);
         if (omniReflectActive)
         {
             return;
