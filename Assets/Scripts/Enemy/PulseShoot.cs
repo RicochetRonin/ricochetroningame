@@ -12,6 +12,7 @@ public class PulseShoot : EnemyShoot
     [SerializeField] protected float timeBetweenPulse = 2f;
     [SerializeField] protected float timeBetweenShot = 0f;
     [SerializeField] protected float pulseRadius = 1f;
+    private bool origCanAim;
 
     private EnemyAim _enemyAim;
 
@@ -19,6 +20,7 @@ public class PulseShoot : EnemyShoot
     private void Start()
     {
         _enemyAim = this.GetComponentInParent<EnemyAim>();
+        origCanAim = _enemyAim.getCanAim();
     }
 
 
@@ -44,7 +46,8 @@ public class PulseShoot : EnemyShoot
         for (int j = 0; j < numPulse; j++) { 
             
             currTransformRotation = Quaternion.Euler(transform.parent.transform.rotation.eulerAngles + new Vector3(0, 0, -90));
-            _enemyAim.setCanAim(false);
+            if (origCanAim) { _enemyAim.setCanAim(false); }
+            
         
             //Debug.Log("Pulse " + j);
             for (int i = 0; i < numProjectiles; i++)
@@ -64,7 +67,7 @@ public class PulseShoot : EnemyShoot
                 yield return new WaitForSeconds(timeBetweenShot);
             }
             yield return new WaitForSeconds(timeBetweenPulse);
-            _enemyAim.setCanAim(true);
+            if (origCanAim) { _enemyAim.setCanAim(true); }
         }
 
 
