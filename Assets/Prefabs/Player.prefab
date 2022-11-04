@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 5446883133551815284}
   _reflectParticleSystem: {fileID: 879690517180640915}
-  _hitParticleSytem: {fileID: 431969915901421351, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
   detectCoolDown: 1
   _color: {r: 0, g: 0, b: 1, a: 0.5019608}
   groundLayer:
@@ -610,6 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492995124780970292}
   - component: {fileID: 4655902735363691243}
+  - component: {fileID: 3224521390373829938}
   m_Layer: 0
   m_Name: OmniReflectHitBox
   m_TagString: OmniReflectHitBox
@@ -648,6 +649,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.1
+--- !u!114 &3224521390373829938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746761832924246201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c455ae4d6390d4595b1484c3e6822e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
   m_ObjectHideFlags: 0

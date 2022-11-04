@@ -20,8 +20,6 @@ public class AbilityManager : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float omniReflectDuration = 5f;
     [SerializeField] private float omniReflectCooldown = 30f;
-    [SerializeField] private int maxOmniRelectCapacity = 5;
-    [SerializeField] private int currentOmniReflectCapacity = 1;
 
     private PlayerControls _playerControls;
 
@@ -70,13 +68,11 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator OmniReflect()
     {
         Debug.Log("OmniReflect called");
-        Debug.Log("Current Omni Reflect pouch " + currentOmniReflectCapacity);
         if (canOmniReflect)
         {
             canOmniReflect = false;
             omniReflectActive = true;
             _omniReflectCollider.enabled = true;
-            currentOmniReflectCapacity -= 1;
             _omniReflectGraphics.SetActive(true);
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
