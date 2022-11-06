@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2057093756}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2056869140
@@ -568,6 +568,11 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &2057093756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5169822699005512466, guid: ad85b20f9963e4f43b4aeda6dd6a284d, type: 3}
+  m_PrefabInstance: {fileID: 5169822698831420971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &968456919998531788
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private UnityEngine.InputSystem.InputAction.CallbackContext _dash;
     private bool canDash;
     private bool isDashing;
+    private bool isFacingRight;
+    private int isFacingRightInt;
 
     //[SerializeField] private AudioManager audio;
     [SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -42,8 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
+
     [SerializeField] private PlayerAim _playerAim;
     
+
+    public SpriteRenderer _spriteRenderer;
+    public Animator _animator;
+
     public bool canMove = true;
     private int jumpCount = 0;
     [SerializeField] private LayerMask collisionMask;
@@ -76,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
         canDash = true;
+        isFacingRight = true;
+        isFacingRightInt = 1;
     }
 
     void SetControls()
@@ -96,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log(playerHealth.getCanTakeDamage());
+        Debug.Log("Velocity " + rb.velocity);
+        Debug.Log("Y velocity " + rb.velocity.y);
         JumpCheck();
         
         if (!canMove) return;
@@ -125,7 +136,23 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move(Vector2 dir)
     {
+        if (dir.x > 0 && !isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
+            _spriteRenderer.flipX = false;
+        }
+
+        else if (dir.x < 0 && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
+            _spriteRenderer.flipX = true;
+        }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        //Debug.Log("B " + dir.x * speed);
+        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("JumpSpeed", rb.velocity.y);
     }
 
     private void JumpCheck()
@@ -183,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Dash " + canDash);
         //Debug.Log("X" + _move.x);
 
-        if (canDash && _move.x != 0)
+        if (canDash)
         {
             canDash = false;
             isDashing = true;
@@ -191,10 +218,13 @@ public class PlayerMovement : MonoBehaviour
             //float origGrav = rb.gravityScale;
 
             rb.gravityScale = 0;
+
             rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
             
             AudioManager.PlayOneShotSFX(dashSFX);
-            
+
+            rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
+
             yield return new WaitForSeconds(dashTime);
             playerHealth.setCanTakeDamage(true);
             isDashing = false;
