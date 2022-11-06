@@ -96,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log(playerHealth.getCanTakeDamage());
+        Debug.Log("Velocity " + rb.velocity);
+        Debug.Log("Y velocity " + rb.velocity.y);
         JumpCheck();
         
         if (!canMove) return;
@@ -141,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         //Debug.Log("B " + dir.x * speed);
         _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("JumpSpeed", rb.velocity.y);
     }
 
     private void JumpCheck()
