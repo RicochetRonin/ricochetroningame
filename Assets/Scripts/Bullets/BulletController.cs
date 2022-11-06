@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
 
     [HideInInspector] public bool playerBullet;
     private SpriteRenderer _spriteRenderer;
-    
+
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
     [SerializeField] private float speed = 5f;
