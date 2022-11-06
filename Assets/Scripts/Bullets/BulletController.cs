@@ -40,7 +40,7 @@ public class BulletController : MonoBehaviour
     {
         previousPos = transform.position;
         direction = Vector2.up;
-        StartCoroutine("MuzzleFlash");
+        //StartCoroutine("MuzzleFlash");
     }
 
     private void FixedUpdate()
