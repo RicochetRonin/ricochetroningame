@@ -3,7 +3,11 @@ guid: cfdd22a32f3295f4391735255b553044
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathEffect: {instanceID: 0}
+  - bounceSFX: {fileID: 8300000, guid: aa648fe5ce297744d8524d8e660a254a, type: 3}
+  - hitPlayer: {fileID: 8300000, guid: f052ae40c3ecace4fabf8939aa685571, type: 3}
+  - reflectedSFX: {fileID: 8300000, guid: 8472bcf0980070046bd86ea1d117b395, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

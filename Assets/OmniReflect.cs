@@ -8,6 +8,7 @@ public class OmniReflect : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject _hitParticleSytem;
 
+    [SerializeField] private AudioClip playSFX;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +16,9 @@ public class OmniReflect : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
+            
+            //AudioManager.PlayOneShotSFX(playSFX);
+            
             particle.GetComponent<ParticleSystem>().Play();
         }
     }

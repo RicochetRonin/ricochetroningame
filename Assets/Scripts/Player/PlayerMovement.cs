@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private int isFacingRightInt;
 
     //[SerializeField] private AudioManager audio;
-    [SerializeField] private AudioClip jumpSFX, dashSFX;
+    [SerializeField] private AudioClip jumpSFX, dashSFX, landingSFX;
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Booleans")]
     public bool wallGrab;
     public bool wallJump;
+    private bool wasOnGround;
 
     #region Initialization
 
@@ -105,8 +106,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log(playerHealth.getCanTakeDamage());
-        Debug.Log("Velocity " + rb.velocity);
-        Debug.Log("Y velocity " + rb.velocity.y);
+        //Debug.Log("Velocity " + rb.velocity);
+        //Debug.Log("Y velocity " + rb.velocity.y);
         JumpCheck();
         
         if (!canMove) return;
@@ -122,6 +123,12 @@ public class PlayerMovement : MonoBehaviour
         if (coll.onGround || coll.onWall)
         {
             jumpCount = 1;
+            
+            if (!wasOnGround)
+            {
+                wasOnGround = true;
+                AudioManager.PlayOneShotSFX(landingSFX);
+            }
         }
 
         dashCooldownText.SetCooldown(canDash);
@@ -161,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            wasOnGround = false;
         }
         
         else if (rb.velocity.y > 0 && !_playerControls.Moving.Jump.triggered)
