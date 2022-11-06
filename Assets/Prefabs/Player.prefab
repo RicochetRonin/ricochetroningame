@@ -513,7 +513,7 @@ SpriteRenderer:
   m_SortingLayerID: 10358651
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2044475200, guid: 86aafd0b87d8e904a957efa1d3d4f948, type: 3}
+  m_Sprite: {fileID: -1625967388, guid: 2f543d9609cdee146b046fc888d0858e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   _omniReflectParticleSystem: {fileID: 8431895205352310259}
   omniReflectDuration: 5
   omniReflectCooldown: 30
+  omniCooldownText: {fileID: 0}
 --- !u!1 &8746761832924246201
 GameObject:
   m_ObjectHideFlags: 0
