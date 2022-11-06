@@ -23,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash;
     private bool isDashing;
 
-
+    //[SerializeField] private AudioManager audio;
+    [SerializeField] private AudioClip jumpSFX, dashSFX;
+    
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float slideSpeed = 3f;
@@ -167,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.up * jumpVelocity; 
             }
             
+            AudioManager.PlayOneShotSFX(jumpSFX);
             jumpCount++;
             //Debug.Log(jumpCount);
         }
@@ -189,6 +192,9 @@ public class PlayerMovement : MonoBehaviour
 
             rb.gravityScale = 0;
             rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
+            
+            AudioManager.PlayOneShotSFX(dashSFX);
+            
             yield return new WaitForSeconds(dashTime);
             playerHealth.setCanTakeDamage(true);
             isDashing = false;

@@ -16,7 +16,8 @@ public class PlayerReflect : MonoBehaviour
     [Header("Settings")] [SerializeField] private float detectCoolDown;
     [SerializeField] private Color _color;
     [SerializeField] private LayerMask groundLayer, aimLayer;
-
+    [SerializeField] private AudioClip 
+        
     public bool canReflect;
     
     #region Initialization
@@ -52,6 +53,8 @@ public class PlayerReflect : MonoBehaviour
         
         //Debug.Log("Detect");
         _reflectParticleSystem.Play();
+        AudioManager.PlayOneShotSFX();
+        
         _collider.enabled = true;
         _color.a = 0.25f;
         StartCoroutine("WaitForCoolDown");

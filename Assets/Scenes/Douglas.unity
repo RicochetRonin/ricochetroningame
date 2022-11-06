@@ -1943,6 +1943,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 9043569123368971388}
+    - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: jumpSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
+    - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: _playerAim
       value: 
       objectReference: {fileID: 1922552243}
@@ -10316,7 +10324,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 11}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6689230964714023892
@@ -10523,6 +10531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3134d92776486478c0c7f2dc7d7c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sfxSource: {fileID: 969362559}
+  _bgmSource: {fileID: 903737929}
+  bgmToPlay: {fileID: 8300000, guid: 6debdd9ece532ed408391c1c1c40bfb9, type: 3}
 --- !u!1 &9066947340211778422
 GameObject:
   m_ObjectHideFlags: 0
