@@ -8,7 +8,8 @@ public class PlayerReflect : MonoBehaviour
     [Header("References")]
     [Tooltip("The sprite to change colors when detecting")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private ParticleSystem _reflectParticleSystem;
+    //[SerializeField] private ParticleSystem _reflectParticleSystem;
+    [SerializeField] private Animator _reflectAnimator;
     [SerializeField] private GameObject _hitParticleSytem;
 
     private Collider2D _collider;
@@ -53,7 +54,7 @@ public class PlayerReflect : MonoBehaviour
         if (!canReflect) return;
         
         //Debug.Log("Detect");
-        _reflectParticleSystem.Play();
+        _reflectAnimator.SetTrigger("Reflect");
         _collider.enabled = true;
         _color.a = 0.25f;
         StartCoroutine("WaitForCoolDown");
