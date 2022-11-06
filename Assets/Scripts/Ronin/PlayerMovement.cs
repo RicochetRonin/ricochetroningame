@@ -96,8 +96,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //Debug.Log(playerHealth.getCanTakeDamage());
-        Debug.Log("Velocity " + rb.velocity);
-        Debug.Log("Y velocity " + rb.velocity.y);
+        //Debug.Log("Velocity " + rb.velocity);
+        //Debug.Log("Y velocity " + rb.velocity.y);
         JumpCheck();
         
         if (!canMove) return;
