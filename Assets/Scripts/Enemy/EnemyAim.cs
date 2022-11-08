@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,5 +25,15 @@ public class EnemyAim : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, angle);
         }
 
+    }
+
+    public void setCanAim(bool aim)
+    {
+        canAim = aim;
+    }
+
+    internal bool getCanAim()
+    {
+        return canAim;
     }
 }

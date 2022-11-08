@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1727568596402683697}
   - component: {fileID: 5189557039531396949}
   - component: {fileID: 801746722014634691}
+  - component: {fileID: 7066980364878688562}
   m_Layer: 7
   m_Name: SniperBullet
   m_TagString: EnemyBullet
@@ -60,6 +61,9 @@ MonoBehaviour:
   muzzleFlashTime: 0.1
   muzzleColor1: {r: 1, g: 1, b: 1, a: 1}
   muzzleColor2: {r: 0, g: 0, b: 0, a: 1}
+  bounceSFX: {fileID: 8300000, guid: aa648fe5ce297744d8524d8e660a254a, type: 3}
+  hitPlayer: {fileID: 8300000, guid: f052ae40c3ecace4fabf8939aa685571, type: 3}
+  reflectedSFX: {fileID: 8300000, guid: e35ea6510bcd38a46be94cf39e00445e, type: 3}
 --- !u!58 &1727568596402683697
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 63e8537d50527a443991ef7de69a1f05, type: 3}
+  m_Sprite: {fileID: 1218847630, guid: 5fd99a5503a62a14aa158cf7e1390e47, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -149,3 +153,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7066980364878688562
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078825028288994311}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b96345e2b8986394bb2f34fa4c3b6163, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
