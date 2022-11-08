@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Health : MonoBehaviour
 {
     public TextMeshProUGUI hp;
-    public Image blood;
     //Attaches to the Health component, child of UI
 
-    public void SetPlayerHealth(float  newHealth, float maxHealth)
+    public void SetPlayerHealth(float health)
     {
-        hp.text = "Health " + newHealth.ToString() + "/" + maxHealth.ToString();
-        blood.GetComponent<Image>().fillAmount = 1 - (newHealth / maxHealth);
+        hp.text = "Health " + health.ToString();
     }
 }

@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject PauseMenu;
 
-    public static Vector2 lastCheckPointPos;
-
     #region Singleton
 
     public static GameManager Instance;
@@ -30,13 +28,12 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         _playerControls = new PlayerControls();
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
     }
 
     #endregion

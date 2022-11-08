@@ -13,7 +13,6 @@ TagManager:
   - KillBox
   - OmniReflectHitBox
   - Enemy
-  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -50,7 +49,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Player
-    uniqueID: 10358651
     locked: 0
