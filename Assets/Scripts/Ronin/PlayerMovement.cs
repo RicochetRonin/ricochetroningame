@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             if (!wasOnGround)
             {
                 wasOnGround = true;
-                AudioManager.PlayOneShotSFX(landingSFX);
+                //AudioManager.PlayOneShotSFX(landingSFX);
             }
         }
 
