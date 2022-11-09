@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallGrab;
     public bool wallJump;
     private bool wasOnGround;
+    private bool wallJumping;
 
     #region Initialization
 
@@ -156,7 +157,14 @@ public class PlayerMovement : MonoBehaviour
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
         }
-        rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
+        if (wallJumping && rb.velocity.y > 0){
+            rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
+        }
+        else{
+            wallJumping = false;
+            rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        }
         //Debug.Log("B " + dir.x * speed);
         _animator.SetFloat("Speed", Mathf.Abs(dir.x));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
@@ -181,21 +189,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if (coll.onRightWall && !coll.onGround)
+            if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
             {
-                rb.AddForce((Vector2.up + Vector2.left) * jumpVelocity * wallJumpDistance);
-                
+                wallJumping = true;
+                rb.velocity = Vector2.up * jumpVelocity;
+
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
-                
+
                 Debug.LogFormat("Velocity: {0}", rb.velocity);
                 Debug.Log("Wall jump left");
             }
             else if (coll.onLeftWall && !coll.onGround)
             {
-                rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
-                
+                //rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
+
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.right * wallJumpDistance));
-                
+
                 Debug.LogFormat("Velocity: {0}", rb.velocity);
                 Debug.Log("Wall jump right");
             }
