@@ -34,12 +34,13 @@ public class BulletController : MonoBehaviour
     [SerializeField] private Color muzzleColor1 = Color.white;
     [SerializeField] private Color muzzleColor2 = Color.black;
 
+    [SerializeField] private AudioClip bounceSFX, hitPlayer, reflectedSFX;
     private float _reflectCount;
     private void Awake()
     {
         previousPos = transform.position;
         direction = Vector2.up;
-        StartCoroutine("MuzzleFlash");
+        //StartCoroutine("MuzzleFlash");
     }
 
     private void FixedUpdate()
@@ -64,14 +65,16 @@ public class BulletController : MonoBehaviour
         if (hit.collider != null)
         {
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
-            Debug.DrawRay(transform.position, reflectDir, Color.blue);
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
             
             transform.eulerAngles = new Vector3(0, 0, rot);
 
+            Debug.DrawRay(transform.position, reflectDir, Color.blue);
             //speed *= reflectForce;
             //IncreaseAfterReflect();
+            
+            AudioManager.PlayOneShotSFX(bounceSFX);
             _reflectCount++;
         }
     }
@@ -95,6 +98,7 @@ public class BulletController : MonoBehaviour
         }
     }
 
+    /*
     private IEnumerator MuzzleFlash()
     {
         Color origColor = _spriteRenderer.color;
@@ -104,6 +108,8 @@ public class BulletController : MonoBehaviour
         yield return new WaitForSeconds(muzzleFlashTime);
         _spriteRenderer.color = origColor;
     }
+    */
+    
     private Vector3 CalcDirection()
     {
 
@@ -136,7 +142,7 @@ public class BulletController : MonoBehaviour
     
     public void SetHostile()
     {
-        Debug.Log("Set Hostile");
+        //Debug.Log("Set Hostile");
         _spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log(_spriteRenderer);
         
@@ -152,6 +158,7 @@ public class BulletController : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            AudioManager.PlayOneShotSFX(hitPlayer);
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.Despawn(gameObject);
 
@@ -168,8 +175,9 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
-            playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
             //Debug.Log(playerAim.usingController);
+            
+            playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
 
             if (playerAim.usingController)
             {
@@ -180,6 +188,7 @@ public class BulletController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
 
+            AudioManager.PlayOneShotSFX(reflectedSFX);
             SetFriendly();
 
             /*

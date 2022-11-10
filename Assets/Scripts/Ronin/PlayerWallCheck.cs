@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class PlayerWallCheck : MonoBehaviour
     [SerializeField] private int wallSide;
     [SerializeField] private float collisionRadius = 0.25f;
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
-    
+
     private Color debugCollisionColor = Color.red;
 
     void Update()
@@ -30,8 +31,6 @@ public class PlayerWallCheck : MonoBehaviour
 
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
-
-        wallSide = onRightWall ? -1 : 1;
     }
 
     void OnDrawGizmos()
