@@ -187,8 +187,8 @@ public class PlayerMovement : MonoBehaviour
                 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
                 
-                Debug.LogFormat("Velocity: {0}", rb.velocity);
-                Debug.Log("Wall jump left");
+                //Debug.LogFormat("Velocity: {0}", rb.velocity);
+                //Debug.Log("Wall jump left");
             }
             else if (coll.onLeftWall && !coll.onGround)
             {
@@ -196,8 +196,8 @@ public class PlayerMovement : MonoBehaviour
                 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.right * wallJumpDistance));
                 
-                Debug.LogFormat("Velocity: {0}", rb.velocity);
-                Debug.Log("Wall jump right");
+                //Debug.LogFormat("Velocity: {0}", rb.velocity);
+                //Debug.Log("Wall jump right");
             }
             else
             {
@@ -226,13 +226,11 @@ public class PlayerMovement : MonoBehaviour
             //float origGrav = rb.gravityScale;
 
             rb.gravityScale = 0;
-
-            rb.velocity = new Vector2(_move.x * dashForce * speed, 0);
             
             AudioManager.PlayOneShotSFX(dashSFX);
 
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
-
+            
             yield return new WaitForSeconds(dashTime);
             playerHealth.setCanTakeDamage(true);
             isDashing = false;
