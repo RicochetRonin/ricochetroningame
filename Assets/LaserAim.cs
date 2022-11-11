@@ -74,10 +74,10 @@ public class LaserAim : MonoBehaviour
         {
             if (timeElapsed >= currTimeStep)
             {
-                Debug.Log("Curr Timestep" + currTimeStep);
+                //Debug.Log("Curr Timestep" + currTimeStep);
                 currTimeStep += timeSteps;
                 currAlphaStep += alphaSteps;
-                Debug.Log("Change alpha " + currAlphaStep);
+                //Debug.Log("Change alpha " + currAlphaStep);
                 tempColor = laserColor;
                 tempColor.a = currAlphaStep;
                 lineRenderer.material.color = tempColor;

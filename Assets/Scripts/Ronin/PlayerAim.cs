@@ -60,6 +60,8 @@ public class PlayerAim : MonoBehaviour
             aimDirection = _gamepadDirection;
             
         }
+
+        Debug.Log(_mouseDirection);
     }
 
     void AimGamepad()
@@ -67,11 +69,17 @@ public class PlayerAim : MonoBehaviour
         newDir = _gamepadDirection;
         
         transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(_gamepadDirection.x, _gamepadDirection.y) * Mathf.Rad2Deg);
+        
     }
 
     void AimMouse()
     {
-        newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
+        //newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
+
+        Vector3 playerCameraPos = Camera.current.WorldToScreenPoint(transform.position);
+        Debug.Log("_mouseDirection " + _mouseDirection);
+        
+        newDir = (_mouseDirection - new Vector2(playerCameraPos.x, playerCameraPos.y)).normalized;
 
         transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(newDir.x, newDir.y) * Mathf.Rad2Deg + 90);
     }
