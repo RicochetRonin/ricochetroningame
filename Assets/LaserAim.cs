@@ -12,6 +12,7 @@ public class LaserAim : MonoBehaviour
     private Transform shotSpawn;
 
     public Color laserColor;
+    public int numAlphaSteps = 3;
 
 
     private void OnEnable()
@@ -56,4 +57,36 @@ public class LaserAim : MonoBehaviour
         }
         lineRenderer.material.color = laserColor;
     }
+
+    public IEnumerator AlphaStep(float duration)
+    {
+        float timeElapsed = 0;
+        float timeSteps = duration / numAlphaSteps;
+        float currTimeStep = timeSteps;
+        float alphaSteps = 1.0f / numAlphaSteps;
+        float currAlphaStep = alphaSteps;
+
+        Color tempColor = laserColor;
+        tempColor.a = currAlphaStep;
+        lineRenderer.material.color = tempColor;
+
+        while (timeElapsed < duration)
+        {
+            if (timeElapsed >= currTimeStep)
+            {
+                Debug.Log("Curr Timestep" + currTimeStep);
+                currTimeStep += timeSteps;
+                currAlphaStep += alphaSteps;
+                Debug.Log("Change alpha " + currAlphaStep);
+                tempColor = laserColor;
+                tempColor.a = currAlphaStep;
+                lineRenderer.material.color = tempColor;
+            }
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    
 }

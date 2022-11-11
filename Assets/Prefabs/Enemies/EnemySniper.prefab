@@ -316,9 +316,6 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 1
   firstShotDelay: 2
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  chargeColor: {r: 0.97264934, g: 1, b: 0, a: 1}
-  colorController: {fileID: 314883482037139530}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserColor: {r: 1, g: 0, b: 0, a: 1}
+  numAlphaSteps: 3
 --- !u!120 &5804124731599672164
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -433,7 +431,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.02702713
+        value: 0.072071075
         inSlope: 0
         outSlope: 0
         tangentMode: 0

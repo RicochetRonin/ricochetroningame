@@ -31,7 +31,7 @@ public class SniperShoot : EnemyShoot
             canAttack = false;
             StartCoroutine("ResetCoolDown");
             //StartCoroutine(colorController.FadeColor(defaultColor, chargeColor, fireRate));
-            StartCoroutine(laserAim.AlphaFade(fireRate));
+            StartCoroutine(laserAim.AlphaStep(fireRate));
         }
 
     }
