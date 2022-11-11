@@ -61,7 +61,6 @@ public class PlayerAim : MonoBehaviour
             
         }
 
-        Debug.Log(_mouseDirection);
     }
 
     void AimGamepad()
@@ -75,9 +74,7 @@ public class PlayerAim : MonoBehaviour
     void AimMouse()
     {
         //newDir = (_mouseDirection - new Vector2(Screen.width / 2, Screen.height / 2)).normalized;
-
-        Vector3 playerCameraPos = Camera.current.WorldToScreenPoint(transform.position);
-        Debug.Log("_mouseDirection " + _mouseDirection);
+        Vector3 playerCameraPos = Camera.main.WorldToScreenPoint(transform.position);
         
         newDir = (_mouseDirection - new Vector2(playerCameraPos.x, playerCameraPos.y)).normalized;
 
