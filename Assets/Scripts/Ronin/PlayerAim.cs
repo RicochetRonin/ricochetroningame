@@ -30,7 +30,7 @@ public class PlayerAim : MonoBehaviour
         _playerControls = new PlayerControls();
 
         _playerControls.Aiming.Gamepad.performed += context => _gamepadDirection = context.ReadValue<Vector2>();
-        _playerControls.Aiming.Gamepad.canceled += context => _gamepadDirection = context.ReadValue<Vector2>();
+        //_playerControls.Aiming.Gamepad.canceled += context => _gamepadDirection = context.ReadValue<Vector2>();
 
         _playerControls.Aiming.Mouse.performed += context => _mouseDirection = context.ReadValue<Vector2>();
         _playerControls.Aiming.Mouse.canceled += context => _mouseDirection = context.ReadValue<Vector2>();
@@ -65,6 +65,7 @@ public class PlayerAim : MonoBehaviour
 
     void AimGamepad()
     {
+        Debug.Log(_gamepadDirection);
         newDir = _gamepadDirection;
         
         transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(_gamepadDirection.x, _gamepadDirection.y) * Mathf.Rad2Deg);
