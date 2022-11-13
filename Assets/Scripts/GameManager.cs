@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private bool _isPaused;
 
     public GameObject PauseMenu;
+    public GameObject FinishedText;
 
     public static Vector2 lastCheckPointPos;
 
@@ -104,6 +105,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FinishGame()
+    {
+        Time.timeScale = 0;
+        FinishedText.SetActive(true);
+    }
     public void ExitGame()
     {
         Debug.Log("Quitting Game");
