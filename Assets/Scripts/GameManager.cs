@@ -37,7 +37,11 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        
+        if (lastCheckPointPos != null)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        }
     }
 
     #endregion
