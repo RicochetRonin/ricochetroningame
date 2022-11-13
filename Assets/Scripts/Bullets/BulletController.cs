@@ -22,6 +22,7 @@ public class BulletController : MonoBehaviour
 
     [HideInInspector] public bool playerBullet;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
@@ -38,6 +39,7 @@ public class BulletController : MonoBehaviour
     private float _reflectCount;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
         //StartCoroutine("MuzzleFlash");
@@ -75,6 +77,8 @@ public class BulletController : MonoBehaviour
             //IncreaseAfterReflect();
             
             AudioManager.PlayOneShotSFX(bounceSFX);
+            _animator.SetTrigger("Impact");
+            
             _reflectCount++;
         }
     }
