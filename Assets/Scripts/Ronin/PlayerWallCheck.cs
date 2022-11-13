@@ -16,10 +16,10 @@ public class PlayerWallCheck : MonoBehaviour
     
     [Header("Settings")]
     [SerializeField] private int wallSide;
-    [SerializeField] private float collisionRadius = 0.25f;
+    [SerializeField] private float collisionRadius = 0.2f;
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
 
-    private Color debugCollisionColor = Color.red;
+    private Color debugCollisionColor = Color.green;
 
     void Update()
     {
