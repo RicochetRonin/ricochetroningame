@@ -193,6 +193,7 @@ public class BulletController : MonoBehaviour
             }
 
             AudioManager.PlayOneShotSFX(reflectedSFX);
+            _animator.SetTrigger("Impact");
             SetFriendly();
 
             /*
@@ -218,7 +219,7 @@ public class BulletController : MonoBehaviour
             //Debug.Log("Reflect direction" + reflectDirection);
             //Debug.Log(rot);
             transform.eulerAngles = new Vector3(0, 0, rot);
-
+            _animator.SetTrigger("Impact");
             //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
 
 
@@ -235,11 +236,11 @@ public class BulletController : MonoBehaviour
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
             Debug.DrawRay(transform.position, enemyAim.aimDirection, Color.green);
-            
+
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
-            
+            _animator.SetTrigger("Impact");
             _reflectCount++;
             
         }
