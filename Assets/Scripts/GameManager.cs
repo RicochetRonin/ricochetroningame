@@ -95,17 +95,21 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (!_isPaused)
+        {
+            _isPaused = true;
+            Time.timeScale = 0;
+            PauseMenu.SetActive(true);
+        }
+    }
+
+    public void UnPauseGame()
+    {
         if (_isPaused)
         {
             _isPaused = false;
             Time.timeScale = 1;
             PauseMenu.SetActive(false);
-        }
-        else
-        {
-            _isPaused = true;
-            Time.timeScale = 0;
-            PauseMenu.SetActive(true);
         }
     }
 
