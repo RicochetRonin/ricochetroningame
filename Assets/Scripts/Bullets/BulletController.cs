@@ -22,6 +22,7 @@ public class BulletController : MonoBehaviour
 
     [HideInInspector] public bool playerBullet;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
@@ -38,6 +39,7 @@ public class BulletController : MonoBehaviour
     private float _reflectCount;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
         //StartCoroutine("MuzzleFlash");
@@ -75,6 +77,8 @@ public class BulletController : MonoBehaviour
             //IncreaseAfterReflect();
             
             AudioManager.PlayOneShotSFX(bounceSFX);
+            _animator.SetTrigger("Impact");
+            
             _reflectCount++;
         }
     }
@@ -181,7 +185,8 @@ public class BulletController : MonoBehaviour
 
             if (playerAim.usingController)
             {
-                transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
+                //transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
+                transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
             else
             {
@@ -189,6 +194,7 @@ public class BulletController : MonoBehaviour
             }
 
             AudioManager.PlayOneShotSFX(reflectedSFX);
+            _animator.SetTrigger("Impact");
             SetFriendly();
 
             /*
@@ -214,7 +220,7 @@ public class BulletController : MonoBehaviour
             //Debug.Log("Reflect direction" + reflectDirection);
             //Debug.Log(rot);
             transform.eulerAngles = new Vector3(0, 0, rot);
-
+            _animator.SetTrigger("Impact");
             //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
 
 
@@ -231,11 +237,11 @@ public class BulletController : MonoBehaviour
             float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
             Debug.DrawRay(transform.position, enemyAim.aimDirection, Color.green);
-            
+
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
-            
+            _animator.SetTrigger("Impact");
             _reflectCount++;
             
         }

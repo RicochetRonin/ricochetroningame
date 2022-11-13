@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private bool _isPaused;
 
     public GameObject PauseMenu;
+    public GameObject FinishedText;
 
     public static Vector2 lastCheckPointPos;
 
@@ -36,7 +37,11 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        
+        if (lastCheckPointPos != null)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        }
     }
 
     #endregion
@@ -90,13 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (_isPaused)
-        {
-            _isPaused = false;
-            Time.timeScale = 1;
-            PauseMenu.SetActive(false);
-        }
-        else
+        if (!_isPaused)
         {
             _isPaused = true;
             Time.timeScale = 0;
@@ -104,6 +103,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UnPauseGame()
+    {
+        if (_isPaused)
+        {
+            _isPaused = false;
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+        }
+    }
+
+    public void FinishGame()
+    {
+        Time.timeScale = 0;
+        FinishedText.SetActive(true);
+    }
     public void ExitGame()
     {
         Debug.Log("Quitting Game");
