@@ -319,6 +319,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   chargeColor: {r: 0.97264934, g: 1, b: 0, a: 1}
   colorController: {fileID: 314883482037139530}
+  sniperSFX: {fileID: 8300000, guid: 3c9c69d34d0bd874eb6a8bfe34772e7e, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0

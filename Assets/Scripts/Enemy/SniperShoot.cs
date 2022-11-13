@@ -10,6 +10,7 @@ public class SniperShoot : EnemyShoot
     [SerializeField] public Color chargeColor;
 
     [SerializeField] public ColorController colorController;
+    [SerializeField] private AudioClip sniperSFX;
 
     void Update()
     {
@@ -19,6 +20,7 @@ public class SniperShoot : EnemyShoot
             
             //bulletPrefab.GetComponent<BulletController>().SetHostile();
             MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
+            AudioManager.PlayOneShotSFX(sniperSFX);
 
             canAttack = false;
             StartCoroutine("ResetCoolDown");

@@ -11,6 +11,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected float fireRate = 3f;
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
+    [SerializeField] private AudioClip shootSFX;
 
     void OnEnable()
     {
@@ -29,7 +30,8 @@ public class EnemyShoot : MonoBehaviour
         {
             //bulletPrefab.GetComponent<BulletController>().SetHostile();
             MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
-            
+            AudioManager.PlayOneShotSFX(shootSFX);
+
             canAttack = false;
             StartCoroutine("ResetCoolDown");
         }
