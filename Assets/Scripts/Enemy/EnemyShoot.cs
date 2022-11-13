@@ -14,6 +14,7 @@ public class EnemyShoot : MonoBehaviour
 
     void OnEnable()
     {
+        canAttack = false;
         StartCoroutine("SetCanAttack");
     }
 
@@ -23,6 +24,7 @@ public class EnemyShoot : MonoBehaviour
         canAttack = true;
 
     }
+    
     void Update()
     {
         if (canAttack)
