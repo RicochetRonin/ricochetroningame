@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
-        if (wallJumping && rb.velocity.y > 0){
+        if (wallJumping && rb.velocity.y > 0 && dir.x != 0){
             rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
         }
         else{
