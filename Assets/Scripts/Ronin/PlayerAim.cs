@@ -69,7 +69,6 @@ public class PlayerAim : MonoBehaviour
         newDir = _gamepadDirection;
         
         transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(_gamepadDirection.y, _gamepadDirection.x) * Mathf.Rad2Deg);
-        //transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(_gamepadDirection.x, -_gamepadDirection.y) * Mathf.Rad2Deg - 90);
     }
 
     void AimMouse()
