@@ -18,11 +18,13 @@ public class PlayerReflect : MonoBehaviour
     private PlayerControls _playerControls;
 
     [Header("Settings")] [SerializeField] private float detectCoolDown;
-    [SerializeField] private Color _color;
+    [SerializeField] private Color _cursorColor;
+    [SerializeField] private Color _cursorColorDeplete;
     [SerializeField] private LayerMask groundLayer, aimLayer;
     [SerializeField] private AudioClip reflectSFX;
         
     public bool canReflect;
+    private float reflectTime;
     
     #region Initialization
     
@@ -39,11 +41,20 @@ public class PlayerReflect : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<EdgeCollider2D>();
-        _spriteRenderer.color = _color;
+        _spriteRenderer.color = _cursorColor;
+        canReflect = true;
+        
 
         _playerControls = new PlayerControls();
         
-        _playerControls.Attacking.Reflect.performed += _ => Detect();
+        _playerControls.Attacking.Reflect.performed += _ => StartCoroutine(Detect());
+        foreach (AnimationClip clip in _reflectAnimator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == "Reflect")
+            {
+                reflectTime = clip.length;
+            }
+        }
 
         //Ignores colliding with Aim, Ground
         //Physics.IgnoreLayerCollision(aimLayer, groundLayer);
@@ -51,28 +62,35 @@ public class PlayerReflect : MonoBehaviour
 
     #endregion
     
-    private void Detect()
+    private IEnumerator Detect()
     {
-        if (!canReflect) return;
-        
-        //Debug.Log("Detect");
+        if (!canReflect)
+        {
+            yield return null;
+        }
 
-        //_reflectParticleSystem.Play();
-        //AudioManager.PlayOneShotSFX(reflectSFX);
-        
-        //Debug.Log("Triggered!");
-        _reflectAnimator.SetTrigger("Reflect");
 
-        _collider.enabled = true;
-        _color.a = 0.25f;
-        StartCoroutine("WaitForCoolDown");
+        else
+        {
+            //_reflectParticleSystem.Play();
+            //AudioManager.PlayOneShotSFX(reflectSFX);
+
+            //Debug.Log("Triggered!");
+            canReflect = false;
+            _reflectAnimator.SetTrigger("Reflect");
+            _collider.enabled = true;
+            yield return new WaitForSeconds(reflectTime);
+            StartCoroutine("WaitForCoolDown");
+        }
     }
 
     IEnumerator WaitForCoolDown()
     {
-        yield return new WaitForSeconds(detectCoolDown);
         _collider.enabled = false;
-        _color.a = 0.5f;
+        _spriteRenderer.color = _cursorColorDeplete;
+        yield return new WaitForSeconds(detectCoolDown);
+        _spriteRenderer.color = _cursorColor;
+        canReflect = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
