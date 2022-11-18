@@ -31,6 +31,8 @@ public class BulletController : MonoBehaviour
     //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
+    [SerializeField] private float reflectForce = 5f;
+    [SerializeField] private float maxSpeed = 7.5f;
     [SerializeField] private float muzzleFlashTime = 0.1f;
     [SerializeField] private Color muzzleColor1 = Color.white;
     [SerializeField] private Color muzzleColor2 = Color.black;
@@ -173,7 +175,7 @@ public class BulletController : MonoBehaviour
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            MasterPool.Despawn(gameObject);
+            //MasterPool.Despawn(gameObject);
 
         }
 
@@ -197,14 +199,13 @@ public class BulletController : MonoBehaviour
             _animator.SetTrigger("Impact");
             SetFriendly();
 
-            /*
-            //speed *= reflectForce;
-            //IncreaseAfterReflect();
-            //Debug.Log("Hit Bullet");
-            
-            _reflectCount++;
-            */
-            
+            if (rb.velocity.magnitude < maxSpeed)
+            {
+                speed *= reflectForce;
+            }
+
+            //_reflectCount++;
+
         }
 
 
