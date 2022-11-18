@@ -185,7 +185,8 @@ public class BulletController : MonoBehaviour
 
             if (playerAim.usingController)
             {
-                transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
+                //transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
+                transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
             else
             {
