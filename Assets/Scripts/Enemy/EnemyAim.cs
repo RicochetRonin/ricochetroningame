@@ -12,6 +12,7 @@ public class EnemyAim : MonoBehaviour
 
     private SpriteRenderer enemySprite;
 
+
     private void Start()
     {
         enemySprite = transform.parent.GetComponentInChildren<SpriteRenderer>();
