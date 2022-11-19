@@ -41,12 +41,6 @@ public class BulletController : MonoBehaviour
     public GameObject bulletVFX;
 
     private float _reflectCount;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Awake()
     {
         Debug.Log("Firing");
@@ -54,7 +48,7 @@ public class BulletController : MonoBehaviour
         previousPos = transform.position;
         direction = Vector2.up;
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponent<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
         //StartCoroutine("MuzzleFlash");
     }
 
@@ -93,7 +87,7 @@ public class BulletController : MonoBehaviour
                 bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
             }
             
-            //Debug.Log("hit normal " + hit.normal);
+            Debug.Log("hit normal " + hit.normal);
             //Debug.Log(hit.normal.x * 90);
             //Debug.Log(90 + hit.normal.y * 90);
             //Debug.Log("impactRot " + impactRot);
@@ -109,8 +103,6 @@ public class BulletController : MonoBehaviour
             //IncreaseAfterReflect();
             
             AudioManager.PlayOneShotSFX(bounceSFX);
-            //_animator.SetTrigger("Impact");
-            
             _reflectCount++;
         }
     }
@@ -130,7 +122,7 @@ public class BulletController : MonoBehaviour
         gameObject.transform.rotation = rot;
         gameObject.SetActive(true);
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponent<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
     }
     
     void Death()
