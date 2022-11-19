@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move(Vector2 dir)
     {
         //Debug.Log("Wall jumping value " + wallJumping);
-        if (dir.x > 0 && !isFacingRight && (coll.onGround))
+        if (dir.x > 0 && !isFacingRight && (!coll.onWall && !wallJumping))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;

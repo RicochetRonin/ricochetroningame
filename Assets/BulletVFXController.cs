@@ -15,14 +15,14 @@ public class BulletVFXController : MonoBehaviour
 
     public void PlayAnimation(string animation)
     {
-        //Debug.Log("Playing animation " + animation);
+        Debug.Log("Playing animation " + animation);
         animator.SetTrigger(animation);
     }
 
     public void AnimationEnd()
     {
         //MasterPool.DespawnBulletVFX(gameObject);
-        //Debug.Log("Destroying bullet VFX");
-        Destroy(transform.parent.gameObject);
+        Debug.Log("Destroying bullet VFX");
+        Destroy(this);
     }
 }
