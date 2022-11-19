@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move(Vector2 dir)
     {
-        Debug.Log("Wall jumping value " + wallJumping);
+        //Debug.Log("Wall jumping value " + wallJumping);
         if (dir.x > 0 && !isFacingRight && (!coll.onWall && !wallJumping))
         {
             isFacingRight = !isFacingRight;
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
-        else if (coll.onWall)
+        else if (coll.onWall && !coll.onGround)
         {
             if (coll.onRightWall)
             {

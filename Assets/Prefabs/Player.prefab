@@ -345,7 +345,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5446883133551815284}
   _reflectAnimator: {fileID: 7442198271507870336}
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
-  detectCoolDown: 0.5
+  detectCoolDown: 0.26
   _cursorColor: {r: 1, g: 1, b: 1, a: 1}
   _cursorColorDeplete: {r: 1, g: 1, b: 1, a: 0.49019608}
   groundLayer:
