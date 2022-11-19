@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
         previousPos = transform.position;
         direction = Vector2.up;
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponent<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
         //StartCoroutine("MuzzleFlash");
     }
 
@@ -73,6 +73,25 @@ public class BulletController : MonoBehaviour
         
         if (hit.collider != null)
         {
+            if (hit.normal.x != 0)
+            {
+                Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
+                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
+                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+            }
+
+            else
+            {
+                Vector3 impactRot = new Vector3(0, 0, 90 + hit.normal.y * 90);
+                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
+                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+            }
+            
+            Debug.Log("hit normal " + hit.normal);
+            //Debug.Log(hit.normal.x * 90);
+            //Debug.Log(90 + hit.normal.y * 90);
+            //Debug.Log("impactRot " + impactRot);
+
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
@@ -84,8 +103,6 @@ public class BulletController : MonoBehaviour
             //IncreaseAfterReflect();
             
             AudioManager.PlayOneShotSFX(bounceSFX);
-            //_animator.SetTrigger("Impact");
-            
             _reflectCount++;
         }
     }
@@ -105,7 +122,7 @@ public class BulletController : MonoBehaviour
         gameObject.transform.rotation = rot;
         gameObject.SetActive(true);
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponent<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
     }
     
     void Death()
