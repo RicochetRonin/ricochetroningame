@@ -9,6 +9,9 @@ public class EnemyAim : MonoBehaviour
     [SerializeField] private bool canAim = true;
 
     [HideInInspector] public Vector3 aimDirection;
+
+    public SpriteRenderer enemySprite;
+
     private void Start()
     {
 
@@ -23,6 +26,15 @@ public class EnemyAim : MonoBehaviour
             aimDirection = (target.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, angle);
+            if (angle >= -90 && angle <= 90 && enemySprite.flipX == false)
+            {
+                enemySprite.flipX = true;
+            }
+
+            else if ((angle <= -90 || angle >= 90) && enemySprite.flipX == true)
+            {
+                enemySprite.flipX = false;
+            }
         }
 
     }
