@@ -64,6 +64,7 @@ MonoBehaviour:
   bounceSFX: {fileID: 8300000, guid: aa648fe5ce297744d8524d8e660a254a, type: 3}
   hitPlayer: {fileID: 8300000, guid: f052ae40c3ecace4fabf8939aa685571, type: 3}
   reflectedSFX: {fileID: 8300000, guid: e35ea6510bcd38a46be94cf39e00445e, type: 3}
+  bulletVFX: {fileID: 1292682582970434895, guid: 1f8658a7e8564344a8f857e6b25d3b1c, type: 3}
 --- !u!58 &1727568596402683697
 CircleCollider2D:
   m_ObjectHideFlags: 0
