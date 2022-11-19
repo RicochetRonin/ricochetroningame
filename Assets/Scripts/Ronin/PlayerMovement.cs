@@ -105,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         //Debug.Log(playerHealth.getCanTakeDamage());
         //Debug.Log("Velocity " + rb.velocity);
         //Debug.Log("Y velocity " + rb.velocity.y);
@@ -131,27 +130,47 @@ public class PlayerMovement : MonoBehaviour
                 //AudioManager.PlayOneShotSFX(landingSFX);
             }
         }
-
         dashCooldownText.SetCooldown(canDash);
+        //Debug.Log("On Wall " + coll.onWall);
+        _animator.SetBool("OnWall", (coll.onWall));
+        _animator.SetBool("OnGround", (coll.onGround));
     }
 
     #region MovementFunctions
     
     private void Move(Vector2 dir)
     {
-        if (dir.x > 0 && !isFacingRight)
+        Debug.Log("Wall jumping value " + wallJumping);
+        if (dir.x > 0 && !isFacingRight && (!coll.onWall && !wallJumping))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
         }
 
-        else if (dir.x < 0 && isFacingRight)
+        else if (dir.x < 0 && isFacingRight && (!coll.onWall && !wallJumping))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
         }
+
+        else if (coll.onWall)
+        {
+            if (coll.onRightWall)
+            {
+                isFacingRight = !isFacingRight;
+                isFacingRightInt *= -1;
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                isFacingRight = !isFacingRight;
+                isFacingRightInt *= -1;
+                _spriteRenderer.flipX = false;
+            }
+        }
+
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
         if (wallJumping && rb.velocity.y > 0 && dir.x != 0){
             rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
@@ -186,13 +205,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
             {
+                _animator.SetTrigger("WallJump");
                 wallJumping = true;
                 rb.velocity = Vector2.up * jumpVelocity;
 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
 
-                Debug.LogFormat("Velocity: {0}", rb.velocity);
-                Debug.Log("Wall jump left");
+                //Debug.LogFormat("Velocity: {0}", rb.velocity);
+                //Debug.Log("Wall jump left");
 
             }
             else if (coll.onLeftWall && !coll.onGround)

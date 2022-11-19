@@ -10,11 +10,11 @@ public class EnemyAim : MonoBehaviour
 
     [HideInInspector] public Vector3 aimDirection;
 
-    public SpriteRenderer enemySprite;
+    private SpriteRenderer enemySprite;
 
     private void Start()
     {
-
+        enemySprite = transform.parent.GetComponentInChildren<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player");
 
     }
