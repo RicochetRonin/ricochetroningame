@@ -142,12 +142,17 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("WallJumping", wallJumping);
     }
 
+    void SetCanMove()
+    {
+        canMove = false;
+    }
+
     #region MovementFunctions
     
     private void Move(Vector2 dir)
     {
         //Debug.Log("Wall jumping value " + wallJumping);
-        if (dir.x > 0 && !isFacingRight && (!coll.onWall && !wallJumping))
+        if (dir.x > 0 && !isFacingRight && (coll.onGround))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
