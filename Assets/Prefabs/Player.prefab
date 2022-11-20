@@ -248,8 +248,8 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5446883133551815275}
   - {fileID: 5446883132441753987}
+  - {fileID: 5446883133551815275}
   - {fileID: 8677968448183637480}
   m_Father: {fileID: 5446883131945973390}
   m_RootOrder: 3
@@ -301,7 +301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5446883132418489049}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &5446883132441753986
 EdgeCollider2D:
@@ -310,13 +310,13 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446883132441753996}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.75, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
   - {x: 4, y: -5}
@@ -345,8 +345,9 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5446883133551815284}
   _reflectAnimator: {fileID: 7442198271507870336}
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
-  detectCoolDown: 1
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  detectCoolDown: 0.26
+  _cursorColor: {r: 1, g: 1, b: 1, a: 1}
+  _cursorColorDeplete: {r: 1, g: 1, b: 1, a: 0.49019608}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -385,7 +386,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5446883132418489049}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5446883133551815284
 SpriteRenderer:
