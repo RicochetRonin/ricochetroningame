@@ -134,6 +134,10 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("On Wall " + coll.onWall);
         _animator.SetBool("OnWall", (coll.onWall));
         _animator.SetBool("OnGround", (coll.onGround));
+        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("JumpSpeed", rb.velocity.y);
+        _animator.SetBool("FacingRight", isFacingRight);
+        _animator.SetBool("WallJumping", wallJumping);
     }
 
     void SetCanMove()
@@ -146,34 +150,56 @@ public class PlayerMovement : MonoBehaviour
     private void Move(Vector2 dir)
     {
         //Debug.Log("Wall jumping value " + wallJumping);
-        if (dir.x > 0 && !isFacingRight && (!coll.onWall && !wallJumping))
+        if (dir.x > 0 && !isFacingRight && (coll.onGround))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
         }
 
-        else if (dir.x < 0 && isFacingRight && (!coll.onWall && !wallJumping))
+        else if (dir.x < 0 && isFacingRight && (coll.onGround))
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
         }
 
-        else if (coll.onWall && !coll.onGround)
+        else if (coll.onWall && !coll.onGround && !wallJumping)
         {
             if (coll.onRightWall)
             {
-                isFacingRight = !isFacingRight;
-                isFacingRightInt *= -1;
-                _spriteRenderer.flipX = true;
+                if (isFacingRight)
+                {
+                    isFacingRight = !isFacingRight;
+                    isFacingRightInt *= -1;
+                    _spriteRenderer.flipX = true;
+                }
+                
             }
             else
             {
-                isFacingRight = !isFacingRight;
-                isFacingRightInt *= -1;
-                _spriteRenderer.flipX = false;
+                if (!isFacingRight)
+                {
+                    isFacingRight = !isFacingRight;
+                    isFacingRightInt *= -1;
+                    _spriteRenderer.flipX = false;
+                }                
             }
+        
+        }
+
+        if (!wallJumping && isFacingRight && dir.x < 0 && !coll.onGround && !coll.onWall)
+        {
+            isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
+            _spriteRenderer.flipX = true;
+        }
+
+        else if (!wallJumping && !isFacingRight && dir.x > 0 && !coll.onGround && !coll.onWall)
+        {
+            isFacingRight = !isFacingRight;
+            isFacingRightInt *= -1;
+            _spriteRenderer.flipX = false;
         }
 
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
@@ -185,8 +211,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
         //Debug.Log("B " + dir.x * speed);
-        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
-        _animator.SetFloat("JumpSpeed", rb.velocity.y);
     }
 
     private void JumpCheck()
