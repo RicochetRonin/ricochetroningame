@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(playerHealth.getCanTakeDamage());
         //Debug.Log("Velocity " + rb.velocity);
         //Debug.Log("Y velocity " + rb.velocity.y);
+        
         JumpCheck();
         
         if (!canMove) return;
@@ -132,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         }
         dashCooldownText.SetCooldown(canDash);
         //Debug.Log("On Wall " + coll.onWall);
+        //Debug.Log(Mathf.Abs(dir.x));
         _animator.SetBool("OnWall", (coll.onWall));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetFloat("Speed", Mathf.Abs(dir.x));
@@ -239,6 +241,8 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("Wall jump left");
 
             }
+
+            //Is this still needed?
             else if (coll.onLeftWall && !coll.onGround)
             {
                 //rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
@@ -250,6 +254,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Wall jump right");
 
             }
+
             else
             {
                 rb.velocity = Vector2.up * jumpVelocity; 
