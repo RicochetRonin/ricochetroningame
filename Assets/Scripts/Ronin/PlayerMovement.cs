@@ -30,17 +30,17 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float slideSpeed = 3f;
+    //[SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
-    [SerializeField] private float wallJumpDistance = 5f;
+    //[SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
-    [SerializeField] private float wallJumpTime;
-    private float wallJumpCounter;
+    //[SerializeField] private float wallJumpTime;
+    //private float wallJumpCounter;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -105,10 +105,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
         //Debug.Log(playerHealth.getCanTakeDamage());
         //Debug.Log("Velocity " + rb.velocity);
         //Debug.Log("Y velocity " + rb.velocity.y);
-        
         JumpCheck();
         
         if (!canMove) return;
@@ -131,79 +131,27 @@ public class PlayerMovement : MonoBehaviour
                 //AudioManager.PlayOneShotSFX(landingSFX);
             }
         }
-        dashCooldownText.SetCooldown(canDash);
-        //Debug.Log("On Wall " + coll.onWall);
-        //Debug.Log(Mathf.Abs(dir.x));
-        _animator.SetBool("OnWall", (coll.onWall));
-        _animator.SetBool("OnGround", (coll.onGround));
-        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
-        _animator.SetFloat("JumpSpeed", rb.velocity.y);
-        _animator.SetBool("FacingRight", isFacingRight);
-        _animator.SetBool("WallJumping", wallJumping);
-    }
 
-    void SetCanMove()
-    {
-        canMove = false;
+        dashCooldownText.SetCooldown(canDash);
     }
 
     #region MovementFunctions
     
     private void Move(Vector2 dir)
     {
-        //Debug.Log("Wall jumping value " + wallJumping);
-        if (dir.x > 0 && !isFacingRight && (coll.onGround))
+        if (dir.x > 0 && !isFacingRight)
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
         }
 
-        else if (dir.x < 0 && isFacingRight && (coll.onGround))
+        else if (dir.x < 0 && isFacingRight)
         {
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
         }
-
-        else if (coll.onWall && !coll.onGround && !wallJumping)
-        {
-            if (coll.onRightWall)
-            {
-                if (isFacingRight)
-                {
-                    isFacingRight = !isFacingRight;
-                    isFacingRightInt *= -1;
-                    _spriteRenderer.flipX = true;
-                }
-                
-            }
-            else
-            {
-                if (!isFacingRight)
-                {
-                    isFacingRight = !isFacingRight;
-                    isFacingRightInt *= -1;
-                    _spriteRenderer.flipX = false;
-                }                
-            }
-        
-        }
-
-        if (!wallJumping && isFacingRight && dir.x < 0 && !coll.onGround && !coll.onWall)
-        {
-            isFacingRight = !isFacingRight;
-            isFacingRightInt *= -1;
-            _spriteRenderer.flipX = true;
-        }
-
-        else if (!wallJumping && !isFacingRight && dir.x > 0 && !coll.onGround && !coll.onWall)
-        {
-            isFacingRight = !isFacingRight;
-            isFacingRightInt *= -1;
-            _spriteRenderer.flipX = false;
-        }
-
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
         if (wallJumping && rb.velocity.y > 0 && dir.x != 0){
             rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
@@ -213,6 +161,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
         //Debug.Log("B " + dir.x * speed);
+        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("JumpSpeed", rb.velocity.y);
     }
 
     private void JumpCheck()
@@ -236,18 +186,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
             {
-                _animator.SetTrigger("WallJump");
                 wallJumping = true;
                 rb.velocity = Vector2.up * jumpVelocity;
 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
 
-                //Debug.LogFormat("Velocity: {0}", rb.velocity);
-                //Debug.Log("Wall jump left");
+                Debug.LogFormat("Velocity: {0}", rb.velocity);
+                Debug.Log("Wall jump left");
 
             }
-
-            //Is this still needed?
             else if (coll.onLeftWall && !coll.onGround)
             {
                 //rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
@@ -259,7 +206,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Wall jump right");
 
             }
-
             else
             {
                 rb.velocity = Vector2.up * jumpVelocity; 
@@ -308,4 +254,50 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region GettersSetters
+    void SetCanMove()
+    {
+        canMove = false;
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void setJumpVelocity(float newSpeed)
+    {
+        jumpVelocity = newSpeed;
+    }
+
+    public void setMaxJumps(int newSpeed)
+    {
+        maxJumps = newSpeed;
+    }
+    public void setFallMultiplier(float newSpeed)
+    {
+        fallMultiplier = newSpeed;
+    }
+
+    public void setLowJumpMultiplier(float newSpeed)
+    {
+        lowJumpMultiplier = newSpeed;
+    }
+
+    public void setDashForce(float newSpeed)
+    {
+        dashForce = newSpeed;
+    }
+
+    public void setDashTime(float newSpeed)
+    {
+        dashTime = newSpeed;
+    }
+
+    public void setDashCooldown(float newSpeed)
+    {
+        dashCoolDown = newSpeed;
+    }
+
+    #endregion
 }

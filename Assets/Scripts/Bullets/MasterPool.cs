@@ -1,35 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class MasterPool
 {
-    private static Dictionary<string, BulletPool> bulletPool = new Dictionary<string, BulletPool>();
-    private static Dictionary<string, BulletVFXPool> bulletVFXPool = new Dictionary<string, BulletVFXPool>();
+    private static Dictionary<string, BulletPool> pools = new Dictionary<string, BulletPool>();
 
-        public static void SpawnBullet(GameObject bullet, Vector3 pos, Quaternion rot)
-        {
+        public static void Spawn(GameObject bullet, Vector3 pos, Quaternion rot)
+    {
         GameObject obj;
         string key = bullet.name.Replace("(Clone)", "");
         if (GameObject.Find($"{key}_POOL") == null)
         {
-            bulletPool.Clear();
+            pools.Clear();
         }
-        if (bulletPool.ContainsKey(key))
+        if (pools.ContainsKey(key))
         {
-            if (bulletPool[key].inactive.Count == 0)
+            if (pools[key].inactive.Count == 0)
             {
-                Object.Instantiate(bullet, pos, rot, bulletPool[key].parent.transform);
-
+                Object.Instantiate(bullet, pos, rot, pools[key].parent.transform);
             }
             else
             {
-                obj = bulletPool[key].inactive.Pop();
+                obj = pools[key].inactive.Pop();
                 
-
-                obj.GetComponent<BulletController>().PoolSpawn(pos, rot);
-                
+                obj.GetComponent<BulletController>().SetHostile();
+                obj.transform.position = pos;
+                obj.transform.rotation = rot;
+                obj.SetActive(true);
                 
             }
         }
@@ -39,18 +37,18 @@ public static class MasterPool
 
             Object.Instantiate(bullet, pos, rot, newParent.transform);
             BulletPool newPool = new BulletPool(newParent);
-            bulletPool.Add(key, newPool);
+            pools.Add(key, newPool);
         }
     }
 
-    public static void DespawnBullet(GameObject bullet)
+    public static void Despawn(GameObject bullet)
     {
         string key = bullet.name.Replace("(Clone)", "");
 
-        if (bulletPool.ContainsKey(key))
+        if (pools.ContainsKey(key))
         {
-            bulletPool[key].inactive.Push(bullet);
-            bullet.transform.position = bulletPool[key].parent.transform.position;
+            pools[key].inactive.Push(bullet);
+            bullet.transform.position = pools[key].parent.transform.position;
             bullet.SetActive(false);
         }
         else
@@ -60,69 +58,9 @@ public static class MasterPool
 
             bullet.transform.SetParent(newParent.transform);
 
-            bulletPool.Add(key, newPool);
-            bulletPool[key].inactive.Push(bullet);
+            pools.Add(key, newPool);
+            pools[key].inactive.Push(bullet);
             bullet.SetActive(false);
         }
     }
-
-    /* THIS NEEDS WORK
-    public static void SpawnBulletVFX(GameObject vfx, Vector3 pos, Quaternion rot, string animation)
-    {
-        GameObject obj;
-        string key = vfx.name.Replace("(Clone)", "");
-        if (GameObject.Find($"{key}_POOL") == null)
-        {
-            bulletVFXPool.Clear();
-        }
-        if (bulletVFXPool.ContainsKey(key))
-        {
-            if (bulletVFXPool[key].inactive.Count == 0)
-            {
-                obj = Object.Instantiate(vfx, pos, rot, bulletVFXPool[key].parent.transform);
-                obj.GetComponent<BulletVFXController>().PlayAnimation(animation);
-
-            }
-            else
-            {
-                obj = bulletVFXPool[key].inactive.Pop();
-                obj.transform.position = pos;
-                obj.transform.rotation = rot;
-                obj.SetActive(true);
-                obj.GetComponent<BulletVFXController>().PlayAnimation(animation);
-            }
-        }
-        else
-        {
-            GameObject newParent = new GameObject($"{key}_POOL");
-
-            Object.Instantiate(vfx, pos, rot, newParent.transform);
-            BulletVFXPool newPool = new BulletVFXPool(newParent);
-            bulletVFXPool.Add(key, newPool);
-        }
-    }
-
-    public static void DespawnBulletVFX(GameObject vfx)
-    {
-        string key = vfx.name.Replace("(Clone)", "");
-
-        if (bulletVFXPool.ContainsKey(key))
-        {
-            bulletVFXPool[key].inactive.Push(vfx);
-            vfx.transform.position = bulletVFXPool[key].parent.transform.position;
-            vfx.SetActive(false);
-        }
-        else
-        {
-            GameObject newParent = new GameObject($"{key}_POOL");
-            BulletVFXPool newPool = new BulletVFXPool(newParent);
-
-            vfx.transform.SetParent(newParent.transform);
-
-            bulletVFXPool.Add(key, newPool);
-            bulletVFXPool[key].inactive.Push(vfx);
-            vfx.SetActive(false);
-        }
-    }
-    */
 }

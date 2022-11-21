@@ -124,5 +124,10 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public PlayerMovement findPlayerMovement()
+    {
+        return FindObjectOfType<PlayerMovement>();
+    }
+
 
 }

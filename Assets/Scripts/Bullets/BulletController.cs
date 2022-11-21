@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class BulletController : MonoBehaviour
 {
@@ -32,25 +31,17 @@ public class BulletController : MonoBehaviour
     //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
-    [SerializeField] private float reflectForce = 5f;
-    [SerializeField] private float maxSpeed = 7.5f;
     [SerializeField] private float muzzleFlashTime = 0.1f;
     [SerializeField] private Color muzzleColor1 = Color.white;
     [SerializeField] private Color muzzleColor2 = Color.black;
 
     [SerializeField] private AudioClip bounceSFX, hitPlayer, reflectedSFX;
-
-    public GameObject bulletVFX;
-
     private float _reflectCount;
     private void Awake()
     {
-        Debug.Log("Firing");
         _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
-        GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
         //StartCoroutine("MuzzleFlash");
     }
 
@@ -75,25 +66,6 @@ public class BulletController : MonoBehaviour
         
         if (hit.collider != null)
         {
-            if (hit.normal.x != 0)
-            {
-                Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
-                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
-                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
-            }
-
-            else
-            {
-                Vector3 impactRot = new Vector3(0, 0, 90 + hit.normal.y * 90);
-                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
-                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
-            }
-            
-            Debug.Log("hit normal " + hit.normal);
-            //Debug.Log(hit.normal.x * 90);
-            //Debug.Log(90 + hit.normal.y * 90);
-            //Debug.Log("impactRot " + impactRot);
-
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
@@ -105,6 +77,8 @@ public class BulletController : MonoBehaviour
             //IncreaseAfterReflect();
             
             AudioManager.PlayOneShotSFX(bounceSFX);
+            _animator.SetTrigger("Impact");
+            
             _reflectCount++;
         }
     }
@@ -116,16 +90,6 @@ public class BulletController : MonoBehaviour
         Vector3 size = transform.localScale;
         damage = Mathf.Floor(damage * 1.1f);
     }
-
-    public void PoolSpawn(Vector3 pos, Quaternion rot)
-    {
-        SetHostile();
-        gameObject.transform.position = pos;
-        gameObject.transform.rotation = rot;
-        gameObject.SetActive(true);
-        GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
-    }
     
     void Death()
     {
@@ -133,7 +97,7 @@ public class BulletController : MonoBehaviour
         {
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             //Instantiate(deathEffect, transform.position, Quaternion.identity);
-            MasterPool.DespawnBullet(gameObject);
+            MasterPool.Despawn(gameObject);
             _reflectCount = 0;
         }
     }
@@ -200,7 +164,7 @@ public class BulletController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             AudioManager.PlayOneShotSFX(hitPlayer);
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            MasterPool.DespawnBullet(gameObject);
+            MasterPool.Despawn(gameObject);
 
         }
 
@@ -209,7 +173,7 @@ public class BulletController : MonoBehaviour
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            MasterPool.DespawnBullet(gameObject);
+            MasterPool.Despawn(gameObject);
 
         }
 
@@ -230,15 +194,17 @@ public class BulletController : MonoBehaviour
             }
 
             AudioManager.PlayOneShotSFX(reflectedSFX);
+            _animator.SetTrigger("Impact");
             SetFriendly();
 
-            if (rb.velocity.magnitude < maxSpeed)
-            {
-                speed *= reflectForce;
-            }
-
-            //_reflectCount++;
-
+            /*
+            //speed *= reflectForce;
+            //IncreaseAfterReflect();
+            //Debug.Log("Hit Bullet");
+            
+            _reflectCount++;
+            */
+            
         }
 
 
@@ -254,6 +220,7 @@ public class BulletController : MonoBehaviour
             //Debug.Log("Reflect direction" + reflectDirection);
             //Debug.Log(rot);
             transform.eulerAngles = new Vector3(0, 0, rot);
+            _animator.SetTrigger("Impact");
             //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
 
 
@@ -274,6 +241,7 @@ public class BulletController : MonoBehaviour
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
+            _animator.SetTrigger("Impact");
             _reflectCount++;
             
         }
