@@ -118,7 +118,7 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.2
+  collisionRadius: 0.05
   bottomOffset: {x: 0, y: -0.5}
   rightOffset: {x: 0.5, y: 0}
   leftOffset: {x: -0.5, y: 0}
@@ -310,7 +310,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446883132441753996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

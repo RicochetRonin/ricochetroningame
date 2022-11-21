@@ -15,18 +15,8 @@ public class LaserAim : MonoBehaviour
     public int numAlphaSteps = 3;
 
 
-    private void OnEnable()
-    {
-        lineRenderer.enabled = true;
-    }
-
-    private void OnDisable()
-    {
-        lineRenderer.enabled = false;
-    }
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.material.color = laserColor;
@@ -36,13 +26,15 @@ public class LaserAim : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         lineRenderer.SetPosition(0, shotSpawn.position);
         lineRenderer.SetPosition(1, target.transform.position);
         //Debug.Log(lineRenderer.material.color);
 
     }
+
+
 
     public IEnumerator AlphaFade(float duration)
     {

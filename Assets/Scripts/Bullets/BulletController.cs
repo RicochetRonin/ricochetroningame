@@ -43,6 +43,12 @@ public class BulletController : MonoBehaviour
     public GameObject bulletVFX;
 
     private float _reflectCount;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Awake()
     {
         Debug.Log("Firing");
@@ -89,7 +95,7 @@ public class BulletController : MonoBehaviour
                 bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
             }
             
-            Debug.Log("hit normal " + hit.normal);
+            //Debug.Log("hit normal " + hit.normal);
             //Debug.Log(hit.normal.x * 90);
             //Debug.Log(90 + hit.normal.y * 90);
             //Debug.Log("impactRot " + impactRot);
