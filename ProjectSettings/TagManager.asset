@@ -14,6 +14,7 @@ TagManager:
   - OmniReflectHitBox
   - Enemy
   - Checkpoint
+  - Moving Platform
   layers:
   - Default
   - TransparentFX

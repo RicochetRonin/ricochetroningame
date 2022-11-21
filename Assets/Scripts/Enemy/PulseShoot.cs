@@ -58,7 +58,7 @@ public class PulseShoot : EnemyShoot
                 spawnPosition.x += offSetx;
                 spawnPosition.y += offSety;
                 //Debug.Log("Shooting " + i + " at spawnPosition " + spawnPosition + " with Rotation " + currTransformRotation.eulerAngles);
-                MasterPool.Spawn(bulletPrefab, spawnPosition, currTransformRotation);
+                MasterPool.SpawnBullet(bulletPrefab, spawnPosition, currTransformRotation);
                 //Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;

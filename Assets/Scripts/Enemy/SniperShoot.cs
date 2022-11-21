@@ -29,7 +29,7 @@ public class SniperShoot : EnemyShoot
             //Instantiate(bulletPrefab, transform.position, transform.rotation);
 
             //bulletPrefab.GetComponent<BulletController>().SetHostile();
-            MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
+            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
             AudioManager.PlayOneShotSFX(sniperSFX);
 
             canAttack = false;
