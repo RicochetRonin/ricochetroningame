@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PingPong : MonoBehaviour
+public class Direct : MonoBehaviour
 {
     [SerializeField] private float deltaPosX, deltaPosY;
     [SerializeField] private float speed = 5;

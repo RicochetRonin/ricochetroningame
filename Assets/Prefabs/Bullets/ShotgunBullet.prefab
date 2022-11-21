@@ -54,12 +54,10 @@ MonoBehaviour:
     m_Bits: 256
   playerBullet: 0
   damage: 0.5
-  speed: 5
+  speed: 7.5
   size: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0}
-  maxReflects: 20
-  reflectForce: 1.5
-  maxSpeed: 7.5
+  maxReflects: 3
   muzzleFlashTime: 0.1
   muzzleColor1: {r: 1, g: 1, b: 1, a: 1}
   muzzleColor2: {r: 0, g: 0, b: 0, a: 1}
