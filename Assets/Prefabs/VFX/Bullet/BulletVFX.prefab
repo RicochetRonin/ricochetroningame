@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5758382257896716901}
   - component: {fileID: 8532147550273321795}
   - component: {fileID: 249223793651048381}
-  - component: {fileID: 9047100835686470976}
+  - component: {fileID: 3473375256443754760}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1119257345582475093}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08f3a7d22a1721748b9ff7acdad36d19, type: 2}
+  m_Controller: {fileID: 9100000, guid: 69e02b42bbbe66947b36fe6713c86e8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9047100835686470976
+--- !u!114 &3473375256443754760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119257345582475093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221cf36e9abf6a04ca0d6ae7196d0e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: d2a6a1ff539272b41954ad1e25688ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 1292682582970434895}
 --- !u!1 &1292682582970434895
 GameObject:
   m_ObjectHideFlags: 0
