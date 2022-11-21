@@ -303,6 +303,8 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 0
   firstShotDelay: 2
+  shootSFX: {fileID: 0}
+  animator: {fileID: 3781705684433964122}
   numProjectiles: 6
   numPulse: 3
   timeBetweenPulse: 2

@@ -37,6 +37,12 @@ public class BulletController : MonoBehaviour
 
     [SerializeField] private AudioClip bounceSFX, hitPlayer, reflectedSFX;
     private float _reflectCount;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -66,6 +72,25 @@ public class BulletController : MonoBehaviour
         
         if (hit.collider != null)
         {
+            if (hit.normal.x != 0)
+            {
+                Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
+                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
+                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+            }
+
+            else
+            {
+                Vector3 impactRot = new Vector3(0, 0, 90 + hit.normal.y * 90);
+                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
+                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+            }
+            
+            //Debug.Log("hit normal " + hit.normal);
+            //Debug.Log(hit.normal.x * 90);
+            //Debug.Log(90 + hit.normal.y * 90);
+            //Debug.Log("impactRot " + impactRot);
+
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
