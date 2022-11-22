@@ -324,7 +324,7 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 0
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
   animator: {fileID: 3781705684433964122}
   numProjectiles: 6
   numPulse: 3

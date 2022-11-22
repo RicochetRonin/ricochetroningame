@@ -168,7 +168,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &2842375103567256842
 GameObject:
@@ -376,7 +376,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &4780582318247601425
 GameObject:
@@ -530,7 +530,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &8599987345269046681
 GameObject:

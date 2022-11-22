@@ -324,10 +324,10 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: effb259ba013ca14b83ecd87633a4f0a, type: 3}
+  shootSFX: {fileID: 8300000, guid: 0a2ae0d93c2023f42a3f5336e5d99853, type: 3}
   animator: {fileID: 4258016368471862181}
   colorController: {fileID: 0}
-  sniperSFX: {fileID: 8300000, guid: cb1e728d8fbd5bb48a0bbcf031e49f81, type: 3}
+  sniperSFX: {fileID: 8300000, guid: 0a2ae0d93c2023f42a3f5336e5d99853, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
