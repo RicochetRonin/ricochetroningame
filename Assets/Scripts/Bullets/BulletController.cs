@@ -256,7 +256,10 @@ public class BulletController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, rot);
             //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
 
-
+            if (speed < maxSpeed)
+            {
+                speed *= reflectForce;
+            }
 
         }
 

@@ -63,8 +63,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
-  health: 2
-  maxHealth: 2
+  health: 1
+  maxHealth: 1
   iframes: 0.5
   canTakeDamage: 1
 --- !u!1 &2842375103567256842
@@ -162,7 +162,7 @@ Animator:
   m_GameObject: {fileID: 2842375103567256842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69e1b13fb5d0f4d4aa17201677731d3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd21c22a83fdb2545a5bf6aae2180d05, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -324,10 +324,10 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 0}
-  animator: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: effb259ba013ca14b83ecd87633a4f0a, type: 3}
+  animator: {fileID: 4258016368471862181}
   colorController: {fileID: 0}
-  sniperSFX: {fileID: 8300000, guid: e40acb41b85d0c046a5884562e7ba42a, type: 3}
+  sniperSFX: {fileID: 8300000, guid: cb1e728d8fbd5bb48a0bbcf031e49f81, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
