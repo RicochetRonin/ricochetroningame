@@ -16,6 +16,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private GameObject _omniReflectGraphics;
     [SerializeField] private CircleCollider2D _omniReflectCollider;
     [SerializeField] private ParticleSystem _omniReflectParticleSystem;
+    [SerializeField] private AudioClip playSFX;
 
     [Header("Stats")]
     [SerializeField] private float omniReflectDuration = 5f;
@@ -74,6 +75,7 @@ public class AbilityManager : MonoBehaviour
             omniReflectActive = true;
             _omniReflectCollider.enabled = true;
             _omniReflectGraphics.SetActive(true);
+            AudioManager.PlayOneShotSFX(playSFX);
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectCollider.enabled = false;

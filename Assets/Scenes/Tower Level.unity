@@ -1861,26 +1861,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5446883131945973378, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: leftOffset.x
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883131945973378, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: rightOffset.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: dashSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 5060f663d8f5c274184746d6643e3082, type: 3}
     - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: jumpSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 8b4c58b3a54173d44b2cfb03e88fc445, type: 3}
-    - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: landingSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: eccde8b1eee21d947b2e9054d6272e9b, type: 3}
+      objectReference: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
     - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: dashCooldownText
       value: 
@@ -1937,40 +1921,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1640348139}
-    - target: {fileID: 5446883132143224780, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883132143224780, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883132441753986, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8858559069726242093, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: omniCooldownText
       value: 
       objectReference: {fileID: 1296698308}
-    m_RemovedComponents:
-    - {fileID: 6925404656110073979, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
 --- !u!1 &349307097
 GameObject:
@@ -4404,37 +4359,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2371630667334812057, guid: 0c5ddcd47dabbc84cba9131d3640c1e8, type: 3}
   m_PrefabInstance: {fileID: 814008377}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &892723615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9189916147902147113, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
-  m_PrefabInstance: {fileID: 330332059}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &892723618
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892723615}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 25, y: 14}
-  m_EdgeRadius: 0
 --- !u!1 &906995802
 GameObject:
   m_ObjectHideFlags: 0
