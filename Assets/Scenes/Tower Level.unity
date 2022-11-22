@@ -1861,6 +1861,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5446883131945973378, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: leftOffset.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446883131945973378, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: rightOffset.x
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5446883131945973379, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: dashCooldownText
       value: 
@@ -1917,6 +1925,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1640348139}
+    - target: {fileID: 5446883132143224780, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446883132143224780, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: m_LocalScale.x
       value: 7.5
@@ -2430,6 +2446,10 @@ PrefabInstance:
       value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126143, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640215520641126143, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -2489,6 +2509,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1590556553}
+    - target: {fileID: 7283005366104439352, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
+      propertyPath: m_Lens.ModeOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5
