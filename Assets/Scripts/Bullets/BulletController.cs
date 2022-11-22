@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
     private float _reflectCount;
     private void Awake()
     {
-        Debug.Log("Firing");
+        //Debug.Log("Firing");
         _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
