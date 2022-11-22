@@ -12,6 +12,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip shootSFX;
+    [SerializeField] private Animator animator;
 
     void OnEnable()
     {
@@ -26,13 +27,15 @@ public class EnemyShoot : MonoBehaviour
 
     }
     
-    void Update()
+    private void Update()
     {
         if (canAttack)
         {
+            //Debug.Log("Shooting!");
             //bulletPrefab.GetComponent<BulletController>().SetHostile();
-            MasterPool.Spawn(bulletPrefab, transform.position, transform.rotation);
+            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
             AudioManager.PlayOneShotSFX(shootSFX);
+            animator.SetTrigger("Shoot");
 
             canAttack = false;
             StartCoroutine("ResetCoolDown");
@@ -41,6 +44,7 @@ public class EnemyShoot : MonoBehaviour
 
     IEnumerator ResetCoolDown()
     {
+        //Debug.Log("Reset Cooldown");
         yield return new WaitForSeconds(fireRate);
         canAttack = true;
     }

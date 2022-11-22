@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 278410013629806289}
   - component: {fileID: 278410013629806294}
+  - component: {fileID: 8572161411310271265}
   m_Layer: 0
   m_Name: EnemyGraphics
   m_TagString: Untagged
@@ -211,6 +212,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8572161411310271265
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278410013629806295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69e1b13fb5d0f4d4aa17201677731d3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &278410013687012187
 GameObject:
   m_ObjectHideFlags: 0
