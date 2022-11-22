@@ -30,17 +30,17 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float slideSpeed = 3f;
+    //[SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
-    [SerializeField] private float wallJumpDistance = 5f;
+    //[SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
-    [SerializeField] private float wallJumpTime;
-    private float wallJumpCounter;
+    //[SerializeField] private float wallJumpTime;
+    //private float wallJumpCounter;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -140,11 +140,6 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
         _animator.SetBool("FacingRight", isFacingRight);
         _animator.SetBool("WallJumping", wallJumping);
-    }
-
-    void SetCanMove()
-    {
-        canMove = false;
     }
 
     #region MovementFunctions
@@ -308,4 +303,50 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region GettersSetters
+    void SetCanMove()
+    {
+        canMove = false;
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void setJumpVelocity(float newSpeed)
+    {
+        jumpVelocity = newSpeed;
+    }
+
+    public void setMaxJumps(int newSpeed)
+    {
+        maxJumps = newSpeed;
+    }
+    public void setFallMultiplier(float newSpeed)
+    {
+        fallMultiplier = newSpeed;
+    }
+
+    public void setLowJumpMultiplier(float newSpeed)
+    {
+        lowJumpMultiplier = newSpeed;
+    }
+
+    public void setDashForce(float newSpeed)
+    {
+        dashForce = newSpeed;
+    }
+
+    public void setDashTime(float newSpeed)
+    {
+        dashTime = newSpeed;
+    }
+
+    public void setDashCooldown(float newSpeed)
+    {
+        dashCoolDown = newSpeed;
+    }
+
+    #endregion
 }
