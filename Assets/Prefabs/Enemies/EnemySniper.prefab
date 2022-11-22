@@ -325,6 +325,7 @@ MonoBehaviour:
   canAttack: 1
   firstShotDelay: 2
   shootSFX: {fileID: 0}
+  animator: {fileID: 0}
   colorController: {fileID: 0}
   sniperSFX: {fileID: 8300000, guid: e40acb41b85d0c046a5884562e7ba42a, type: 3}
 --- !u!1 &8599987345269046681
@@ -337,8 +338,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7029782365322869467}
   - component: {fileID: 4289485402493840495}
-  - component: {fileID: 1578063748458289207}
   - component: {fileID: 5804124731599672164}
+  - component: {fileID: 3315343505177048666}
   m_Layer: 0
   m_Name: EnemyAim
   m_TagString: Untagged
@@ -376,20 +377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canAim: 1
   aimDirection: {x: 0, y: 0, z: 0}
---- !u!114 &1578063748458289207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599987345269046681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0038c0d84fa7d54abee6b6700889c73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laserColor: {r: 1, g: 0, b: 0, a: 1}
-  numAlphaSteps: 3
 --- !u!120 &5804124731599672164
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -489,3 +476,17 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &3315343505177048666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599987345269046681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa72968952b9e440aee8adafd0faca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserColor: {r: 1, g: 0, b: 0, a: 1}
+  numAlphaSteps: 3

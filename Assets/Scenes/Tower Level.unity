@@ -4766,11 +4766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6a3d4913d04d94a82da35edfae4b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaPosX: 2
-  deltaPosY: 0
-  speed: 2
-  isPingPong: 1
-  isReverse: 0
 --- !u!114 &1066906211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7253,11 +7248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6a3d4913d04d94a82da35edfae4b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaPosX: 0
-  deltaPosY: 2
-  speed: 2
-  isPingPong: 1
-  isReverse: 0
 --- !u!114 &1754389505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9233,11 +9223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6a3d4913d04d94a82da35edfae4b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaPosX: 2
-  deltaPosY: 0
-  speed: 2
-  isPingPong: 1
-  isReverse: 0
 --- !u!224 &6555251757546110063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10123,11 +10108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6a3d4913d04d94a82da35edfae4b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaPosX: 0
-  deltaPosY: 2
-  speed: 2
-  isPingPong: 1
-  isReverse: 0
 --- !u!224 &6555251758101560050
 RectTransform:
   m_ObjectHideFlags: 0

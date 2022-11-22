@@ -142,10 +142,6 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("WallJumping", wallJumping);
     }
 
-    void SetCanMove()
-    {
-        canMove = false;
-    }
 
     #region MovementFunctions
     

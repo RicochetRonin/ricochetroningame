@@ -50,7 +50,6 @@ public class BulletController : MonoBehaviour
         previousPos = transform.position;
         direction = Vector2.up;
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
         bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
         //StartCoroutine("MuzzleFlash");
     }
@@ -90,7 +89,7 @@ public class BulletController : MonoBehaviour
                 bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
             }
             
-            Debug.Log("hit normal " + hit.normal);
+            //Debug.Log("hit normal " + hit.normal);
             //Debug.Log(hit.normal.x * 90);
             //Debug.Log(90 + hit.normal.y * 90);
             //Debug.Log("impactRot " + impactRot);
