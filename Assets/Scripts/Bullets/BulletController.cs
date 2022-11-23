@@ -209,7 +209,7 @@ public class BulletController : MonoBehaviour
 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            MasterPool.DespawnBullet(gameObject);
+            //MasterPool.DespawnBullet(gameObject);
 
         }
 
@@ -232,7 +232,7 @@ public class BulletController : MonoBehaviour
             AudioManager.PlayOneShotSFX(reflectedSFX);
             SetFriendly();
 
-            if (rb.velocity.magnitude < maxSpeed)
+            if (speed < maxSpeed)
             {
                 speed *= reflectForce;
             }
@@ -274,7 +274,7 @@ public class BulletController : MonoBehaviour
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
-            _reflectCount++;
+            //_reflectCount++;
             
         }
     }

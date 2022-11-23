@@ -78,16 +78,13 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
   landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
   speed: 10
-  slideSpeed: 3
   jumpVelocity: 12.5
-  wallJumpDistance: 5
   maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   dashForce: 4
   dashTime: 0.1
   dashCoolDown: 0.5
-  wallJumpTime: 0
   _playerHealth: {fileID: 5446883132143224771}
   _playerAim: {fileID: 5446883132418489048}
   _spriteRenderer: {fileID: 5446883133848638611}
@@ -120,8 +117,8 @@ MonoBehaviour:
   wallSide: 0
   collisionRadius: 0.05
   bottomOffset: {x: 0, y: -0.5}
-  rightOffset: {x: 0.5, y: 0}
-  leftOffset: {x: -0.5, y: 0}
+  rightOffset: {x: 0.25, y: 0}
+  leftOffset: {x: -0.25, y: 0}
 --- !u!70 &4255678920753089386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +192,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5446883132143224771
 MonoBehaviour:
@@ -382,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 5446883133551815285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 8, z: 2}
+  m_LocalScale: {x: 7.5, y: 10, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5446883132418489049}
