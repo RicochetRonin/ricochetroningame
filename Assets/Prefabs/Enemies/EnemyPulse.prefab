@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
-  enemy: {fileID: 0}
+  enemy: {fileID: 4780582318247601425}
   health: 2
   maxHealth: 2
   iframes: 0.5
@@ -324,8 +324,8 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 0
   firstShotDelay: 2
-  shootSFX: {fileID: 0}
-  animator: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  animator: {fileID: 3781705684433964122}
   numProjectiles: 6
   numPulse: 3
   timeBetweenPulse: 2

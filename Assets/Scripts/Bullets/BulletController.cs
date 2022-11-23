@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class BulletController : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
     private float _reflectCount;
     private void Awake()
     {
-        Debug.Log("Firing");
+        //Debug.Log("Firing");
         _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
@@ -104,7 +104,7 @@ public class BulletController : MonoBehaviour
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             
-            AudioManager.PlayOneShotSFX(bounceSFX);
+            //AudioManager.PlayOneShotSFX(bounceSFX);
             _reflectCount++;
         }
     }
