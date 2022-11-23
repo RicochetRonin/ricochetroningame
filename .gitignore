@@ -58,6 +58,3 @@ crashlytics-build.properties
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
-ProjectSettings/ProjectVersion.txt
-Packages/packages-lock.json
-Packages/manifest.json
