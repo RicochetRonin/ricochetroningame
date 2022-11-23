@@ -3849,7 +3849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494989130722408288, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 494989130722408290, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: m_RootOrder
@@ -20502,7 +20502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &6555251757931057505
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31492,7 +31492,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -32681,14 +32681,14 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 90609824c0a39534fa17e6359ba0b3af, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: b19ea8a21da4e76408a88a45fb3158f2, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: d09ac39b13009524c9467fadede74418, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 12
     m_Data: {fileID: 21300000, guid: f0bf34fd35ee5e04f94f557e9ec68e8d, type: 3}
   - m_RefCount: 24
     m_Data: {fileID: 21300000, guid: 34dbcd34833b2d647925eb42a7ea7269, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: d09ac39b13009524c9467fadede74418, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: dfabd29ccf99a1247aad0174b76496c6, type: 3}
   - m_RefCount: 1
