@@ -244,9 +244,8 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
         {
-            gameObject.tag = "PlayerBullet";
-            _spriteRenderer.color = Color.green;
-            //Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
+            SetFriendly();
+            Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
             //Debug.Log("Bullet " + transform.position);
 
             Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
