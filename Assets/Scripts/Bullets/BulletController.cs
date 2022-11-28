@@ -104,7 +104,7 @@ public class BulletController : MonoBehaviour
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             
-            //AudioManager.PlayOneShotSFX(bounceSFX);
+            AudioManager.PlayOneShotSFX(bounceSFX);
             _reflectCount++;
         }
     }
