@@ -324,13 +324,14 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 0
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
   animator: {fileID: 3781705684433964122}
   numProjectiles: 6
   numPulse: 3
   timeBetweenPulse: 2
   timeBetweenShot: 0
   pulseRadius: 1
+  PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0

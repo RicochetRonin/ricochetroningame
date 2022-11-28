@@ -76,9 +76,11 @@ public class AbilityManager : MonoBehaviour
             omniReflectActive = true;
             _omniReflectCollider.enabled = true;
             _omniReflectGraphics.SetActive(true);
+            
             AudioManager.PlayOneShotSFX(OmniReflectSFX);
+            
             _aim.SetActive(false);
-            yield return new WaitForSeconds(omniReflectActive);
+            yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectCollider.enabled = false;
             //Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
             _omniReflectGraphics.SetActive(false);

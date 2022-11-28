@@ -76,7 +76,6 @@ MonoBehaviour:
   dashCooldownText: {fileID: 0}
   jumpSFX: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
-  landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
   speed: 10
   jumpVelocity: 12.5
   maxJumps: 2
@@ -119,6 +118,7 @@ MonoBehaviour:
   bottomOffset: {x: 0, y: -0.5}
   rightOffset: {x: 0.25, y: 0}
   leftOffset: {x: -0.25, y: 0}
+  landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
 --- !u!70 &4255678920753089386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -594,6 +594,7 @@ MonoBehaviour:
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
   _omniReflectParticleSystem: {fileID: 8431895205352310259}
+  OmniReflectSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
   omniReflectDuration: 5
   omniReflectCooldown: 30
   omniCooldownText: {fileID: 0}
@@ -659,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
-  playSFX: {fileID: 0}
+  playSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
   m_ObjectHideFlags: 0

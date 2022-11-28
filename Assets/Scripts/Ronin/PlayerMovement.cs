@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private int isFacingRightInt;
 
     //[SerializeField] private AudioManager audio;
-    [SerializeField] private AudioClip jumpSFX, dashSFX, landingSFX;
+    [SerializeField] private AudioClip jumpSFX, dashSFX;
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
@@ -125,11 +125,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCount = 1;
             
-            if (!wasOnGround)
-            {
-                wasOnGround = true;
-                //AudioManager.PlayOneShotSFX(landingSFX);
-            }
         }
         dashCooldownText.SetCooldown(canDash);
         //Debug.Log("On Wall " + coll.onWall);
