@@ -65,7 +65,7 @@ public class PlayerAim : MonoBehaviour
 
     void AimGamepad()
     {
-        Debug.Log(_gamepadDirection);
+        //Debug.Log(_gamepadDirection);
         newDir = _gamepadDirection;
         
         transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(_gamepadDirection.y, _gamepadDirection.x) * Mathf.Rad2Deg);
