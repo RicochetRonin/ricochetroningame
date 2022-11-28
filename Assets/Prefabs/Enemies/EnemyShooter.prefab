@@ -324,7 +324,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: 938ed08cb52bbbc4ab63c19bfd806b67, type: 3}
+  shootSFX: {fileID: 8300000, guid: da98cb8c3fe7eb849930266f468beb3d, type: 3}
   animator: {fileID: 8021816589797830326}
 --- !u!1 &8599987345269046681
 GameObject:
