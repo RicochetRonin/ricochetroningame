@@ -4,22 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac30bb97-2c0d-4765-a9a3-84026a548868" name="Changes" comment="" />
+    <list default="true" id="b0834bb9-6f83-4e30-8846-e4022b901a92" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../../LengthMeasurer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../AudioManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Enemy/EnemyShoot.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Ronin/PlayerAim.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../GameManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2Hxxt8ItCBG0HN2lioJM2oI44MA" />
+  <component name="ProjectId" id="2I3to1jViD0e9rbCdGSviTccb3z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,12 +37,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ac30bb97-2c0d-4765-a9a3-84026a548868" name="Changes" comment="" />
-      <created>1669240752005</created>
+      <changelist id="b0834bb9-6f83-4e30-8846-e4022b901a92" name="Changes" comment="" />
+      <created>1669422269915</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1669240752005</updated>
-      <workItem from="1669240763274" duration="3230000" />
+      <updated>1669422269915</updated>
+      <workItem from="1669422273862" duration="712000" />
     </task>
     <servers />
   </component>

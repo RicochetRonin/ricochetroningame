@@ -67,7 +67,7 @@ public class AbilityManager : MonoBehaviour
 
     private IEnumerator OmniReflect()
     {
-        Debug.Log("OmniReflect called");
+        //Debug.Log("OmniReflect called");
         if (canOmniReflect)
         {
             canOmniReflect = false;
@@ -77,7 +77,7 @@ public class AbilityManager : MonoBehaviour
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectCollider.enabled = false;
-            Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
+            //Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
             _omniReflectGraphics.SetActive(false);
             _aim.SetActive(true);
             omniReflectActive = false;
