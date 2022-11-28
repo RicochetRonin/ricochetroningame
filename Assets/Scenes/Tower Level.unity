@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6695471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3929447980832756900, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
+  m_PrefabInstance: {fileID: 741070073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8871278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3898,7 +3903,7 @@ PrefabInstance:
     - target: {fileID: 494989130722408291, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: PauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6695471}
     - target: {fileID: 1604856678352521650, guid: 4425813cab0aa9f4aa2876c2247fbff5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
