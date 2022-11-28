@@ -59,12 +59,12 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   maxReflects: 10
   reflectForce: 1.75
-  maxSpeed: 20
+  maxSpeed: 7.5
   muzzleFlashTime: 0.1
   muzzleColor1: {r: 1, g: 1, b: 1, a: 1}
   muzzleColor2: {r: 0, g: 0, b: 0, a: 1}
-  bounceSFX: {fileID: 8300000, guid: 2d163730642062e478fba72d6d6cc0cf, type: 3}
-  hitPlayer: {fileID: 8300000, guid: efecf74b231e76540b901c040e3597b4, type: 3}
+  bounceSFX: {fileID: 8300000, guid: 1aef85a184793cc46988fdaeddaaf177, type: 3}
+  hitPlayer: {fileID: 8300000, guid: 88d0f54adc7aac24d845fc705b1aa348, type: 3}
   reflectedSFX: {fileID: 8300000, guid: e35ea6510bcd38a46be94cf39e00445e, type: 3}
   bulletVFX: {fileID: 1292682582970434895, guid: f18cb412bde61674fb25412e8feafccf, type: 3}
 --- !u!58 &1727568596402683697

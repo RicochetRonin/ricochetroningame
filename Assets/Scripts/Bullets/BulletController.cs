@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class BulletController : MonoBehaviour
 {
@@ -183,6 +183,7 @@ public class BulletController : MonoBehaviour
     public void SetHostile()
     {
         //Debug.Log("Set Hostile");
+        
         _spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log(_spriteRenderer);
         
@@ -244,13 +245,13 @@ public class BulletController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
         {
-            gameObject.tag = "PlayerBullet";
-            _spriteRenderer.color = Color.green;
+            //Debug.Log("Omni Reflect Hit Bullet");
+            SetFriendly();
             //Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
             //Debug.Log("Bullet " + transform.position);
 
             Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
-            var rot = - Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
+            var rot = -Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
             //Debug.Log("Reflect direction" + reflectDirection);
             //Debug.Log(rot);
             transform.eulerAngles = new Vector3(0, 0, rot);
@@ -258,7 +259,7 @@ public class BulletController : MonoBehaviour
 
             if (speed < maxSpeed)
             {
-                speed *= reflectForce;
+                speed *= reflectForce + 1;
             }
 
         }
@@ -277,7 +278,7 @@ public class BulletController : MonoBehaviour
             //speed *= reflectForce;
             //IncreaseAfterReflect();
             //Debug.Log("Hit Bullet");
-            _reflectCount++;
+            //_reflectCount++;
             
         }
     }

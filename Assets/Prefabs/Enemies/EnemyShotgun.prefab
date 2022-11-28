@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6091938129251062836
 Transform:
   m_ObjectHideFlags: 0
@@ -63,8 +63,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
-  health: 1
-  maxHealth: 1
+  health: 2
+  maxHealth: 2
   iframes: 0.5
   canTakeDamage: 1
 --- !u!1 &1097370805030594656
@@ -168,7 +168,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
+  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &2842375103567256842
 GameObject:
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1b69b790d77bb444b195d5c9cc4cda4, type: 3}
+  m_Sprite: {fileID: 938853374, guid: 610a96e3a4f75244da2e166ac6453384, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
+  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &4780582318247601425
 GameObject:
@@ -530,7 +530,7 @@ MonoBehaviour:
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
-  shootSFX: {fileID: 8300000, guid: c351d64873142054a8c356a627829a90, type: 3}
+  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
   animator: {fileID: 6922248157567319539}
 --- !u!1 &8599987345269046681
 GameObject:
@@ -548,7 +548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7029782365322869467
 Transform:
   m_ObjectHideFlags: 0

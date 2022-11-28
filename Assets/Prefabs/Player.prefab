@@ -74,9 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldownText: {fileID: 0}
-  jumpSFX: {fileID: 8300000, guid: 8b4c58b3a54173d44b2cfb03e88fc445, type: 3}
-  dashSFX: {fileID: 8300000, guid: 5060f663d8f5c274184746d6643e3082, type: 3}
-  landingSFX: {fileID: 8300000, guid: eccde8b1eee21d947b2e9054d6272e9b, type: 3}
+  jumpSFX: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
+  dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
   speed: 10
   jumpVelocity: 12.5
   maxJumps: 2
@@ -117,8 +116,9 @@ MonoBehaviour:
   wallSide: 0
   collisionRadius: 0.05
   bottomOffset: {x: 0, y: -0.5}
-  rightOffset: {x: 0.2, y: 0}
-  leftOffset: {x: -0.2, y: 0}
+  rightOffset: {x: 0.25, y: 0}
+  leftOffset: {x: -0.25, y: 0}
+  landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
 --- !u!70 &4255678920753089386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -594,7 +594,7 @@ MonoBehaviour:
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
   _omniReflectParticleSystem: {fileID: 8431895205352310259}
-  playSFX: {fileID: 8300000, guid: cd76ab979207e6c41a2cba3852b533ac, type: 3}
+  OmniReflectSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
   omniReflectDuration: 5
   omniReflectCooldown: 30
   omniCooldownText: {fileID: 0}
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
-  playSFX: {fileID: 8300000, guid: cd76ab979207e6c41a2cba3852b533ac, type: 3}
+  playSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009320694846350410}
   - component: {fileID: 5597837256031725865}
-  - component: {fileID: 892723618}
+  - component: {fileID: 2462511795347687164}
   m_Layer: 0
   m_Name: PlayerDetection
   m_TagString: Untagged
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98bf4d09ff4b1848ac28ff6375bc928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &892723618
+--- !u!61 &2462511795347687164
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

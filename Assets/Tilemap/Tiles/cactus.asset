@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: cactus
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 6d8a872387411fb45b00bc0512e34cbd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1e7b438e19534499af75f39c09a4c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

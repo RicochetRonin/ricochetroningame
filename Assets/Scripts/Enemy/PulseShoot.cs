@@ -11,8 +11,9 @@ public class PulseShoot : EnemyShoot
     [SerializeField] protected float timeBetweenPulse = 2f;
     [SerializeField] protected float timeBetweenShot = 0f;
     [SerializeField] protected float pulseRadius = 1f;
-    private bool origCanAim;
 
+    [SerializeField] protected AudioClip PulseSFX;
+    private bool origCanAim;
     private EnemyAim _enemyAim;
 
 
@@ -59,6 +60,7 @@ public class PulseShoot : EnemyShoot
                 spawnPosition.y += offSety;
                 //Debug.Log("Shooting " + i + " at spawnPosition " + spawnPosition + " with Rotation " + currTransformRotation.eulerAngles);
                 MasterPool.SpawnBullet(bulletPrefab, spawnPosition, currTransformRotation);
+                AudioManager.PlayOneShotSFX(PulseSFX);
                 //Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;
