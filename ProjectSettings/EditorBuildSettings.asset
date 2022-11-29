@@ -5,14 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Input Test.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Douglas.unity
-    guid: da8dc352313ea9a4198540d74a1b3d6a
   - enabled: 1
-    path: Assets/Scenes/Tower Level.unity
-    guid: c87d3410ec01401489c659ed3badf077
+    path: Assets/Scenes/Floors 4-6.unity
+    guid: 74e9c2fd1907a5b44973b3b4e266be8d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 754dd35568c6bb24a8d235712ba210e2, type: 2}
