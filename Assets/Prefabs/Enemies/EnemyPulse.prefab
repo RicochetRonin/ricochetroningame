@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6091938129251062836
 Transform:
   m_ObjectHideFlags: 0
@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
-  enemy: {fileID: 0}
-  health: 5
-  maxHealth: 5
+  enemy: {fileID: 4780582318247601425}
+  health: 2
+  maxHealth: 2
   iframes: 0.5
   canTakeDamage: 1
 --- !u!1 &2842375103567256842
@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1b69b790d77bb444b195d5c9cc4cda4, type: 3}
+  m_Sprite: {fileID: 938853374, guid: 610a96e3a4f75244da2e166ac6453384, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,7 +162,7 @@ Animator:
   m_GameObject: {fileID: 2842375103567256842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69e1b13fb5d0f4d4aa17201677731d3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd21c22a83fdb2545a5bf6aae2180d05, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -324,12 +324,14 @@ MonoBehaviour:
   fireRate: 10
   canAttack: 0
   firstShotDelay: 2
-  shootSFX: {fileID: 0}
+  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  animator: {fileID: 3781705684433964122}
   numProjectiles: 6
   numPulse: 3
   timeBetweenPulse: 2
   timeBetweenShot: 0
   pulseRadius: 1
+  PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7029782365322869467
 Transform:
   m_ObjectHideFlags: 0

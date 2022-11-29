@@ -99,4 +99,9 @@ public class PlayerHealth : MonoBehaviour
     {
         return this.canTakeDamage;
     }
+
+    public void setMaxHealth(float newMaxHp)
+    {
+        this.maxHealth = newMaxHp;
+    }
 }

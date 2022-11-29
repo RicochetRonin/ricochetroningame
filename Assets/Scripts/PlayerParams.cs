@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerParams : MonoBehaviour
-{
-    public PlayerMovement playerMovement;
+{   
+    private PlayerMovement playerMovement;
     public GameManager gameManager;
 
     private void Awake()
