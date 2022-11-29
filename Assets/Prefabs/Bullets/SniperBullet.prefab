@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Bits: 256
   playerBullet: 0
   damage: 5
-  speed: 10
+  baseSpeed: 10
   size: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0}
   maxReflects: 10
