@@ -8879,6 +8879,10 @@ PrefabInstance:
       propertyPath: canTakeDamage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5446883132441753985, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+      propertyPath: detectCoolDown
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5446883133551815275, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
