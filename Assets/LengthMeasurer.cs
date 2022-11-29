@@ -26,8 +26,8 @@ public class LengthMeasurer : MonoBehaviour
         MeasureDistance();
         guiStyle.normal.textColor = color;
         guiStyle.fontSize = fontSize;
-        Handles.Label(startPos, "Length: " + _length, guiStyle);
-        Handles.Label(endPos, "Length: " + _length, guiStyle);
+       // Handles.Label(startPos, "Length: " + _length, guiStyle);
+        //Handles.Label(endPos, "Length: " + _length, guiStyle);
     }
 
     void MeasureDistance()

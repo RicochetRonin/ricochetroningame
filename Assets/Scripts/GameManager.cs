@@ -129,5 +129,10 @@ public class GameManager : MonoBehaviour
         return FindObjectOfType<PlayerMovement>();
     }
 
+    public PlayerHealth findPlayerHealth()
+    {
+        return FindObjectOfType<PlayerHealth>();
+    }
+
 
 }

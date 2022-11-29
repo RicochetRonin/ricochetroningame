@@ -21,7 +21,7 @@ public class PlayerReflect : MonoBehaviour
     [SerializeField] private Color _cursorColor;
     [SerializeField] private Color _cursorColorDeplete;
     [SerializeField] private LayerMask groundLayer, aimLayer;
-    [SerializeField] private AudioClip reflectSFX;
+    [SerializeField] private AudioClip SlashSFX;
         
     public bool canReflect;
     private float reflectTime;
@@ -73,7 +73,7 @@ public class PlayerReflect : MonoBehaviour
         else
         {
             //_reflectParticleSystem.Play();
-            //AudioManager.PlayOneShotSFX(reflectSFX);
+            AudioManager.PlayOneShotSFX(SlashSFX);
 
             //Debug.Log("Triggered!");
             canReflect = false;
