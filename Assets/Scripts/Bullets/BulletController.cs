@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 //using static UnityEditor.PlayerSettings;
@@ -27,7 +28,8 @@ public class BulletController : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float damage = 1f;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float baseSpeed = 5f;
+    private float speed;
     [SerializeField] private Vector3 size;
     //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
@@ -52,6 +54,11 @@ public class BulletController : MonoBehaviour
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
         bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
         //StartCoroutine("MuzzleFlash");
+    }
+
+    private void OnEnable()
+    {
+        speed = baseSpeed;
     }
 
     private void FixedUpdate()
