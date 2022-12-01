@@ -228,7 +228,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
             {
-                _animator.SetTrigger("WallJump");
                 wallJumping = true;
                 rb.velocity = Vector2.up * jumpVelocity;
 
