@@ -130,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("On Wall " + coll.onWall);
         //Debug.Log(Mathf.Abs(dir.x));
         _animator.SetBool("OnWall", (coll.onWall));
+        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall && dir.x == -1) || (coll.onRightWall && dir.x == 1)));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetFloat("Speed", Mathf.Abs(dir.x));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
