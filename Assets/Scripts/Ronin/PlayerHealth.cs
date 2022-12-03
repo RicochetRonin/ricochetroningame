@@ -68,7 +68,6 @@ public class PlayerHealth : MonoBehaviour
         _playerReflect.canReflect = false;
         //Sound Effect
         //Particle effect
-        //Start Animation
         yield return new WaitForSeconds(deathDelay);
         Destroy(player);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
