@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
+            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround && !(coll.onRightWall && coll.onLeftWall))
             {
                 wallJumping = true;
                 rb.velocity = Vector2.up * wallJumpVelocity;
