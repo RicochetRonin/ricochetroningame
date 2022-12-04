@@ -17,7 +17,7 @@ public class PlayerReflect : MonoBehaviour
 
     private PlayerControls _playerControls;
 
-    [Header("Settings")] [SerializeField] private float detectCoolDown;
+    [Header("Settings")] [SerializeField] private float detectCoolDown = 0.1f;
     [SerializeField] private Color _cursorColor;
     [SerializeField] private Color _cursorColorDeplete;
     [SerializeField] private LayerMask groundLayer, aimLayer;

@@ -7,25 +7,25 @@ public class EnemyHealth : MonoBehaviour
     [Header("References")]
     [SerializeField] private SpriteRenderer enemyGraphics;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private Animator animator;
 
     [Header("Stats")]
     [SerializeField] private float health = 3f;
     [SerializeField] private float maxHealth = 3f;
     [SerializeField] private float iframes = 0.5f;
     [SerializeField] private bool canTakeDamage = true;
+    [SerializeField] private float deathDelay = 0.75f;
 
     private void Start()
     {
-        
         health = maxHealth;
-
     }
 
     private void Update()
     {
         if (health <= 0)
         {
-            Die();
+            StartCoroutine("DeathSequence");
         }
     }
 
@@ -45,9 +45,10 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
-    private void Die()
+    private IEnumerator DeathSequence()
     {
-
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(deathDelay);
         Destroy(enemy);
 
     }

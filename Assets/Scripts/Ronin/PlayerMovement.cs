@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool isFacingRight;
     private int isFacingRightInt;
+    private float playerInputDir;
+
 
     //[SerializeField] private AudioManager audio;
     [SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 10f;
     //[SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
+    [SerializeField] private float wallJumpVelocity = 5f;
     //[SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
@@ -87,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         isFacingRight = true;
         isFacingRightInt = 1;
+        playerInputDir = 0;
+
     }
 
     void SetControls()
@@ -108,7 +113,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(playerHealth.getCanTakeDamage());
         //Debug.Log("Velocity " + rb.velocity);
         //Debug.Log("Y velocity " + rb.velocity.y);
-        
+
+
         JumpCheck();
         
         if (!canMove) return;
@@ -119,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Vector2 dir = new Vector2(_move.x, _move.y);
+        playerInputDir = dir.x;
         Move(dir);
 
         if (coll.onGround || coll.onWall)
@@ -130,8 +137,9 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("On Wall " + coll.onWall);
         //Debug.Log(Mathf.Abs(dir.x));
         _animator.SetBool("OnWall", (coll.onWall));
+        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall && playerInputDir == -1) || (coll.onRightWall && playerInputDir == 1)));
         _animator.SetBool("OnGround", (coll.onGround));
-        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
         _animator.SetBool("FacingRight", isFacingRight);
         _animator.SetBool("WallJumping", wallJumping);
@@ -225,11 +233,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
+            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
             {
-                _animator.SetTrigger("WallJump");
                 wallJumping = true;
-                rb.velocity = Vector2.up * jumpVelocity;
+                rb.velocity = Vector2.up * wallJumpVelocity;
 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
 
