@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        _movement._animator.SetFloat("PlayerHealth", (health));
         healthBar.SetPlayerHealth(health, maxHealth);
     }
 
@@ -51,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
             canTakeDamage = false;
+            _movement._animator.SetFloat("PlayerHealth", (health));
             healthBar.SetPlayerHealth(health, maxHealth);
         }
 
@@ -66,7 +68,6 @@ public class PlayerHealth : MonoBehaviour
         _playerReflect.canReflect = false;
         //Sound Effect
         //Particle effect
-        //Start Animation
         yield return new WaitForSeconds(deathDelay);
         Destroy(player);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

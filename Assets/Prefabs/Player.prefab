@@ -78,6 +78,7 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
   speed: 10
   jumpVelocity: 12.5
+  wallJumpVelocity: 7
   maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
@@ -351,7 +352,7 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 512
-  reflectSFX: {fileID: 0}
+  SlashSFX: {fileID: 0}
   canReflect: 1
 --- !u!1 &5446883133551815285
 GameObject:
