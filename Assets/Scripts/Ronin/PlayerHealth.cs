@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         health = maxHealth;
         _movement._animator.SetFloat("PlayerHealth", (health));
         healthBar.SetPlayerHealth(health, maxHealth);
+        canTakeDamage = true;
     }
 
     private void Update()
