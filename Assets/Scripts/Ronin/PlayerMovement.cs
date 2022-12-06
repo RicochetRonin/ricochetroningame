@@ -137,7 +137,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("On Wall " + coll.onWall);
         //Debug.Log(Mathf.Abs(dir.x));
         _animator.SetBool("OnWall", (coll.onWall));
-        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall && playerInputDir == -1) || (coll.onRightWall && playerInputDir == 1)));
+        //_animator.SetBool("MovingIntoWall", ((coll.onLeftWall && playerInputDir == -1) || (coll.onRightWall && playerInputDir == 1)));
+        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall) || (coll.onRightWall)));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
@@ -233,7 +234,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround && !(coll.onRightWall && coll.onLeftWall))
+            //if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround && !(coll.onRightWall && coll.onLeftWall))
+            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
             {
                 wallJumping = true;
                 rb.velocity = Vector2.up * wallJumpVelocity;
