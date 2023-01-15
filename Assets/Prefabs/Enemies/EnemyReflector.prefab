@@ -222,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 278410013629806295}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69e1b13fb5d0f4d4aa17201677731d3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd21c22a83fdb2545a5bf6aae2180d05, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -299,7 +299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &278410013720032784
 Transform:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &278410014205702755
 Transform:
   m_ObjectHideFlags: 0
@@ -393,7 +393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 278410013629806294}
   enemy: {fileID: 278410013687012187}
-  health: 3
-  maxHealth: 3
+  animator: {fileID: 8572161411310271265}
+  health: 2
+  maxHealth: 2
   iframes: 0.5
   canTakeDamage: 1

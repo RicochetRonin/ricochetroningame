@@ -54,19 +54,19 @@ MonoBehaviour:
     m_Bits: 256
   playerBullet: 0
   damage: 5
-  speed: 15
+  baseSpeed: 10
   size: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0}
-  maxReflects: 20
-  reflectForce: 1.5
-  maxSpeed: 7.5
+  maxReflects: 10
+  reflectForce: 1.75
+  maxSpeed: 25
   muzzleFlashTime: 0.1
   muzzleColor1: {r: 1, g: 1, b: 1, a: 1}
   muzzleColor2: {r: 0, g: 0, b: 0, a: 1}
-  bounceSFX: {fileID: 8300000, guid: aa648fe5ce297744d8524d8e660a254a, type: 3}
-  hitPlayer: {fileID: 8300000, guid: f052ae40c3ecace4fabf8939aa685571, type: 3}
+  bounceSFX: {fileID: 8300000, guid: 1aef85a184793cc46988fdaeddaaf177, type: 3}
+  hitPlayer: {fileID: 8300000, guid: 88d0f54adc7aac24d845fc705b1aa348, type: 3}
   reflectedSFX: {fileID: 8300000, guid: e35ea6510bcd38a46be94cf39e00445e, type: 3}
-  bulletVFX: {fileID: 1292682582970434895, guid: 6bb6e335be749a54687793d786167f16, type: 3}
+  bulletVFX: {fileID: 1292682582970434895, guid: f18cb412bde61674fb25412e8feafccf, type: 3}
 --- !u!58 &1727568596402683697
 CircleCollider2D:
   m_ObjectHideFlags: 0

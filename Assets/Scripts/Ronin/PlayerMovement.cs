@@ -24,23 +24,26 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool isFacingRight;
     private int isFacingRightInt;
+    private float playerInputDir;
+
 
     //[SerializeField] private AudioManager audio;
-    [SerializeField] private AudioClip jumpSFX, dashSFX, landingSFX;
+    [SerializeField] private AudioClip jumpSFX, dashSFX;
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float slideSpeed = 3f;
+    //[SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
-    [SerializeField] private float wallJumpDistance = 5f;
+    [SerializeField] private float wallJumpVelocity = 5f;
+    //[SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
-    [SerializeField] private float wallJumpTime;
-    private float wallJumpCounter;
+    //[SerializeField] private float wallJumpTime;
+    //private float wallJumpCounter;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -87,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         isFacingRight = true;
         isFacingRightInt = 1;
+        playerInputDir = 0;
+
     }
 
     void SetControls()
@@ -108,7 +113,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(playerHealth.getCanTakeDamage());
         //Debug.Log("Velocity " + rb.velocity);
         //Debug.Log("Y velocity " + rb.velocity.y);
-        
+
+
         JumpCheck();
         
         if (!canMove) return;
@@ -119,33 +125,27 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Vector2 dir = new Vector2(_move.x, _move.y);
+        playerInputDir = dir.x;
         Move(dir);
 
         if (coll.onGround || coll.onWall)
         {
             jumpCount = 1;
             
-            if (!wasOnGround)
-            {
-                wasOnGround = true;
-                //AudioManager.PlayOneShotSFX(landingSFX);
-            }
         }
         dashCooldownText.SetCooldown(canDash);
         //Debug.Log("On Wall " + coll.onWall);
         //Debug.Log(Mathf.Abs(dir.x));
         _animator.SetBool("OnWall", (coll.onWall));
+        //_animator.SetBool("MovingIntoWall", ((coll.onLeftWall && playerInputDir == -1) || (coll.onRightWall && playerInputDir == 1)));
+        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall) || (coll.onRightWall)));
         _animator.SetBool("OnGround", (coll.onGround));
-        _animator.SetFloat("Speed", Mathf.Abs(dir.x));
+        _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
         _animator.SetBool("FacingRight", isFacingRight);
         _animator.SetBool("WallJumping", wallJumping);
     }
 
-    void SetCanMove()
-    {
-        canMove = false;
-    }
 
     #region MovementFunctions
     
@@ -234,11 +234,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if ((coll.onRightWall || coll.onLeftWall) && !coll.onGround)
+            //if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround && !(coll.onRightWall && coll.onLeftWall))
+            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
             {
-                _animator.SetTrigger("WallJump");
                 wallJumping = true;
-                rb.velocity = Vector2.up * jumpVelocity;
+                rb.velocity = Vector2.up * wallJumpVelocity;
 
                 //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
 
@@ -308,4 +308,50 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region GettersSetters
+    void SetCanMove()
+    {
+        canMove = false;
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void setJumpVelocity(float newSpeed)
+    {
+        jumpVelocity = newSpeed;
+    }
+
+    public void setMaxJumps(int newSpeed)
+    {
+        maxJumps = newSpeed;
+    }
+    public void setFallMultiplier(float newSpeed)
+    {
+        fallMultiplier = newSpeed;
+    }
+
+    public void setLowJumpMultiplier(float newSpeed)
+    {
+        lowJumpMultiplier = newSpeed;
+    }
+
+    public void setDashForce(float newSpeed)
+    {
+        dashForce = newSpeed;
+    }
+
+    public void setDashTime(float newSpeed)
+    {
+        dashTime = newSpeed;
+    }
+
+    public void setDashCooldown(float newSpeed)
+    {
+        dashCoolDown = newSpeed;
+    }
+
+    #endregion
 }
