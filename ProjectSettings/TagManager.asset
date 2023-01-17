@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerBullet
+  - EnemyBullet
+  - EnemyHitBox
+  - PlayerHitBox
+  - PlayerHurtBox
+  - EnemyHurtBox
+  - KillBox
+  - OmniReflectHitBox
+  - Enemy
+  - Checkpoint
+  - Moving Platform
   layers:
   - Default
   - TransparentFX
@@ -11,12 +22,12 @@ TagManager:
   - 
   - Water
   - UI
-  - PlayerBullet
-  - EnemyBullet
   - 
-  - 
-  - 
-  - 
+  - Bullet
+  - Ground
+  - Aim
+  - Abilities
+  - CameraConfiner
   - 
   - 
   - 
@@ -40,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 10358651
     locked: 0

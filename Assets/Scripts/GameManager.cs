@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.SceneManagement;
 
 public enum CurrentInput
 {
@@ -12,6 +13,15 @@ public enum CurrentInput
 }
 public class GameManager : MonoBehaviour
 {
+
+    private PlayerControls _playerControls;
+    private bool _isPaused;
+
+    public GameObject PauseMenu;
+    public GameObject FinishedText;
+
+    public static Vector2 lastCheckPointPos;
+
     #region Singleton
 
     public static GameManager Instance;
@@ -22,7 +32,17 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+
+        _playerControls = new PlayerControls();
+        _isPaused = false;
+
+        _playerControls.Pausing.Pause.performed += _ => PauseGame();
+        
+        if (lastCheckPointPos != null)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        }
     }
 
     #endregion
@@ -35,17 +55,17 @@ public class GameManager : MonoBehaviour
         Debug.Log(input);
         SetCurrentInput(input.currentControlScheme);
     }
-
+    */
     private void OnEnable()
     {
-        InputUser.onChange += onInputDeviceChange;
+        _playerControls.Pausing.Enable();
     }
 
     private void OnDisable()
     {
-        InputUser.onChange -= onInputDeviceChange;
+        _playerControls.Pausing.Disable();
     }
-
+    /*
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device)
     {
         if (change == InputUserChange.ControlSchemeChanged) 
@@ -68,4 +88,59 @@ public class GameManager : MonoBehaviour
         }
     }
     */
+
+    private void Update()
+    {
+
+    }
+
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
+
+    public void PauseGame()
+    {
+        if (!_isPaused)
+        {
+            _isPaused = true;
+            Time.timeScale = 0;
+            PauseMenu.SetActive(true);
+        }
+    }
+
+    public void UnPauseGame()
+    {
+        if (_isPaused)
+        {
+            _isPaused = false;
+            Time.timeScale = 1;
+            PauseMenu.SetActive(false);
+        }
+    }
+
+    public void FinishGame()
+    {
+        Time.timeScale = 0;
+        FinishedText.SetActive(true);
+    }
+    public void ExitGame()
+    {
+        Debug.Log("Quitting Game");
+        Application.Quit();
+    }
+
+    public PlayerMovement findPlayerMovement()
+    {
+        return FindObjectOfType<PlayerMovement>();
+    }
+
+    public PlayerHealth findPlayerHealth()
+    {
+        return FindObjectOfType<PlayerHealth>();
+    }
+
+
 }
