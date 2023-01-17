@@ -76,18 +76,15 @@ MonoBehaviour:
   dashCooldownText: {fileID: 0}
   jumpSFX: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
-  landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
   speed: 10
-  slideSpeed: 3
   jumpVelocity: 12.5
-  wallJumpDistance: 5
+  wallJumpVelocity: 7
   maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   dashForce: 4
   dashTime: 0.1
   dashCoolDown: 0.5
-  wallJumpTime: 0
   _playerHealth: {fileID: 5446883132143224771}
   _playerAim: {fileID: 5446883132418489048}
   _spriteRenderer: {fileID: 5446883133848638611}
@@ -120,8 +117,9 @@ MonoBehaviour:
   wallSide: 0
   collisionRadius: 0.05
   bottomOffset: {x: 0, y: -0.5}
-  rightOffset: {x: 0.5, y: 0}
-  leftOffset: {x: -0.5, y: 0}
+  rightOffset: {x: 0.25, y: 0}
+  leftOffset: {x: -0.25, y: 0}
+  landingSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
 --- !u!70 &4255678920753089386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5446883132143224771
 MonoBehaviour:
@@ -310,7 +308,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446883132441753996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -354,7 +352,7 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 512
-  reflectSFX: {fileID: 0}
+  SlashSFX: {fileID: 0}
   canReflect: 1
 --- !u!1 &5446883133551815285
 GameObject:
@@ -382,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 5446883133551815285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 8, z: 2}
+  m_LocalScale: {x: 7.5, y: 10, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5446883132418489049}
@@ -597,6 +595,7 @@ MonoBehaviour:
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
   _omniReflectParticleSystem: {fileID: 8431895205352310259}
+  OmniReflectSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
   omniReflectDuration: 5
   omniReflectCooldown: 30
   omniCooldownText: {fileID: 0}
@@ -662,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
-  playSFX: {fileID: 0}
+  playSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,8 +671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4009320694846350410}
-  - component: {fileID: 6925404656110073979}
   - component: {fileID: 5597837256031725865}
+  - component: {fileID: 2462511795347687164}
   m_Layer: 0
   m_Name: PlayerDetection
   m_TagString: Untagged
@@ -696,22 +695,6 @@ Transform:
   m_Father: {fileID: 5446883131945973390}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &6925404656110073979
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9189916147902147113}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 9
 --- !u!114 &5597837256031725865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +707,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98bf4d09ff4b1848ac28ff6375bc928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &2462511795347687164
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189916147902147113}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 25, y: 14}
+  m_EdgeRadius: 0
 --- !u!1001 &2510584815851101383
 PrefabInstance:
   m_ObjectHideFlags: 0

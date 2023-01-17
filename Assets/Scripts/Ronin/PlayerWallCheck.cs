@@ -13,11 +13,15 @@ public class PlayerWallCheck : MonoBehaviour
     [HideInInspector] public bool onWall;
     [HideInInspector] public bool onRightWall;
     [HideInInspector] public bool onLeftWall;
+
+    private bool wasInAir = false;
     
     [Header("Settings")]
     [SerializeField] private int wallSide;
     [SerializeField] private float collisionRadius = 0.2f;
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
+
+    [SerializeField] private AudioClip landingSFX;
 
     private Color debugCollisionColor = Color.green;
 
@@ -32,6 +36,18 @@ public class PlayerWallCheck : MonoBehaviour
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
+        if (!onGround)
+        {
+            wasInAir = true;
+        }
+        
+        if (onGround && wasInAir) Landing();
+    }
+
+    void Landing()
+    {
+        AudioManager.PlayOneShotSFX(landingSFX);
+        wasInAir = false;
     }
 
     void OnDrawGizmos()
@@ -44,4 +60,5 @@ public class PlayerWallCheck : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
     }
+    
 }

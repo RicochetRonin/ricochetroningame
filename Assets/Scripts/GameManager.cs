@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.SceneManagement;
 
 public enum CurrentInput
 {
@@ -93,6 +94,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
+
     public void PauseGame()
     {
         if (!_isPaused)
@@ -127,6 +135,11 @@ public class GameManager : MonoBehaviour
     public PlayerMovement findPlayerMovement()
     {
         return FindObjectOfType<PlayerMovement>();
+    }
+
+    public PlayerHealth findPlayerHealth()
+    {
+        return FindObjectOfType<PlayerHealth>();
     }
 
 
