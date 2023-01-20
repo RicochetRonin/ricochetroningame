@@ -115,8 +115,16 @@ public class PlayerReflect : MonoBehaviour
         //Reflect hit an interactable object
         if (other.CompareTag("Interactable"))
         {
-            //Removes tiles from midground
-            other.GetComponent<UpdateTiles>().RemoveMidgroundTile();
+            if (other.GetComponent<UpdateTiles>().isEnabled)
+            {
+                //Add tiles to the midground
+                other.GetComponent<UpdateTiles>().AddMidgroundTile();
+            }
+            else
+            {
+                //Removes tiles from midground
+                other.GetComponent<UpdateTiles>().RemoveMidgroundTile();
+            }
         }
     }
 }

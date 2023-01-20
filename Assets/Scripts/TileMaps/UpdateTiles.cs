@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 public class UpdateTiles : MonoBehaviour
 {
     public Tilemap midgroundTileMap;
+    public Tilemap foregroundTileMap;
+    public Tile tile;
+    public bool isEnabled;
     public List<Vector3Int> positions = new List<Vector3Int>();
 
 
@@ -13,10 +16,21 @@ public class UpdateTiles : MonoBehaviour
     //The background should already be painted
     public void RemoveMidgroundTile()
     {
-        foreach (Vector3Int position in positions){
+        foreach (Vector3Int position in positions)
+        {
             //Remove Midground Tile
             midgroundTileMap.SetTile(position, null);
-
         }
+        isEnabled = true;
+    }
+
+    public void AddMidgroundTile()
+    {
+        foreach (Vector3Int position in positions)
+        {
+            //Add Midground Tile
+            midgroundTileMap.SetTile(position, tile);
+        }
+        isEnabled = false;
     }
 }
