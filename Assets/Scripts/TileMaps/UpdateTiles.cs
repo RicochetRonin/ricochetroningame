@@ -1,35 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class UpdateTiles : MonoBehaviour
 {
-    public Tile newTile;
-    public Vector3Int position;
-    public Tilemap backgroundTileMap;
     public Tilemap midgroundTileMap;
+    public List<Vector3Int> positions = new List<Vector3Int>();
 
-    [ContextMenu("Paint")]
-    void Paint()
+
+    [ContextMenu("RemoveMidgroundTile")]
+    //Used for removing tiles from the midground
+    //The background should already be painted
+    public void RemoveMidgroundTile()
     {
-        //Remove Previous Tile
-        midgroundTileMap.SetTile(position, null);
+        foreach (Vector3Int position in positions){
+            //Remove Midground Tile
+            midgroundTileMap.SetTile(position, null);
 
-        //Set new Tile
-        backgroundTileMap.SetTile(position, newTile);
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Player")
-        {
-            Debug.Log("Trigger!");
-            Paint();
-        }
-        else
-        {
-            Debug.Log("Non player activated trigger");
         }
     }
 }

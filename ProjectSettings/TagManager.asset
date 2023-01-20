@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Checkpoint
   - Moving Platform
+  - Interactable
   layers:
   - Default
   - TransparentFX

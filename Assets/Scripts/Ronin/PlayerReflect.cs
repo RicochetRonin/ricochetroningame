@@ -111,5 +111,12 @@ public class PlayerReflect : MonoBehaviour
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
         }
+
+        //Reflect hit an interactable object
+        if (other.CompareTag("Interactable"))
+        {
+            //Removes tiles from midground
+            other.GetComponent<UpdateTiles>().RemoveMidgroundTile();
+        }
     }
 }
