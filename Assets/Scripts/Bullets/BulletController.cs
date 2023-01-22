@@ -212,13 +212,22 @@ public class BulletController : MonoBehaviour
 
         }
 
-        if (collision.gameObject.CompareTag("EnemyHurtBox") && gameObject.CompareTag("PlayerBullet"))
+        if (gameObject.CompareTag("PlayerBullet"))
         {
+            if (collision.gameObject.CompareTag("EnemyHurtBox"))
+            {
 
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            //MasterPool.DespawnBullet(gameObject);
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+                //MasterPool.DespawnBullet(gameObject);
 
+            }
+
+            //Player reflects a bullet into a bullet interactable trigger
+            if (collision.gameObject.CompareTag("BulletInteractable"))
+            {
+                Debug.Log("PLayer Interactable hit");
+            }
         }
 
         if (collision.gameObject.CompareTag(("PlayerHitBox")))

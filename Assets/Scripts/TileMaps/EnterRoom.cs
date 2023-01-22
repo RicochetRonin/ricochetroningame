@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnterRoom : MonoBehaviour
@@ -14,8 +15,7 @@ public class EnterRoom : MonoBehaviour
             if (roomHidden == true)
             {
                 roomHidden = false;
-                tilemap.SetActive(false);
-
+                StartCoroutine(FadeOut());
             }
         }
     }
@@ -29,9 +29,33 @@ public class EnterRoom : MonoBehaviour
             if (roomHidden == false)
             {
                 roomHidden = true;
-                tilemap.SetActive(true);
-
+                StartCoroutine(FadeIn());
             }
+        }
+    }
+
+    IEnumerator FadeOut()
+    {
+        Color c = tilemap.GetComponent<Renderer>().material.color;
+        c.a = 1;
+        for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
+        {
+            c.a = alpha;
+            tilemap.GetComponent<Renderer>().material.color = c;
+            yield return new WaitForSeconds(.03f);
+        }
+        tilemap.SetActive(false);
+    }
+
+    IEnumerator FadeIn()
+    {
+        tilemap.SetActive(true);
+        Color c = tilemap.GetComponent<Renderer>().material.color;
+        for (float alpha = 0f; alpha <= 1; alpha += 0.1f)
+        {
+            c.a = alpha;
+            tilemap.GetComponent<Renderer>().material.color = c;
+            yield return new WaitForSeconds(.07f);
         }
     }
 }
