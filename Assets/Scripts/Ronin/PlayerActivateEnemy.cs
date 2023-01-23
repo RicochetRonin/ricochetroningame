@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script check if trigger enters and exits are from enemies. On enter, activates enemy. On exit, deactivates enemy.
 public class PlayerActivateEnemy : MonoBehaviour
 {
+
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("Enemy"))
@@ -13,13 +15,6 @@ public class PlayerActivateEnemy : MonoBehaviour
             {
                 transform.GetChild(a).gameObject.SetActive(true);
             }
-            
-            /*
-            foreach (GameObject child in transform)
-            {
-                child.SetActive(true);
-            }
-            */
         }
     }
     
@@ -32,13 +27,7 @@ public class PlayerActivateEnemy : MonoBehaviour
             {
                 transform.GetChild(a).gameObject.SetActive(false);
             }
-            
-            /*
-            foreach (GameObject child in transform)
-            {
-                child.SetActive(false);
-            }
-            */
+           
         }
     }
 }

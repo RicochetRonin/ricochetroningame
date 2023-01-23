@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
     
     [Header("Booleans")]
-    public bool wallGrab;
-    public bool wallJump;
+    private bool wallGrab;
+    private bool wallJump;
     private bool wasOnGround;
     private bool wallJumping;
 

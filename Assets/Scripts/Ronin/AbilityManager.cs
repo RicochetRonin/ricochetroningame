@@ -42,9 +42,7 @@ public class AbilityManager : MonoBehaviour
 
     private void Awake()
     {
-        //_omniReflectCollider = GetComponentInChildren<CircleCollider2D>();
-        //_omniReflectParticleSystem = GetComponentInChildren<ParticleSystem>();
-
+       
         _playerControls = new PlayerControls();
         _omniReflectCollider.enabled = false;
         _omniReflectGraphics.SetActive(false);
@@ -59,6 +57,7 @@ public class AbilityManager : MonoBehaviour
 
     private void Update()
     {
+        //Updating Omni Reflect UI
         omniCooldownText.SetCooldown(canOmniReflect);
         if (omniReflectActive)
         {
@@ -69,7 +68,6 @@ public class AbilityManager : MonoBehaviour
 
     private IEnumerator OmniReflect()
     {
-        //Debug.Log("OmniReflect called");
         if (canOmniReflect)
         {
             canOmniReflect = false;
@@ -82,7 +80,6 @@ public class AbilityManager : MonoBehaviour
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectCollider.enabled = false;
-            //Debug.Log("Here is the status, should be false " + _omniReflectCollider.enabled);
             _omniReflectGraphics.SetActive(false);
             _aim.SetActive(true);
             omniReflectActive = false;
