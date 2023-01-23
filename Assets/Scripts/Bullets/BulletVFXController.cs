@@ -15,7 +15,6 @@ public class BulletVFXController : MonoBehaviour
 
     public void PlayAnimation(string animation)
     {
-        //Debug.Log("Playing animation " + animation);
         animator.SetTrigger(animation);
     }
 
