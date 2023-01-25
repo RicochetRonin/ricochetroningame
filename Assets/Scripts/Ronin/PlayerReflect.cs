@@ -9,7 +9,6 @@ public class PlayerReflect : MonoBehaviour
     [Tooltip("The sprite to change colors when detecting")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     
-    //[SerializeField] private ParticleSystem _reflectParticleSystem;
     [SerializeField] private Animator _reflectAnimator;
     [SerializeField] private GameObject _hitParticleSytem;
 
@@ -56,12 +55,12 @@ public class PlayerReflect : MonoBehaviour
             }
         }
 
-        //Ignores colliding with Aim, Ground
-        //Physics.IgnoreLayerCollision(aimLayer, groundLayer);
     }
 
     #endregion
     
+
+    //Called when the player attempts to reflect.
     private IEnumerator Detect()
     {
         if (!canReflect)
@@ -72,10 +71,7 @@ public class PlayerReflect : MonoBehaviour
 
         else
         {
-            //_reflectParticleSystem.Play();
             AudioManager.PlayOneShotSFX(SlashSFX);
-
-            //Debug.Log("Triggered!");
             canReflect = false;
             _reflectAnimator.SetTrigger("Reflect");
             _collider.enabled = true;
@@ -95,7 +91,6 @@ public class PlayerReflect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("COLLISION " + other.tag);
         if (other.CompareTag("EnemyBullet"))
         {
             //TODO: Change from being a GetComponent to switching the case of the bullet
@@ -107,7 +102,6 @@ public class PlayerReflect : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             //TODO: Change from being a GetComponent to switching the case of the bullet
-            //Debug.Log("SHOULD SEE HIT EFFECT");
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
         }

@@ -27,23 +27,18 @@ public class PlayerMovement : MonoBehaviour
     private float playerInputDir;
 
 
-    //[SerializeField] private AudioManager audio;
     [SerializeField] private AudioClip jumpSFX, dashSFX;
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
-    //[SerializeField] private float slideSpeed = 3f;
     [SerializeField] private float jumpVelocity = 10f;
     [SerializeField] private float wallJumpVelocity = 5f;
-    //[SerializeField] private float wallJumpDistance = 5f;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
-    //[SerializeField] private float wallJumpTime;
-    //private float wallJumpCounter;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -59,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask collisionMask;
     
     [Header("Booleans")]
-    public bool wallGrab;
-    public bool wallJump;
+    private bool wallGrab;
+    private bool wallJump;
     private bool wasOnGround;
     private bool wallJumping;
 
@@ -110,10 +105,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(playerHealth.getCanTakeDamage());
-        //Debug.Log("Velocity " + rb.velocity);
-        //Debug.Log("Y velocity " + rb.velocity.y);
-
 
         JumpCheck();
         
@@ -134,10 +125,9 @@ public class PlayerMovement : MonoBehaviour
             
         }
         dashCooldownText.SetCooldown(canDash);
-        //Debug.Log("On Wall " + coll.onWall);
-        //Debug.Log(Mathf.Abs(dir.x));
+
+        //Setting the Ronin animator values
         _animator.SetBool("OnWall", (coll.onWall));
-        //_animator.SetBool("MovingIntoWall", ((coll.onLeftWall && playerInputDir == -1) || (coll.onRightWall && playerInputDir == 1)));
         _animator.SetBool("MovingIntoWall", ((coll.onLeftWall) || (coll.onRightWall)));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
@@ -149,9 +139,11 @@ public class PlayerMovement : MonoBehaviour
 
     #region MovementFunctions
     
+    //Handles movement and sprite flipping to match direction
     private void Move(Vector2 dir)
     {
-        //Debug.Log("Wall jumping value " + wallJumping);
+
+        //If movement is right and Ronin is facing left and Ronin is on ground, flip Ronin to face right
         if (dir.x > 0 && !isFacingRight && (coll.onGround))
         {
             isFacingRight = !isFacingRight;
@@ -159,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = false;
         }
 
+        //If movement is left and Ronin is facing right and Ronin is on ground, flip Ronin to face left
         else if (dir.x < 0 && isFacingRight && (coll.onGround))
         {
             isFacingRight = !isFacingRight;
@@ -166,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
+        //If Ronin is on the wall and not on the ground and not wall jumping, flip the sprite depending on which wall Ronin is on.
         else if (coll.onWall && !coll.onGround && !wallJumping)
         {
             if (coll.onRightWall)
@@ -190,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
         
         }
 
+        //If Ronin is not wall jumping and is in the air and is facing right, but player input is left, make the Ronin face left
         if (!wallJumping && isFacingRight && dir.x < 0 && !coll.onGround && !coll.onWall)
         {
             isFacingRight = !isFacingRight;
@@ -197,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
+        //If Ronin is not wall jumping and is in the air and is facing left, but player input is right, make the Ronin face right
         else if (!wallJumping && !isFacingRight && dir.x > 0 && !coll.onGround && !coll.onWall)
         {
             isFacingRight = !isFacingRight;
@@ -204,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = false;
         }
 
-        //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings. (Maybe more conditions)
+        //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings
         if (wallJumping && rb.velocity.y > 0 && dir.x != 0){
             rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
         }
@@ -212,9 +208,10 @@ public class PlayerMovement : MonoBehaviour
             wallJumping = false;
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
-        //Debug.Log("B " + dir.x * speed);
     }
 
+
+    //This is called to check that if Ronin is jumped, the gravity is correct as the Ronin goes up and down during his jump
     private void JumpCheck()
     {
         //increases the gravity on the player's rigidbody as they fall
@@ -230,33 +227,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    //Makes Ronin jump when called
     private void Jump()
     {
         if (jumpCount < maxJumps)
         {
-            //if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround && !(coll.onRightWall && coll.onLeftWall))
+            //If the Ronin is wall clinging, wall jump
             if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
             {
                 wallJumping = true;
                 rb.velocity = Vector2.up * wallJumpVelocity;
-
-                //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.left * wallJumpDistance));
-
-                //Debug.LogFormat("Velocity: {0}", rb.velocity);
-                //Debug.Log("Wall jump left");
-
-            }
-
-            //Is this still needed?
-            else if (coll.onLeftWall && !coll.onGround)
-            {
-                //rb.AddForce((Vector2.up + Vector2.right) * jumpVelocity * wallJumpDistance); //this one
-
-                //rb.velocity = ((Vector2.up * jumpVelocity) + (Vector2.right * wallJumpDistance));
-
-
-                Debug.LogFormat("Velocity: {0}", rb.velocity);
-                Debug.Log("Wall jump right");
 
             }
 
@@ -267,25 +247,21 @@ public class PlayerMovement : MonoBehaviour
             
             AudioManager.PlayOneShotSFX(jumpSFX);
             jumpCount++;
-            //Debug.Log(jumpCount);
         }
     }
 
+    //Called to make the Ronin dash
     private IEnumerator Dash()
     {
-        //Debug.Log("Dash pressed");
-        //Debug.Log("isDashing " + isDashing);
-        //Debug.Log("canDash " + canDash);
-        //Debug.Log("Dash " + canDash);
-        //Debug.Log("X" + _move.x);
-
         if (canDash)
         {
             canDash = false;
             isDashing = true;
-            playerHealth.setCanTakeDamage(false);
-            //float origGrav = rb.gravityScale;
 
+            //Ronin invicible during dash
+            playerHealth.setCanTakeDamage(false);
+
+            //Ronin unaffected by gravity while dashing
             rb.gravityScale = 0;
             
             AudioManager.PlayOneShotSFX(dashSFX);
@@ -293,13 +269,17 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
             
             yield return new WaitForSeconds(dashTime);
+
+            //Ronin can take damage after dash
             playerHealth.setCanTakeDamage(true);
+
             isDashing = false;
-            
+
+            //Ronin affected by gravity again
             rb.gravityScale = 1;
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            //rb.gravityScale = origGrav;
             
+            //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
         }

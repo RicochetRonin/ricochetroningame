@@ -31,7 +31,6 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float baseSpeed = 5f;
     private float speed;
     [SerializeField] private Vector3 size;
-    //[SerializeField] private float reflectForce = 1.15f;
     [SerializeField] private Vector2 direction;
     [SerializeField] private float maxReflects = 5f;
     [SerializeField] private float reflectForce = 5f;
@@ -39,21 +38,26 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float muzzleFlashTime = 0.1f;
     [SerializeField] private Color muzzleColor1 = Color.white;
     [SerializeField] private Color muzzleColor2 = Color.black;
+    [SerializeField] private float maxReflectLifetime = 10.0f;
 
     [SerializeField] private AudioClip bounceSFX, hitPlayer, reflectedSFX;
 
     public GameObject bulletVFX;
 
     private float _reflectCount;
+    private float currentReflectLifetime;
+
+
     private void Awake()
     {
-        //Debug.Log("Firing");
         _animator = GetComponent<Animator>();
         previousPos = transform.position;
         direction = Vector2.up;
+
         GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
         bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
-        //StartCoroutine("MuzzleFlash");
+        _reflectCount = 0;
+        currentReflectLifetime = 0.0f;
     }
 
     private void OnEnable()
@@ -71,6 +75,8 @@ public class BulletController : MonoBehaviour
     private void Movement()
     {
         transform.Translate(direction * Time.deltaTime * speed);
+        currentReflectLifetime += Time.deltaTime;
+
     }
 
     public void RaycastReflect()
@@ -79,7 +85,7 @@ public class BulletController : MonoBehaviour
         Vector3 currentDir = CalcDirection();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, currentDir, Time.deltaTime * speed + .1f, collisionMask);
         Debug.DrawRay(transform.position, currentDir, Color.red);
-        
+
         if (hit.collider != null)
         {
             if (hit.normal.x != 0)
@@ -95,24 +101,19 @@ public class BulletController : MonoBehaviour
                 GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
                 bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
             }
-            
-            //Debug.Log("hit normal " + hit.normal);
-            //Debug.Log(hit.normal.x * 90);
-            //Debug.Log(90 + hit.normal.y * 90);
-            //Debug.Log("impactRot " + impactRot);
+
 
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
-            
+
             transform.eulerAngles = new Vector3(0, 0, rot);
 
             Debug.DrawRay(transform.position, reflectDir, Color.blue);
-            //speed *= reflectForce;
-            //IncreaseAfterReflect();
-            
+
             AudioManager.PlayOneShotSFX(bounceSFX);
             _reflectCount++;
+            currentReflectLifetime = 0;
         }
     }
 
@@ -136,26 +137,15 @@ public class BulletController : MonoBehaviour
     
     void Death()
     {
-        if (_reflectCount >= maxReflects)
+        if (_reflectCount >= maxReflects || currentReflectLifetime > maxReflectLifetime)
         {
-            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
-            //Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Debug.Log("Here is comparison, current first " + currentReflectLifetime + " " +  maxReflectLifetime);
             MasterPool.DespawnBullet(gameObject);
             _reflectCount = 0;
+            currentReflectLifetime = 0;
         }
     }
 
-    /*
-    private IEnumerator MuzzleFlash()
-    {
-        Color origColor = _spriteRenderer.color;
-        _spriteRenderer.color = Color.white;
-        yield return new WaitForSeconds(muzzleFlashTime);
-        _spriteRenderer.color = Color.black;
-        yield return new WaitForSeconds(muzzleFlashTime);
-        _spriteRenderer.color = origColor;
-    }
-    */
     
     private Vector3 CalcDirection()
     {
@@ -170,7 +160,6 @@ public class BulletController : MonoBehaviour
     {
         if (other.gameObject.layer == collisionMask.value)
         {
-            //Debug.Log("Hit");
             RaycastReflect();
         }
 
@@ -178,10 +167,7 @@ public class BulletController : MonoBehaviour
     
     public void SetFriendly()
     {
-        //Debug.Log("Set Friendly");
-        
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        //Debug.Log(_spriteRenderer);
         
         gameObject.tag = "PlayerBullet";
         _spriteRenderer.color = Color.green;
@@ -189,10 +175,8 @@ public class BulletController : MonoBehaviour
     
     public void SetHostile()
     {
-        //Debug.Log("Set Hostile");
         
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        //Debug.Log(_spriteRenderer);
         
         gameObject.tag = "EnemyBullet";
         _spriteRenderer.color = Color.red;
@@ -200,27 +184,25 @@ public class BulletController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(collision);
         
+        //If bullet hits player and the player can take damage and the bullet is an enemy bullet, hurt the player
         if (collision.gameObject.CompareTag("PlayerHurtBox") && collision.gameObject.GetComponentInChildren<PlayerHealth>().getCanTakeDamage() && gameObject.CompareTag("EnemyBullet"))
         {
 
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             AudioManager.PlayOneShotSFX(hitPlayer);
-            //deathEffect.transform.localScale *= (1.05f * _reflectCount);
             MasterPool.DespawnBullet(gameObject);
 
         }
 
         if (gameObject.CompareTag("PlayerBullet"))
         {
+            //If the bullet hits an enemy and the bullet is the player's, hurt the enemy
             if (collision.gameObject.CompareTag("EnemyHurtBox"))
             {
-
                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                 //deathEffect.transform.localScale *= (1.05f * _reflectCount);
                 //MasterPool.DespawnBullet(gameObject);
-
             }
 
             //Player reflects a bullet into a bullet interactable trigger
@@ -230,15 +212,14 @@ public class BulletController : MonoBehaviour
             }
         }
 
+        //If the bullet hits the player's reflect collider, calculate bullet reflect direction based on controller
         if (collision.gameObject.CompareTag(("PlayerHitBox")))
         {
-            //Debug.Log(playerAim.usingController);
             
             playerAim = collision.gameObject.transform.parent.GetComponent<PlayerAim>();
 
             if (playerAim.usingController)
             {
-                //transform.eulerAngles = new Vector3(0f, 0f, -Mathf.Atan2(playerAim.newDir.x, playerAim.newDir.y) * Mathf.Rad2Deg - 90);
                 transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
             }
             else
@@ -254,33 +235,30 @@ public class BulletController : MonoBehaviour
                 speed *= reflectForce;
             }
 
-            //_reflectCount++;
+            currentReflectLifetime = 0.0f;
+
 
         }
 
-
+        //If the bullet hits the Omni-Reflect collider, reflect it
         if (collision.gameObject.CompareTag(("OmniReflectHitBox")))
         {
-            //Debug.Log("Omni Reflect Hit Bullet");
             SetFriendly();
-            //Debug.Log("Omnit reflect position " + collision.gameObject.transform.position);
-            //Debug.Log("Bullet " + transform.position);
 
             Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
             var rot = -Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
-            //Debug.Log("Reflect direction" + reflectDirection);
-            //Debug.Log(rot);
             transform.eulerAngles = new Vector3(0, 0, rot);
-            //transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
 
             if (speed < maxSpeed)
             {
                 speed *= reflectForce + 1;
             }
 
+            currentReflectLifetime = 0.0f;
+
         }
 
-
+        //If the the bullet hits an enemy's reflect, reflect the bullet and set it to hostile
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
             enemyAim = collision.gameObject.transform.parent.GetComponent<EnemyAim>();
@@ -291,12 +269,8 @@ public class BulletController : MonoBehaviour
             transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
             Debug.DrawRay(transform.position, enemyAim.aimDirection, Color.green);
 
-            //speed *= reflectForce;
-            //IncreaseAfterReflect();
-            //Debug.Log("Hit Bullet");
-            //_reflectCount++;
-            
+            currentReflectLifetime = 0.0f;
+
         }
     }
 }
-

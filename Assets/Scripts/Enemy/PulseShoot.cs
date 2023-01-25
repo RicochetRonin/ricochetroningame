@@ -36,20 +36,18 @@ public class PulseShoot : EnemyShoot
 
    private IEnumerator PulseSpawn()
     {
-        //Debug.Log("Pulse called");
         float angleStep = 360 / numProjectiles;
         float currAngle = 0;
         Quaternion newTransformRotation;
         Quaternion currTransformRotation;
 
-
         for (int j = 0; j < numPulse; j++) { 
             
             currTransformRotation = Quaternion.Euler(transform.parent.transform.rotation.eulerAngles + new Vector3(0, 0, -90));
+
+            //Locking enemy aim during firing sequence
             if (origCanAim) { _enemyAim.setCanAim(false); }
             
-        
-            //Debug.Log("Pulse " + j);
             for (int i = 0; i < numProjectiles; i++)
             {
                 
@@ -58,10 +56,10 @@ public class PulseShoot : EnemyShoot
                 var spawnPosition = transform.parent.transform.parent.position;
                 spawnPosition.x += offSetx;
                 spawnPosition.y += offSety;
-                //Debug.Log("Shooting " + i + " at spawnPosition " + spawnPosition + " with Rotation " + currTransformRotation.eulerAngles);
                 MasterPool.SpawnBullet(bulletPrefab, spawnPosition, currTransformRotation);
+
                 AudioManager.PlayOneShotSFX(PulseSFX);
-                //Instantiate(bulletPrefab, spawnPosition, currTransformRotation);
+
                 newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, angleStep));
                 currTransformRotation = newTransformRotation;
                 currAngle += angleStep;
