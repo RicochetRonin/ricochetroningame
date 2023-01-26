@@ -204,6 +204,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""down"",
+                    ""id"": ""51629b75-1c2b-470b-969a-e87eb2066e52"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""627ca85c-59be-47b2-868d-619ab9a73cc9"",
                     ""path"": ""2DVector"",
@@ -229,6 +240,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""1c7ec684-e760-4528-8a13-049b91b5b100"",
                     ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""805206b7-e488-4c77-83eb-74723ab338c9"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
