@@ -15,7 +15,6 @@ public class LaserAim : MonoBehaviour
     public int numAlphaSteps = 3;
 
 
-    // Start is called before the first frame update
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -25,17 +24,15 @@ public class LaserAim : MonoBehaviour
         shotSpawn = transform.GetChild(0);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         lineRenderer.SetPosition(0, shotSpawn.position);
         lineRenderer.SetPosition(1, target.transform.position);
-        //Debug.Log(lineRenderer.material.color);
 
     }
 
 
-
+    //Fades the alpha of the laser with the specified duration
     public IEnumerator AlphaFade(float duration)
     {
         float timeElapsed = 0;
@@ -50,6 +47,7 @@ public class LaserAim : MonoBehaviour
         lineRenderer.material.color = laserColor;
     }
 
+    //Adjusts the alpha of the laser according to the specified duration and numAlphaSteps. Not a smooth fade like AlphaFade
     public IEnumerator AlphaStep(float duration)
     {
         float timeElapsed = 0;
@@ -66,10 +64,8 @@ public class LaserAim : MonoBehaviour
         {
             if (timeElapsed >= currTimeStep)
             {
-                //Debug.Log("Curr Timestep" + currTimeStep);
                 currTimeStep += timeSteps;
                 currAlphaStep += alphaSteps;
-                //Debug.Log("Change alpha " + currAlphaStep);
                 tempColor = laserColor;
                 tempColor.a = currAlphaStep;
                 lineRenderer.material.color = tempColor;
