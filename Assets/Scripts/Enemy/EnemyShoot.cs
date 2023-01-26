@@ -31,8 +31,6 @@ public class EnemyShoot : MonoBehaviour
     {
         if (canAttack)
         {
-            //Debug.Log("Shooting!");
-            //bulletPrefab.GetComponent<BulletController>().SetHostile();
             MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
             AudioManager.PlayOneShotSFX(ShootSFX);
             animator.SetTrigger("Shoot");
@@ -44,7 +42,6 @@ public class EnemyShoot : MonoBehaviour
 
     IEnumerator ResetCoolDown()
     {
-        //Debug.Log("Reset Cooldown");
         yield return new WaitForSeconds(fireRate);
         canAttack = true;
     }
