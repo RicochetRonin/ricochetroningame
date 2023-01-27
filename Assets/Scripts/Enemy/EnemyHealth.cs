@@ -37,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
 
             health -= damage;
 
+            //Setting enemy graphic to red to indicate damage. Then reset back to original color
             enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
             canTakeDamage = false;

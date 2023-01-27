@@ -12,13 +12,10 @@ public class OmniReflect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log(other.tag);
         if (other.CompareTag("PlayerBullet"))
         {
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
-            
-            //AudioManager.PlayOneShotSFX(playSFX);
-            
+                       
             particle.GetComponent<ParticleSystem>().Play();
         }
     }
