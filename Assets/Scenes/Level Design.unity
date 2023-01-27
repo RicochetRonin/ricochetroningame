@@ -2651,6 +2651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 40166610491340862, guid: 7626359e47a76b2408eaaaedd0e79bd6, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7626359e47a76b2408eaaaedd0e79bd6, type: 3}
 --- !u!251 &261679606405689829
