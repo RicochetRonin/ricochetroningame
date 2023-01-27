@@ -27,7 +27,9 @@ public class PassThroughPlatform : MonoBehaviour
         //disable collider for a certain time? Allowing player to drop down past platform...
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
 
-        if(onGround && Keyboard.current.downArrowKey.wasPressedThisFrame)
+        if(onGround && Keyboard.current.downArrowKey.wasPressedThisFrame || 
+            onGround && Keyboard.current.sKey.wasPressedThisFrame ||
+            onGround && Gamepad.current.leftStick.down.wasPressedThisFrame)
         {
             /*Debug.Log("on ground and pressing down");*/
             _collider.enabled = false;
