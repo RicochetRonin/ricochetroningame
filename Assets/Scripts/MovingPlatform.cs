@@ -7,14 +7,14 @@ public class MovingPlatform : MonoBehaviour
 {
     public bool onPlatform;
     public Transform player;
-    public Vector2 positionOnLanding;
+    public float offset;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             other.transform.parent = transform;
             player = other.transform;
-            //positionOnLanding = player.position;
+            offset = player.position.x - transform.position.x;
             onPlatform = true;
         }
     }
@@ -23,7 +23,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (onPlatform)
         {
-            player.position = new Vector2(transform.position.x, player.position.y);
+            player.position = new Vector2(transform.position.x + offset, player.position.y);
         }
     }
     
