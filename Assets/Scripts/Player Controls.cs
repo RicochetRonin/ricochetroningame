@@ -387,6 +387,65 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interaction"",
+            ""id"": ""68b95048-4ce3-41d1-b4ed-cdad866d09cb"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""938f71bb-396e-4df1-b71a-6779fdcee1ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ProgressDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""b18f01ea-28fc-40d2-a5ce-acefeae5d511"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""253c6261-428e-4ecb-a8d3-753153d18ff0"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e335022d-b2df-4ae4-a939-fb103116db7c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a6cbe60-1955-476a-92d9-2c8575d64415"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ProgressDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -409,6 +468,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Abilities
         m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
         m_Abilities_OmniReflect = m_Abilities.FindAction("OmniReflect", throwIfNotFound: true);
+        // Interaction
+        m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
+        m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
+        m_Interaction_ProgressDialogue = m_Interaction.FindAction("ProgressDialogue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -653,6 +716,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public AbilitiesActions @Abilities => new AbilitiesActions(this);
+
+    // Interaction
+    private readonly InputActionMap m_Interaction;
+    private IInteractionActions m_InteractionActionsCallbackInterface;
+    private readonly InputAction m_Interaction_Interact;
+    private readonly InputAction m_Interaction_ProgressDialogue;
+    public struct InteractionActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InteractionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
+        public InputAction @ProgressDialogue => m_Wrapper.m_Interaction_ProgressDialogue;
+        public InputActionMap Get() { return m_Wrapper.m_Interaction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractionActions set) { return set.Get(); }
+        public void SetCallbacks(IInteractionActions instance)
+        {
+            if (m_Wrapper.m_InteractionActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @ProgressDialogue.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+                @ProgressDialogue.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+                @ProgressDialogue.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+            }
+            m_Wrapper.m_InteractionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @ProgressDialogue.started += instance.OnProgressDialogue;
+                @ProgressDialogue.performed += instance.OnProgressDialogue;
+                @ProgressDialogue.canceled += instance.OnProgressDialogue;
+            }
+        }
+    }
+    public InteractionActions @Interaction => new InteractionActions(this);
     public interface IAimingActions
     {
         void OnGamepad(InputAction.CallbackContext context);
@@ -675,5 +779,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IAbilitiesActions
     {
         void OnOmniReflect(InputAction.CallbackContext context);
+    }
+    public interface IInteractionActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+        void OnProgressDialogue(InputAction.CallbackContext context);
     }
 }

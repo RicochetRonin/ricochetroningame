@@ -6,14 +6,45 @@ using TMPro;
 
 public class InteractScript : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro dialogueText;
+    public PlayerControls playerControls;
+
+    [SerializeField] private GameObject dialogueText;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        playerControls.Interaction.Interact.performed += _ => EnableText();
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(dialogueText.GetComponent<NPCDialogueScript>().dialogueFinished)
         {
-            dialogueText.enabled = true;
-
+            DisableText();
         }
     }
+    void EnableText()
+    {
+        Debug.Log("this is working");
+        dialogueText.SetActive(true);
+        this.GetComponent<TextMeshProUGUI>().text = " ";
+    }
+    void DisableText()
+    {
+        dialogueText.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        DisableText();
+    }
+    void Debugging()
+    {
+        Debug.Log("The button works");
+    }
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        this.GetComponent<TextMeshProUGUI>().text = "Press F to Interact";
+    }
+
 }
