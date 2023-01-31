@@ -102,6 +102,7 @@ public class BulletController : MonoBehaviour
             else
             {
                 Vector3 impactRot = new Vector3(0, 0, 90 + hit.normal.y * 90);
+
                 //GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
                 //vfx
                 //bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
@@ -204,11 +205,21 @@ public class BulletController : MonoBehaviour
 
         }
 
-        //If the bullet hits an enemy and the bullet is the player's, hurt the enemy
-        if (collision.gameObject.CompareTag("EnemyHurtBox") && gameObject.CompareTag("PlayerBullet"))
+        if (gameObject.CompareTag("PlayerBullet"))
         {
+            //If the bullet hits an enemy and the bullet is the player's, hurt the enemy
+            if (collision.gameObject.CompareTag("EnemyHurtBox"))
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                //deathEffect.transform.localScale *= (1.05f * _reflectCount);
+                //MasterPool.DespawnBullet(gameObject);
+            }
 
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            //Player reflects a bullet into a bullet interactable trigger
+            if (collision.gameObject.CompareTag("BulletInteractable"))
+            {
+                Debug.Log("PLayer Interactable hit");
+            }
         }
 
         //If the bullet hits the player's reflect collider, calculate bullet reflect direction based on controller
