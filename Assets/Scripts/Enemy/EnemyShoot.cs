@@ -6,7 +6,7 @@ public class EnemyShoot : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected GameObject bulletPrefab;
-    
+
     [Header("Settings")]
     [SerializeField] protected float fireRate = 3f;
     [SerializeField] protected bool canAttack = false;
@@ -16,7 +16,14 @@ public class EnemyShoot : MonoBehaviour
     private GameObject target;
 
 
-    void OnEnable()
+    private EnemyHealth enemyHealth;
+
+
+    private void Start()
+    {
+        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
+    }
+    private void OnEnable()
     {
         canAttack = false;
         StartCoroutine("SetCanAttack");
@@ -37,18 +44,16 @@ public class EnemyShoot : MonoBehaviour
 
     private void Update()
     {
-
         //Check for any walls between the enemey and the Ronin
         //If no walls are found, allow the enemy to attack
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1<<8 ))
         {
-            if (canAttack)
+            if (canAttack && enemyHealth.getIsAlive())
             {
+                canAttack = false;
                 MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
                 AudioManager.PlayOneShotSFX(ShootSFX);
                 animator.SetTrigger("Shoot");
-
-                canAttack = false;
                 StartCoroutine("ResetCoolDown");
             }
         }
