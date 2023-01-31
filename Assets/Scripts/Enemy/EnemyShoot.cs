@@ -6,7 +6,7 @@ public class EnemyShoot : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected GameObject bulletPrefab;
-    
+
     [Header("Settings")]
     [SerializeField] protected float fireRate = 3f;
     [SerializeField] protected bool canAttack = false;
@@ -14,7 +14,15 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private AudioClip ShootSFX;
     [SerializeField] private Animator animator;
 
-    void OnEnable()
+    private EnemyHealth enemyHealth;
+
+
+    private void Start()
+    {
+        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
+        Debug.Log(enemyHealth);
+    }
+    private void OnEnable()
     {
         canAttack = false;
         StartCoroutine("SetCanAttack");
@@ -29,13 +37,13 @@ public class EnemyShoot : MonoBehaviour
     
     private void Update()
     {
-        if (canAttack)
+        if (canAttack && enemyHealth.getIsAlive())
         {
+            Debug.Log("Can Attack! " + canAttack + " isAlive " + enemyHealth.getIsAlive());
+            canAttack = false;
             MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
             AudioManager.PlayOneShotSFX(ShootSFX);
             animator.SetTrigger("Shoot");
-
-            canAttack = false;
             StartCoroutine("ResetCoolDown");
         }
     }
