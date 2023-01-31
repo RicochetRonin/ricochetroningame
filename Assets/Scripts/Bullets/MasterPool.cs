@@ -8,8 +8,9 @@ public static class MasterPool
     private static Dictionary<string, BulletPool> bulletPool = new Dictionary<string, BulletPool>();
     private static Dictionary<string, BulletVFXPool> bulletVFXPool = new Dictionary<string, BulletVFXPool>();
 
-        public static void SpawnBullet(GameObject bullet, Vector3 pos, Quaternion rot)
-        {
+
+    public static void SpawnBullet(GameObject bullet, Vector3 pos, Quaternion rot)
+    {
         GameObject obj;
         string key = bullet.name.Replace("(Clone)", "");
         if (GameObject.Find($"{key}_POOL") == null)
@@ -26,11 +27,11 @@ public static class MasterPool
             else
             {
                 obj = bulletPool[key].inactive.Pop();
-                
+
 
                 obj.GetComponent<BulletController>().PoolSpawn(pos, rot);
-                
-                
+
+
             }
         }
         else
@@ -66,10 +67,10 @@ public static class MasterPool
         }
     }
 
-    /* THIS NEEDS WORK
+
     public static void SpawnBulletVFX(GameObject vfx, Vector3 pos, Quaternion rot, string animation)
     {
-        GameObject obj;
+        GameObject bulletVFXref;
         string key = vfx.name.Replace("(Clone)", "");
         if (GameObject.Find($"{key}_POOL") == null)
         {
@@ -79,24 +80,26 @@ public static class MasterPool
         {
             if (bulletVFXPool[key].inactive.Count == 0)
             {
-                obj = Object.Instantiate(vfx, pos, rot, bulletVFXPool[key].parent.transform);
-                obj.GetComponent<BulletVFXController>().PlayAnimation(animation);
+                Object.Instantiate(vfx, pos, rot, bulletVFXPool[key].parent.transform).GetComponentInChildren<BulletVFXController>().PlayAnimation(animation);
 
             }
             else
             {
-                obj = bulletVFXPool[key].inactive.Pop();
-                obj.transform.position = pos;
-                obj.transform.rotation = rot;
-                obj.SetActive(true);
-                obj.GetComponent<BulletVFXController>().PlayAnimation(animation);
+                bulletVFXref = bulletVFXPool[key].inactive.Pop();
+
+                bulletVFXref.transform.position = pos;
+                bulletVFXref.transform.rotation = rot;
+                bulletVFXref.SetActive(true);
+                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation(animation);
+
+
             }
         }
         else
         {
             GameObject newParent = new GameObject($"{key}_POOL");
 
-            Object.Instantiate(vfx, pos, rot, newParent.transform);
+            Object.Instantiate(vfx, pos, rot, newParent.transform).GetComponentInChildren<BulletVFXController>().PlayAnimation(animation);
             BulletVFXPool newPool = new BulletVFXPool(newParent);
             bulletVFXPool.Add(key, newPool);
         }
@@ -124,5 +127,4 @@ public static class MasterPool
             vfx.SetActive(false);
         }
     }
-    */
 }

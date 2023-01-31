@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class BulletVFXController : MonoBehaviour
 {
@@ -13,16 +15,22 @@ public class BulletVFXController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void PoolSpawn(Vector3 pos, Quaternion rot, string animation)
+    {
+        this.transform.parent.gameObject.transform.position = pos;
+        this.transform.parent.gameObject.transform.rotation = rot;
+        this.transform.parent.gameObject.SetActive(true);
+        PlayAnimation(animation);
+
+    }
+
     public void PlayAnimation(string animation)
     {
-        //Debug.Log("Playing animation " + animation);
         animator.SetTrigger(animation);
     }
 
     public void AnimationEnd()
     {
-        //MasterPool.DespawnBulletVFX(gameObject);
-        //Debug.Log("Destroying bullet VFX");
-        Destroy(transform.parent.gameObject);
+        MasterPool.DespawnBulletVFX(this.transform.parent.gameObject);
     }
 }

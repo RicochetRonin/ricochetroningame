@@ -9,7 +9,7 @@ public class checkpoint : MonoBehaviour
         if (other.tag == "PlayerHurtBox")
         {
             GameManager.lastCheckPointPos = transform.position;
-            Debug.Log("Checkpoint!");
+            //Debug.Log("Checkpoint!");
         } 
     }
 }

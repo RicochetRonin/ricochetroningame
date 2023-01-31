@@ -6,15 +6,25 @@ public class EnemyShoot : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected GameObject bulletPrefab;
-    
+
     [Header("Settings")]
     [SerializeField] protected float fireRate = 3f;
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip ShootSFX;
     [SerializeField] private Animator animator;
+    private GameObject target;
 
-    void OnEnable()
+
+    private EnemyHealth enemyHealth;
+
+
+    private void Start()
+    {
+        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void OnEnable()
     {
         canAttack = false;
         StartCoroutine("SetCanAttack");
@@ -26,25 +36,26 @@ public class EnemyShoot : MonoBehaviour
         canAttack = true;
 
     }
-    
+
     private void Update()
     {
-        if (canAttack)
+        //Check for any walls between the enemey and the Ronin
+        //If no walls are found, allow the enemy to attack
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1<<8 ))
         {
-            //Debug.Log("Shooting!");
-            //bulletPrefab.GetComponent<BulletController>().SetHostile();
-            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
-            AudioManager.PlayOneShotSFX(ShootSFX);
-            animator.SetTrigger("Shoot");
-
-            canAttack = false;
-            StartCoroutine("ResetCoolDown");
+            if (canAttack && enemyHealth.getIsAlive())
+            {
+                canAttack = false;
+                MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
+                AudioManager.PlayOneShotSFX(ShootSFX);
+                animator.SetTrigger("Shoot");
+                StartCoroutine("ResetCoolDown");
+            }
         }
     }
 
     IEnumerator ResetCoolDown()
     {
-        //Debug.Log("Reset Cooldown");
         yield return new WaitForSeconds(fireRate);
         canAttack = true;
     }
