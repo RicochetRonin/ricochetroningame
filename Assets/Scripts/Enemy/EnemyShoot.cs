@@ -13,6 +13,8 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip ShootSFX;
     [SerializeField] private Animator animator;
+    private GameObject target;
+
 
     private EnemyHealth enemyHealth;
 
@@ -20,6 +22,7 @@ public class EnemyShoot : MonoBehaviour
     private void Start()
     {
         enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnEnable()
     {
@@ -33,16 +36,21 @@ public class EnemyShoot : MonoBehaviour
         canAttack = true;
 
     }
-    
+
     private void Update()
     {
-        if (canAttack && enemyHealth.getIsAlive())
+        //Check for any walls between the enemey and the Ronin
+        //If no walls are found, allow the enemy to attack
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1<<8 ))
         {
-            canAttack = false;
-            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
-            AudioManager.PlayOneShotSFX(ShootSFX);
-            animator.SetTrigger("Shoot");
-            StartCoroutine("ResetCoolDown");
+            if (canAttack && enemyHealth.getIsAlive())
+            {
+                canAttack = false;
+                MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
+                AudioManager.PlayOneShotSFX(ShootSFX);
+                animator.SetTrigger("Shoot");
+                StartCoroutine("ResetCoolDown");
+            }
         }
     }
 
