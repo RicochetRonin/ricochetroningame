@@ -22,6 +22,7 @@ public class EnemyShoot : MonoBehaviour
     private void Start()
     {
         enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnEnable()
     {
@@ -33,12 +34,6 @@ public class EnemyShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(firstShotDelay);
         canAttack = true;
-
-    }
-
-    private void Start()
-    {
-        target = GameObject.FindGameObjectWithTag("Player");
 
     }
 
