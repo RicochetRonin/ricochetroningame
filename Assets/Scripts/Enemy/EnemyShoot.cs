@@ -20,7 +20,6 @@ public class EnemyShoot : MonoBehaviour
     private void Start()
     {
         enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
-        Debug.Log(enemyHealth);
     }
     private void OnEnable()
     {
@@ -39,7 +38,6 @@ public class EnemyShoot : MonoBehaviour
     {
         if (canAttack && enemyHealth.getIsAlive())
         {
-            Debug.Log("Can Attack! " + canAttack + " isAlive " + enemyHealth.getIsAlive());
             canAttack = false;
             MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
             AudioManager.PlayOneShotSFX(ShootSFX);
