@@ -7786,6 +7786,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 456009862}
     - target: {fileID: 7742954677124695781, guid: 496496a5c733ecd489d0c7248e23b3fa, type: 3}
+      propertyPath: roomHidden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742954677124695781, guid: 496496a5c733ecd489d0c7248e23b3fa, type: 3}
       propertyPath: ExteriorTilemap
       value: 
       objectReference: {fileID: 456009865}
@@ -7799,11 +7803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7742954677124695785, guid: 496496a5c733ecd489d0c7248e23b3fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.0012
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7742954677124695785, guid: 496496a5c733ecd489d0c7248e23b3fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5086
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 7742954677124695785, guid: 496496a5c733ecd489d0c7248e23b3fa, type: 3}
       propertyPath: m_LocalPosition.z
