@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class CutsceneDialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string[] lines;
+    public string[] boxes;
     public float textSpeed;
 
     private int index;
@@ -21,9 +21,9 @@ public class CutsceneDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame || Gamepad.current.aButton.wasPressedThisFrame)
         {
-            if (textComponent.text == lines[index])
+            if (textComponent.text == boxes[index])
             {
                 // start typing next line
                 NextLine();
@@ -32,7 +32,7 @@ public class CutsceneDialogue : MonoBehaviour
             {
                 // instantly fill out line
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                textComponent.text = boxes[index];
             }
         }
     }
@@ -46,7 +46,7 @@ public class CutsceneDialogue : MonoBehaviour
     IEnumerator TypeLine()
     {
         // type out each character 1 by 1
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in boxes[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -55,7 +55,7 @@ public class CutsceneDialogue : MonoBehaviour
 
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < boxes.Length - 1)
         {
             index++;
             textComponent.text = string.Empty;
