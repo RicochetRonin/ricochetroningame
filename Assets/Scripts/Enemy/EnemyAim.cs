@@ -22,6 +22,15 @@ public class EnemyAim : MonoBehaviour
     }
     void Update()
     {
+        if (Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
+        {
+            setCanAim(false);
+        }
+        else
+        {
+            setCanAim(true);
+        }
+
         //If enemy can freely aim, aim at the target
         if (canAim)
         {
