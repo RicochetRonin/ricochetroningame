@@ -98,12 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midgroundTileMap: {fileID: 0}
-  foregroundTileMap: {fileID: 0}
   tile: {fileID: 0}
   isEnabled: 0
-  positions:
-  - {x: 8, y: -3, z: 0}
-  - {x: 8, y: -4, z: 0}
+  positions: []
 --- !u!61 &8140810892355796196
 BoxCollider2D:
   m_ObjectHideFlags: 0
