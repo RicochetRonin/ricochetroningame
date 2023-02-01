@@ -68,6 +68,7 @@ MonoBehaviour:
   maxHealth: 2
   iframes: 0.5
   canTakeDamage: 1
+  deathDelay: 0.75
 --- !u!1 &2842375103567256842
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9078825028288994311, guid: ed65ded433c66ab48bb7aed53a44deb3, type: 3}
+  enemyHealth: {fileID: 16987162286892796}
   fireRate: 3
   canAttack: 1
   firstShotDelay: 2
