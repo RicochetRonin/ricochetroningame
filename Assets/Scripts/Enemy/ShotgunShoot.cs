@@ -25,6 +25,14 @@ public class ShotgunShoot : MonoBehaviour
     private Quaternion shot2Quaternion;
     private Quaternion shot3Quaternion;
 
+    private GameObject target;
+
+
+    private void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
+
     private void OnEnable()
     {
 
@@ -41,41 +49,45 @@ public class ShotgunShoot : MonoBehaviour
 
     private void Update()
     {
-        if (canAttack && enemyHealth.getIsAlive())
+
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
-            canAttack = false;
-            Quaternion newTransformRotation;
-            Quaternion currTransformRotation;
-
-            currTransformRotation = Quaternion.Euler(transform.parent.transform.rotation.eulerAngles + new Vector3(0, 0, -90-bulletSpread));
-
-
-            for (int i = 0; i < 3; i++)
+            if (canAttack && enemyHealth.getIsAlive())
             {
+                canAttack = false;
+                Quaternion newTransformRotation;
+                Quaternion currTransformRotation;
 
-                var offSetx = Mathf.Cos((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
-                var offSety = Mathf.Sin((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
-                var spawnPosition = transform.parent.transform.parent.position;
-                spawnPosition.x += offSetx;
-                spawnPosition.y += offSety;
-                MasterPool.SpawnBullet(bulletPrefab, spawnPosition, currTransformRotation);
+                currTransformRotation = Quaternion.Euler(transform.parent.transform.rotation.eulerAngles + new Vector3(0, 0, -90 - bulletSpread));
 
-                newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, bulletSpread));
-                currTransformRotation = newTransformRotation;     
+
+                for (int i = 0; i < 3; i++)
+                {
+
+                    var offSetx = Mathf.Cos((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
+                    var offSety = Mathf.Sin((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
+                    var spawnPosition = transform.parent.transform.parent.position;
+                    spawnPosition.x += offSetx;
+                    spawnPosition.y += offSety;
+                    MasterPool.SpawnBullet(bulletPrefab, spawnPosition, currTransformRotation);
+
+                    newTransformRotation = Quaternion.Euler(currTransformRotation.eulerAngles + new Vector3(0, 0, bulletSpread));
+                    currTransformRotation = newTransformRotation;
+                }
+
+
+
+
+
+
+                //canAttack = false;
+                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, this.transform.rotation);
+                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z + bulletSpread)));
+                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z - bulletSpread)));
+                AudioManager.PlayOneShotSFX(ShootSFX);
+                //animator.SetTrigger("Shoot");
+                StartCoroutine("ResetCoolDown");
             }
-
-
-
-
-
-
-            //canAttack = false;
-            //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, this.transform.rotation);
-            //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z + bulletSpread)));
-            //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z - bulletSpread)));
-            AudioManager.PlayOneShotSFX(ShootSFX);
-            //animator.SetTrigger("Shoot");
-            StartCoroutine("ResetCoolDown");
         }
     }
 

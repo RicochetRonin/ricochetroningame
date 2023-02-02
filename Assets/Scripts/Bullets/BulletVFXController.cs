@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class BulletVFXController : MonoBehaviour
 {
