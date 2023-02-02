@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
-  animator: {fileID: 4258016368471862181}
+  animator: {fileID: 0}
   health: 2
   maxHealth: 2
   iframes: 0.5
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 5403311161724264871}
   - component: {fileID: 1503143163808323221}
   m_Layer: 0
-  m_Name: Sniper
+  m_Name: EnemySniper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7029782365322869467
 Transform:
   m_ObjectHideFlags: 0
