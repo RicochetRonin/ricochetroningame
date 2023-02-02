@@ -14,13 +14,8 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private AudioClip ShootSFX;
     [SerializeField] private Animator animator;
 
-    private EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
-
-    private void Start()
-    {
-        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
-    }
     private void OnEnable()
     {
         canAttack = false;
@@ -39,9 +34,9 @@ public class EnemyShoot : MonoBehaviour
         if (canAttack && enemyHealth.getIsAlive())
         {
             canAttack = false;
-            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
+            MasterPool.SpawnBullet(bulletPrefab, this.transform.position, this.transform.rotation);
             AudioManager.PlayOneShotSFX(ShootSFX);
-            animator.SetTrigger("Shoot");
+            //animator.SetTrigger("Shoot");
             StartCoroutine("ResetCoolDown");
         }
     }
