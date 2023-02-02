@@ -16,14 +16,8 @@ public class EnemyShoot : MonoBehaviour
     private GameObject target;
 
 
-    private EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
-
-    private void Start()
-    {
-        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
-        target = GameObject.FindGameObjectWithTag("Player");
-    }
     private void OnEnable()
     {
         canAttack = false;
@@ -45,11 +39,11 @@ public class EnemyShoot : MonoBehaviour
         {
             if (canAttack && enemyHealth.getIsAlive())
             {
-                canAttack = false;
-                MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
-                AudioManager.PlayOneShotSFX(ShootSFX);
-                animator.SetTrigger("Shoot");
-                StartCoroutine("ResetCoolDown");
+              canAttack = false;
+              MasterPool.SpawnBullet(bulletPrefab, this.transform.position, this.transform.rotation);
+              AudioManager.PlayOneShotSFX(ShootSFX);
+              //animator.SetTrigger("Shoot");
+              StartCoroutine("ResetCoolDown");
             }
         }
     }
