@@ -16,21 +16,27 @@ public class PulseShoot : EnemyShoot
     private bool origCanAim;
     private EnemyAim _enemyAim;
 
+    private GameObject target;
+
 
     private void Start()
     {
         _enemyAim = this.GetComponentInParent<EnemyAim>();
         origCanAim = _enemyAim.getCanAim();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
 
     void Update()
     {
-        if (canAttack)
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
-            StartCoroutine("PulseSpawn");
-            canAttack = false;
-            StartCoroutine("ResetCoolDown");
+            if (canAttack)
+            {
+                StartCoroutine("PulseSpawn");
+                canAttack = false;
+                StartCoroutine("ResetCoolDown");
+            }
         }
     }
 
