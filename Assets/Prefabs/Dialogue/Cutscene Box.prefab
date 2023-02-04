@@ -91,9 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 8798480067294304217}
-  lines:
-  - Welcome to Ricochet Ronin! I'm testing out the first box of dialogue.
-  - Second box of dialogue here! Testing second box to make sure it works.
+  boxes: []
   textSpeed: 0.1
 --- !u!1 &8798480067294304219
 GameObject:

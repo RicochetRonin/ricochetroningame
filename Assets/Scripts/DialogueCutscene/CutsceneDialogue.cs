@@ -8,33 +8,46 @@ public class CutsceneDialogue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] boxes;
     public float textSpeed;
-
     private int index;
+
+    public Cutscenes controls;
+
+    private void Awake()
+    {
+        controls = new Cutscenes();
+        controls.Cutscene.ClickThroughText.performed += _ => ClickThroughText();
+    }
+
+    private void OnEnable()
+    {
+        controls.Cutscene.ClickThroughText.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Cutscene.ClickThroughText.Disable();
+    }
+
+    void ClickThroughText()
+    {
+        if (textComponent.text == boxes[index])
+            {
+                // start typing next line
+                NextLine();
+            }
+        else
+        {
+            // instantly fill out line
+            StopAllCoroutines();
+            textComponent.text = boxes[index];
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialogue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame || Gamepad.current.aButton.wasPressedThisFrame)
-        {
-            if (textComponent.text == boxes[index])
-            {
-                // start typing next line
-                NextLine();
-            }
-            else
-            {
-                // instantly fill out line
-                StopAllCoroutines();
-                textComponent.text = boxes[index];
-            }
-        }
     }
 
     void StartDialogue()
