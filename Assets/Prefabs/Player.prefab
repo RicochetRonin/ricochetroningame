@@ -93,8 +93,6 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
-  wallGrab: 0
-  wallJump: 0
 --- !u!114 &5446883131945973378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,8 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
   newDir: {x: 0, y: 0}
-  usingController: 0
   mainCam: {fileID: 0}
+  usingController: 0
 --- !u!1 &5446883132441753996
 GameObject:
   m_ObjectHideFlags: 0

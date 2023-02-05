@@ -49,23 +49,23 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""3829fa51-6db3-4de1-90e2-58362ba8752a"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Gamepad"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3ba23ebc-4349-4254-8075-913fa6cf5b10"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3829fa51-6db3-4de1-90e2-58362ba8752a"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -161,7 +161,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8f1f32fb-bb44-4acc-991b-43afa9f4f190"",
+                    ""id"": ""715cf7c9-23e6-40ca-b104-c2da9f454084"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -204,6 +204,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""down"",
+                    ""id"": ""51629b75-1c2b-470b-969a-e87eb2066e52"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""627ca85c-59be-47b2-868d-619ab9a73cc9"",
                     ""path"": ""2DVector"",
@@ -229,6 +240,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""1c7ec684-e760-4528-8a13-049b91b5b100"",
                     ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""805206b7-e488-4c77-83eb-74723ab338c9"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -387,6 +409,65 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interaction"",
+            ""id"": ""68b95048-4ce3-41d1-b4ed-cdad866d09cb"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""938f71bb-396e-4df1-b71a-6779fdcee1ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ProgressDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""b18f01ea-28fc-40d2-a5ce-acefeae5d511"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""253c6261-428e-4ecb-a8d3-753153d18ff0"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e335022d-b2df-4ae4-a939-fb103116db7c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a6cbe60-1955-476a-92d9-2c8575d64415"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ProgressDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -409,6 +490,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Abilities
         m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
         m_Abilities_OmniReflect = m_Abilities.FindAction("OmniReflect", throwIfNotFound: true);
+        // Interaction
+        m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
+        m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
+        m_Interaction_ProgressDialogue = m_Interaction.FindAction("ProgressDialogue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -653,6 +738,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public AbilitiesActions @Abilities => new AbilitiesActions(this);
+
+    // Interaction
+    private readonly InputActionMap m_Interaction;
+    private IInteractionActions m_InteractionActionsCallbackInterface;
+    private readonly InputAction m_Interaction_Interact;
+    private readonly InputAction m_Interaction_ProgressDialogue;
+    public struct InteractionActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InteractionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
+        public InputAction @ProgressDialogue => m_Wrapper.m_Interaction_ProgressDialogue;
+        public InputActionMap Get() { return m_Wrapper.m_Interaction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractionActions set) { return set.Get(); }
+        public void SetCallbacks(IInteractionActions instance)
+        {
+            if (m_Wrapper.m_InteractionActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @ProgressDialogue.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+                @ProgressDialogue.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+                @ProgressDialogue.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnProgressDialogue;
+            }
+            m_Wrapper.m_InteractionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @ProgressDialogue.started += instance.OnProgressDialogue;
+                @ProgressDialogue.performed += instance.OnProgressDialogue;
+                @ProgressDialogue.canceled += instance.OnProgressDialogue;
+            }
+        }
+    }
+    public InteractionActions @Interaction => new InteractionActions(this);
     public interface IAimingActions
     {
         void OnGamepad(InputAction.CallbackContext context);
@@ -675,5 +801,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IAbilitiesActions
     {
         void OnOmniReflect(InputAction.CallbackContext context);
+    }
+    public interface IInteractionActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+        void OnProgressDialogue(InputAction.CallbackContext context);
     }
 }
