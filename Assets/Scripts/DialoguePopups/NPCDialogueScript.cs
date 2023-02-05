@@ -42,5 +42,12 @@ public class NPCDialogueScript : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
+        lineText.text = lines[linesIndex];
+    }
+    private void OnDisable()
+    {
+        linesIndex = 0;
+        playerControls.Disable();
+        dialogueFinished = false;
     }
 }

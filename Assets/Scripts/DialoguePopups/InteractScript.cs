@@ -37,10 +37,6 @@ public class InteractScript : MonoBehaviour
     {
         DisableText();
     }
-    void Debugging()
-    {
-        Debug.Log("The button works");
-    }
     private void OnEnable()
     {
         playerControls.Enable();
