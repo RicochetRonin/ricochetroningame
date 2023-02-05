@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 public class UpdateTiles : MonoBehaviour
 {
     public Tilemap midgroundTileMap;
-    public Tilemap foregroundTileMap;
     public Tile tile;
     public bool isEnabled;
     public List<Vector3Int> positions = new List<Vector3Int>();

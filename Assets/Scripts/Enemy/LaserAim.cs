@@ -7,7 +7,6 @@ public class LaserAim : MonoBehaviour
 {
 
     private LineRenderer lineRenderer;
-    private EnemyAim enemyAim;
     private GameObject target;
     private Transform shotSpawn;
 
@@ -19,9 +18,8 @@ public class LaserAim : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.material.color = laserColor;
-        enemyAim = GetComponent<EnemyAim>();
         target = GameObject.FindGameObjectWithTag("Player");
-        shotSpawn = transform.GetChild(0);
+        shotSpawn = transform.GetChild(1);
     }
 
     private void Update()
