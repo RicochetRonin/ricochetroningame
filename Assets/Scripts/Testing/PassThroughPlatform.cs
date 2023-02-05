@@ -25,29 +25,28 @@ public class PassThroughPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Awake();
     }
 
     private void Awake()
     {
         _playerControls = new PlayerControls();
 
-        _playerControls.Moving.Move.performed += context => _move = context.ReadValue<Vector2>();
-        _playerControls.Moving.Move.canceled += context => _move = Vector2.zero;
+        _playerControls.Moving.Drop.performed += context => _move = context.ReadValue<Vector2>();
+        _playerControls.Moving.Drop.canceled += context => _move = Vector2.zero;
 
-        _playerControls.Moving.Move.performed += ctx => dropDown();
+        _playerControls.Moving.Drop.performed += ctx => dropDown();
     }
 
     private void OnEnable()
     {
-        _playerControls.Moving.Enable();
+        _playerControls.Moving.Drop.Enable();
 
         // _playerHealth.onDeath += SetCanMove;
     }
 
     private void OnDisable()
     {
-        _playerControls.Moving.Disable();
+        _playerControls.Moving.Drop.Disable();
 
         // _playerHealth.onDeath -= SetCanMove;
     }
