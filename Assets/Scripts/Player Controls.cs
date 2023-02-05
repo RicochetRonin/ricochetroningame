@@ -85,6 +85,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Drop"",
+                    ""type"": ""Value"",
+                    ""id"": ""10619d89-ef92-4921-b560-a5bc59f448a6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""cb73ca5f-7955-49aa-becb-486fca34c443"",
@@ -204,17 +213,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""51629b75-1c2b-470b-969a-e87eb2066e52"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""2D Vector"",
                     ""id"": ""627ca85c-59be-47b2-868d-619ab9a73cc9"",
                     ""path"": ""2DVector"",
@@ -240,17 +238,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""1c7ec684-e760-4528-8a13-049b91b5b100"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""805206b7-e488-4c77-83eb-74723ab338c9"",
-                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -290,6 +277,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""de0abd40-9c77-4292-ae6a-1d3dede53a31"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""81a8df05-847a-42b4-adaf-5fe70e4abd4c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""3b2f7586-c6b4-47bc-9e45-a348dee2cc2d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""62eaf1f2-8909-4d48-adf7-641e6fda1d8c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""d77a59ad-7df8-4120-8b07-2378b52e1b87"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5ebdb51c-b947-4202-a4bb-9644f983ecfd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -479,6 +532,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Moving
         m_Moving = asset.FindActionMap("Moving", throwIfNotFound: true);
         m_Moving_Move = m_Moving.FindAction("Move", throwIfNotFound: true);
+        m_Moving_Drop = m_Moving.FindAction("Drop", throwIfNotFound: true);
         m_Moving_Jump = m_Moving.FindAction("Jump", throwIfNotFound: true);
         m_Moving_Dash = m_Moving.FindAction("Dash", throwIfNotFound: true);
         // Attacking
@@ -595,6 +649,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Moving;
     private IMovingActions m_MovingActionsCallbackInterface;
     private readonly InputAction m_Moving_Move;
+    private readonly InputAction m_Moving_Drop;
     private readonly InputAction m_Moving_Jump;
     private readonly InputAction m_Moving_Dash;
     public struct MovingActions
@@ -602,6 +657,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public MovingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Moving_Move;
+        public InputAction @Drop => m_Wrapper.m_Moving_Drop;
         public InputAction @Jump => m_Wrapper.m_Moving_Jump;
         public InputAction @Dash => m_Wrapper.m_Moving_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Moving; }
@@ -616,6 +672,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnMove;
+                @Drop.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnDrop;
                 @Jump.started -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_MovingActionsCallbackInterface.OnJump;
@@ -629,6 +688,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -787,6 +849,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IMovingActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
     }
