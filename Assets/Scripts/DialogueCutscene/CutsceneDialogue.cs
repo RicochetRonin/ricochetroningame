@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class CutsceneDialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string[] boxes;
+    [TextArea(3, 10)]  public string[] boxes;
     public float textSpeed;
     private int index;
 
