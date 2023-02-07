@@ -899,6 +899,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
+      propertyPath: lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
+      propertyPath: lines.Array.data[1]
+      value: this is a test
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
+      propertyPath: lines.Array.data[2]
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
+      propertyPath: lines.Array.data[3]
+      value: This is where you type in lines
+      objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314697, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -909,11 +925,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.920392
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.92
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.z
