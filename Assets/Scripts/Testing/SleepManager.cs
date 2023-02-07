@@ -17,17 +17,17 @@ public class SleepManager : MonoBehaviour
 
     #endregion
 
-    public static bool isSleeping = false;
+    public static int isSleepingCount = 1;
 
     public static void Sleep(int frames)
     {
-        instance.StartCoroutine(SleepOverTime(frames));
+        instance.StartCoroutine(SleepOverTime(frames / isSleepingCount));
     }
 
     public static IEnumerator SleepOverTime(int frames)
     {
         Time.timeScale = 0.001f;
-        isSleeping = true;
+        isSleepingCount++;
 
         for (int i = 0; i < frames; i++)
         {
@@ -35,6 +35,6 @@ public class SleepManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        isSleeping = false;
+        isSleepingCount--;
     }
 }
