@@ -12,6 +12,9 @@ public class PassThroughPlatform : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float collisionRadius = 0.2f;
     [SerializeField] private Vector2 bottomOffset;
+    private Vector2 _move;
+    private PlayerControls _playerControls;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +25,37 @@ public class PassThroughPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if on platform
-        //if "s" or "down arrow" key pressed
-        //disable collider for a certain time? Allowing player to drop down past platform...
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+    }
 
-        if(onGround && Keyboard.current.downArrowKey.wasPressedThisFrame || 
-            onGround && Keyboard.current.sKey.wasPressedThisFrame ||
-            onGround && Gamepad.current.leftStick.down.wasPressedThisFrame)
-        {
-            /*Debug.Log("on ground and pressing down");*/
-            _collider.enabled = false;
-            StartCoroutine(EnableCollider());
-        }
+    private void Awake()
+    {
+        _playerControls = new PlayerControls();
 
-        
+        _playerControls.Moving.Drop.performed += context => _move = context.ReadValue<Vector2>();
+        _playerControls.Moving.Drop.canceled += context => _move = Vector2.zero;
+
+        _playerControls.Moving.Drop.performed += ctx => dropDown();
+    }
+
+    private void OnEnable()
+    {
+        _playerControls.Moving.Drop.Enable();
+
+        // _playerHealth.onDeath += SetCanMove;
+    }
+
+    private void OnDisable()
+    {
+        _playerControls.Moving.Drop.Disable();
+
+        // _playerHealth.onDeath -= SetCanMove;
+    }
+
+    private void dropDown()
+    {
+        /*Debug.Log("on ground and pressing down");*/
+        _collider.enabled = false;
+        StartCoroutine(EnableCollider());
     }
 
     private IEnumerator EnableCollider()

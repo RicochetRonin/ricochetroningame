@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight;
     private int isFacingRightInt;
     private float playerInputDir;
+    private float wallJumpDirection;
 
 
     [SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -34,11 +35,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpVelocity = 10f;
     [SerializeField] private float wallJumpVelocity = 5f;
     [SerializeField] private int maxJumps = 2;
+    [SerializeField] private int maxDashes = 1;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
+    [SerializeField] private float wallJumpAcceleration = 2f;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -50,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator _animator;
 
     public bool canMove = true;
+    private int dashCount;
     private int jumpCount = 0;
     [SerializeField] private LayerMask collisionMask;
     
@@ -58,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJump;
     private bool wasOnGround;
     private bool wallJumping;
+    private bool wallSliding;
 
     #region Initialization
 
@@ -105,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        WallSlideCheck();
         JumpCheck();
         
         if (!canMove) return;
@@ -122,18 +127,21 @@ public class PlayerMovement : MonoBehaviour
         if (coll.onGround || coll.onWall)
         {
             jumpCount = 1;
-            
+            dashCount = 0;
+
         }
         dashCooldownText.SetCooldown(canDash);
 
         //Setting the Ronin animator values
         _animator.SetBool("OnWall", (coll.onWall));
-        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall) || (coll.onRightWall)));
+        _animator.SetBool("MovingIntoWall", ((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
         _animator.SetBool("FacingRight", isFacingRight);
         _animator.SetBool("WallJumping", wallJumping);
+        _animator.SetBool("WallSliding", wallSliding);
+        _animator.SetBool("WallGrab", wallSliding || ((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)));
     }
 
 
@@ -201,10 +209,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings
-        if (wallJumping && rb.velocity.y > 0 && dir.x != 0){
-            rb.velocity = (new Vector2(dir.x * speed*-1, rb.velocity.y));
+        //if (wallJumping && rb.velocity.y > 0 && dir.x != 0)
+        if (wallJumping && rb.velocity.y > 0)
+        {
+            //rb.velocity = (new Vector2(dir.x * speed * -1, rb.velocity.y));
+            rb.velocity = (new Vector2(wallJumpDirection * speed, rb.velocity.y));
         }
-        else{
+
+        else if ((coll.onLeftWall && dir.x < 0) || (coll.onRightWall && dir.x > 0))
+        {
+            Debug.Log("Should be staying still here");
+            rb.velocity = new Vector2(0, 0);
+            rb.gravityScale = 0;
+            wallJumping = false;
+        }
+
+        else
+        {
+            rb.gravityScale = 1;
             wallJumping = false;
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
@@ -215,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     private void JumpCheck()
     {
         //increases the gravity on the player's rigidbody as they fall
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && !wallSliding)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             wasOnGround = false;
@@ -232,16 +254,33 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            //If the Ronin is wall clinging, wall jump
-            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1)) && !coll.onGround)
+            if (wallSliding)
             {
                 wallJumping = true;
-                rb.velocity = Vector2.up * wallJumpVelocity;
+                if (coll.onRightWall)
+                {
+                    wallJumpDirection = -1;
+                }
+
+                else { wallJumpDirection = 1; }
+
+                rb.velocity = new Vector2(wallJumpDirection * 1, 1) * wallJumpVelocity;
 
             }
+            //If the Ronin is wall clinging, wall jump
+            /*
+            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1) || wallSliding) && !coll.onGround && !wallJumping)
+            {
+                wallJumping = true;
+                wallJumpDirection = playerInputDir;
+                rb.velocity = new Vector2(wallJumpDirection * 1, 1) * wallJumpVelocity;
+
+            }
+            */
 
             else
             {
+                Debug.Log("Else jump");
                 rb.velocity = Vector2.up * jumpVelocity; 
             }
             
@@ -250,10 +289,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void WallSlideCheck()
+    {
+        if (coll.onWall && !coll.onGround && playerInputDir == 0 && rb.velocity.y < 0 && rb.velocity.y > -5)
+        {
+            wallSliding = true;
+            //Debug.Log("Wall slide");
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (0.5f - 1) * Time.deltaTime;
+        }
+
+        else
+        {
+            wallSliding = false;
+        }
+    }
+
     //Called to make the Ronin dash
     private IEnumerator Dash()
     {
-        if (canDash)
+        if (canDash && dashCount < maxDashes)
         {
             canDash = false;
             isDashing = true;
@@ -267,6 +321,7 @@ public class PlayerMovement : MonoBehaviour
             AudioManager.PlayOneShotSFX(dashSFX);
 
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
+            dashCount++;
             
             yield return new WaitForSeconds(dashTime);
 

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 40166610491340863}
   - component: {fileID: 40166610491340862}
   - component: {fileID: 40166610491340859}
+  - component: {fileID: -1672117351807460084}
+  - component: {fileID: 1348019940}
   m_Layer: 8
   m_Name: Moving Platform 1
   m_TagString: Moving Platform
@@ -100,9 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66c6adf5daacec40810ff6efa9a67b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlatform: 0
   player: {fileID: 0}
-  positionOnLanding: {x: 0, y: 0}
 --- !u!114 &40166610491340863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc3a9000e7b97e4b9192116406d7356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaPosX: 5
-  deltaPosY: 0
+  deltaPosX: 0
+  deltaPosY: 5
   speed: 5
   isPingPong: 1
   isReverse: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -165,3 +165,39 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &-1672117351807460084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40166610491340861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c9f5b4d7a61e8428e42af86d306daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGround: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  collisionRadius: 0.2
+  bottomOffset: {x: 0, y: 0}
+--- !u!114 &1348019940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40166610491340861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c9f5b4d7a61e8428e42af86d306daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGround: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  collisionRadius: 0.2
+  bottomOffset: {x: 0, y: 0}

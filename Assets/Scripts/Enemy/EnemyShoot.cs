@@ -16,12 +16,11 @@ public class EnemyShoot : MonoBehaviour
     private GameObject target;
 
 
-    private EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
 
     private void Start()
     {
-        enemyHealth =  this.transform.parent.transform.parent.GetComponentInChildren<EnemyHealth>();
         target = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnEnable()
@@ -41,14 +40,14 @@ public class EnemyShoot : MonoBehaviour
     {
         //Check for any walls between the enemey and the Ronin
         //If no walls are found, allow the enemy to attack
-        if (!Physics2D.Linecast(transform.position, target.transform.position, 1<<8 ))
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
             if (canAttack && enemyHealth.getIsAlive())
             {
                 canAttack = false;
                 MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
                 AudioManager.PlayOneShotSFX(ShootSFX);
-                animator.SetTrigger("Shoot");
+                //animator.SetTrigger("Shoot");
                 StartCoroutine("ResetCoolDown");
             }
         }

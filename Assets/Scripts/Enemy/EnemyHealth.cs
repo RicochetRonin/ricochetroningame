@@ -52,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        animator.SetTrigger("Death");
+        //animator.SetTrigger("Death");
         yield return new WaitForSeconds(deathDelay);
         Destroy(enemy);
 
