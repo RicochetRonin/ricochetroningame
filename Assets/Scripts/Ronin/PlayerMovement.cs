@@ -214,8 +214,7 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.flipX = false;
         }
 
-        //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings
-        //if (wallJumping && rb.velocity.y > 0 && dir.x != 0)
+        //Handles walljumping when players presses movement keys mid air
         if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwtich) && ! wallSliding)
         {
             rb.gravityScale = 1;
@@ -227,10 +226,9 @@ public class PlayerMovement : MonoBehaviour
                     wallJumpInputSwtich = true;
                 }
             }
-            //rb.velocity = (new Vector2(dir.x * speed * -1, rb.velocity.y));
-            //rb.velocity = (new Vector2(wallJumpDirection * wallJumpVelocity, rb.velocity.y));
         }
 
+        //Wall clinging
         else if ((coll.onLeftWall && dir.x < 0) || (coll.onRightWall && dir.x > 0))
         {
             rb.gravityScale = 0;
@@ -241,8 +239,6 @@ public class PlayerMovement : MonoBehaviour
         else if (wallSliding)
         {
             rb.gravityScale = 1;
-            //if (coll.onRightWall) { rb.velocity = new Vector2(5, rb.velocity.y); }
-            //else { rb.velocity = new Vector2(-5, rb.velocity.y); }
         }
 
         else
@@ -290,20 +286,9 @@ public class PlayerMovement : MonoBehaviour
                 wallJumpInputSwtich = false;
 
             }
-            //If the Ronin is wall clinging, wall jump
-            /*
-            if (((coll.onRightWall && playerInputDir == 1) || (coll.onLeftWall && playerInputDir == -1) || wallSliding) && !coll.onGround && !wallJumping)
-            {
-                wallJumping = true;
-                wallJumpDirection = playerInputDir;
-                rb.velocity = new Vector2(wallJumpDirection * 1, 1) * wallJumpVelocity;
-
-            }
-            */
 
             else
             {
-                Debug.Log("Else jump");
                 rb.velocity = Vector2.up * jumpVelocity; 
             }
             
@@ -316,24 +301,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (coll.onWall && !coll.onGround && playerInputDir == 0 && rb.velocity.y < 5)
         {
+            //Sets the intial wall sliding velocity
             if (!prevWallSliding)
             {
-                Debug.Log("Velocity 0");
                 rb.velocity = new Vector2(0, 0.1f);
                 prevWallSliding = true;
                 wallSliding = true;
             }
 
+            //Reduce velocity using wallSlideGravityReducer
             else if (rb.velocity.y > -7 && _move.y != -1)
             {
-                Debug.Log("Wall Sliding");
                 wallSliding = true;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (1/wallSlideGravityReducer) * Time.deltaTime;
             }
  
-            //Debug.Log("Wall slide");
-            //rb.velocity += Vector2.up * Physics2D.gravity.y * (0.5f - 1) * Time.deltaTime;
-
         }
 
         else
