@@ -7,7 +7,6 @@ public class LaserAim : MonoBehaviour
 {
 
     private LineRenderer lineRenderer;
-    private EnemyAim enemyAim;
     private GameObject target;
     private Transform shotSpawn;
 
@@ -15,35 +14,23 @@ public class LaserAim : MonoBehaviour
     public int numAlphaSteps = 3;
 
 
-    private void OnEnable()
-    {
-        lineRenderer.enabled = true;
-    }
-
-    private void OnDisable()
-    {
-        lineRenderer.enabled = false;
-    }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.material.color = laserColor;
-        enemyAim = GetComponent<EnemyAim>();
         target = GameObject.FindGameObjectWithTag("Player");
-        shotSpawn = transform.GetChild(0);
+        shotSpawn = transform.GetChild(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         lineRenderer.SetPosition(0, shotSpawn.position);
         lineRenderer.SetPosition(1, target.transform.position);
-        //Debug.Log(lineRenderer.material.color);
 
     }
 
+
+    //Fades the alpha of the laser with the specified duration
     public IEnumerator AlphaFade(float duration)
     {
         float timeElapsed = 0;
@@ -58,6 +45,7 @@ public class LaserAim : MonoBehaviour
         lineRenderer.material.color = laserColor;
     }
 
+    //Adjusts the alpha of the laser according to the specified duration and numAlphaSteps. Not a smooth fade like AlphaFade
     public IEnumerator AlphaStep(float duration)
     {
         float timeElapsed = 0;
@@ -74,10 +62,8 @@ public class LaserAim : MonoBehaviour
         {
             if (timeElapsed >= currTimeStep)
             {
-                //Debug.Log("Curr Timestep" + currTimeStep);
                 currTimeStep += timeSteps;
                 currAlphaStep += alphaSteps;
-                //Debug.Log("Change alpha " + currAlphaStep);
                 tempColor = laserColor;
                 tempColor.a = currAlphaStep;
                 lineRenderer.material.color = tempColor;

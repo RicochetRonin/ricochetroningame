@@ -30,7 +30,9 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        _movement._animator.SetFloat("PlayerHealth", (health));
         healthBar.SetPlayerHealth(health, maxHealth);
+        canTakeDamage = true;
     }
 
     private void Update()
@@ -48,9 +50,13 @@ public class PlayerHealth : MonoBehaviour
         {
             health -= damage;
 
+            //Change Ronin color to red, and then reset to normal color
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
+
+
             canTakeDamage = false;
+            _movement._animator.SetFloat("PlayerHealth", (health));
             healthBar.SetPlayerHealth(health, maxHealth);
         }
 
@@ -60,13 +66,9 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         canTakeDamage = false;
-        //Debug.Log("Dead");
         onDeath?.Invoke();
         _movement.canMove = false;
         _playerReflect.canReflect = false;
-        //Sound Effect
-        //Particle effect
-        //Start Animation
         yield return new WaitForSeconds(deathDelay);
         Destroy(player);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -98,5 +100,10 @@ public class PlayerHealth : MonoBehaviour
     public bool getCanTakeDamage()
     {
         return this.canTakeDamage;
+    }
+
+    public void setMaxHealth(float newMaxHp)
+    {
+        this.maxHealth = newMaxHp;
     }
 }

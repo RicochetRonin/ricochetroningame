@@ -5,37 +5,31 @@ using UnityEngine;
 public class SniperShoot : EnemyShoot
 {
 
-    //No longer needed
-    //[SerializeField] public Color defaultColor;
-    //[SerializeField] public Color chargeColor;
-
-    //[SerializeField] public ColorController colorController;
-
-
-    [SerializeField] public ColorController colorController;
     [SerializeField] private AudioClip sniperSFX;
     LaserAim laserAim;
+
+    private GameObject target;
 
     private void Start()
     {
         laserAim = GetComponentInParent<LaserAim>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     
     void Update()
     {
-        if (canAttack)
+        if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
-            //Instantiate(bulletPrefab, transform.position, transform.rotation);
+            if (canAttack)
+            {
+                MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
+                AudioManager.PlayOneShotSFX(sniperSFX);
 
-            //bulletPrefab.GetComponent<BulletController>().SetHostile();
-            MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
-            AudioManager.PlayOneShotSFX(sniperSFX);
-
-            canAttack = false;
-            StartCoroutine("ResetCoolDown");
-            //StartCoroutine(colorController.FadeColor(defaultColor, chargeColor, fireRate));
-            StartCoroutine(laserAim.AlphaStep(fireRate));
+                canAttack = false;
+                StartCoroutine("ResetCoolDown");
+                StartCoroutine(laserAim.AlphaStep(fireRate));
+            }
         }
 
     }

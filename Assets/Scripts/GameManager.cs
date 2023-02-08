@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.SceneManagement;
 
 public enum CurrentInput
 {
@@ -18,8 +19,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject FinishedText;
+    [SerializeField] private float _offsetY;
 
-    public static Vector2 lastCheckPointPos;
+    public static Transform lastCheckPointPos;
 
     #region Singleton
 
@@ -40,7 +42,9 @@ public class GameManager : MonoBehaviour
         
         if (lastCheckPointPos != null)
         {
-            GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+            Debug.Log("Spawning at checkpoint");
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2 (lastCheckPointPos.position.x, lastCheckPointPos.position.y + _offsetY);
+            Debug.LogFormat("Last Checkpoint: {0}", lastCheckPointPos.gameObject.name);
         }
     }
 
@@ -55,6 +59,7 @@ public class GameManager : MonoBehaviour
         SetCurrentInput(input.currentControlScheme);
     }
     */
+
     private void OnEnable()
     {
         _playerControls.Pausing.Enable();
@@ -93,6 +98,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
+
     public void PauseGame()
     {
         if (!_isPaused)
@@ -122,6 +134,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Quitting Game");
         Application.Quit();
+    }
+
+    public PlayerMovement findPlayerMovement()
+    {
+        return FindObjectOfType<PlayerMovement>();
+    }
+
+    public PlayerHealth findPlayerHealth()
+    {
+        return FindObjectOfType<PlayerHealth>();
     }
 
 
