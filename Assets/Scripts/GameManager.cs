@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject FinishedText;
+    [SerializeField] private float _offsetY;
 
-    public static Vector2 lastCheckPointPos;
+    public static Transform lastCheckPointPos;
 
     #region Singleton
 
@@ -41,7 +42,9 @@ public class GameManager : MonoBehaviour
         
         if (lastCheckPointPos != null)
         {
-            GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+            Debug.Log("Spawning at checkpoint");
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2 (lastCheckPointPos.position.x, lastCheckPointPos.position.y + _offsetY);
+            Debug.LogFormat("Last Checkpoint: {0}", lastCheckPointPos.gameObject.name);
         }
     }
 
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
         SetCurrentInput(input.currentControlScheme);
     }
     */
+
     private void OnEnable()
     {
         _playerControls.Pausing.Enable();

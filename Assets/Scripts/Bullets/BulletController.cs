@@ -54,8 +54,7 @@ public class BulletController : MonoBehaviour
         previousPos = transform.position;
         direction = Vector2.up;
 
-        GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        MasterPool.SpawnBulletVFX(bulletVFX, transform.position, transform.rotation, "MuzzleFlash");
         _reflectCount = 0;
         currentReflectLifetime = 0.0f;
     }
@@ -91,15 +90,13 @@ public class BulletController : MonoBehaviour
             if (hit.normal.x != 0)
             {
                 Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
-                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
-                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+                MasterPool.SpawnBulletVFX(bulletVFX, transform.position, Quaternion.Euler(impactRot), "Impact");
             }
 
             else
             {
                 Vector3 impactRot = new Vector3(0, 0, 90 + hit.normal.y * 90);
-                GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, Quaternion.Euler(impactRot));
-                bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("Impact");
+                MasterPool.SpawnBulletVFX(bulletVFX, transform.position, Quaternion.Euler(impactRot), "Impact");
             }
 
 
@@ -131,15 +128,14 @@ public class BulletController : MonoBehaviour
         gameObject.transform.position = pos;
         gameObject.transform.rotation = rot;
         gameObject.SetActive(true);
-        GameObject bulletVFXref = Instantiate(bulletVFX, transform.position, transform.rotation);
-        bulletVFXref.GetComponentInChildren<BulletVFXController>().PlayAnimation("MuzzleFlash");
+        MasterPool.SpawnBulletVFX(bulletVFX, transform.position, transform.rotation, "MuzzleFlash");
+
     }
     
     void Death()
     {
         if (_reflectCount >= maxReflects || currentReflectLifetime > maxReflectLifetime)
         {
-            Debug.Log("Here is comparison, current first " + currentReflectLifetime + " " +  maxReflectLifetime);
             MasterPool.DespawnBullet(gameObject);
             _reflectCount = 0;
             currentReflectLifetime = 0;
@@ -203,6 +199,11 @@ public class BulletController : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                 //deathEffect.transform.localScale *= (1.05f * _reflectCount);
                 //MasterPool.DespawnBullet(gameObject);
+            }
+
+            if (collision.gameObject.CompareTag("BossHurtBox"))
+            {
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage);
             }
 
             //Player reflects a bullet into a bullet interactable trigger

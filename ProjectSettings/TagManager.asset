@@ -17,6 +17,8 @@ TagManager:
   - Moving Platform
   - Interactable
   - BulletInteractable
+  - BossHurtBox
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -30,8 +32,8 @@ TagManager:
   - Aim
   - Abilities
   - CameraConfiner
-  - 
-  - 
+  - MovingPlatform
+  - Platform
   - 
   - 
   - 
@@ -51,9 +53,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1116590171
+    locked: 0
+  - name: Enemy
+    uniqueID: 2480015839
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 10358651
+    locked: 0
+  - name: UI
+    uniqueID: 3144358627
     locked: 0

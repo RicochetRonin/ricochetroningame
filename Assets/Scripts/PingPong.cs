@@ -44,6 +44,11 @@ public class PingPong : MonoBehaviour
                     transform.position = new Vector3(x, startPos.y - Mathf.PingPong(Time.time * speed, deltaPosY), z);
                 }
                 
+                if (deltaPosY != 0 && deltaPosX != 0)
+                {
+                    transform.position = new Vector3 (startPos.x - Mathf.PingPong(Time.time * speed, deltaPosX), startPos.y - Mathf.PingPong(Time.time * speed, deltaPosY), z);
+                }
+                
             }
             else
             {
@@ -57,7 +62,12 @@ public class PingPong : MonoBehaviour
                 {
                     transform.position = new Vector3(x, startPos.y + Mathf.PingPong(Time.time * speed, deltaPosY), z);
                 }
-                
+
+                if (deltaPosY != 0 && deltaPosX != 0)
+                {
+                    transform.position = new Vector3 (startPos.x + Mathf.PingPong(Time.time * speed, deltaPosX), startPos.y + Mathf.PingPong(Time.time * speed, deltaPosY), z);
+                }
+
             }
         }
     }
