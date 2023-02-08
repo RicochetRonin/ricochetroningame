@@ -500,8 +500,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[0]
-      value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate
-        tortor eget consequat sodales. Vestibulum cursus ipsum velit.
+      value: "Long ago, there was a man who swiftly climbed the ranks in the most
+        feared bandit clan in the world. Side by side with the clan\u2019s ruthless
+        leader, he led them to bounties of great riches and priceless artifacts and
+        became known only as the Ronin.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[1]
