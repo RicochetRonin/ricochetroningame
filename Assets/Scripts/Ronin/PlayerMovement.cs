@@ -122,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (isDashing)
         {
+            Debug.Log("Dash dash!");
             return;
         }
         
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlideCheck();
         JumpCheck();
-        wallJumpingCheck();
+        WallJumpingCheck();
 
         if (coll.onGround || coll.onWall)
         {
@@ -159,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
     //Handles movement and sprite flipping to match direction
     private void Move(Vector2 dir)
     {
+        Debug.Log("Moved called");
 
         //If movement is right and Ronin is facing left and Ronin is on ground, flip Ronin to face right
         if (dir.x > 0 && !isFacingRight && (coll.onGround))
@@ -254,6 +256,7 @@ public class PlayerMovement : MonoBehaviour
     //This is called to check that if Ronin is jumped, the gravity is correct as the Ronin goes up and down during his jump
     private void JumpCheck()
     {
+        Debug.Log("Jump check called");
         //increases the gravity on the player's rigidbody as they fall
         if (rb.velocity.y < 0 && !wallSliding)
         {
@@ -300,6 +303,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlideCheck()
     {
+        Debug.Log("Wall slide check called");
         if (coll.onWall && !coll.onGround && playerInputDir == 0 && rb.velocity.y < 5)
         {
             //Sets the intial wall sliding velocity
@@ -326,8 +330,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void wallJumpingCheck()
+    private void WallJumpingCheck()
     {
+        Debug.Log("Wall Jumping check called");
         if (wallJumping)
         {
             if (coll.onGround){
