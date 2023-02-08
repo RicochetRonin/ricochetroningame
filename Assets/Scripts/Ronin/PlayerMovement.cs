@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private int isFacingRightInt;
     private float playerInputDir;
     private float wallJumpDirection;
+    private float initalWallJumpX;
+    private bool wallJumpInputSwtich;
 
 
     [SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -33,14 +36,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpVelocity = 10f;
-    [SerializeField] private float wallJumpVelocity = 5f;
+    [SerializeField] private float wallJumpHorizontalSpeed = 10f;
+    [SerializeField] private float wallJumpVerticalSpeed = 10f;
+    [SerializeField] private float wallSlideGravityReducer = 3;
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
-    [SerializeField] private float wallJumpAcceleration = 2f;
 
     [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wasOnGround;
     private bool wallJumping;
     private bool wallSliding;
+    private bool prevWallSliding;
 
     #region Initialization
 
@@ -89,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = true;
         isFacingRightInt = 1;
         playerInputDir = 0;
+        wallSliding = false;
+        prevWallSliding = false;
 
     }
 
@@ -108,8 +115,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        WallSlideCheck();
-        JumpCheck();
         
         if (!canMove) return;
         
@@ -121,6 +126,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(_move.x, _move.y);
         playerInputDir = dir.x;
         Move(dir);
+
+        WallSlideCheck();
+        JumpCheck();
+        wallJumpingCheck();
 
         if (coll.onGround || coll.onWall)
         {
@@ -207,26 +216,41 @@ public class PlayerMovement : MonoBehaviour
 
         //If we are jumping from a wall, inverse the x direction. Replace rb.velocity.y > 0 with something different for different timings
         //if (wallJumping && rb.velocity.y > 0 && dir.x != 0)
-        if (wallJumping && rb.velocity.y > 0)
+        if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwtich) && ! wallSliding)
         {
+            rb.gravityScale = 1;
+            if (!wallJumpInputSwtich)
+            {
+                if(initalWallJumpX != playerInputDir)
+                {
+                    Debug.Log("wall Jump input switch");
+                    wallJumpInputSwtich = true;
+                }
+            }
             //rb.velocity = (new Vector2(dir.x * speed * -1, rb.velocity.y));
-            rb.velocity = (new Vector2(wallJumpDirection * speed, rb.velocity.y));
+            //rb.velocity = (new Vector2(wallJumpDirection * wallJumpVelocity, rb.velocity.y));
         }
 
         else if ((coll.onLeftWall && dir.x < 0) || (coll.onRightWall && dir.x > 0))
         {
-            Debug.Log("Should be staying still here");
-            rb.velocity = new Vector2(0, 0);
             rb.gravityScale = 0;
-            wallJumping = false;
+            rb.velocity = new Vector2(0, 0);
+            
+        }
+
+        else if (wallSliding)
+        {
+            rb.gravityScale = 1;
+            //if (coll.onRightWall) { rb.velocity = new Vector2(5, rb.velocity.y); }
+            //else { rb.velocity = new Vector2(-5, rb.velocity.y); }
         }
 
         else
         {
             rb.gravityScale = 1;
-            wallJumping = false;
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
+        Debug.Log(rb.velocity);
     }
 
 
@@ -240,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
             wasOnGround = false;
         }
         
-        else if (rb.velocity.y > 0 && !_playerControls.Moving.Jump.triggered)
+        else if (rb.velocity.y > 0 && !_playerControls.Moving.Jump.triggered || wallJumping)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
@@ -251,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < maxJumps)
         {
-            if (wallSliding)
+            if (wallSliding || (coll.onWall && !coll.onGround))
             {
                 wallJumping = true;
                 if (coll.onRightWall)
@@ -261,7 +285,9 @@ public class PlayerMovement : MonoBehaviour
 
                 else { wallJumpDirection = 1; }
 
-                rb.velocity = new Vector2(wallJumpDirection * 1, 1) * wallJumpVelocity;
+                rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
+                initalWallJumpX = playerInputDir;
+                wallJumpInputSwtich = false;
 
             }
             //If the Ronin is wall clinging, wall jump
@@ -288,17 +314,57 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlideCheck()
     {
-        if (coll.onWall && !coll.onGround && playerInputDir == 0 && rb.velocity.y < 0 && rb.velocity.y > -5)
+        if (coll.onWall && !coll.onGround && playerInputDir == 0 && rb.velocity.y < 5)
         {
-            wallSliding = true;
+            if (!prevWallSliding)
+            {
+                Debug.Log("Velocity 0");
+                rb.velocity = new Vector2(0, 0.1f);
+                prevWallSliding = true;
+                wallSliding = true;
+            }
+
+            else if (rb.velocity.y > -7 && _move.y != -1)
+            {
+                Debug.Log("Wall Sliding");
+                wallSliding = true;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (1/wallSlideGravityReducer) * Time.deltaTime;
+            }
+ 
             //Debug.Log("Wall slide");
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (0.5f - 1) * Time.deltaTime;
+            //rb.velocity += Vector2.up * Physics2D.gravity.y * (0.5f - 1) * Time.deltaTime;
+
         }
 
         else
         {
             wallSliding = false;
+            prevWallSliding = false;
         }
+    }
+
+    private void wallJumpingCheck()
+    {
+        if (wallJumping)
+        {
+            if (coll.onGround){
+                wallJumping = false;
+            }
+            else if (coll.onWall)
+            {
+                if ((wallJumpDirection == 1 && coll.onRightWall) || (wallJumpDirection == -1 && coll.onLeftWall) || wallJumpInputSwtich)
+                {
+                    wallJumping = false;
+                }
+
+            }
+
+            else if (wallJumpInputSwtich && playerInputDir != 0)
+            {
+                wallJumping = false;
+            }
+        }
+
     }
 
     //Called to make the Ronin dash

@@ -25073,13 +25073,14 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
   speed: 10
   jumpVelocity: 12.5
-  wallJumpVelocity: 7
+  wallJumpVelocity: 10
   maxJumps: 2
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   dashForce: 4
   dashTime: 0.1
   dashCoolDown: 0.5
+  wallJumpAcceleration: 2
   _playerHealth: {fileID: 5446883132187242375}
   _playerAim: {fileID: 5446883132466680476}
   _spriteRenderer: {fileID: 5446883133838195927}
