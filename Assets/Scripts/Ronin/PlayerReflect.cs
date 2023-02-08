@@ -97,6 +97,7 @@ public class PlayerReflect : MonoBehaviour
             other.GetComponent<SpriteRenderer>().color = Color.green;
             _spriteRenderer.sortingOrder = 0;
             other.tag = "PlayerBullet";
+            SleepManager.Sleep(5);
         }
 
         if (other.CompareTag("PlayerBullet"))
@@ -104,6 +105,7 @@ public class PlayerReflect : MonoBehaviour
             //TODO: Change from being a GetComponent to switching the case of the bullet
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
+            SleepManager.Sleep(5);
         }
 
         //Reflect hit an interactable object

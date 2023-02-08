@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1b69b790d77bb444b195d5c9cc4cda4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d456cb27672b0d24a8f57af85f6ba4d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -222,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 278410013629806295}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd21c22a83fdb2545a5bf6aae2180d05, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93ee322e8a8c24445b77bf34b68bd766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -299,7 +299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &278410013720032784
 Transform:
   m_ObjectHideFlags: 0
@@ -398,3 +398,4 @@ MonoBehaviour:
   maxHealth: 2
   iframes: 0.5
   canTakeDamage: 1
+  deathDelay: 0.75
