@@ -17,6 +17,8 @@ TagManager:
   - Moving Platform
   - Interactable
   - BulletInteractable
+  - BossHurtBox
+  - Boss
   layers:
   - Default
   - TransparentFX
