@@ -201,6 +201,11 @@ public class BulletController : MonoBehaviour
                 //MasterPool.DespawnBullet(gameObject);
             }
 
+            if (collision.gameObject.CompareTag("BossHurtBox"))
+            {
+                collision.gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+            }
+
             //Player reflects a bullet into a bullet interactable trigger
             if (collision.gameObject.CompareTag("BulletInteractable"))
             {

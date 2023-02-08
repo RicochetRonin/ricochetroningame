@@ -8,7 +8,7 @@ public class PlayerActivateEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.CompareTag("Enemy"))
+        if (coll.CompareTag("Enemy") || coll.CompareTag("Boss"))
         {
             var transform = coll.GetComponent<Transform>();
             for (int a = 0; a < transform.childCount; a++)
