@@ -8,12 +8,6 @@ public class PassThroughPlatform : MonoBehaviour
     // CITE: PitiIT YT video -> https://youtu.be/Lyeb7c0-R8c
 
     private Collider2D _collider;
-    private PlayerWallCheck coll;
-    //[HideInInspector] public bool onPlatform;
-
-    // [SerializeField] private LayerMask platformLayer;
-    //[SerializeField] private float collisionRadius = 0.2f;
-    //[SerializeField] private Vector2 bottomOffset;
     private Vector2 _move;
     private PlayerControls _playerControls;
 
@@ -31,9 +25,7 @@ public class PassThroughPlatform : MonoBehaviour
 
     private void Awake()
     {
-        coll = GetComponent<PlayerWallCheck>();
         _playerControls = new PlayerControls();
-
         _playerControls.Moving.Drop.performed += context => _move = context.ReadValue<Vector2>();
         _playerControls.Moving.Drop.canceled += context => _move = Vector2.zero;
 
@@ -67,12 +59,14 @@ public class PassThroughPlatform : MonoBehaviour
         _collider.enabled = true;
     }
 
-    private void SetPlayerOnPlatform(Collision2D other, bool value)
+/*    private void SetPlayerOnPlatform(Collision2D other, bool value)
     {
         var player = other.gameObject.GetComponent<PlayerMovement>(); // Grab any component that exists on the player.
         if (player != null)
         {
-            coll.onPlatform = value;
+            // Debug.Log(coll.onPlatform);
+            //coll.onPlatform = value;
+            _playerOnPlatform = value;
         }
     }
 
@@ -84,5 +78,5 @@ public class PassThroughPlatform : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         SetPlayerOnPlatform(other, false);
-    }
+    }*/
 }

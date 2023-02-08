@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("MovingIntoWall", ((coll.onLeftWall) || (coll.onRightWall)));
         _animator.SetBool("OnGround", (coll.onGround));
         _animator.SetBool("OnPlatform", (coll.onPlatform));
+        _animator.SetBool("OnGroundOrOnPlatform", (coll.onGround || coll.onPlatform));
         _animator.SetFloat("Speed", Mathf.Abs(playerInputDir));
         _animator.SetFloat("JumpSpeed", rb.velocity.y);
         _animator.SetBool("FacingRight", isFacingRight);
