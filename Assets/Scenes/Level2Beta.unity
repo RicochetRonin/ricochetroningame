@@ -21140,7 +21140,8 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 512
-  SlashSFX: {fileID: 0}
+  SlashSFX: {fileID: 8300000, guid: 161e11bbd56611c42bed5c7cb1b5b6db, type: 3}
+  SlashBulletSFX: {fileID: 8300000, guid: 879268712188b224d9914166aa2e35b2, type: 3}
   canReflect: 1
 --- !u!114 &5428186930177845294
 MonoBehaviour:
@@ -21305,11 +21306,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldownText: {fileID: 2556570473131342441}
-  jumpSFX: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
-  dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 872cca79852ce1640879a3e4768bd420, type: 3}
+  dashSFX: {fileID: 8300000, guid: f22f15e06e2130341a39fb0ebbaddb70, type: 3}
   speed: 10
   jumpVelocity: 12.5
-  wallJumpVelocity: 7
+  wallJumpHorizontalSpeed: 10
+  wallJumpVerticalSpeed: 10
+  wallSlideGravityReducer: 3
   maxJumps: 2
   maxDashes: 1
   fallMultiplier: 2.5
@@ -21317,7 +21320,6 @@ MonoBehaviour:
   dashForce: 4
   dashTime: 0.1
   dashCoolDown: 0.5
-  wallJumpAcceleration: 2
   _playerHealth: {fileID: 1321796307546168950}
   _playerAim: {fileID: 3581433580479711661}
   _spriteRenderer: {fileID: 5620708676525139718}
@@ -21362,7 +21364,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
   onGround: 0
+  onPlatform: 0
   onWall: 0
   onRightWall: 0
   onLeftWall: 0
@@ -21481,12 +21487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c9f5b4d7a61e8428e42af86d306daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGround: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  collisionRadius: 0.2
-  bottomOffset: {x: 0, y: 0}
 --- !u!68 &7211290545190299681
 EdgeCollider2D:
   m_ObjectHideFlags: 0
