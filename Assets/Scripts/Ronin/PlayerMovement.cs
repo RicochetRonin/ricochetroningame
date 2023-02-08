@@ -225,7 +225,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(initalWallJumpX != playerInputDir)
                 {
-                    Debug.Log("wall Jump input switch");
                     wallJumpInputSwtich = true;
                 }
             }
@@ -249,7 +248,6 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 1;
             rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
         }
-        Debug.Log(rb.velocity);
     }
 
 
