@@ -19,7 +19,6 @@ public class MovingPlatform : MonoBehaviour
             //onPlatform = true;
         }
     }
-
     void Update()
     {
         /*

@@ -25,7 +25,7 @@ public class InteractScript : MonoBehaviour
     }
     void EnableText()
     {
-        Debug.Log("this is working");
+        
         dialogueText.SetActive(true);
         this.GetComponent<TextMeshProUGUI>().text = " ";
     }
@@ -37,14 +37,10 @@ public class InteractScript : MonoBehaviour
     {
         DisableText();
     }
-    void Debugging()
-    {
-        Debug.Log("The button works");
-    }
     private void OnEnable()
     {
         playerControls.Enable();
-        this.GetComponent<TextMeshProUGUI>().text = "Press F to Interact";
+        this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
     }
 
 }

@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallJumpVerticalSpeed = 10f;
     [SerializeField] private float wallSlideGravityReducer = 3;
     [SerializeField] private int maxJumps = 2;
+    [SerializeField] private int maxDashes = 1;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] private float dashForce = 2f;
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator _animator;
 
     public bool canMove = true;
+    private int dashCount;
     private int jumpCount = 0;
     [SerializeField] private LayerMask collisionMask;
     
@@ -134,7 +136,8 @@ public class PlayerMovement : MonoBehaviour
         if (coll.onGround || coll.onWall)
         {
             jumpCount = 1;
-            
+            dashCount = 0;
+
         }
         dashCooldownText.SetCooldown(canDash);
 
@@ -350,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
     //Called to make the Ronin dash
     private IEnumerator Dash()
     {
-        if (canDash)
+        if (canDash && dashCount < maxDashes)
         {
             canDash = false;
             isDashing = true;
@@ -364,6 +367,7 @@ public class PlayerMovement : MonoBehaviour
             AudioManager.PlayOneShotSFX(dashSFX);
 
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
+            dashCount++;
             
             yield return new WaitForSeconds(dashTime);
 
