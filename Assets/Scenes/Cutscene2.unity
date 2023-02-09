@@ -500,17 +500,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[0]
-      value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate
-        tortor eget consequat sodales. Vestibulum cursus ipsum velit.
+      value: It's clear now to The Ronin that the bandits had been busy during his
+        absence.
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[1]
-      value: Nam molestie pellentesque dui, vitae rutrum dolor dignissim sit amet.
-        Vestibulum sed commodo tortor. Nunc pulvinar lectus ut iaculis
+      value: The forest is dotted with the remains of ransacked caravans, easy targets
+        for the bandit clan.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[2]
+      value: The Ronin knows exactly where this trail of bodies leads. His path is
+        clear.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}

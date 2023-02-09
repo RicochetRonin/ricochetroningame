@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Booleans")]
     private bool wallGrab;
     private bool wallJump;
-    private bool wasOnGround;
     private bool wallJumping;
     private bool wallSliding;
     private bool prevWallSliding;
@@ -117,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log("Velocity " + rb.velocity);
         if (!canMove) return;
         
         if (isDashing)
@@ -127,7 +126,11 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Vector2 dir = new Vector2(_move.x, _move.y);
-        playerInputDir = dir.x;
+
+        if (dir.x > 0.01) { playerInputDir = 1; }
+        else if (dir.x < -0.01) { playerInputDir = -1; }
+        else { playerInputDir = 0; }
+        
         Move(dir);
 
         WallSlideCheck();
@@ -250,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.gravityScale = 1;
-            rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+            rb.velocity = (new Vector2(playerInputDir * speed, rb.velocity.y));
         }
     }
 
@@ -263,7 +266,6 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.y < 0 && !wallSliding)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            wasOnGround = false;
         }
         
         else if (rb.velocity.y > 0 && !_playerControls.Moving.Jump.triggered || wallJumping)
@@ -363,6 +365,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canDash && dashCount < maxDashes)
         {
+            Vector2 prevVelocity = rb.velocity;
             canDash = false;
             isDashing = true;
 
@@ -383,10 +386,11 @@ public class PlayerMovement : MonoBehaviour
             playerHealth.setCanTakeDamage(true);
 
             isDashing = false;
+            wallJumping = false;
 
             //Ronin affected by gravity again
             rb.gravityScale = 1;
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);

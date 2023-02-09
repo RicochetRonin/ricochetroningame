@@ -5,24 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Input Test.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Douglas.unity
-    guid: da8dc352313ea9a4198540d74a1b3d6a
-  - enabled: 0
-    path: Assets/Scenes/Tower Level.unity
-    guid: c87d3410ec01401489c659ed3badf077
-  - enabled: 0
-    path: Assets/Scenes/Floors 4-6.unity
-    guid: 74e9c2fd1907a5b44973b3b4e266be8d
-  - enabled: 0
-    path: Assets/Scenes/Tutorial.unity
-    guid: 54fb25c4c02b9c147beed25f0bfbbd10
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: edc6310ca287e8149b70ee08adc4570e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene1.unity
+    guid: e5414dd95c292b54392816fe3d8425e1
   - enabled: 1
     path: Assets/Scenes/Level1Beta.unity
     guid: e1712dac1baac8c4093c4a98061bb8a8
+  - enabled: 1
+    path: Assets/Scenes/Cutscene2.unity
+    guid: fc5870d741af08443a1b7b62967d9ac3
   - enabled: 1
     path: Assets/Scenes/Level2Beta.unity
     guid: b1923258105602841a11448239c43bd5
