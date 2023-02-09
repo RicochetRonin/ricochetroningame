@@ -15680,6 +15680,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7731809287525566493, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -15727,6 +15731,18 @@ PrefabInstance:
     - target: {fileID: 7731809287650245360, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Name
       value: Parallax Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963404, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111503, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947832, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_SortingOrder
+      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
@@ -82914,9 +82930,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7382651659444823664, guid: fa1b0e2ff327fcc4ba1237e3fb7f8cbd, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6debdd9ece532ed408391c1c1c40bfb9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
