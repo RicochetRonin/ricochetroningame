@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CutsceneDialogue : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CutsceneDialogue : MonoBehaviour
     private int index;
 
     public Cutscenes controls;
+    [SerializeField] private string sceneName;
 
     private void Awake()
     {
@@ -77,6 +79,7 @@ public class CutsceneDialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

@@ -49,12 +49,12 @@ public class BossHealth : MonoBehaviour
 
         foreach (GameObject bullet in enemyBullets)
         {
-            Destroy(bullet);
+            MasterPool.DespawnBullet(bullet);
         }
 
         foreach (GameObject bullet in playerBullets)
         {
-            Destroy(bullet);
+            MasterPool.DespawnBullet(bullet);
         }
     }
 
