@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame ()
     {
-        SceneManager.LoadScene("Tutorial"); //Can do name, build index, etc...
+        SceneManager.LoadScene("Cutscene1"); //Can do name, build index, etc...
     }
 
     public void ExitGame()

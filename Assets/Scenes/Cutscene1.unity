@@ -491,22 +491,61 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: sceneName
+      value: Level1Beta
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: textSpeed
-      value: 0.08
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.size
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[0]
-      value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate
-        tortor eget consequat sodales. Vestibulum cursus ipsum velit.
+      value: 'Long ago, there was a man who swiftly climbed the ranks in the most
+        feared bandit clan in the world. '
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: boxes.Array.data[1]
-      value: Nam molestie pellentesque dui, vitae rutrum dolor dignissim sit amet.
-        Vestibulum sed commodo tortor. Nunc pulvinar lectus ut iaculis
+      value: "He helped them steal bounties of great riches and priceless artifacts
+        and became known only as the Ronin.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[2]
+      value: On one fateful day, the clan leader caught wind of the potential location
+        of the Omnijin artifact.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[3]
+      value: "It was an all powerful weapon that was thought by many to be a mere
+        myth. The clan would have it before long.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[4]
+      value: "He grew uncomfortable with the leader\u2019s plan, knowing his goals
+        were no exaggeration paired with such power."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[5]
+      value: He escaped with the artifact and moved far away, promising himself he
+        would never again tarnish his blade with blood.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[6]
+      value: "The Ronin\u2019s peace lasted many years, but his past eventually found
+        him."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[7]
+      value: As punishment for his betrayal, the clan slaughtered his family and
+        stole the Omnijin back.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: boxes.Array.data[8]
+      value: The Ronin now had to make a choice in his quest for revenge. Would he
+        keep his promise to himself?
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: cutsceneControls.m_Id

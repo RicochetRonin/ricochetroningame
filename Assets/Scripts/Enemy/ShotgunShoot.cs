@@ -13,17 +13,10 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip ShootSFX;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator bodyAnimator;
+    [SerializeField] private Animator armAnimator;
 
     [SerializeField] private EnemyHealth enemyHealth;
-
-    private float shot1Angle;
-    private float shot2Angle;
-    private float shot3Angle;
-
-    private Quaternion shot1Quaternion;
-    private Quaternion shot2Quaternion;
-    private Quaternion shot3Quaternion;
 
     private GameObject target;
 
@@ -75,17 +68,9 @@ public class ShotgunShoot : MonoBehaviour
                     currTransformRotation = newTransformRotation;
                 }
 
-
-
-
-
-
-                //canAttack = false;
-                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, this.transform.rotation);
-                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z + bulletSpread)));
-                //MasterPool.SpawnBullet(bulletPrefab, this.transform.position, Quaternion.Euler(new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z - bulletSpread)));
                 AudioManager.PlayOneShotSFX(ShootSFX);
-                //animator.SetTrigger("Shoot");
+                bodyAnimator.SetTrigger("Shoot");
+                armAnimator.SetTrigger("Shoot");
                 StartCoroutine("ResetCoolDown");
             }
         }
