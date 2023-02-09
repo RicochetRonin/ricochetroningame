@@ -78,8 +78,11 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
   speed: 10
   jumpVelocity: 12.5
-  wallJumpVelocity: 7
+  wallJumpHorizontalSpeed: 10
+  wallJumpVerticalSpeed: 10
+  wallSlideGravityReducer: 3
   maxJumps: 2
+  maxDashes: 1
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   dashForce: 4
@@ -108,7 +111,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   onGround: 0
+  onPlatform: 0
   onWall: 0
   onRightWall: 0
   onLeftWall: 0
