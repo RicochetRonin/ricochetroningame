@@ -354,11 +354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9078825028288994311, guid: 5feb364ac12050d459b495febbdee958, type: 3}
-  fireRate: 10
+  fireRate: 8.5
   canAttack: 1
   firstShotDelay: 2
   ShootSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
-  animator: {fileID: 0}
+  bodyAnimator: {fileID: 0}
+  armAnimator: {fileID: 0}
   enemyHealth: {fileID: 16987162286892796}
   sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
 --- !u!1 &8599987345269046681
