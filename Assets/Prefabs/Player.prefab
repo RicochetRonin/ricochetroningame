@@ -74,17 +74,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldownText: {fileID: 0}
-  jumpSFX: {fileID: 8300000, guid: a892520f48a13e44f84025e93568360e, type: 3}
-  dashSFX: {fileID: 8300000, guid: 84493c158af1a5844a5edd3bc76c7e03, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 872cca79852ce1640879a3e4768bd420, type: 3}
+  dashSFX: {fileID: 8300000, guid: f22f15e06e2130341a39fb0ebbaddb70, type: 3}
   speed: 10
   jumpVelocity: 12.5
   wallJumpVelocity: 7
   maxJumps: 2
+  maxDashes: 1
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   dashForce: 4
   dashTime: 0.1
   dashCoolDown: 0.5
+  wallJumpAcceleration: 2
   _playerHealth: {fileID: 5446883132143224771}
   _playerAim: {fileID: 5446883132418489048}
   _spriteRenderer: {fileID: 5446883133848638611}
@@ -350,7 +352,8 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 512
-  SlashSFX: {fileID: 0}
+  SlashSFX: {fileID: 8300000, guid: 161e11bbd56611c42bed5c7cb1b5b6db, type: 3}
+  SlashBulletSFX: {fileID: 8300000, guid: 879268712188b224d9914166aa2e35b2, type: 3}
   canReflect: 1
 --- !u!1 &5446883133551815285
 GameObject:

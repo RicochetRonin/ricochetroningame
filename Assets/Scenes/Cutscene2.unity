@@ -491,6 +491,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
+      propertyPath: sceneName
+      value: Level2Beta
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798480067488585295, guid: 7caddcfb1d4ede047ae96aee60c9e837, type: 3}
       propertyPath: textSpeed
       value: 0.08
       objectReference: {fileID: 0}
