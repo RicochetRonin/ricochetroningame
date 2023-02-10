@@ -7,7 +7,6 @@ public class LaserAim : MonoBehaviour
 {
 
     private LineRenderer lineRenderer;
-    private EnemyAim enemyAim;
     private GameObject target;
     private Transform shotSpawn;
 
@@ -19,15 +18,24 @@ public class LaserAim : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.material.color = laserColor;
-        enemyAim = GetComponent<EnemyAim>();
         target = GameObject.FindGameObjectWithTag("Player");
-        shotSpawn = transform.GetChild(0);
+        shotSpawn = transform.GetChild(1);
     }
 
     private void Update()
     {
-        lineRenderer.SetPosition(0, shotSpawn.position);
-        lineRenderer.SetPosition(1, target.transform.position);
+        if (!Physics2D.Linecast(shotSpawn.position, target.transform.position, 1 << 8))
+        {
+            lineRenderer.gameObject.SetActive(true);
+            lineRenderer.SetPosition(0, shotSpawn.position);
+            lineRenderer.SetPosition(1, target.transform.position);
+        }
+        //Remove the laser when the Ronin is behind a wall
+        else
+        {
+            lineRenderer.SetPosition(0, shotSpawn.position);
+            lineRenderer.SetPosition(1, shotSpawn.position);
+        }
 
     }
 

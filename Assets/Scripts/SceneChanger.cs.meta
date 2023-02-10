@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/SceneChanger.cs.meta
+guid: 4a8728f024ab1944b940ad55ed15c405
+========
+guid: 5593c1ee8780a684d8ec23ad437d79b3
+>>>>>>>> origin/dev:Assets/Scripts/EnvironmentBulletDetection.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
