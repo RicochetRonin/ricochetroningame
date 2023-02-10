@@ -117,7 +117,7 @@ public class PlayerReflect : MonoBehaviour
             bulletReflected = true;
             AudioManager.PlayOneShotSFX(SlashBulletSFX);
             bulletReflected = false;
-            SleepManager.Sleep(5);
+            SleepManager.Sleep(2);
         }
 
         //Reflect hit an interactable object
