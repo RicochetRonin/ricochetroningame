@@ -403,7 +403,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.85
+  m_Radius: 1.5
 --- !u!114 &7627156656490314701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +419,9 @@ MonoBehaviour:
   playerTag: Player
   interactDistance: 3
   interactText: {fileID: 7627156656301890989}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7627156657026898535
 GameObject:
   m_ObjectHideFlags: 0
