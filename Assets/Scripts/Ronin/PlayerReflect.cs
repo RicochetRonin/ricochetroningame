@@ -106,6 +106,7 @@ public class PlayerReflect : MonoBehaviour
             AudioManager.PlayOneShotSFX(SlashBulletSFX);
             bulletReflected = false;
             SleepManager.Sleep(5);
+            CinemachineShake.Shake(0.15f, 3f);
 
         }
 
@@ -118,6 +119,7 @@ public class PlayerReflect : MonoBehaviour
             AudioManager.PlayOneShotSFX(SlashBulletSFX);
             bulletReflected = false;
             SleepManager.Sleep(2);
+            CinemachineShake.Shake(0.1f, 2f);
         }
 
         //Reflect hit an interactable object
