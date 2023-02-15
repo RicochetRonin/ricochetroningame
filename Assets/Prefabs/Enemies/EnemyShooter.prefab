@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
+  enemyAim: {fileID: 7695376096122040967}
   animator: {fileID: 0}
   health: 2
   maxHealth: 2
