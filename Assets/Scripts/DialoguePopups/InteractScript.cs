@@ -32,6 +32,7 @@ public class InteractScript : MonoBehaviour
     void DisableText()
     {
         dialogueText.SetActive(false);
+        this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
     }
     private void OnDisable()
     {
