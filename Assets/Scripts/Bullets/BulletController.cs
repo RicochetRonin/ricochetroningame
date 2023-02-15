@@ -104,7 +104,7 @@ public class BulletController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("Hit - current direction " + currentDir);
+            //Debug.Log("Hit - current direction " + currentDir);
             if (hit.normal.x != 0)
             {
                 Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
@@ -119,7 +119,7 @@ public class BulletController : MonoBehaviour
 
 
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
-            Debug.Log("Reflect Direction " + reflectDir);
+            //Debug.Log("Reflect Direction " + reflectDir);
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
 
@@ -260,7 +260,7 @@ public class BulletController : MonoBehaviour
             //Player reflects a bullet into a bullet interactable trigger
             if (collision.gameObject.CompareTag("BulletInteractable"))
             {
-                Debug.Log("PLayer Interactable hit");
+                //Debug.Log("PLayer Interactable hit");
             }
         }
 
