@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserColor: {r: 1, g: 0, b: 0, a: 1}
-  numAlphaSteps: 3
+  numAlphaSteps: 5
 --- !u!114 &1260482547835793332
 MonoBehaviour:
   m_ObjectHideFlags: 0

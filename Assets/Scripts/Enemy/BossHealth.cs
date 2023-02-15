@@ -7,9 +7,14 @@ public class BossHealth : MonoBehaviour
     [Header("References")]
     [SerializeField] private SpriteRenderer enemyGraphics;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject player;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject reflectHitbox;
+
+    [Header("Move/Teleport Locations")]
     [SerializeField] private GameObject phase2Teleport;
     [SerializeField] private GameObject phase3Teleport;
+    [SerializeField] private List<GameObject> offScreenPositions;
 
     [Header("Stats")]
     [SerializeField] public float health = 30f;
@@ -24,6 +29,7 @@ public class BossHealth : MonoBehaviour
     private GameObject[] playerBullets;
 
     private bool isAlive;
+    private bool movedOffScreen1, movedOffScreen2 = false;
 
     private void Start()
     {
@@ -34,6 +40,44 @@ public class BossHealth : MonoBehaviour
 
     private void Update()
     {
+        var step = 4.0f * Time.deltaTime;
+
+        if (health == 20 && movedOffScreen1 == false)
+        {
+            bossShoot.SetPhaseNumber(2);
+            ClearBullets();
+            player.GetComponent<PlayerMovement>().canMove = false;
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, offScreenPositions[0].transform.position, step);
+            
+
+            if (enemy.transform.position == offScreenPositions[0].transform.position)
+            {
+                movedOffScreen1 = true;
+                teleportBoss(2);
+                player.GetComponent<PlayerMovement>().canMove = true;
+                enemy.GetComponentInChildren<LaserAim>().enabled = true;
+                enemy.GetComponentInChildren<LineRenderer>().enabled = true;
+                enemy.GetComponentInChildren<SniperShoot>().enabled = true;
+            }
+        }
+
+        if (health == 10 && movedOffScreen2 == false)
+        {
+            bossShoot.SetPhaseNumber(3);
+            ClearBullets();
+            player.GetComponent<PlayerMovement>().canMove = false;
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, offScreenPositions[1].transform.position, step);
+
+
+            if (enemy.transform.position == offScreenPositions[1].transform.position)
+            {
+                movedOffScreen2 = true;
+                teleportBoss(3);
+                player.GetComponent<PlayerMovement>().canMove = true;
+                reflectHitbox.SetActive(true);
+            }
+        }
+
         if (health <= 0)
         {
             isAlive = false;
@@ -75,23 +119,7 @@ public class BossHealth : MonoBehaviour
 
         if (canTakeDamage)
         {
-
             health -= damage;
-
-            if (health == 20)
-            {
-                bossShoot.SetPhaseNumber(2);
-                ClearBullets();
-                teleportBoss(2);
-
-            }
-
-            else if (health == 10)
-            {
-                bossShoot.SetPhaseNumber(3);
-                ClearBullets();
-                teleportBoss(3);
-            }
 
             //Setting enemy graphic to red to indicate damage. Then reset back to original color
             enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
