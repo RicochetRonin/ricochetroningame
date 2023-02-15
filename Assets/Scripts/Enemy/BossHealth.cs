@@ -81,6 +81,7 @@ public class BossHealth : MonoBehaviour
         if (health <= 0)
         {
             isAlive = false;
+            reflectHitbox.SetActive(false);
             ClearBullets();
             StartCoroutine("DeathSequence");
         }
