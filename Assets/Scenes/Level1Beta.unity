@@ -3869,6 +3869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8285864455242580815, guid: ca535ba09f96a3145988b94effce986d, type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca535ba09f96a3145988b94effce986d, type: 3}
 --- !u!4 &542123918 stripped
@@ -10707,6 +10711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8285864455242580815, guid: ca535ba09f96a3145988b94effce986d, type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca535ba09f96a3145988b94effce986d, type: 3}
 --- !u!1001 &1059268071
@@ -13923,6 +13931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8285864455242580815, guid: ca535ba09f96a3145988b94effce986d, type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca535ba09f96a3145988b94effce986d, type: 3}
 --- !u!1001 &1575604867
@@ -17084,6 +17096,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5403311161724264871, guid: 32e90e1275cbce740b600788d6a916e0, type: 3}
   m_PrefabInstance: {fileID: 2089604420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2106470074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5446883131945973391, guid: 1bc0730a325c751428595f622fb53a24, type: 3}
+  m_PrefabInstance: {fileID: 1824439062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106470079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106470074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0baf83507ee2693469590f9ce72ef14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &15819795625267583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -61213,6 +61242,9 @@ MonoBehaviour:
   playerTag: Player
   interactDistance: 3
   interactText: {fileID: 7627156657150831869}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!222 &7627156657150831856
 CanvasRenderer:
   m_ObjectHideFlags: 0

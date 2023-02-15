@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
+
+    private bool isDead = false;
         
     private void Start()
     {
@@ -73,8 +75,9 @@ public class PlayerHealth : MonoBehaviour
         _movement.canMove = false;
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
-        Destroy(player);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        /*Destroy(player);*/
+        /*SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);*/
+        isDead = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -95,6 +98,20 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    // If calling in PlayerController script, this needs to be public
+    // or else that script can't access this method.
+    // If not destroying player, need to explicitly call this method somewhere
+    // instead of relying on Start()
+    public void resetPlayer()
+    {
+        health = maxHealth;
+        _movement._animator.SetFloat("PlayerHealth", (health));
+        healthBar.SetPlayerHealth(health, maxHealth);
+        canTakeDamage = true;
+        _movement.canMove = true;
+        _playerReflect.canReflect = true;
+    }
+
     public void setCanTakeDamage(bool canTakeDamage)
     {
         this.canTakeDamage = canTakeDamage;
@@ -103,6 +120,16 @@ public class PlayerHealth : MonoBehaviour
     public bool getCanTakeDamage()
     {
         return this.canTakeDamage;
+    }
+
+    public void setIsDead(bool b)
+    {
+        this.isDead = b;
+    } 
+
+    public bool getIsDead()
+    {
+        return this.isDead;
     }
 
     public void setMaxHealth(float newMaxHp)

@@ -39,7 +39,11 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        
+
+        /*lastCheckPointPos = GameObject.FindGameObjectWithTag("Player").transform;*/
+/*        Debug.Log("This is current checkpoint pos on awake");
+        Debug.Log(lastCheckPointPos);
+
         if (lastCheckPointPos != null)
         {
             Debug.Log("Spawning at checkpoint");
@@ -49,7 +53,7 @@ public class GameManager : MonoBehaviour
         else
         {
             lastCheckPointPos.position = GameObject.FindGameObjectWithTag("Player").transform.position;
-        }
+        }*/
     }
 
     #endregion
@@ -155,6 +159,7 @@ public class GameManager : MonoBehaviour
     {
         return FindObjectOfType<PlayerHealth>();
     }
+
 
 
 }

@@ -8,13 +8,13 @@ public class checkpoint : MonoBehaviour
     [SerializeField] private Sprite activeSprite, inactiveSprite;
     private SpriteRenderer _spriteRenderer;
 
-    /*
-    void Awake()
+
+/*    void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-    */
-    
+    }*/
+
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,10 +25,11 @@ public class checkpoint : MonoBehaviour
     {  
         if (other.gameObject.CompareTag("Player"))
         {
+            /*Debug.Log(transform);*/
             GameManager.lastCheckPointPos = transform;
             _spriteRenderer.sprite = activeSprite;
-            Debug.LogFormat("Last Checkpoint: {0}", gameObject.name);
-            //Debug.Log("Checkpoint!");
+            /*Debug.LogFormat("Last Checkpoint: {0}", gameObject.name);*/
+            /*Debug.Log("Checkpoint!");*/
         } 
     }
 }
