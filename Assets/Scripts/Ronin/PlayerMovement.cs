@@ -337,7 +337,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJumpingCheck()
     {
-        Debug.Log("Wall Jumping check called");
+        //Debug.Log("Wall Jumping check called");
         if (wallJumping)
         {
             if (coll.onGround){
