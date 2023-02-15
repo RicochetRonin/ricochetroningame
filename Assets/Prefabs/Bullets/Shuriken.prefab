@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1727568596402683697}
   - component: {fileID: 5189557039531396949}
   - component: {fileID: 801746722014634691}
+  - component: {fileID: 3584022167039527512}
   m_Layer: 7
   m_Name: Shuriken
   m_TagString: EnemyBullet
@@ -122,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f84b298fcf656f849907f00834b4dfb7, type: 3}
+  m_Sprite: {fileID: -914538170, guid: cbeb6daf80ce2a14ebc5ed2ba2caa3be, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,3 +155,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &3584022167039527512
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078825028288994311}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fdb76e8a5ba6f64db5668c8b40de956, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
