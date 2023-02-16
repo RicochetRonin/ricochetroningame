@@ -13,7 +13,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip ShootSFX;
     [SerializeField] protected Animator bodyAnimator;
-    [SerializeField] private Animator armAnimator;
+    [SerializeField] protected Animator armAnimator;
     private GameObject target;
 
 

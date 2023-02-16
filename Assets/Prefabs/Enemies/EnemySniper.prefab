@@ -164,7 +164,7 @@ Animator:
   m_GameObject: {fileID: 2842375103567256842}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9ebded7626305f4fb6204324cc5796b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -235,6 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4116447285682486243}
   - component: {fileID: 1306714052225040917}
+  - component: {fileID: 371279256984691029}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -309,6 +310,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &371279256984691029
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600218533552555107}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6139d9456a8d6c4fb7509ab64c1848a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6984183344757196110
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,8 +379,8 @@ MonoBehaviour:
   canAttack: 1
   firstShotDelay: 2
   ShootSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
-  bodyAnimator: {fileID: 0}
-  armAnimator: {fileID: 0}
+  bodyAnimator: {fileID: 4258016368471862181}
+  armAnimator: {fileID: 371279256984691029}
   enemyHealth: {fileID: 16987162286892796}
   sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
 --- !u!1 &8599987345269046681
