@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a071926cdb0864f8c903b4cc097f3ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSteps: 0.5
+  timeBetweenSteps: 0.4
   audioSource: {fileID: 1623776478102170011}
   abilitySource: {fileID: 471983825203051786}
   footsteps:

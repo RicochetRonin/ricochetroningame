@@ -174,8 +174,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
-            soundManager.Footstep();
-        }
+                  }
 
         //If movement is left and Ronin is facing right and Ronin is on ground or platform, flip Ronin to face left
         else if (dir.x < 0 && isFacingRight && (coll.onGround || coll.onPlatform))
@@ -183,7 +182,6 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
-            soundManager.Footstep();
         }
 
         //If Ronin is on the wall and not on the ground and not on platform and not wall jumping, flip the sprite depending on which wall Ronin is on.
@@ -257,6 +255,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 1;
             rb.velocity = (new Vector2(playerInputDir * speed, rb.velocity.y));
+            if (playerInputDir != 0 && coll.onGround) { soundManager.Footstep(); }
         }
     }
 
