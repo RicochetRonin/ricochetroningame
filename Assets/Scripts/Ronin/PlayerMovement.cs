@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJumpInputSwtich;
 
 
-    [SerializeField] private AudioClip jumpSFX, dashSFX;
+    //[SerializeField] private AudioClip jumpSFX, dashSFX;
     
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer _spriteRenderer;
     public Animator _animator;
+    [SerializeField] private RoninSoundManager soundManager;
 
     public bool canMove = true;
     private int dashCount;
@@ -173,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
+            soundManager.Footstep();
         }
 
         //If movement is left and Ronin is facing right and Ronin is on ground or platform, flip Ronin to face left
@@ -181,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
+            soundManager.Footstep();
         }
 
         //If Ronin is on the wall and not on the ground and not on platform and not wall jumping, flip the sprite depending on which wall Ronin is on.
@@ -300,8 +303,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = Vector2.up * jumpVelocity; 
             }
-            
-            AudioManager.PlayOneShotSFX(jumpSFX);
+
+            //AudioManager.PlayOneShotSFX(jumpSFX);
+            soundManager.Jump();
             jumpCount++;
         }
     }
@@ -374,8 +378,9 @@ public class PlayerMovement : MonoBehaviour
 
             //Ronin unaffected by gravity while dashing
             rb.gravityScale = 0;
-            
-            AudioManager.PlayOneShotSFX(dashSFX);
+
+            //AudioManager.PlayOneShotSFX(dashSFX);
+            soundManager.Dash();
 
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
             dashCount++;
