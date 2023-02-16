@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -67,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJumping;
     private bool wallSliding;
     private bool prevWallSliding;
+    
+    public delegate void SpawnPointEventHandler();
+    public static event SpawnPointEventHandler SpawnSet;
 
     #region Initialization
 
@@ -75,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         _playerControls.Moving.Enable();
 
         _playerHealth.onDeath += SetCanMove;
+        
+        SceneManager.sceneLoaded += Spawn;
     }
 
     private void OnDisable()
@@ -82,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
         _playerControls.Moving.Disable();
         
         _playerHealth.onDeath -= SetCanMove;
+        
+        SceneManager.sceneLoaded -= Spawn;
     }
 
     private void Awake()
@@ -97,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
         playerInputDir = 0;
         wallSliding = false;
         prevWallSliding = false;
-
     }
 
     void SetControls()
@@ -114,6 +121,21 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    void Spawn(Scene scene, LoadSceneMode mode)
+    {
+        if (GameManager.checkPointActive == false)
+        {
+            //Debug.Log("Set To Player Start Position");
+            GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
+            if (SpawnSet != null) SpawnSet();
+        }
+        else
+        {
+            //Debug.Log("Spawn Player at last checkpoint");
+            transform.position = new Vector2(GameManager.lastCheckPointPos.x, GameManager.lastCheckPointPos.y);
+            if (SpawnSet != null) SpawnSet();
+        }
+    }
     void Update()
     {
         //Debug.Log("Velocity " + rb.velocity);
@@ -337,7 +359,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJumpingCheck()
     {
-        Debug.Log("Wall Jumping check called");
+        //Debug.Log("Wall Jumping check called");
         if (wallJumping)
         {
             if (coll.onGround){

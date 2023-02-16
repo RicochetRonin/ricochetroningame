@@ -78,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.CompareTag("KillBox"))
         {
+            Debug.Log("Death by KillBox");
             StartCoroutine("DeathSequence");
         }
     }
