@@ -93,7 +93,7 @@ MonoBehaviour:
   _playerAim: {fileID: 5446883132418489048}
   _spriteRenderer: {fileID: 5446883133848638611}
   _animator: {fileID: 7077390754634076757}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 9008115518942717753}
   canMove: 1
   collisionMask:
     serializedVersion: 2
@@ -126,7 +126,7 @@ MonoBehaviour:
   bottomOffset: {x: 0, y: -0.5}
   rightOffset: {x: 0.25, y: 0}
   leftOffset: {x: -0.25, y: 0}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 9008115518942717753}
 --- !u!70 &4255678920753089386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
   _omniReflectParticleSystem: {fileID: 8431895205352310259}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 9008115518942717753}
   omniReflectDuration: 5
   omniReflectCooldown: 30
   omniCooldownText: {fileID: 0}
