@@ -138,6 +138,7 @@ public class BulletController : MonoBehaviour
             Debug.DrawRay(transform.position, reflectDir, Color.blue);
 
             AudioManager.PlayOneShotSFX(bounceSFX);
+            CinemachineShake.Shake(0.05f, 0.2f);
             _reflectCount++;
             currentReflectLifetime = 0;
         }
@@ -336,6 +337,8 @@ public class BulletController : MonoBehaviour
 
             currentReflectLifetime = 0.0f;
 
+            SleepManager.Sleep(1);
+            CinemachineShake.Shake(0.05f, 1.5f);
         }
 
         //If the the bullet hits an enemy's reflect, reflect the bullet and set it to hostile
