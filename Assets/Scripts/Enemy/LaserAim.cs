@@ -24,8 +24,18 @@ public class LaserAim : MonoBehaviour
 
     private void Update()
     {
-        lineRenderer.SetPosition(0, shotSpawn.position);
-        lineRenderer.SetPosition(1, target.transform.position);
+        if (!Physics2D.Linecast(shotSpawn.position, target.transform.position, 1 << 8))
+        {
+            lineRenderer.gameObject.SetActive(true);
+            lineRenderer.SetPosition(0, shotSpawn.position);
+            lineRenderer.SetPosition(1, target.transform.position);
+        }
+        //Remove the laser when the Ronin is behind a wall
+        else
+        {
+            lineRenderer.SetPosition(0, shotSpawn.position);
+            lineRenderer.SetPosition(1, shotSpawn.position);
+        }
 
     }
 

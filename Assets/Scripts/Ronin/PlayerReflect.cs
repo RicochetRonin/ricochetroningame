@@ -21,12 +21,14 @@ public class PlayerReflect : MonoBehaviour
     [SerializeField] private Color _cursorColorDeplete;
     [SerializeField] private LayerMask groundLayer, aimLayer;
     [SerializeField] private AudioClip SlashSFX;
-        
+    [SerializeField] private AudioClip SlashBulletSFX;
+
     public bool canReflect;
     private float reflectTime;
-    
+    private bool bulletReflected = false;
+
     #region Initialization
-    
+
     private void OnEnable()
     {
         _playerControls.Attacking.Enable();
@@ -71,10 +73,13 @@ public class PlayerReflect : MonoBehaviour
 
         else
         {
-            AudioManager.PlayOneShotSFX(SlashSFX);
+            _collider.enabled = true;
+            if (!bulletReflected)
+            {
+                AudioManager.PlayOneShotSFX(SlashSFX);
+            }
             canReflect = false;
             _reflectAnimator.SetTrigger("Reflect");
-            _collider.enabled = true;
             yield return new WaitForSeconds(reflectTime);
             StartCoroutine("WaitForCoolDown");
         }
@@ -97,7 +102,12 @@ public class PlayerReflect : MonoBehaviour
             other.GetComponent<SpriteRenderer>().color = Color.green;
             _spriteRenderer.sortingOrder = 0;
             other.tag = "PlayerBullet";
+            bulletReflected = true;
+            AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            bulletReflected = false;
             SleepManager.Sleep(5);
+            CinemachineShake.Shake(0.15f, 3f);
+
         }
 
         if (other.CompareTag("PlayerBullet"))
@@ -105,7 +115,11 @@ public class PlayerReflect : MonoBehaviour
             //TODO: Change from being a GetComponent to switching the case of the bullet
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
-            SleepManager.Sleep(5);
+            bulletReflected = true;
+            AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            bulletReflected = false;
+            SleepManager.Sleep(2);
+            CinemachineShake.Shake(0.1f, 2f);
         }
 
         //Reflect hit an interactable object

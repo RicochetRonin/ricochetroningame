@@ -11,10 +11,13 @@ public class DialoguePopupScript : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private GameObject interactText;
+    public LayerMask groundMask;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag(playerTag) && 
-            Physics2D.Raycast(transform.position, collision.transform.position - transform.position, interactDistance))
+        if(collision.CompareTag(playerTag) && !Physics2D.Raycast(transform.position,
+            collision.transform.position - transform.position,
+            Vector2.Distance(transform.position, collision.transform.position), groundMask))
         {
             interactText.SetActive(true);
         }
