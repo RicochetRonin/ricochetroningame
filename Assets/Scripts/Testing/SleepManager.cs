@@ -24,7 +24,7 @@ public class SleepManager : MonoBehaviour
         instance.StartCoroutine(SleepOverTime(frames / isSleepingCount));
     }
 
-    public static IEnumerator SleepOverTime(int frames)
+    private static IEnumerator SleepOverTime(int frames)
     {
         Time.timeScale = 0.001f;
         isSleepingCount++;

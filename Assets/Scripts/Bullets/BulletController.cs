@@ -10,8 +10,6 @@ public class BulletController : MonoBehaviour
 
     private PlayerAim playerAim;
     private EnemyAim enemyAim;
-    private Vector2 targetDir;
-    private Rigidbody2D rb;
     
     [SerializeField] private ParticleSystem deathEffect;
 
@@ -35,10 +33,8 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float maxReflects = 5f;
     [SerializeField] private float reflectForce = 5f;
     [SerializeField] private float maxSpeed = 7.5f;
-    [SerializeField] private float muzzleFlashTime = 0.1f;
-    [SerializeField] private Color muzzleColor1 = Color.white;
-    [SerializeField] private Color muzzleColor2 = Color.black;
     [SerializeField] private float maxReflectLifetime = 10.0f;
+    [SerializeField] private bool rotatesOnImpact = true;
 
     [SerializeField] private AudioClip bounceSFX, hitPlayer, reflectedSFX;
 
@@ -52,7 +48,19 @@ public class BulletController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         previousPos = transform.position;
-        direction = Vector2.up;
+
+        if (rotatesOnImpact)
+        {
+            direction = Vector2.up;
+        }
+
+        else
+        {
+            var radians = (transform.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad;
+            var x = Mathf.Cos(radians);
+            var y = Mathf.Sin(radians);
+            direction = new Vector2(x, y);
+        }
 
         MasterPool.SpawnBulletVFX(bulletVFX, transform.position, transform.rotation, "MuzzleFlash");
         _reflectCount = 0;
@@ -73,7 +81,16 @@ public class BulletController : MonoBehaviour
 
     private void Movement()
     {
-        transform.Translate(direction * Time.deltaTime * speed);
+        if (rotatesOnImpact)
+        {
+            transform.Translate(direction * Time.deltaTime * speed);
+        }
+
+        else
+        {
+            transform.Translate(direction * Time.deltaTime * speed, Space.World);
+        }
+
         currentReflectLifetime += Time.deltaTime;
 
     }
@@ -87,6 +104,7 @@ public class BulletController : MonoBehaviour
 
         if (hit.collider != null)
         {
+            //Debug.Log("Hit - current direction " + currentDir);
             if (hit.normal.x != 0)
             {
                 Vector3 impactRot = new Vector3(0, 0, (hit.normal.x * 90));
@@ -101,14 +119,26 @@ public class BulletController : MonoBehaviour
 
 
             Vector3 reflectDir = Vector3.Reflect(currentDir, hit.normal).normalized;
+            //Debug.Log("Reflect Direction " + reflectDir);
 
             float rot = Mathf.Atan2(reflectDir.y, reflectDir.x) * Mathf.Rad2Deg - 90;
 
-            transform.eulerAngles = new Vector3(0, 0, rot);
+            if (rotatesOnImpact)
+            {
+                transform.eulerAngles = new Vector3(0, 0, rot);
+            }
+
+            else
+            {
+                direction = new Vector2(reflectDir.x, reflectDir.y);
+                
+            }
+            
 
             Debug.DrawRay(transform.position, reflectDir, Color.blue);
 
             AudioManager.PlayOneShotSFX(bounceSFX);
+            CinemachineShake.Shake(0.05f, 0.2f);
             _reflectCount++;
             currentReflectLifetime = 0;
         }
@@ -125,6 +155,18 @@ public class BulletController : MonoBehaviour
     public void PoolSpawn(Vector3 pos, Quaternion rot)
     {
         SetHostile();
+        if (rotatesOnImpact)
+        {
+            direction = Vector2.up;
+        }
+
+        else
+        {
+            var radians = (rot.eulerAngles.z + 90) * Mathf.Deg2Rad;
+            var x = Mathf.Cos(radians);
+            var y = Mathf.Sin(radians);
+            direction = new Vector2(x, y);
+        }
         gameObject.transform.position = pos;
         gameObject.transform.rotation = rot;
         gameObject.SetActive(true);
@@ -145,8 +187,18 @@ public class BulletController : MonoBehaviour
     
     private Vector3 CalcDirection()
     {
+        Vector3 currentDir;
 
-        Vector3 currentDir = (transform.position - previousPos).normalized;
+        if (rotatesOnImpact)
+        {
+            currentDir = (transform.position - previousPos).normalized;
+        }
+  
+        else
+        {
+            currentDir = new Vector3(direction.x, direction.y, 0);
+        }
+
         previousPos = transform.position;
         return currentDir;
         
@@ -209,7 +261,7 @@ public class BulletController : MonoBehaviour
             //Player reflects a bullet into a bullet interactable trigger
             if (collision.gameObject.CompareTag("BulletInteractable"))
             {
-                Debug.Log("PLayer Interactable hit");
+                //Debug.Log("PLayer Interactable hit");
             }
         }
 
@@ -221,11 +273,30 @@ public class BulletController : MonoBehaviour
 
             if (playerAim.usingController)
             {
-                transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+                if (rotatesOnImpact)
+                {
+                    transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+
+                }
+
+                else
+                {
+                    direction = new Vector2(playerAim.newDir.x, playerAim.newDir.y);
+
+                }
             }
+
             else
             {
-                transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+                if (rotatesOnImpact)
+                {
+                    transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(playerAim.newDir.y, playerAim.newDir.x) * Mathf.Rad2Deg - 90);
+                }
+
+                else
+                {
+                    direction = new Vector2(playerAim.newDir.x, playerAim.newDir.y);
+                }
             }
 
             AudioManager.PlayOneShotSFX(reflectedSFX);
@@ -247,8 +318,17 @@ public class BulletController : MonoBehaviour
             SetFriendly();
 
             Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
-            var rot = -Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, 0, rot);
+
+            if (rotatesOnImpact)
+            {
+                var rot = -Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, 0, rot);
+            }
+            
+            else
+            {
+                direction = new Vector2 (reflectDirection.x, reflectDirection.y);
+            }
 
             if (speed < maxSpeed)
             {
@@ -257,6 +337,8 @@ public class BulletController : MonoBehaviour
 
             currentReflectLifetime = 0.0f;
 
+            SleepManager.Sleep(1);
+            CinemachineShake.Shake(0.05f, 1.5f);
         }
 
         //If the the bullet hits an enemy's reflect, reflect the bullet and set it to hostile
@@ -266,8 +348,17 @@ public class BulletController : MonoBehaviour
             
             SetHostile();
             
-            float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
+            if (rotatesOnImpact)
+            {
+                float angle = Mathf.Atan2(enemyAim.aimDirection.y, enemyAim.aimDirection.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0f, 0f, angle - 90);
+            }
+            
+            else
+            {
+                direction = new Vector2(enemyAim.aimDirection.x, enemyAim.aimDirection.y);
+            }
+
             Debug.DrawRay(transform.position, enemyAim.aimDirection, Color.green);
 
             currentReflectLifetime = 0.0f;
