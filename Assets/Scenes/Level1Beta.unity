@@ -11068,7 +11068,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68876946
+      value: 0.6887697
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11140,7 +11140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68876946
+      value: 0.6887697
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17485,8 +17485,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 109.572754, y: -123.402374}
-  m_SizeDelta: {x: 225.5499, y: 170.7001}
+  m_AnchoredPosition: {x: 155.3, y: -46.8}
+  m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &182637519499670988
 RectTransform:
@@ -33126,11 +33126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
