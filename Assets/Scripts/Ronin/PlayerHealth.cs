@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     public delegate void OnDeath();
     public static event OnDeath onDeath;
 
+    private bool hasInvoked;
+    
     [Header("Stats")]
     public float health = 20f;
     public float maxHealth = 20f;
@@ -26,7 +28,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
-        
+
+    void Awake()
+    {
+        hasInvoked = false;
+    }
     private void Start()
     {
         health = maxHealth;
@@ -73,8 +79,13 @@ public class PlayerHealth : MonoBehaviour
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
         Destroy(player);
+
+        if (hasInvoked == false)
+        {
+            onDeath?.Invoke();
+            hasInvoked = true;
+        }
         
-        onDeath?.Invoke();
         
         /*
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
