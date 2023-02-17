@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public static Vector2 lastCheckPointPos;
     public static bool checkPointActive;
+    public static bool newSceneLoaded;
 
     #region Singleton
 
@@ -41,8 +42,7 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        previousScene = SceneManager.GetActiveScene().buildIndex;
-        Debug.LogFormat("Previous scene is now: {0}", previousScene);
+        
 
         //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2 (lastCheckPointPos.position.x, lastCheckPointPos.position.y + _offsetY);
 
@@ -53,27 +53,51 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    void ResetRespawnPosition(Scene scene, LoadSceneMode mode)
+    /*
+    void SetPreviousScene(Scene old, Scene current)
     {
-        Debug.LogFormat("Comparing last scene, {0} to new scene, {1}", SceneManager.GetActiveScene().buildIndex, previousScene);
-        
-        if (SceneManager.GetActiveScene().buildIndex != previousScene)
+        //previousScene = SceneManager.GetActiveScene().buildIndex;
+        //Debug.LogFormat("Previous scene is now: {0}", previousScene);
+
+        Debug.LogFormat("Comparing last scene, {0} to new scene, {1}", old.buildIndex, current.buildIndex);
+        if (old != current)
         {
+            newSceneLoaded = true;
             Debug.Log("New scene, reset checkpoint");
             checkPointActive = false;
         }
         else
         {
+            newSceneLoaded = false;
             Debug.Log("Same scene, does not reset checkpoint");
+        }
+    }
+    
+    void ResetRespawnPosition(Scene scene, LoadSceneMode mode)
+    {
+        
+        
+        if (SceneManager.GetActiveScene().buildIndex != previousScene)
+        {
+            
+            
+        }
+        else
+        {
+            
+            
         }
         
     }
+    */
 
+    /*
     void MovePlayerOnSpawn()
     {
         //Debug.Log("Moving Player");
         GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(lastCheckPointPos.x, lastCheckPointPos.y + _offsetY);
     }
+    */
     
     /*
     public static CurrentInput CurrentInput;
@@ -88,15 +112,22 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         _playerControls.Pausing.Enable();
-        SceneManager.sceneLoaded += ResetRespawnPosition;
-        PlayerMovement.SpawnSet += MovePlayerOnSpawn;
+        //SceneManager.sceneLoaded += ResetRespawnPosition;
+        //SceneManager.activeSceneChanged += SetPreviousScene;
+        //PlayerMovement.SpawnSet += MovePlayerOnSpawn;
+
+        PlayerHealth.onDeath += Restart;
     }
 
     private void OnDisable()
     {
         _playerControls.Pausing.Disable();
-        SceneManager.sceneLoaded -= ResetRespawnPosition;
-        PlayerMovement.SpawnSet -= MovePlayerOnSpawn;
+        //SceneManager.sceneLoaded -= ResetRespawnPosition;
+        //SceneManager.activeSceneChanged -= SetPreviousScene;
+        //PlayerMovement.SpawnSet -= MovePlayerOnSpawn;
+
+        PlayerHealth.onDeath -= Restart;
+
     }
     /*
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device)
@@ -122,12 +153,15 @@ public class GameManager : MonoBehaviour
     }
     */
 
+    
     public void Restart()
     {
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+        newSceneLoaded = false;
+        Debug.Log("Same scene, does not reset checkpoint");
+
     }
+    
 
     public void PauseGame()
     {

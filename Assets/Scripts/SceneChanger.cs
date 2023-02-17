@@ -12,6 +12,9 @@ public class SceneChanger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneName);
+            GameManager.newSceneLoaded = true;
+            GameManager.checkPointActive = false;
+            Debug.Log("New scene, reset checkpoint");
         }
     }
 }

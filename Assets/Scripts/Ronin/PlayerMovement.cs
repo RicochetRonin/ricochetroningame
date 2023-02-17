@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Moving.Enable();
 
-        _playerHealth.onDeath += SetCanMove;
+        PlayerHealth.onDeath += SetCanMove;
         
         SceneManager.sceneLoaded += Spawn;
     }
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Moving.Disable();
         
-        _playerHealth.onDeath -= SetCanMove;
+        PlayerHealth.onDeath -= SetCanMove;
         
         SceneManager.sceneLoaded -= Spawn;
     }
@@ -124,6 +124,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Spawn(Scene scene, LoadSceneMode mode)
     {
+        transform.position = new Vector2(GameManager.lastCheckPointPos.x, GameManager.lastCheckPointPos.y);
+        if (SpawnSet != null) SpawnSet();
+        
+        /*
         if (GameManager.checkPointActive == false)
         {
             //Debug.Log("Set To Player Start Position");
@@ -136,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(GameManager.lastCheckPointPos.x, GameManager.lastCheckPointPos.y);
             if (SpawnSet != null) SpawnSet();
         }
+        */
     }
     void Update()
     {
