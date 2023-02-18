@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -68,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJumping;
     private bool wallSliding;
     private bool prevWallSliding;
+    
+    public delegate void SpawnPointEventHandler();
+    public static event SpawnPointEventHandler SpawnSet;
 
     #region Initialization
 
@@ -75,14 +79,18 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls.Moving.Enable();
 
-        _playerHealth.onDeath += SetCanMove;
+        PlayerHealth.onDeath += SetCanMove;
+        
+        SceneManager.sceneLoaded += Spawn;
     }
 
     private void OnDisable()
     {
         _playerControls.Moving.Disable();
         
-        _playerHealth.onDeath -= SetCanMove;
+        PlayerHealth.onDeath -= SetCanMove;
+        
+        SceneManager.sceneLoaded -= Spawn;
     }
 
     private void Awake()
@@ -98,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         playerInputDir = 0;
         wallSliding = false;
         prevWallSliding = false;
-
     }
 
     void SetControls()
@@ -115,6 +122,26 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    void Spawn(Scene scene, LoadSceneMode mode)
+    {
+        transform.position = new Vector2(GameManager.lastCheckPointPos.x, GameManager.lastCheckPointPos.y);
+        if (SpawnSet != null) SpawnSet();
+        
+        /*
+        if (GameManager.checkPointActive == false)
+        {
+            //Debug.Log("Set To Player Start Position");
+            GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
+            if (SpawnSet != null) SpawnSet();
+        }
+        else
+        {
+            //Debug.Log("Spawn Player at last checkpoint");
+            transform.position = new Vector2(GameManager.lastCheckPointPos.x, GameManager.lastCheckPointPos.y);
+            if (SpawnSet != null) SpawnSet();
+        }
+        */
+    }
     void Update()
     {
         //Debug.Log("Velocity " + rb.velocity);
@@ -174,8 +201,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
-            soundManager.Footstep();
-        }
+                  }
 
         //If movement is left and Ronin is facing right and Ronin is on ground or platform, flip Ronin to face left
         else if (dir.x < 0 && isFacingRight && (coll.onGround || coll.onPlatform))
@@ -183,7 +209,6 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
-            soundManager.Footstep();
         }
 
         //If Ronin is on the wall and not on the ground and not on platform and not wall jumping, flip the sprite depending on which wall Ronin is on.
@@ -257,6 +282,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 1;
             rb.velocity = (new Vector2(playerInputDir * speed, rb.velocity.y));
+            if (playerInputDir != 0 && coll.onGround) { soundManager.Footstep(); }
         }
     }
 

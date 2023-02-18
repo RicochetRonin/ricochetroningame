@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a071926cdb0864f8c903b4cc097f3ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSteps: 1.5
+  timeBetweenSteps: 0.4
   audioSource: {fileID: 1623776478102170011}
   abilitySource: {fileID: 471983825203051786}
   footsteps:
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 5446883133551815284}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 9008115518942717753}
   _reflectAnimator: {fileID: 7442198271507870336}
   _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
   detectCoolDown: 0.26
