@@ -7,11 +7,13 @@ public class Parallax : MonoBehaviour
     [SerializeField] private Vector2 parallaxEffectMultiplier;
     [SerializeField] private bool infiniteHorizontal;
     [SerializeField] private bool infiniteVertical;
+    [SerializeField] private float pixelsPerUnit;
 
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
     private float textureUnitSizeY;
+    
 
     private void Start()
     {
@@ -19,9 +21,9 @@ public class Parallax : MonoBehaviour
         lastCameraPosition = cameraTransform.position;
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
-        Debug.LogFormat("Width:{0}, Height: {1}, PPU: {2}", texture.width, texture.height, sprite.pixelsPerUnit);
-        textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
-        textureUnitSizeY = texture.height / sprite.pixelsPerUnit;
+        Debug.LogFormat("Width:{0}, Height: {1}, PPU: {2}", texture.width, texture.height, pixelsPerUnit);
+        textureUnitSizeX = texture.width / pixelsPerUnit;
+        textureUnitSizeY = texture.height / pixelsPerUnit;
     }
 
     private void LateUpdate() {
