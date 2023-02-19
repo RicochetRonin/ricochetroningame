@@ -19,14 +19,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (playerHealth.getIsDead())
+/*        if (playerHealth.getIsDead())
         {
             Debug.Log("Player is dead at: " + transform.position);
             transform.position = respawnPoint;
             Debug.Log("Player's current position after set to respawn point: " + transform.position);
             playerHealth.setIsDead(false);
             playerHealth.resetPlayer();
-        }
+        }*/
 
         // This is resetting ronin's position, but at random locations
         // getCanTakeDamage and setCanTakeDamage may be called in different script

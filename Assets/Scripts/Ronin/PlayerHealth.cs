@@ -141,7 +141,7 @@ public class PlayerHealth : MonoBehaviour
         return this.canTakeDamage;
     }
 
-    public void setIsDead(bool b)
+/*    public void setIsDead(bool b)
     {
         this.isDead = b;
     } 
@@ -149,7 +149,7 @@ public class PlayerHealth : MonoBehaviour
     public bool getIsDead()
     {
         return this.isDead;
-    }
+    }*/
 
     public void setMaxHealth(float newMaxHp)
     {
