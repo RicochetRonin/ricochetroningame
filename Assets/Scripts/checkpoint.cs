@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class checkpoint : MonoBehaviour
 {
+    public delegate void SpawnPointEventHandler();
+    public static event SpawnPointEventHandler SpawnSet;
+    
     [SerializeField] private Sprite activeSprite, inactiveSprite;
     private SpriteRenderer _spriteRenderer;
 
@@ -25,11 +28,12 @@ public class checkpoint : MonoBehaviour
     {  
         if (other.gameObject.CompareTag("Player"))
         {
-            /*Debug.Log(transform);*/
-            GameManager.lastCheckPointPos = transform;
+            GameManager.checkPointActive = true;
+            GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
+            if (SpawnSet != null) SpawnSet();
             _spriteRenderer.sprite = activeSprite;
-            /*Debug.LogFormat("Last Checkpoint: {0}", gameObject.name);*/
-            /*Debug.Log("Checkpoint!");*/
+            Debug.LogFormat("Last Checkpoint is now set to: {0}", gameObject.name);
+
         } 
     }
 }

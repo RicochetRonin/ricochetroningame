@@ -8,6 +8,7 @@ public class PlayerReflect : MonoBehaviour
     [Header("References")]
     [Tooltip("The sprite to change colors when detecting")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private RoninSoundManager soundManager;
     
     [SerializeField] private Animator _reflectAnimator;
     [SerializeField] private GameObject _hitParticleSytem;
@@ -20,8 +21,8 @@ public class PlayerReflect : MonoBehaviour
     [SerializeField] private Color _cursorColor;
     [SerializeField] private Color _cursorColorDeplete;
     [SerializeField] private LayerMask groundLayer, aimLayer;
-    [SerializeField] private AudioClip SlashSFX;
-    [SerializeField] private AudioClip SlashBulletSFX;
+    //[SerializeField] private AudioClip SlashSFX;
+    //[SerializeField] private AudioClip SlashBulletSFX;
 
     public bool canReflect;
     private float reflectTime;
@@ -76,7 +77,8 @@ public class PlayerReflect : MonoBehaviour
             _collider.enabled = true;
             if (!bulletReflected)
             {
-                AudioManager.PlayOneShotSFX(SlashSFX);
+                //AudioManager.PlayOneShotSFX(SlashSFX);
+                soundManager.Slash();
             }
             canReflect = false;
             _reflectAnimator.SetTrigger("Reflect");
@@ -103,7 +105,8 @@ public class PlayerReflect : MonoBehaviour
             _spriteRenderer.sortingOrder = 0;
             other.tag = "PlayerBullet";
             bulletReflected = true;
-            AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            //AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            soundManager.Reflect();
             bulletReflected = false;
             SleepManager.Sleep(5);
             CinemachineShake.Shake(0.15f, 3f);
@@ -116,7 +119,8 @@ public class PlayerReflect : MonoBehaviour
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
             bulletReflected = true;
-            AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            //AudioManager.PlayOneShotSFX(SlashBulletSFX);
+            soundManager.Reflect();
             bulletReflected = false;
             SleepManager.Sleep(2);
             CinemachineShake.Shake(0.1f, 2f);

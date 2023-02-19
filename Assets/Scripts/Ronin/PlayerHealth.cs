@@ -11,8 +11,10 @@ public class PlayerHealth : MonoBehaviour
 
     //Attach to the HurtBox Gameobject, child of Player, with BoxCollider2D,and Sprite Renderer
     public delegate void OnDeath();
-    public event OnDeath onDeath;
+    public static event OnDeath onDeath;
 
+    private bool hasInvoked;
+    
     [Header("Stats")]
     public float health = 20f;
     public float maxHealth = 20f;
@@ -27,8 +29,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
 
-    private bool isDead = false;
+    // private bool isDead = false;
         
+    void Awake()
+    {
+        hasInvoked = false;
+    }
     private void Start()
     {
         health = maxHealth;
@@ -71,19 +77,32 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         canTakeDamage = false;
-        onDeath?.Invoke();
         _movement.canMove = false;
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
-        /*Destroy(player);*/
-        /*SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);*/
-        isDead = true;
+        // isDead = true;
+        
+        Destroy(player);
+
+        if (hasInvoked == false)
+        {
+            onDeath?.Invoke();
+            hasInvoked = true;
+        }
+        
+        
+        /*
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.newSceneLoaded = false;
+        Debug.Log("Same scene, does not reset checkpoint");
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("KillBox"))
         {
+            Debug.Log("Death by KillBox");
             StartCoroutine("DeathSequence");
         }
     }
@@ -135,5 +154,6 @@ public class PlayerHealth : MonoBehaviour
     public void setMaxHealth(float newMaxHp)
     {
         this.maxHealth = newMaxHp;
+        this.health = newMaxHp;
     }
 }

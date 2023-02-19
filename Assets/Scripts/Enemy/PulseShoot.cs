@@ -53,7 +53,8 @@ public class PulseShoot : EnemyShoot
 
             //Locking enemy aim during firing sequence
             if (origCanAim) { _enemyAim.setCanAim(false); }
-            
+            bodyAnimator.SetTrigger("Shoot");
+
             for (int i = 0; i < numProjectiles; i++)
             {
                 
