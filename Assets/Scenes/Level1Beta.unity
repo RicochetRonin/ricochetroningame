@@ -14600,6 +14600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670256639}
   - component: {fileID: 1670256640}
+  - component: {fileID: 1670256641}
   m_Layer: 0
   m_Name: layer 1
   m_TagString: Untagged
@@ -14615,8 +14616,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670256638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.5, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalPosition: {x: -2.8149, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -14667,13 +14668,31 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 26.880001, y: 8.9643755}
+  m_DrawMode: 2
+  m_Size: {x: 129.39304, y: 13.095996}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1670256641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670256638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021b58051d021fd4dbac6fbc0eb43dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxEffectMultiplier: {x: 1, y: 0}
+  infiniteHorizontal: 1
+  infiniteVertical: 0
+  pixelsPerUnit: 64
+  textureWidth: 2688
+  textureHeight: 896
 --- !u!1001 &1680642981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16313,9 +16332,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7731809287525566492, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566492, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566492, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566492, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.0976
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566492, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809287525566493, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.x
-      value: 42
+      value: 126.36134
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287525566493, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.y
@@ -16334,8 +16373,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287525566494, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureWidth
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566494, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: pixelsPerUnit
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566494, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureHeight
+      value: 896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287525566494, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_RootOrder
@@ -16347,7 +16398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16385,9 +16436,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Parallax Background
       objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963403, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963403, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963403, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963403, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1486
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963403, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809287688963404, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.x
-      value: 42
+      value: 126.36134
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287688963404, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.y
@@ -16406,12 +16477,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731809287688963405, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureWidth
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963405, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: pixelsPerUnit
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963405, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureHeight
+      value: 896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809287688963405, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111502, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111502, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111502, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111502, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.6334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111502, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809288209111503, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.x
-      value: 42
+      value: 126.36134
       objectReference: {fileID: 0}
     - target: {fileID: 7731809288209111503, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.y
@@ -16430,12 +16533,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731809288209111504, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureWidth
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111504, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: pixelsPerUnit
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111504, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureHeight
+      value: 896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809288209111504, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947831, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947831, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947831, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947831, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.9309
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947831, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809289251947832, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.x
-      value: 42
+      value: 126.36134
       objectReference: {fileID: 0}
     - target: {fileID: 7731809289251947832, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Size.y
@@ -16454,8 +16589,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731809289251947833, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureWidth
+      value: 2688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947833, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: pixelsPerUnit
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947833, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: textureHeight
+      value: 896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731809289251947833, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
@@ -16764,6 +16911,8 @@ MonoBehaviour:
   infiniteHorizontal: 1
   infiniteVertical: 0
   pixelsPerUnit: 0
+  textureWidth: 0
+  textureHeight: 0
 --- !u!1 &1869533053
 GameObject:
   m_ObjectHideFlags: 0
