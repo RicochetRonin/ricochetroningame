@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private float playerInputDir;
     private float wallJumpDirection;
     private float initalWallJumpX;
-    private bool wallJumpInputSwtich;
+    private bool wallJumpInputSwitch;
 
 
     //[SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -72,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
     
     public delegate void SpawnPointEventHandler();
     public static event SpawnPointEventHandler SpawnSet;
+
+    private float coyoteTime = 0.5f;
+    private float coyoteTimeCounter;
 
     #region Initialization
 
@@ -167,9 +170,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (coll.onGround || coll.onPlatform || coll.onWall)
         {
-            jumpCount = 1;
+            Debug.Log("resetting coyote time");
+            coyoteTimeCounter = coyoteTime;
+            /*            jumpCount = 1;*/
+            jumpCount = 0;
             dashCount = 0;
 
+        } else
+        {
+            Debug.Log("coyote time counting down");
+            coyoteTimeCounter -= Time.deltaTime;
         }
         dashCooldownText.SetCooldown(canDash);
 
@@ -253,14 +263,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Handles walljumping when players presses movement keys mid air
-        if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwtich) && ! wallSliding)
+        if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwitch) && ! wallSliding)
         {
             rb.gravityScale = 1;
-            if (!wallJumpInputSwtich)
+            if (!wallJumpInputSwitch)
             {
                 if(initalWallJumpX != playerInputDir)
                 {
-                    wallJumpInputSwtich = true;
+                    wallJumpInputSwitch = true;
                 }
             }
         }
@@ -304,35 +314,47 @@ public class PlayerMovement : MonoBehaviour
     }
     
     //Makes Ronin jump when called
+    //Walk off the platform, jump within coyote time, double jump (meaning maxJumps wasn't met)
+    //Walk off platform, don't jump within coyote time, only get one jump?
     private void Jump()
     {
-        if (jumpCount < maxJumps)
+        //if less than max jumps, can double jump
+        //BUT, if walking off a platform, coyote time starts counting down
+        Debug.Log("jumping");
+        /*        if (jumpCount < maxJumps)*/
+        if (coyoteTimeCounter > 0f)
         {
-            //If the Ronin is wall clinging, wall jump
-            if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
+            if (jumpCount < maxJumps)
             {
-                wallJumping = true;
-                if (coll.onRightWall)
+                //If the Ronin is wall clinging, wall jump
+                if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
                 {
-                    wallJumpDirection = -1;
+                    wallJumping = true;
+                    if (coll.onRightWall)
+                    {
+                        wallJumpDirection = -1;
+                    }
+
+                    else { wallJumpDirection = 1; }
+
+                    rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
+                    initalWallJumpX = playerInputDir;
+                    wallJumpInputSwitch = false;
+
+                }
+                else
+                {
+                    rb.velocity = Vector2.up * jumpVelocity;
                 }
 
-                else { wallJumpDirection = 1; }
+                /*            if (jumpCount == 1 && coyoteTimeCounter > 0f)*/
 
-                rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
-                initalWallJumpX = playerInputDir;
-                wallJumpInputSwtich = false;
-
+                //AudioManager.PlayOneShotSFX(jumpSFX);
+                soundManager.Jump();
+                /*            Debug.Log(jumpCount);*/
+                jumpCount++;
+                /*            Debug.Log(jumpCount);*/
             }
-
-            else
-            {
-                rb.velocity = Vector2.up * jumpVelocity; 
-            }
-
-            //AudioManager.PlayOneShotSFX(jumpSFX);
-            soundManager.Jump();
-            jumpCount++;
         }
     }
 
@@ -375,14 +397,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (coll.onWall)
             {
-                if ((wallJumpDirection == 1 && coll.onRightWall) || (wallJumpDirection == -1 && coll.onLeftWall) || wallJumpInputSwtich)
+                if ((wallJumpDirection == 1 && coll.onRightWall) || (wallJumpDirection == -1 && coll.onLeftWall) || wallJumpInputSwitch)
                 {
                     wallJumping = false;
                 }
 
             }
 
-            else if (wallJumpInputSwtich && playerInputDir != 0)
+            else if (wallJumpInputSwitch && playerInputDir != 0)
             {
                 wallJumping = false;
             }
