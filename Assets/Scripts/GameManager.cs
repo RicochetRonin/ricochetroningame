@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
         //PlayerMovement.SpawnSet += MovePlayerOnSpawn;
 
         PlayerHealth.onDeath += Restart;
+        PlayerOutOfView.outOfView += Restart;
     }
 
     private void OnDisable()
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
         //PlayerMovement.SpawnSet -= MovePlayerOnSpawn;
 
         PlayerHealth.onDeath -= Restart;
+        PlayerOutOfView.outOfView -= Restart;
 
     }
     /*
