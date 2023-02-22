@@ -26,7 +26,7 @@ public class AbilityManager : MonoBehaviour
 
     private PlayerControls _playerControls;
 
-    public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
+    //public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
 
 
     #region Initialization
@@ -59,7 +59,7 @@ public class AbilityManager : MonoBehaviour
     private void Update()
     {
         //Updating Omni Reflect UI
-        omniCooldownText.SetCooldown(canOmniReflect);
+        //omniCooldownText.SetCooldown(canOmniReflect);
         if (omniReflectActive)
         {
             return;
