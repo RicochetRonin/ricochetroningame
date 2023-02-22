@@ -23,6 +23,8 @@ public class SniperShoot : EnemyShoot
         {
             if (canAttack)
             {
+                bodyAnimator.SetTrigger("Shoot");
+                armAnimator.SetTrigger("Shoot");
                 MasterPool.SpawnBullet(bulletPrefab, transform.position, transform.rotation);
                 AudioManager.PlayOneShotSFX(sniperSFX);
 

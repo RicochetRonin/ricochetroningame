@@ -23,7 +23,8 @@ public class PlayerWallCheck : MonoBehaviour
     [SerializeField] private float collisionRadius = 0.2f;
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
 
-    [SerializeField] private AudioClip landingSFX;
+    //[SerializeField] private AudioClip landingSFX;
+    [SerializeField] private RoninSoundManager soundManager;
 
     private Color debugCollisionColor = Color.green;
 
@@ -51,7 +52,8 @@ public class PlayerWallCheck : MonoBehaviour
     void Landing()
     {
         // Debug.Log("Landing");
-        AudioManager.PlayOneShotSFX(landingSFX);
+        //AudioManager.PlayOneShotSFX(landingSFX);
+        soundManager.Land();
         wasInAir = false;
     }
 

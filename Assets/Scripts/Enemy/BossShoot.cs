@@ -42,7 +42,8 @@ public class BossShoot : EnemyShoot
                 }
                 else if (phaseNum == 3)
                 {
-                    StartCoroutine(PulseSpawn(6, 3, 1f, 0.1f, 1f));
+                    //StartCoroutine(PulseSpawn(6, 3, 1f, 0.1f, 1f));
+                    StartCoroutine(PulseSpawn(4, 4, 0.2f, 0.1f, 1f));
                     canAttack = false;
                     StartCoroutine("ResetCoolDown");
                 }

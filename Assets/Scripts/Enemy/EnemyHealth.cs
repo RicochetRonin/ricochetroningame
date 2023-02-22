@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("References")]
     [SerializeField] private SpriteRenderer enemyGraphics;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject enemyAim;
     [SerializeField] private Animator animator;
 
     [Header("Stats")]
@@ -52,6 +53,7 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
+        enemyAim.SetActive(false);
         //animator.SetTrigger("Death");
         yield return new WaitForSeconds(deathDelay);
         Destroy(enemy);
