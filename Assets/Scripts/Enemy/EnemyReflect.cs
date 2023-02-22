@@ -13,6 +13,9 @@ public class EnemyReflect : MonoBehaviour
     [SerializeField] private float reflectCoolDown = 2f;
     [SerializeField] private Color _color;
 
+    [Header("References")]
+    [SerializeField] private Animator bodyAnimator;
+
     void Start()
     {
 
@@ -25,15 +28,25 @@ public class EnemyReflect : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+
             //Change bullet to friendly
+            bodyAnimator.SetTrigger("Reflect");
             collision.GetComponent<SpriteRenderer>().color =  _color;
             
             collision.tag = "EnemyBullet";
 
             _aimCol.enabled = false;
-            _spriteRenderer.color = new Color(255f, 0f, 0f, 0.25f);
+            _spriteRenderer.color = new Color(255f, 0f, 0f, 1.0f);
             _spriteRenderer.sortingOrder = 1;
             StartCoroutine("ResetReflect");
+
+        }
+
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+
+            //Change bullet to friendly
+            bodyAnimator.SetTrigger("Reflect");
 
         }
     }
@@ -41,7 +54,7 @@ public class EnemyReflect : MonoBehaviour
     private IEnumerator ResetReflect()
     {
         yield return new WaitForSeconds(reflectCoolDown);
-        _spriteRenderer.color = new Color(255f, 0f, 0f, 0.5f);
+        _spriteRenderer.color = new Color(255f, 255f, 255f, 1.0f);
         _aimCol.enabled = true;
     }
 }

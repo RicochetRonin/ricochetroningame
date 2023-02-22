@@ -12,7 +12,8 @@ public class CutsceneDialogue : MonoBehaviour
     private int index;
 
     public Cutscenes controls;
-    [SerializeField] private string sceneName;
+
+    public bool allowFade;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class CutsceneDialogue : MonoBehaviour
     {
         textComponent.text = string.Empty;
         StartDialogue();
+        allowFade = false;
     }
 
     void StartDialogue()
@@ -78,8 +80,8 @@ public class CutsceneDialogue : MonoBehaviour
         }
         else
         {
+            allowFade = true;
             gameObject.SetActive(false);
-            SceneManager.LoadScene(sceneName);
         }
     }
 }

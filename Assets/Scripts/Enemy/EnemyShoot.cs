@@ -12,8 +12,8 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
     [SerializeField] private AudioClip ShootSFX;
-    [SerializeField] private Animator bodyAnimator;
-    [SerializeField] private Animator armAnimator;
+    [SerializeField] protected Animator bodyAnimator;
+    [SerializeField] protected Animator armAnimator;
     private GameObject target;
 
 
