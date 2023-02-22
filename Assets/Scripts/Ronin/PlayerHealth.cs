@@ -30,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerReflect _playerReflect;
     [SerializeField] private GameObject gameManager;
 
+    // private bool isDead = false;
+        
     void Awake()
     {
         hasInvoked = false;
@@ -82,6 +84,8 @@ public class PlayerHealth : MonoBehaviour
         _movement.canMove = false;
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
+        // isDead = true;
+        
         Destroy(player);
 
         if (hasInvoked == false)
@@ -117,6 +121,20 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    // If calling in PlayerController script, this needs to be public
+    // or else that script can't access this method.
+    // If not destroying player, need to explicitly call this method somewhere
+    // instead of relying on Start()
+    public void resetPlayer()
+    {
+        health = maxHealth;
+        _movement._animator.SetFloat("PlayerHealth", (health));
+        healthBar.SetPlayerHealth(health, maxHealth);
+        canTakeDamage = true;
+        _movement.canMove = true;
+        _playerReflect.canReflect = true;
+    }
+
     public void setCanTakeDamage(bool canTakeDamage)
     {
         this.canTakeDamage = canTakeDamage;
@@ -126,6 +144,16 @@ public class PlayerHealth : MonoBehaviour
     {
         return this.canTakeDamage;
     }
+
+/*    public void setIsDead(bool b)
+    {
+        this.isDead = b;
+    } 
+
+    public bool getIsDead()
+    {
+        return this.isDead;
+    }*/
 
     public void setMaxHealth(float newMaxHp)
     {
