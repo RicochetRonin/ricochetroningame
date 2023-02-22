@@ -149,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (isDashing)
         {
-            Debug.Log("Dash dash!");
             return;
         }
         

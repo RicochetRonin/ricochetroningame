@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
+    [SerializeField] private GameObject gameManager;
 
     void Awake()
     {
@@ -55,6 +56,9 @@ public class PlayerHealth : MonoBehaviour
         if (canTakeDamage)
         {
             health -= damage;
+
+            GameManager manager = gameManager.GetComponent<GameManager>();
+            manager.DamageTaken(damage);
 
             //Change Ronin color to red, and then reset to normal color
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
