@@ -11184,11 +11184,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
-      value: 0.68876994
-=======
       value: 0.000005722046
->>>>>>> origin/dev
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11260,7 +11256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68876994
+      value: 0.6887697
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11543,10 +11539,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1577987522}
     m_Modifications:
-    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: lines.Array.data[1]
-      value: go to the tower
-      objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314697, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_Name
       value: NPC (1)
@@ -14700,7 +14692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1577987522
 Transform:
   m_ObjectHideFlags: 0
