@@ -28,7 +28,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
-    [SerializeField] private GameObject gameManager;
 
     // private bool isDead = false;
         
@@ -59,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
         {
             health -= damage;
 
-            GameManager manager = gameManager.GetComponent<GameManager>();
+            GameManager manager = FindObjectOfType<GameManager>();
             manager.DamageTaken(damage);
 
             //Change Ronin color to red, and then reset to normal color
