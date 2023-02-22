@@ -29,11 +29,11 @@ public class PlayerMovement : MonoBehaviour
     private float playerInputDir;
     private float wallJumpDirection;
     private float initalWallJumpX;
-    private bool wallJumpInputSwtich;
+    private bool wallJumpInputSwitch;
 
 
     //[SerializeField] private AudioClip jumpSFX, dashSFX;
-    
+
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpVelocity = 10f;
@@ -47,8 +47,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
+    [SerializeField] private float coyoteTime = 0.25f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
 
-    [Header("References")] [SerializeField]
+[Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
 
     [SerializeField] private PlayerAim _playerAim;
@@ -72,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
     
     public delegate void SpawnPointEventHandler();
     public static event SpawnPointEventHandler SpawnSet;
+
+    private float coyoteTimeCounter;
+    private bool jumpBuffer;
 
     #region Initialization
 
@@ -106,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputDir = 0;
         wallSliding = false;
         prevWallSliding = false;
+        jumpBuffer = false;
     }
 
     void SetControls()
@@ -165,11 +171,18 @@ public class PlayerMovement : MonoBehaviour
         JumpCheck();
         WallJumpingCheck();
 
-        if (coll.onGround || coll.onPlatform || coll.onWall)
+/*        Debug.Log(jumpCount);*/
+        if ((coll.onGround || coll.onPlatform || coll.onWall) && !jumpBuffer)
         {
-            jumpCount = 1;
+            /*            Debug.Log("resetting coyote time");*/
+            coyoteTimeCounter = coyoteTime;
+            jumpCount = 0;
             dashCount = 0;
 
+        } else
+        {
+/*            Debug.Log("coyote time counting down");*/
+            coyoteTimeCounter -= Time.deltaTime;
         }
         dashCooldownText.SetCooldown(canDash);
 
@@ -253,14 +266,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Handles walljumping when players presses movement keys mid air
-        if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwtich) && ! wallSliding)
+        if (wallJumping && (initalWallJumpX == playerInputDir || playerInputDir == 0 || !wallJumpInputSwitch) && ! wallSliding)
         {
             rb.gravityScale = 1;
-            if (!wallJumpInputSwtich)
+            if (!wallJumpInputSwitch)
             {
                 if(initalWallJumpX != playerInputDir)
                 {
-                    wallJumpInputSwtich = true;
+                    wallJumpInputSwitch = true;
                 }
             }
         }
@@ -321,19 +334,31 @@ public class PlayerMovement : MonoBehaviour
 
                 rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
                 initalWallJumpX = playerInputDir;
-                wallJumpInputSwtich = false;
-
+                wallJumpInputSwitch = false;
             }
-
+            else if (coyoteTimeCounter < 0f)
+            {
+                StartCoroutine(JumpBuffer());
+                rb.velocity = Vector2.up * jumpVelocity;
+                jumpCount++;
+            } 
             else
             {
-                rb.velocity = Vector2.up * jumpVelocity; 
+                StartCoroutine(JumpBuffer());
+                rb.velocity = Vector2.up * jumpVelocity;
             }
 
             //AudioManager.PlayOneShotSFX(jumpSFX);
             soundManager.Jump();
             jumpCount++;
-        }
+    }
+    }
+
+    public IEnumerator JumpBuffer()
+    {
+        jumpBuffer = true;
+        yield return new WaitForSeconds(jumpBufferTime);
+        jumpBuffer = false;
     }
 
     private void WallSlideCheck()
@@ -375,14 +400,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (coll.onWall)
             {
-                if ((wallJumpDirection == 1 && coll.onRightWall) || (wallJumpDirection == -1 && coll.onLeftWall) || wallJumpInputSwtich)
+                if ((wallJumpDirection == 1 && coll.onRightWall) || (wallJumpDirection == -1 && coll.onLeftWall) || wallJumpInputSwitch)
                 {
                     wallJumping = false;
                 }
 
             }
 
-            else if (wallJumpInputSwtich && playerInputDir != 0)
+            else if (wallJumpInputSwitch && playerInputDir != 0)
             {
                 wallJumping = false;
             }
