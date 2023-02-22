@@ -132,11 +132,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[0]
-      value: Testing
+      value: The bandit hideout - once a temple devoted to the art of Yadomejutsu,
+        now full of power hungry scoundrels.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[1]
+      value: The Ronin knows this place well, knows who waits at the top.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384769118728389, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000041008
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384769118728389, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -72
       objectReference: {fileID: 0}
     - target: {fileID: 9066384769399483112, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: m_Pivot.x
