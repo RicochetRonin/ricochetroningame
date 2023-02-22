@@ -35,7 +35,7 @@ public class Parallax : MonoBehaviour
 
     private void LateUpdate() {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        Debug.LogFormat("Delta Movement: {0}", deltaMovement);
+        //Debug.LogFormat("Delta Movement: {0}", deltaMovement);
         transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y);
         lastCameraPosition = cameraTransform.position;
 
@@ -43,9 +43,9 @@ public class Parallax : MonoBehaviour
         {
             if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
             {
-                Debug.LogFormat("{0} is greater than {1}", cameraTransform.position.x - transform.position.x, textureUnitSizeX);
+                //Debug.LogFormat("{0} is greater than {1}", cameraTransform.position.x - transform.position.x, textureUnitSizeX);
                 float offsetPositionX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
-                Debug.LogFormat("Offset X Position: {0}", offsetPositionX);
+                //Debug.LogFormat("Offset X Position: {0}", offsetPositionX);
                 transform.position = new Vector3(cameraTransform.position.x + offsetPositionX, transform.position.y);
             }
         }
