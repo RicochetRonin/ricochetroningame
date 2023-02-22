@@ -10,6 +10,7 @@ public class AbilityManager : MonoBehaviour
     private bool omniReflectActive;
 
     [Header("References")]
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _aimGraphics;
     [SerializeField] private GameObject _omniReflectHitBox;
@@ -64,7 +65,6 @@ public class AbilityManager : MonoBehaviour
         {
             return;
         }
-    
     }
 
     private IEnumerator OmniReflect()
@@ -73,6 +73,7 @@ public class AbilityManager : MonoBehaviour
         {
             canOmniReflect = false;
             omniReflectActive = true;
+            player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
             _omniReflectGraphics.SetActive(true);
 
@@ -84,6 +85,7 @@ public class AbilityManager : MonoBehaviour
             _omniReflectGraphics.SetActive(false);
             _aim.SetActive(true);
             omniReflectActive = false;
+            player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
             yield return new WaitForSeconds(omniReflectCooldown);
             canOmniReflect = true;
         }
