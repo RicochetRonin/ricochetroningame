@@ -5,23 +5,33 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: edc6310ca287e8149b70ee08adc4570e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cutscene1.unity
     guid: e5414dd95c292b54392816fe3d8425e1
   - enabled: 1
     path: Assets/Scenes/Level1Beta.unity
     guid: e1712dac1baac8c4093c4a98061bb8a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cutscene2.unity
     guid: fc5870d741af08443a1b7b62967d9ac3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2Beta.unity
     guid: b1923258105602841a11448239c43bd5
+<<<<<<< HEAD
+  - enabled: 0
+=======
   - enabled: 1
+    path: Assets/Scenes/Cutscene3.unity
+    guid: 3086f093e67561849a3534a89dc1222c
+  - enabled: 1
+>>>>>>> origin/dev
     path: Assets/Scenes/Level3Beta.unity
     guid: 56b115b47f4dc3743af3da8bc6007d6c
+  - enabled: 1
+    path: Assets/Scenes/Cutscene4.unity
+    guid: 6f8820c2dbf96344c99f3ed519ce0ad4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 754dd35568c6bb24a8d235712ba210e2, type: 2}
