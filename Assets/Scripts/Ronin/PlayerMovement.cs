@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //[SerializeField] private AudioClip jumpSFX, dashSFX;
-    
+
     [Header("Stats")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpVelocity = 10f;
@@ -47,8 +47,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 2f;
     [SerializeField] private float dashCoolDown = 2f;
+    [SerializeField] private float coyoteTime = 0.25f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
 
-    [Header("References")] [SerializeField]
+[Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
 
     [SerializeField] private PlayerAim _playerAim;
@@ -73,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
     public delegate void SpawnPointEventHandler();
     public static event SpawnPointEventHandler SpawnSet;
 
-    private float coyoteTime = 0.5f;
     private float coyoteTimeCounter;
+    private bool jumpBuffer;
 
     #region Initialization
 
@@ -109,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputDir = 0;
         wallSliding = false;
         prevWallSliding = false;
+        jumpBuffer = false;
     }
 
     void SetControls()
@@ -168,17 +171,17 @@ public class PlayerMovement : MonoBehaviour
         JumpCheck();
         WallJumpingCheck();
 
-        if (coll.onGround || coll.onPlatform || coll.onWall)
+/*        Debug.Log(jumpCount);*/
+        if ((coll.onGround || coll.onPlatform || coll.onWall) && !jumpBuffer)
         {
-            Debug.Log("resetting coyote time");
+            /*            Debug.Log("resetting coyote time");*/
             coyoteTimeCounter = coyoteTime;
-            /*            jumpCount = 1;*/
             jumpCount = 0;
             dashCount = 0;
 
         } else
         {
-            Debug.Log("coyote time counting down");
+/*            Debug.Log("coyote time counting down");*/
             coyoteTimeCounter -= Time.deltaTime;
         }
         dashCooldownText.SetCooldown(canDash);
@@ -314,48 +317,48 @@ public class PlayerMovement : MonoBehaviour
     }
     
     //Makes Ronin jump when called
-    //Walk off the platform, jump within coyote time, double jump (meaning maxJumps wasn't met)
-    //Walk off platform, don't jump within coyote time, only get one jump?
     private void Jump()
     {
-        //if less than max jumps, can double jump
-        //BUT, if walking off a platform, coyote time starts counting down
-        Debug.Log("jumping");
-        /*        if (jumpCount < maxJumps)*/
-        if (coyoteTimeCounter > 0f)
+        if (jumpCount < maxJumps)
         {
-            if (jumpCount < maxJumps)
+            //If the Ronin is wall clinging, wall jump
+            if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
             {
-                //If the Ronin is wall clinging, wall jump
-                if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
+                wallJumping = true;
+                if (coll.onRightWall)
                 {
-                    wallJumping = true;
-                    if (coll.onRightWall)
-                    {
-                        wallJumpDirection = -1;
-                    }
-
-                    else { wallJumpDirection = 1; }
-
-                    rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
-                    initalWallJumpX = playerInputDir;
-                    wallJumpInputSwitch = false;
-
-                }
-                else
-                {
-                    rb.velocity = Vector2.up * jumpVelocity;
+                    wallJumpDirection = -1;
                 }
 
-                /*            if (jumpCount == 1 && coyoteTimeCounter > 0f)*/
+                else { wallJumpDirection = 1; }
 
-                //AudioManager.PlayOneShotSFX(jumpSFX);
-                soundManager.Jump();
-                /*            Debug.Log(jumpCount);*/
-                jumpCount++;
-                /*            Debug.Log(jumpCount);*/
+                rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
+                initalWallJumpX = playerInputDir;
+                wallJumpInputSwitch = false;
             }
-        }
+            else if (coyoteTimeCounter < 0f)
+            {
+                StartCoroutine(JumpBuffer());
+                rb.velocity = Vector2.up * jumpVelocity;
+                jumpCount++;
+            } 
+            else
+            {
+                StartCoroutine(JumpBuffer());
+                rb.velocity = Vector2.up * jumpVelocity;
+            }
+
+            //AudioManager.PlayOneShotSFX(jumpSFX);
+            soundManager.Jump();
+            jumpCount++;
+    }
+    }
+
+    public IEnumerator JumpBuffer()
+    {
+        jumpBuffer = true;
+        yield return new WaitForSeconds(jumpBufferTime);
+        jumpBuffer = false;
     }
 
     private void WallSlideCheck()
