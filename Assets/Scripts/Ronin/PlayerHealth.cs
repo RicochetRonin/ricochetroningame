@@ -58,8 +58,7 @@ public class PlayerHealth : MonoBehaviour
         {
             health -= damage;
 
-            GameManager manager = FindObjectOfType<GameManager>();
-            manager.DamageTaken(damage);
+            GameManager.damageTaken += damage;
 
             //Change Ronin color to red, and then reset to normal color
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
@@ -89,6 +88,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (hasInvoked == false)
         {
+            GameManager.playerDeaths += 1;
             onDeath?.Invoke();
             hasInvoked = true;
         }

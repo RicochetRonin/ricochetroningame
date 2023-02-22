@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
     private float currentTime;
 
     //Stat Tracking
-    public static float damageTaken;
-    public static int enemiesKilled;
-    public static int bulletsReflected;
-    public static int playerDeaths;
+    public static float damageTaken = 0f;
+    public static int enemiesKilled = 0;
+    public static int bulletsReflected = 0;
+    public static int playerDeaths = 0;
     public Time totalTime;
     private static string timerVal = "";
 
@@ -198,26 +198,15 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    public void DamageTaken(float damage)
-    {
-        damageTaken += damage;
-    }
-
-    public void EnemyKilled()
-    {
-        enemiesKilled += 1;
-    }
-
-    public void BulletsReflected()
-    {
-        bulletsReflected += 1;
-    }
-
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         newSceneLoaded = false;
         Debug.Log("Same scene, does not reset checkpoint");
+        Debug.Log("Bullets reflected: " + bulletsReflected);
+        Debug.Log("Enemies Killed: " + enemiesKilled);
+        Debug.Log("Damage Taken: " + damageTaken);
+        Debug.Log("Player deaths: " + playerDeaths);
     }
     
 

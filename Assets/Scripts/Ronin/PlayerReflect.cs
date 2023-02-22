@@ -115,6 +115,7 @@ public class PlayerReflect : MonoBehaviour
 
         if (other.CompareTag("PlayerBullet"))
         {
+            GameManager.bulletsReflected++;
             //TODO: Change from being a GetComponent to switching the case of the bullet
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
             particle.GetComponent<ParticleSystem>().Play();
