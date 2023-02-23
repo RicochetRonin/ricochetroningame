@@ -818,6 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a90fcf17378df4a8660620d613f54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5446883131945973391}
   _aim: {fileID: 5446883132418489050}
   _aimGraphics: {fileID: 5446883133551815285}
   _omniReflectHitBox: {fileID: 8746761832924246201}

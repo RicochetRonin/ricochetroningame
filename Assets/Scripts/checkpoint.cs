@@ -11,13 +11,13 @@ public class checkpoint : MonoBehaviour
     [SerializeField] private Sprite activeSprite, inactiveSprite;
     private SpriteRenderer _spriteRenderer;
 
-    /*
-    void Awake()
+
+/*    void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-    */
-    
+    }*/
+
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();

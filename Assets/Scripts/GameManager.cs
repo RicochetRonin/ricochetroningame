@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public enum CurrentInput
 {
@@ -24,6 +26,20 @@ public class GameManager : MonoBehaviour
     public static Vector2 lastCheckPointPos;
     public static bool checkPointActive;
     public static bool newSceneLoaded;
+
+    public TextMeshProUGUI timerText;
+    private float startTime;
+    private float currentTime;
+
+    //Stat Tracking
+    public static float damageTaken = 0f;
+    public static int enemiesKilled = 0;
+    public static int bulletsReflected = 0;
+    public static int playerDeaths = 0;
+    public Time totalTime;
+    private static string timerVal = "";
+
+
 
     #region Singleton
 
@@ -131,6 +147,33 @@ public class GameManager : MonoBehaviour
         PlayerOutOfView.outOfView -= Restart;
 
     }
+
+    void Start()
+    {
+        //Start a new timer
+        if (timerVal == "") 
+        {
+            startTime = Time.time;
+        }
+        //Keep the running timer
+        else
+        {
+            timerText.text = timerVal;
+        }
+    }
+
+    void Update()
+    {
+        float t = Time.time - startTime;
+        currentTime = t;
+
+        string minutes = ((int)t / 60).ToString();
+        string seconds = (t % 60).ToString("f2");
+
+        timerVal = minutes + ":" + seconds;
+        timerText.text = timerVal;
+    }
+
     /*
     private void onInputDeviceChange(InputUser user, InputUserChange change, InputDevice device)
     {
@@ -155,13 +198,15 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         newSceneLoaded = false;
         Debug.Log("Same scene, does not reset checkpoint");
-
+        Debug.Log("Bullets reflected: " + bulletsReflected);
+        Debug.Log("Enemies Killed: " + enemiesKilled);
+        Debug.Log("Damage Taken: " + damageTaken);
+        Debug.Log("Player deaths: " + playerDeaths);
     }
     
 
@@ -205,6 +250,7 @@ public class GameManager : MonoBehaviour
     {
         return FindObjectOfType<PlayerHealth>();
     }
+
 
 
 }
