@@ -45,6 +45,14 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
+        canContinue = false;
+        GameManager.bulletsReflected = 0;
+        GameManager.enemiesKilled = 0;
+        GameManager.damageTaken = 0;
+        GameManager.playerDeaths = 0;
+        GameManager.startTime = Time.time;
+
+
         Time.timeScale = 1;
         statsUI.SetActive(false);
         SceneManager.LoadScene(sceneName);

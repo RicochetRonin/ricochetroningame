@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public static bool newSceneLoaded;
 
     public TextMeshProUGUI timerText;
-    private float startTime;
+    public static float startTime;
     private float currentTime;
 
     //Stat Tracking
