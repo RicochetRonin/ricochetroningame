@@ -30,22 +30,21 @@ public class BossShoot : EnemyShoot
             {
                 if (phaseNum == 1)
                 {
-                    StartCoroutine(PulseSpawn(2, 5, 0.5f, 0.1f, 1f));
+                    StartCoroutine(PulseSpawn(2, 1, 0f, 0.05f, 1f));
                     canAttack = false;
-                    StartCoroutine("ResetCoolDown");
+                    StartCoroutine("ResetAttack");
                 }
                 else if (phaseNum == 2)
                 {
-                    StartCoroutine(PulseSpawn(4, 4, 0.2f, 0.1f, 1f));
+                    StartCoroutine(PulseSpawn(4, 1, 0f, 0.05f, 1f));
                     canAttack = false;
-                    StartCoroutine("ResetCoolDown");
+                    StartCoroutine("ResetAttack");
                 }
                 else if (phaseNum == 3)
                 {
-                    //StartCoroutine(PulseSpawn(6, 3, 1f, 0.1f, 1f));
-                    StartCoroutine(PulseSpawn(4, 4, 0.2f, 0.1f, 1f));
+                    StartCoroutine(PulseSpawn(5, 1, 1f, 0.1f, 1f));
                     canAttack = false;
-                    StartCoroutine("ResetCoolDown");
+                    StartCoroutine("ResetAttack");
                 }
             }
         }
@@ -56,7 +55,7 @@ public class BossShoot : EnemyShoot
         phaseNum = newPhaseNumber;
     }
 
-   private IEnumerator PulseSpawn(int numProjectiles, int numPulse, float timeBetweenPulse, float timeBetweenShot, float pulseRadius)
+    private IEnumerator PulseSpawn(int numProjectiles, int numPulse, float timeBetweenPulse, float timeBetweenShot, float pulseRadius)
     {
         float angleStep = 360 / numProjectiles;
         float currAngle = 0;
@@ -93,5 +92,19 @@ public class BossShoot : EnemyShoot
 
 
         
+    }
+
+    IEnumerator ResetAttack()
+    {
+        if (phaseNum == 3)
+        {
+            yield return new WaitForSeconds(1.5f);
+            canAttack = true;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            canAttack = true;
+        }
     }
 }

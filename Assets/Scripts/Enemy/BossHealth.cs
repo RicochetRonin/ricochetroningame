@@ -30,6 +30,7 @@ public class BossHealth : MonoBehaviour
 
     private bool isAlive;
     private bool movedOffScreen1, movedOffScreen2 = false;
+    private bool moving = false;
 
     private void Start()
     {
@@ -42,18 +43,32 @@ public class BossHealth : MonoBehaviour
     {
         var step = 4.0f * Time.deltaTime;
 
+        if (moving == true)
+        {
+            enemy.GetComponentInChildren<BossShoot>().enabled = false;
+        }
+        else
+        {
+            enemy.GetComponentInChildren<BossShoot>().enabled = true;
+        }
+
         if (health == 20 && movedOffScreen1 == false)
         {
-            bossShoot.SetPhaseNumber(2);
             ClearBullets();
+
+            moving = true;
+
             player.GetComponent<PlayerMovement>().canMove = false;
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, offScreenPositions[0].transform.position, step);
             
 
             if (enemy.transform.position == offScreenPositions[0].transform.position)
             {
+                moving = false;
+                
                 movedOffScreen1 = true;
                 teleportBoss(2);
+                bossShoot.SetPhaseNumber(2);
                 player.GetComponent<PlayerMovement>().canMove = true;
                 enemy.GetComponentInChildren<LaserAim>().enabled = true;
                 enemy.GetComponentInChildren<LineRenderer>().enabled = true;
@@ -63,16 +78,21 @@ public class BossHealth : MonoBehaviour
 
         if (health == 10 && movedOffScreen2 == false)
         {
-            bossShoot.SetPhaseNumber(3);
             ClearBullets();
+
+            moving = true;
+
             player.GetComponent<PlayerMovement>().canMove = false;
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, offScreenPositions[1].transform.position, step);
 
 
             if (enemy.transform.position == offScreenPositions[1].transform.position)
             {
+                moving = false;
+
                 movedOffScreen2 = true;
                 teleportBoss(3);
+                bossShoot.SetPhaseNumber(3);
                 player.GetComponent<PlayerMovement>().canMove = true;
                 reflectHitbox.SetActive(true);
             }

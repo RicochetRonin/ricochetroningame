@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public Health healthBar; //Attach UI/Health to this slot
+    public Health_Manager healthUI; //Attach UI/Health to this slot
 
     //Attach to the HurtBox Gameobject, child of Player, with BoxCollider2D,and Sprite Renderer
     public delegate void OnDeath();
@@ -29,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private PlayerReflect _playerReflect;
 
+    // private bool isDead = false;
+        
     void Awake()
     {
         hasInvoked = false;
@@ -37,8 +39,8 @@ public class PlayerHealth : MonoBehaviour
     {
         health = maxHealth;
         _movement._animator.SetFloat("PlayerHealth", (health));
-        healthBar.SetPlayerHealth(health, maxHealth);
         canTakeDamage = true;
+        healthUI.SetHealth(health);
     }
 
     private void Update()
@@ -56,6 +58,8 @@ public class PlayerHealth : MonoBehaviour
         {
             health -= damage;
 
+            GameManager.damageTaken += damage;
+
             //Change Ronin color to red, and then reset to normal color
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
@@ -66,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
             canTakeDamage = false;
             _movement._animator.SetFloat("PlayerHealth", (health));
-            healthBar.SetPlayerHealth(health, maxHealth);
+            healthUI.PlayerHit(health, damage);
         }
 
 
@@ -78,10 +82,13 @@ public class PlayerHealth : MonoBehaviour
         _movement.canMove = false;
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
+        // isDead = true;
+        
         Destroy(player);
 
         if (hasInvoked == false)
         {
+            GameManager.playerDeaths += 1;
             onDeath?.Invoke();
             hasInvoked = true;
         }
@@ -113,6 +120,19 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    // If calling in PlayerController script, this needs to be public
+    // or else that script can't access this method.
+    // If not destroying player, need to explicitly call this method somewhere
+    // instead of relying on Start()
+    public void resetPlayer()
+    {
+        health = maxHealth;
+        _movement._animator.SetFloat("PlayerHealth", (health));
+        canTakeDamage = true;
+        _movement.canMove = true;
+        _playerReflect.canReflect = true;
+    }
+
     public void setCanTakeDamage(bool canTakeDamage)
     {
         this.canTakeDamage = canTakeDamage;
@@ -122,6 +142,16 @@ public class PlayerHealth : MonoBehaviour
     {
         return this.canTakeDamage;
     }
+
+/*    public void setIsDead(bool b)
+    {
+        this.isDead = b;
+    } 
+
+    public bool getIsDead()
+    {
+        return this.isDead;
+    }*/
 
     public void setMaxHealth(float newMaxHp)
     {

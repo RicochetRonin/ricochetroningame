@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reflectCoolDown: 2
   _color: {r: 0, g: 0, b: 0, a: 0}
+  bodyAnimator: {fileID: 0}
 --- !u!1 &2444954852788393464
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +392,8 @@ MonoBehaviour:
   canAttack: 0
   firstShotDelay: 2
   ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
-  bodyAnimator: {fileID: 0}
-  armAnimator: {fileID: 0}
+  bodyAnimator: {fileID: 7119103428685423675}
+  armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
   PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
 --- !u!114 &5331561396427457707
@@ -412,8 +413,8 @@ MonoBehaviour:
   canAttack: 1
   firstShotDelay: 2
   ShootSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
-  bodyAnimator: {fileID: 0}
-  armAnimator: {fileID: 0}
+  bodyAnimator: {fileID: 7119103428685423675}
+  armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
   sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
 --- !u!1 &5871813232451694208

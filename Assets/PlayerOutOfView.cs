@@ -17,6 +17,8 @@ public class PlayerOutOfView : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         target = vcam.LookAt;
+        vcam.transform.position = target.transform.position;
+        cam.transform.position = target.transform.position;
     }
 
     void Update()
