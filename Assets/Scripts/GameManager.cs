@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public static Vector2 lastCheckPointPos;
     public static bool checkPointActive;
-    public static bool newSceneLoaded;
+    public static bool newSceneLoaded = true;
 
     #region Singleton
 
