@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     private int previousScene;
 
     public GameObject PauseMenu;
-    public GameObject FinishedText;
     [SerializeField] private float _offsetY;
 
     public static Vector2 lastCheckPointPos;
@@ -229,12 +228,7 @@ public class GameManager : MonoBehaviour
             PauseMenu.SetActive(false);
         }
     }
-
-    public void FinishGame()
-    {
-        Time.timeScale = 0;
-        FinishedText.SetActive(true);
-    }
+    
     public void ExitGame()
     {
         Debug.Log("Quitting Game");
