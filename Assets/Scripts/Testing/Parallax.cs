@@ -13,6 +13,8 @@ public class Parallax : MonoBehaviour
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
     private float textureUnitSizeY;
+
+    public bool manualTextureSize;
     
 
     private void Start()
@@ -22,21 +24,23 @@ public class Parallax : MonoBehaviour
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
         Debug.LogFormat("Width:{0}, Height: {1}, PPU: {2}", texture.width, texture.height, pixelsPerUnit);
-        /*
-        textureUnitSizeX = texture.width / pixelsPerUnit;
-        textureUnitSizeY = texture.height / pixelsPerUnit;
-        */
         
-        ///*
-        textureUnitSizeX = textureWidth / pixelsPerUnit;
-        textureUnitSizeY = textureHeight / pixelsPerUnit;
-        //*/
+        if (manualTextureSize)
+        {
+            textureUnitSizeX = textureWidth / pixelsPerUnit;
+            textureUnitSizeY = textureHeight / pixelsPerUnit;
+        }
+        else
+        {
+            textureUnitSizeX = texture.width / pixelsPerUnit;
+            textureUnitSizeY = texture.height / pixelsPerUnit;
+        }
     }
 
-    private void LateUpdate() {
+    private void Update() {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         //Debug.LogFormat("Delta Movement: {0}", deltaMovement);
-        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y);
+        transform.position += new Vector3(deltaMovement.x * -parallaxEffectMultiplier.x, deltaMovement.y * -parallaxEffectMultiplier.y);
         lastCameraPosition = cameraTransform.position;
 
         if (infiniteHorizontal)
