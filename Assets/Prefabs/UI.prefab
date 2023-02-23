@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 4610760091431362653}
   - component: {fileID: 4610760091431362651}
   - component: {fileID: 4610760091431362650}
+  - component: {fileID: 4863901615535440706}
   m_Layer: 5
   m_Name: Health_Icon
   m_TagString: Untagged
@@ -349,3 +350,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &4863901615535440706
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610760091431362648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 56cf65add50a7514bb143387574fb3fb, type: 2}
+  - {fileID: 7400000, guid: 8cad8576c2b4eca4cad8083f892e1b8d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
