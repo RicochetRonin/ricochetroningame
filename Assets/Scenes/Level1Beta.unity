@@ -16481,106 +16481,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 1800
-      objectReference: {fileID: 0}
-    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: parallaxEffectMultiplier.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 1800
-      objectReference: {fileID: 0}
-    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: parallaxEffectMultiplier.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4535920167168560337, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389591114210066648, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389591114210066648, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389591114210066648, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 5448269407599802933, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 5448269407599802933, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5448269407599802933, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 5817836601451289161, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 5817836601451289161, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5817836601451289161, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525857002647390030, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525857002647390030, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525857002647390030, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650697901020448308, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650697901020448308, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650697901020448308, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
-      objectReference: {fileID: 0}
-    - target: {fileID: 7636582585234660397, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5000002
-      objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -16628,18 +16528,6 @@ PrefabInstance:
     - target: {fileID: 7731809287650245360, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_Name
       value: Parallax Background
-      objectReference: {fileID: 0}
-    - target: {fileID: 8296976559238714962, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureWidth
-      value: 2688
-      objectReference: {fileID: 0}
-    - target: {fileID: 8296976559238714962, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: pixelsPerUnit
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 8296976559238714962, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
-      propertyPath: textureHeight
-      value: 896
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
@@ -20661,7 +20549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2167765001202113161, guid: 6bc7dcc407dd9874cb8d09a9291c70d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 532
       objectReference: {fileID: 0}
     - target: {fileID: 2167765001202113161, guid: 6bc7dcc407dd9874cb8d09a9291c70d0, type: 3}
       propertyPath: m_LocalPosition.y
