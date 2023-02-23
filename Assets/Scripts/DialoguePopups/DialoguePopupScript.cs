@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialoguePopupScript : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class DialoguePopupScript : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private GameObject interactText;
+    [SerializeField] private GameObject dialogueText;
     public LayerMask groundMask;
+    public bool inRange = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -20,6 +23,7 @@ public class DialoguePopupScript : MonoBehaviour
             Vector2.Distance(transform.position, collision.transform.position), groundMask))
         {
             interactText.SetActive(true);
+            inRange = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -27,6 +31,8 @@ public class DialoguePopupScript : MonoBehaviour
         if (collision.CompareTag(playerTag))
         {
             interactText.SetActive(false);
+            dialogueText.SetActive(false);
+            inRange = false;
         }   
     }
 }
