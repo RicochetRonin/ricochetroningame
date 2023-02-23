@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 7627156656451861297}
+  dialoguePopup: {fileID: 7627156656490314701}
 --- !u!1 &7627156656451861297
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,9 +404,11 @@ MonoBehaviour:
   playerTag: Player
   interactDistance: 3
   interactText: {fileID: 7627156656301890989}
+  dialogueText: {fileID: 7627156656451861297}
   groundMask:
     serializedVersion: 2
     m_Bits: 0
+  inRange: 0
 --- !u!61 &2067625586178497703
 BoxCollider2D:
   m_ObjectHideFlags: 0

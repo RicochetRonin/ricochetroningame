@@ -28,6 +28,7 @@ public class NPCDialogueScript : MonoBehaviour
 
     void Talk()
     {
+        Debug.Log("Talk");
         if (linesIndex >= lines.Length - 1)
         {
             linesIndex = 0;
