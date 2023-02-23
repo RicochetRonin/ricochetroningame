@@ -19,6 +19,7 @@ public class Health_Manager : MonoBehaviour
         health_loop.frameRate = 15;
 
         myAnimation = GetComponent<Animation>();
+        Debug.Log(myAnimation.ToString());
                 
     }
 
