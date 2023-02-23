@@ -19,8 +19,9 @@ public class Health_Manager : MonoBehaviour
         health_loop.frameRate = 15;
 
         myAnimation = GetComponent<Animation>();
-        
+                
     }
+
 
     private void Health_Update( float currentHealth )
     {
@@ -47,5 +48,12 @@ public class Health_Manager : MonoBehaviour
         Health_Update(finalHealth);
 
     }
+
+    public void SetHealth(float health)
+    {
+        health_text.text = health.ToString();
+    }
+    
+
 
 }
