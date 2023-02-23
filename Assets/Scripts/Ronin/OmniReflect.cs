@@ -14,6 +14,7 @@ public class OmniReflect : MonoBehaviour
     {
         if (other.CompareTag("PlayerBullet"))
         {
+            GameManager.bulletsReflected++;
             GameObject particle = Instantiate(_hitParticleSytem, other.transform.position, other.transform.rotation);
                        
             particle.GetComponent<ParticleSystem>().Play();
