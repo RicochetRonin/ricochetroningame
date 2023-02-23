@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Code from Celeste's Movement by Mix and Jam: https://www.youtube.com/watch?v=STyY26a_dPY&ab_channel=MixandJam
     //Code from Better Jumping in Unity With Four Lines of Code by Board To Bits Games: https://www.youtube.com/watch?v=7KiK0Aqtmzc&ab_channel=BoardToBitsGames
 
-    public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
+    //public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
 
     //Attach to the Player Gameobject, with Rigidbody2D, BoxCollider2D, and Transform
     [Header("Private Components")]
@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
 /*            Debug.Log("coyote time counting down");*/
             coyoteTimeCounter -= Time.deltaTime;
         }
-        dashCooldownText.SetCooldown(canDash);
+        //dashCooldownText.SetCooldown(canDash);
 
         //Setting the Ronin animator values
         _animator.SetBool("OnWall", (coll.onWall));
