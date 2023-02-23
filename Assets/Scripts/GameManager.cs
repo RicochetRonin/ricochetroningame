@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public static bool newSceneLoaded;
 
     public TextMeshProUGUI timerText;
-    private float startTime;
+    public static float startTime;
     private float currentTime;
 
     //Stat Tracking
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public static int bulletsReflected = 0;
     public static int playerDeaths = 0;
     public Time totalTime;
-    private static string timerVal = "";
+    public static string timerVal = "";
 
 
 

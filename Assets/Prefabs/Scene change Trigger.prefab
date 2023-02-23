@@ -124,4 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8728f024ab1944b940ad55ed15c405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Floors 4-6
+  sceneName: Cutscene2
+  timeText: {fileID: 0}
+  bulletsReflectedText: {fileID: 0}
+  enemiesKilledText: {fileID: 0}
+  damageTakenText: {fileID: 0}
+  playerdeathsText: {fileID: 0}
+  statsUI: {fileID: 0}
