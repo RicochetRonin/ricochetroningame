@@ -27,7 +27,7 @@ public class InteractScript : MonoBehaviour
     }
     void EnableText()
     {
-        Debug.Log("Enable text");
+        //Debug.Log("Enable text");
         if (dialoguePopup.inRange)
         {
             dialogueText.SetActive(true);

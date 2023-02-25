@@ -13,35 +13,42 @@ public class Health_Manager : MonoBehaviour
 
     public AnimationClip health_loop;
 
+    private Animator animator;
+
 
     public void Start()
     {
-        health_loop.frameRate = 15;
+        health_loop.frameRate = 2;
 
         myAnimation = GetComponent<Animation>();
-                
+
+        animator = GetComponent<Animator>();
     }
 
 
-    private void Health_Update( float currentHealth )
+    private void Health_Update(float currentHealth)
     {
-        health_loop.frameRate = Mathf.Abs(10 - currentHealth);
+        //health_loop.frameRate = Mathf.Abs(10 - currentHealth);
         // Set Loop speed to be dependant on currentHealth
     }
-    public void PlayerHit( float currentHealth, float damageDealt )
+    public void PlayerHit(float currentHealth, float damageDealt)
     {
+        //Debug.Log("Damage dealt " + damageDealt);
         float finalHealth = currentHealth - damageDealt;
-        
+
         health_text.text = finalHealth.ToString();
 
-        if ( damageDealt == 2 )
+        if (damageDealt == 2)
         {
-            myAnimation.Play("Heart_2HP_Hit");
+            //Debug.Log("Player damage 2 anim");
+            //myAnimation.Play("Heart_2HP_Hit");
+            animator.SetTrigger("2HP");
             // Play 2HP Animation
         }
         else
         {
-            myAnimation.Play("Heart_5HP_Hit");
+            //myAnimation.Play("Heart_5HP_Hit");
+            animator.SetTrigger("5HP");
             // Play 5HP Animation
         }
 
@@ -53,7 +60,7 @@ public class Health_Manager : MonoBehaviour
     {
         health_text.text = health.ToString();
     }
-    
+
 
 
 }
