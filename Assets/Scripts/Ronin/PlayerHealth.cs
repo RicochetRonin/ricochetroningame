@@ -57,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (canTakeDamage)
         {
+            healthUI.PlayerHit(health, damage);
             health -= damage;
 
             GameManager.damageTaken += damage;
@@ -71,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
 
             canTakeDamage = false;
             _movement._animator.SetFloat("PlayerHealth", (health));
-            healthUI.PlayerHit(health, damage);
+            
         }
 
 
