@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public static event OnDeath onDeath;
 
     private bool hasInvoked;
-    
+
     [Header("Stats")]
     public float health = 20f;
     public float maxHealth = 20f;
@@ -22,7 +22,8 @@ public class PlayerHealth : MonoBehaviour
     public bool canTakeDamage = true;
     [SerializeField] private float deathDelay = 2f;
 
-    [Header("References")] [SerializeField]
+    [Header("References")]
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private GameObject player;
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerReflect _playerReflect;
 
     // private bool isDead = false;
-        
+
     void Awake()
     {
         hasInvoked = false;
@@ -53,9 +54,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        
+
         if (canTakeDamage)
         {
+            healthUI.PlayerHit(health, damage);
             health -= damage;
 
             GameManager.damageTaken += damage;
@@ -70,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
 
             canTakeDamage = false;
             _movement._animator.SetFloat("PlayerHealth", (health));
-            healthUI.PlayerHit(health, damage);
+            
         }
 
 
@@ -83,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         _playerReflect.canReflect = false;
         yield return new WaitForSeconds(deathDelay);
         // isDead = true;
-        
+
         Destroy(player);
 
         if (hasInvoked == false)
@@ -92,8 +94,8 @@ public class PlayerHealth : MonoBehaviour
             onDeath?.Invoke();
             hasInvoked = true;
         }
-        
-        
+
+
         /*
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameManager.newSceneLoaded = false;
@@ -143,15 +145,15 @@ public class PlayerHealth : MonoBehaviour
         return this.canTakeDamage;
     }
 
-/*    public void setIsDead(bool b)
-    {
-        this.isDead = b;
-    } 
+    /*    public void setIsDead(bool b)
+        {
+            this.isDead = b;
+        } 
 
-    public bool getIsDead()
-    {
-        return this.isDead;
-    }*/
+        public bool getIsDead()
+        {
+            return this.isDead;
+        }*/
 
     public void setMaxHealth(float newMaxHp)
     {
