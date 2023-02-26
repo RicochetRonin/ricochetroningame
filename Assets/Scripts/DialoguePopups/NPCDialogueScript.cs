@@ -16,6 +16,7 @@ public class NPCDialogueScript : MonoBehaviour
 
     private void Awake()
     {
+        lineText= GetComponent<TextMeshProUGUI>();
         playerControls = new PlayerControls();
         playerControls.Interaction.ProgressDialogue.performed += _ => Talk();
     }
@@ -28,7 +29,7 @@ public class NPCDialogueScript : MonoBehaviour
 
     void Talk()
     {
-        Debug.Log("Talk");
+        //Debug.Log("Talk");
         if (linesIndex >= lines.Length - 1)
         {
             linesIndex = 0;

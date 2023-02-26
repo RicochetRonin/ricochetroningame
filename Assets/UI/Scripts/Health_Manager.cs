@@ -36,6 +36,11 @@ public class Health_Manager : MonoBehaviour
         //Debug.Log("Damage dealt " + damageDealt);
         float finalHealth = currentHealth - damageDealt;
 
+        if (finalHealth < 0)
+        {
+            finalHealth = 0;
+        }
+
         health_text.text = finalHealth.ToString();
 
         if (damageDealt == 2)
