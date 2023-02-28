@@ -64,7 +64,7 @@ MonoBehaviour:
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
   enemyAim: {fileID: 7695376096122040967}
-  animator: {fileID: 0}
+  animator: {fileID: 8021816589797830326}
   health: 2
   maxHealth: 2
   iframes: 0.5
@@ -142,7 +142,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1814951457
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -1882407010, guid: 0d5d89bc685fcb64da8b58e1115dac69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -294,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &110838209887596407
 Transform:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1814951457
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1618853197, guid: c1c9cabfb89d4ae4c942ee5bbe4fd980, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
