@@ -56,8 +56,9 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
+        enemyGraphics.color = new Color(255f, 255f, 255f);
         enemyAim.SetActive(false);
-        //animator.SetTrigger("Death");
+        animator.SetTrigger("Death");
         yield return new WaitForSeconds(deathDelay);
         Destroy(enemy);
 

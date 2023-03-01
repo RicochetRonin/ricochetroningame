@@ -296,11 +296,11 @@ GameObject:
   - component: {fileID: 1038390822030671773}
   m_Layer: 0
   m_Name: EnemyAim
-  m_TagString: EnemyHitBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &278410013720032784
 Transform:
   m_ObjectHideFlags: 0

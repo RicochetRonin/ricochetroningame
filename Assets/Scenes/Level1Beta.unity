@@ -15121,11 +15121,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.940048
+      value: 9.937576
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.28421
+      value: 1.28422
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17764,6 +17764,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944194590349837019, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -23480,7 +23492,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1116590171
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.01999998, y: 0, z: 0}

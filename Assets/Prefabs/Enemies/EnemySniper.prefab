@@ -64,7 +64,7 @@ MonoBehaviour:
   enemyGraphics: {fileID: 3991562925944510654}
   enemy: {fileID: 4780582318247601425}
   enemyAim: {fileID: 8599987345269046681}
-  animator: {fileID: 0}
+  animator: {fileID: 4258016368471862181}
   health: 2
   maxHealth: 2
   iframes: 0.5
@@ -402,7 +402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7029782365322869467
 Transform:
   m_ObjectHideFlags: 0
