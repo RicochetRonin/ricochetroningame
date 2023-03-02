@@ -17825,6 +17825,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321691581090971038, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 485898742469753878, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944194590349837019, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
+      propertyPath: parallaxEffectMultiplier.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7731809287650245359, guid: 5a968f6afe859bb4bb31990b946743ab, type: 3}
       propertyPath: m_RootOrder
       value: 12

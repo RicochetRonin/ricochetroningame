@@ -62,6 +62,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2480015839
     locked: 0
+  - name: Exterior
+    uniqueID: 1333961187
+    locked: 0
   - name: Player
     uniqueID: 10358651
     locked: 0
