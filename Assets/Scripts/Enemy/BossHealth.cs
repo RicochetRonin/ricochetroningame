@@ -10,6 +10,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject reflectHitbox;
+    [SerializeField] private GameObject bossInteractable;
 
     [Header("Move/Teleport Locations")]
     [SerializeField] private GameObject phase2Teleport;
@@ -104,6 +105,7 @@ public class BossHealth : MonoBehaviour
             reflectHitbox.SetActive(false);
             ClearBullets();
             StartCoroutine("DeathSequence");
+            bossInteractable.SetActive(true);
         }
     }
 
