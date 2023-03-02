@@ -10,6 +10,8 @@ public class InteractScript : MonoBehaviour
 
     [SerializeField] private GameObject dialogueText;
 
+    public DialoguePopupScript dialoguePopup;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -25,9 +27,14 @@ public class InteractScript : MonoBehaviour
     }
     void EnableText()
     {
+        //Debug.Log("Enable text");
+        if (dialoguePopup.inRange)
+        {
+            dialogueText.SetActive(true);
+            this.GetComponent<TextMeshProUGUI>().text = " ";
+            playerControls.Disable();
+        }
         
-        dialogueText.SetActive(true);
-        this.GetComponent<TextMeshProUGUI>().text = " ";
     }
     void DisableText()
     {
