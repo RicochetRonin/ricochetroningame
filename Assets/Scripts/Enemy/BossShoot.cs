@@ -26,6 +26,12 @@ public class BossShoot : EnemyShoot
     {
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
+            if (setAttackStarted == false)
+            {
+                StartCoroutine("SetCanAttack");
+                setAttackStarted = true;
+            }
+
             if (canAttack)
             {
                 if (phaseNum == 1)
@@ -52,6 +58,7 @@ public class BossShoot : EnemyShoot
 
     public void SetPhaseNumber(int newPhaseNumber)
     {
+        setAttackStarted = false;
         phaseNum = newPhaseNumber;
     }
 
