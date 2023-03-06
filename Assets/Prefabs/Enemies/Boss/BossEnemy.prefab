@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508558382324583792}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -6.770898, y: -0.93511486, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 3979420935539364538}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!58 &6218130175039808065
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -395,6 +395,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 7119103428685423675}
   armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
+  setAttackStarted: 0
   PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
 --- !u!114 &5331561396427457707
 MonoBehaviour:
@@ -416,6 +417,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 7119103428685423675}
   armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
+  setAttackStarted: 0
   sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
 --- !u!1 &5871813232451694208
 GameObject:
@@ -483,6 +485,7 @@ MonoBehaviour:
   player: {fileID: 0}
   animator: {fileID: 7119103428685423675}
   reflectHitbox: {fileID: 2381050849164192065}
+  bossInteractable: {fileID: 0}
   phase2Teleport: {fileID: 0}
   phase3Teleport: {fileID: 0}
   offScreenPositions:
@@ -567,7 +570,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 938853374, guid: 610a96e3a4f75244da2e166ac6453384, type: 3}
+  m_Sprite: {fileID: -992667579, guid: b6472dbe94bb9cd44995b265bad3515c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -588,7 +591,7 @@ Animator:
   m_GameObject: {fileID: 8198053846485185899}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd21c22a83fdb2545a5bf6aae2180d05, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5993f10a80b72754e80ad19851930ef5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -104,8 +104,13 @@ public class BossHealth : MonoBehaviour
             isAlive = false;
             reflectHitbox.SetActive(false);
             ClearBullets();
-            StartCoroutine("DeathSequence");
+            animator.SetTrigger("Death");
             bossInteractable.SetActive(true);
+            enemy.GetComponentInChildren<BossShoot>().enabled = false;
+            enemy.GetComponentInChildren<LaserAim>().enabled = false;
+            enemy.GetComponentInChildren<LineRenderer>().enabled = false;
+            enemy.GetComponentInChildren<SniperShoot>().enabled = false;
+
         }
     }
 
@@ -150,14 +155,6 @@ public class BossHealth : MonoBehaviour
             canTakeDamage = false;
         }
 
-
-    }
-
-    private IEnumerator DeathSequence()
-    {
-        //animator.SetTrigger("Death");
-        yield return new WaitForSeconds(deathDelay);
-        Destroy(enemy);
 
     }
 
