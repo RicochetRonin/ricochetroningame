@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     public static bool checkPointActive;
     public static bool newSceneLoaded = true;
 
-    public TextMeshProUGUI timerText;
     public static float startTime;
     private float currentTime;
 
@@ -154,11 +153,6 @@ public class GameManager : MonoBehaviour
         {
             startTime = Time.time;
         }
-        //Keep the running timer
-        else
-        {
-            timerText.text = timerVal;
-        }
     }
 
     void Update()
@@ -170,7 +164,6 @@ public class GameManager : MonoBehaviour
         string seconds = (t % 60).ToString("f2");
 
         timerVal = minutes + ":" + seconds;
-        timerText.text = timerVal;
     }
 
     /*

@@ -19,6 +19,7 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] private EnemyHealth enemyHealth;
 
     private GameObject target;
+    private bool setAttackStarted = false;
 
 
     private void Start()
@@ -28,9 +29,7 @@ public class ShotgunShoot : MonoBehaviour
 
     private void OnEnable()
     {
-
         canAttack = false;
-        StartCoroutine("SetCanAttack");
     }
 
     IEnumerator SetCanAttack()
@@ -45,6 +44,12 @@ public class ShotgunShoot : MonoBehaviour
 
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
+            if (setAttackStarted == false)
+            {
+                StartCoroutine("SetCanAttack");
+                setAttackStarted = true;
+            }
+
             if (canAttack && enemyHealth.getIsAlive())
             {
                 canAttack = false;
