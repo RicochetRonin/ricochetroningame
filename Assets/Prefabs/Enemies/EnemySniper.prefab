@@ -378,7 +378,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9078825028288994311, guid: 5feb364ac12050d459b495febbdee958, type: 3}
   fireRate: 8.5
   canAttack: 1
-  firstShotDelay: 2
+  firstShotDelay: 1.5
   ShootSFX: {fileID: 8300000, guid: cbe1da84704004f45887dc42352c96b2, type: 3}
   bodyAnimator: {fileID: 4258016368471862181}
   armAnimator: {fileID: 371279256984691029}
