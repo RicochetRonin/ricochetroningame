@@ -103,15 +103,7 @@ public class BossShoot : EnemyShoot
 
     IEnumerator ResetAttack()
     {
-        if (phaseNum == 3)
-        {
-            yield return new WaitForSeconds(1.5f);
-            canAttack = true;
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.5f);
-            canAttack = true;
-        }
+        yield return new WaitForSeconds(0.5f);
+        canAttack = true;
     }
 }

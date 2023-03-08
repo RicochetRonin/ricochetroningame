@@ -10,7 +10,6 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject reflectHitbox;
-    [SerializeField] private GameObject bossInteractable;
     [SerializeField] private GameObject omniHitBox;
     [SerializeField] public BossOmniReflect bossOmniReflect;
 
@@ -26,6 +25,12 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float iframes = 0.5f;
     [SerializeField] private bool canTakeDamage = true;
     [SerializeField] private float deathDelay = 0.75f;
+
+    [Header("Move/Teleport Locations")]
+    [SerializeField] private GameObject bossInteractable1;
+    [SerializeField] private GameObject bossInteractable2;
+    [SerializeField] private GameObject bossInteractable3;
+
 
 
     private BossShoot bossShoot;
@@ -76,6 +81,7 @@ public class BossHealth : MonoBehaviour
                 movedOffScreen1 = true;
                 teleportBoss(2);
                 bossShoot.SetPhaseNumber(2);
+                bossInteractable1.SetActive(true);
                 player.GetComponent<PlayerMovement>().canMove = true;
                 enemy.GetComponentInChildren<LaserAim>().enabled = true;
                 enemy.GetComponentInChildren<LineRenderer>().enabled = true;
@@ -99,6 +105,7 @@ public class BossHealth : MonoBehaviour
 
                 movedOffScreen2 = true;
                 teleportBoss(3);
+                bossInteractable2.SetActive(true);
                 bossShoot.SetPhaseNumber(3);
                 player.GetComponent<PlayerMovement>().canMove = true;
             }
@@ -114,7 +121,7 @@ public class BossHealth : MonoBehaviour
             isAlive = false;
             reflectHitbox.SetActive(false);
             ClearBullets();
-            bossInteractable.SetActive(true);
+            bossInteractable3.SetActive(true);
             enemy.GetComponentInChildren<BossShoot>().enabled = false;
             enemy.GetComponentInChildren<LaserAim>().enabled = false;
             enemy.GetComponentInChildren<LineRenderer>().enabled = false;
