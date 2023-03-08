@@ -341,6 +341,35 @@ public class BulletController : MonoBehaviour
             CinemachineShake.Shake(0.05f, 1.5f);
         }
 
+        //If a friendly bullet hits the Boss's Omni-Reflect collider, reflect it back as an Enemy Bullet
+        if (collision.gameObject.CompareTag(("BossOmniReflectHitbox")))
+        {
+            SetHostile();
+
+            Vector3 reflectDirection = (transform.position - collision.gameObject.transform.position);
+
+            if (rotatesOnImpact)
+            {
+                var rot = -Mathf.Atan2(reflectDirection.x, reflectDirection.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, 0, rot);
+            }
+
+            else
+            {
+                direction = new Vector2(reflectDirection.x, reflectDirection.y);
+            }
+
+            if (speed < maxSpeed)
+            {
+                speed *= reflectForce + 1;
+            }
+
+            currentReflectLifetime = 0.0f;
+
+            SleepManager.Sleep(1);
+            CinemachineShake.Shake(0.05f, 1.5f);
+        }
+
         //If the the bullet hits an enemy's reflect, reflect the bullet and set it to hostile
         if (collision.gameObject.CompareTag(("EnemyHitBox")))
         {
