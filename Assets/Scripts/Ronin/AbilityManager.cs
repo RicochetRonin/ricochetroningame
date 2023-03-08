@@ -16,7 +16,8 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private GameObject _omniReflectHitBox;
     [SerializeField] private GameObject _omniReflectGraphics;
     [SerializeField] private CircleCollider2D _omniReflectCollider;
-    [SerializeField] private ParticleSystem _omniReflectParticleSystem;
+    //[SerializeField] private ParticleSystem _omniReflectParticleSystem;
+    [SerializeField] private Animator _omniReflectAnimator;
     [SerializeField] private RoninSoundManager soundManager;
 
     //[SerializeField] private AudioClip OmniReflectSFX;
@@ -47,7 +48,8 @@ public class AbilityManager : MonoBehaviour
        
         _playerControls = new PlayerControls();
         _omniReflectCollider.enabled = false;
-        _omniReflectGraphics.SetActive(false);
+        //_omniReflectGraphics.SetActive(false);
+        _omniReflectAnimator.SetFloat("OmniReflectDuration", omniReflectDuration);
 
         _playerControls.Abilities.OmniReflect.performed += _ => StartCoroutine(OmniReflect());
 
@@ -75,14 +77,16 @@ public class AbilityManager : MonoBehaviour
             omniReflectActive = true;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
-            _omniReflectGraphics.SetActive(true);
+            _omniReflectAnimator.SetTrigger("OmniReflect");
+            //_omniReflectGraphics.SetActive(true);
 
             //AudioManager.PlayOneShotSFX(OmniReflectSFX);
             soundManager.OmniReflect();
             _aim.SetActive(false);
             yield return new WaitForSeconds(omniReflectDuration);
+            _omniReflectAnimator.SetTrigger("OmniReflectOver");
             _omniReflectCollider.enabled = false;
-            _omniReflectGraphics.SetActive(false);
+            //_omniReflectGraphics.SetActive(false);
             _aim.SetActive(true);
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;

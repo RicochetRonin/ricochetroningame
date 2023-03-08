@@ -37,7 +37,7 @@ public class Parallax : MonoBehaviour
         }
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         //Debug.LogFormat("Delta Movement: {0}", deltaMovement);
         transform.position += new Vector3(deltaMovement.x * -parallaxEffectMultiplier.x, deltaMovement.y * -parallaxEffectMultiplier.y);
