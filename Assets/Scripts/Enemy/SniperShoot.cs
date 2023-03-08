@@ -16,11 +16,17 @@ public class SniperShoot : EnemyShoot
         target = GameObject.FindGameObjectWithTag("Player");
     }
 
-    
     void Update()
     {
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
+
+            if (setAttackStarted == false)
+            {
+                StartCoroutine("SetCanAttack");
+                setAttackStarted = true;
+            }
+
             if (canAttack)
             {
                 bodyAnimator.SetTrigger("Shoot");

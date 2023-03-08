@@ -379,11 +379,12 @@ MonoBehaviour:
   fireRate: 8.5
   canAttack: 1
   firstShotDelay: 2
-  ShootSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
+  ShootSFX: {fileID: 8300000, guid: cbe1da84704004f45887dc42352c96b2, type: 3}
   bodyAnimator: {fileID: 4258016368471862181}
   armAnimator: {fileID: 371279256984691029}
   enemyHealth: {fileID: 16987162286892796}
-  sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
+  setAttackStarted: 0
+  sniperSFX: {fileID: 8300000, guid: cbe1da84704004f45887dc42352c96b2, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0

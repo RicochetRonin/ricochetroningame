@@ -19,6 +19,7 @@ TagManager:
   - BulletInteractable
   - BossHurtBox
   - Boss
+  - BossOmniReflectHitbox
   layers:
   - Default
   - TransparentFX
@@ -62,11 +63,14 @@ TagManager:
   - name: Enemy
     uniqueID: 2480015839
     locked: 0
+  - name: Player
+    uniqueID: 10358651
+    locked: 0
   - name: Exterior
     uniqueID: 1333961187
     locked: 0
-  - name: Player
-    uniqueID: 10358651
+  - name: Foreground
+    uniqueID: 3135598407
     locked: 0
   - name: UI
     uniqueID: 3144358627
