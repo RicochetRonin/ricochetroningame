@@ -28,7 +28,7 @@ public class AbilityManager : MonoBehaviour
 
     private PlayerControls _playerControls;
 
-    //public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
+    public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
 
 
     #region Initialization
@@ -90,8 +90,12 @@ public class AbilityManager : MonoBehaviour
             _aim.SetActive(true);
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
+
+            omniCooldownText.SetCooldown(false);
+
             yield return new WaitForSeconds(omniReflectCooldown);
             canOmniReflect = true;
+            omniCooldownText.SetCooldown(true);
         }
     }
 }

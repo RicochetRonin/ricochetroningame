@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Code from Celeste's Movement by Mix and Jam: https://www.youtube.com/watch?v=STyY26a_dPY&ab_channel=MixandJam
     //Code from Better Jumping in Unity With Four Lines of Code by Board To Bits Games: https://www.youtube.com/watch?v=7KiK0Aqtmzc&ab_channel=BoardToBitsGames
 
-    //public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
+    public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
 
     //Attach to the Player Gameobject, with Rigidbody2D, BoxCollider2D, and Transform
     [Header("Private Components")]
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.25f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
-[Header("References")] [SerializeField]
+    [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
 
     [SerializeField] private PlayerAim _playerAim;
@@ -446,10 +446,13 @@ public class PlayerMovement : MonoBehaviour
             //Ronin affected by gravity again
             rb.gravityScale = 1;
             rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            
+
+            dashCooldownText.SetCooldown(false);
+
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
+            dashCooldownText.SetCooldown(true);
         }
 
     }
