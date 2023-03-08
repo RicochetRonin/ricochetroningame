@@ -11,6 +11,9 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject reflectHitbox;
     [SerializeField] private GameObject bossInteractable;
+    [SerializeField] private GameObject omniHitBox;
+    [SerializeField] public BossOmniReflect bossOmniReflect;
+
 
     [Header("Move/Teleport Locations")]
     [SerializeField] private GameObject phase2Teleport;
@@ -29,6 +32,7 @@ public class BossHealth : MonoBehaviour
     private GameObject[] enemyBullets;
     private GameObject[] playerBullets;
 
+    private bool canOmni;
     private bool isAlive;
     private bool movedOffScreen1, movedOffScreen2 = false;
     private bool moving = false;
@@ -42,6 +46,8 @@ public class BossHealth : MonoBehaviour
 
     private void Update()
     {
+        canOmni = bossOmniReflect.getCanOmni();
+
         var step = 4.0f * Time.deltaTime;
 
         if (moving == true)
@@ -95,8 +101,12 @@ public class BossHealth : MonoBehaviour
                 teleportBoss(3);
                 bossShoot.SetPhaseNumber(3);
                 player.GetComponent<PlayerMovement>().canMove = true;
-                reflectHitbox.SetActive(true);
             }
+        }
+
+        if (health <= 10 && health > 0 && movedOffScreen2 == true && canOmni == true)
+        {
+            StartCoroutine(omniHitBox.GetComponent<BossOmniReflect>().StartBossOmniReflect());
         }
 
         if (health <= 0)

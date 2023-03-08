@@ -19,6 +19,7 @@ TagManager:
   - BulletInteractable
   - BossHurtBox
   - Boss
+  - BossOmniReflectHitbox
   layers:
   - Default
   - TransparentFX
