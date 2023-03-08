@@ -104,8 +104,12 @@ public class BossHealth : MonoBehaviour
             isAlive = false;
             reflectHitbox.SetActive(false);
             ClearBullets();
-            StartCoroutine("DeathSequence");
             bossInteractable.SetActive(true);
+            enemy.GetComponentInChildren<BossShoot>().enabled = false;
+            enemy.GetComponentInChildren<LaserAim>().enabled = false;
+            enemy.GetComponentInChildren<LineRenderer>().enabled = false;
+            enemy.GetComponentInChildren<SniperShoot>().enabled = false;
+
         }
     }
 
@@ -139,36 +143,29 @@ public class BossHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-
         if (canTakeDamage)
         {
             health -= damage;
 
-            //Setting enemy graphic to red to indicate damage. Then reset back to original color
-            enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
-            StartCoroutine("ResetColor");
+            if (health <= 0)
+            {
+                animator.SetTrigger("Death");
+            }
+            else
+            {
+                animator.SetTrigger("Damage");
+            }
+
+            StartCoroutine("ResetDamageCooldown");
             canTakeDamage = false;
         }
-
-
     }
 
-    private IEnumerator DeathSequence()
+    private IEnumerator ResetDamageCooldown()
     {
-        //animator.SetTrigger("Death");
-        yield return new WaitForSeconds(deathDelay);
-        Destroy(enemy);
-
-    }
-
-    private IEnumerator ResetColor()
-    {
-
         yield return new WaitForSeconds(iframes);
         canTakeDamage = true;
-        float colorMultiplier = health / maxHealth;
-        enemyGraphics.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier);
-
+        animator.SetTrigger("Idle");
     }
 
     public bool getIsAlive()

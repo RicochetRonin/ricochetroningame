@@ -31,6 +31,12 @@ public class PulseShoot : EnemyShoot
     {
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
+            if (setAttackStarted == false)
+            {
+                StartCoroutine("SetCanAttack");
+                setAttackStarted = true;
+            }
+
             if (canAttack)
             {
                 StartCoroutine("PulseSpawn");
