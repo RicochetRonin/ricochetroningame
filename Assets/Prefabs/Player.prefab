@@ -169,8 +169,8 @@ MonoBehaviour:
   reflectSFX: {fileID: 8300000, guid: 879268712188b224d9914166aa2e35b2, type: 3}
   slashSFX: {fileID: 8300000, guid: 161e11bbd56611c42bed5c7cb1b5b6db, type: 3}
   jumpSFX: {fileID: 8300000, guid: 872cca79852ce1640879a3e4768bd420, type: 3}
-  landSFX: {fileID: 8300000, guid: 1c0256a4c1aec2243a5947306a11031c, type: 3}
-  wallClingSFX: {fileID: 0}
+  landSFX: {fileID: 8300000, guid: 6433fc012fbcdd44d9855ce7ea11d05c, type: 3}
+  wallClingSFX: {fileID: 8300000, guid: f99c28e786cf1b34daade646506ef550, type: 3}
   damageTakeSFX: {fileID: 8300000, guid: 88d0f54adc7aac24d845fc705b1aa348, type: 3}
   deathSFX: {fileID: 8300000, guid: 88d0f54adc7aac24d845fc705b1aa348, type: 3}
   dashSFX: {fileID: 8300000, guid: f22f15e06e2130341a39fb0ebbaddb70, type: 3}
