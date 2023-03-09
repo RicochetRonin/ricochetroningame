@@ -13,6 +13,7 @@ public class DialoguePopupScript : MonoBehaviour
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private GameObject interactText;
     [SerializeField] private GameObject dialogueText;
+    [SerializeField] private GameObject backerImage;
     public LayerMask groundMask;
     public bool inRange = false;
 
@@ -23,6 +24,7 @@ public class DialoguePopupScript : MonoBehaviour
             Vector2.Distance(transform.position, collision.transform.position), groundMask))
         {
             interactText.SetActive(true);
+            backerImage.SetActive(true);
             inRange = true;
         }
     }
@@ -32,6 +34,7 @@ public class DialoguePopupScript : MonoBehaviour
         {
             interactText.SetActive(false);
             dialogueText.SetActive(false);
+            backerImage.SetActive(false);
             inRange = false;
         }   
     }
