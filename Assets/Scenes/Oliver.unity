@@ -899,30 +899,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7627156656301890990, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -138
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656451861298, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -138
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: lines.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: lines.Array.data[1]
-      value: this is a test
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: lines.Array.data[2]
-      value: Hello
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656451861299, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: lines.Array.data[3]
-      value: This is where you type in lines
-      objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314697, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -933,11 +909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.21
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.86
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalPosition.z
@@ -970,10 +946,6 @@ PrefabInstance:
     - target: {fileID: 7627156656490314700, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7627156656490314701, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7627156657026898523, guid: dcedc26a60d174c8b8921bb4c596d718, type: 3}
       propertyPath: m_Camera
