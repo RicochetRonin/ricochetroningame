@@ -274,7 +274,7 @@ MonoBehaviour:
   fireRate: 3
   bulletSpread: 15
   canAttack: 0
-  firstShotDelay: 2
+  firstShotDelay: 1
   ShootSFX: {fileID: 8300000, guid: d95958bd8e11ec445befc8e268af0e5f, type: 3}
   bodyAnimator: {fileID: 6922248157567319539}
   armAnimator: {fileID: 7112205965879813423}

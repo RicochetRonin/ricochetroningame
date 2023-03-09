@@ -196,7 +196,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 85c9170e5cd384e9397d9893157e3650, type: 3}
   - {fileID: 8300000, guid: ef95ea6618d164dbf935bee10b835de1, type: 3}
   - {fileID: 8300000, guid: c553167a93dc748acad17ca6e8fd55d3, type: 3}
-  omniReflectSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
+  omniReflectSFX: {fileID: 8300000, guid: 950c7daf31bab9849a78f955f474d412, type: 3}
   reflectSFX: {fileID: 8300000, guid: 879268712188b224d9914166aa2e35b2, type: 3}
   slashSFX: {fileID: 8300000, guid: 161e11bbd56611c42bed5c7cb1b5b6db, type: 3}
   jumpSFX: {fileID: 8300000, guid: 872cca79852ce1640879a3e4768bd420, type: 3}
