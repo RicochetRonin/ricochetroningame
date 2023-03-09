@@ -91,6 +91,7 @@ public class AbilityManager : MonoBehaviour
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
             yield return new WaitForSeconds(omniReflectCooldown);
+            soundManager.Omniready();
             canOmniReflect = true;
         }
     }
