@@ -273,11 +273,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9078825028288994311, guid: b6d9f895d1cabee4a9c4bc7b397537f1, type: 3}
   fireRate: 10
   canAttack: 0
-  firstShotDelay: 2
+  firstShotDelay: 0.75
   ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
   bodyAnimator: {fileID: 3781705684433964122}
   armAnimator: {fileID: 0}
   enemyHealth: {fileID: 16987162286892796}
+  setAttackStarted: 0
   numProjectiles: 6
   numPulse: 3
   timeBetweenPulse: 2

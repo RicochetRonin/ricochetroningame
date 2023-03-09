@@ -18,6 +18,7 @@ public class EnemyShoot : MonoBehaviour
 
 
     [SerializeField] private EnemyHealth enemyHealth;
+    public bool setAttackStarted = false;
 
 
     private void Start()
@@ -27,7 +28,6 @@ public class EnemyShoot : MonoBehaviour
     private void OnEnable()
     {
         canAttack = false;
-        StartCoroutine("SetCanAttack");
     }
 
     IEnumerator SetCanAttack()
@@ -43,6 +43,12 @@ public class EnemyShoot : MonoBehaviour
         //If no walls are found, allow the enemy to attack
         if (!Physics2D.Linecast(transform.position, target.transform.position, 1 << 8))
         {
+            if (setAttackStarted == false)
+            {
+                StartCoroutine("SetCanAttack");
+                setAttackStarted = true;
+            }
+
             if (canAttack && enemyHealth.getIsAlive())
             {
                 canAttack = false;

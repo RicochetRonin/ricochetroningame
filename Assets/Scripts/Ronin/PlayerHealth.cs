@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
             spriteRenderer.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetColor");
 
-            SleepManager.Sleep(10);
+            SleepManager.Sleep(6);
             CinemachineShake.Shake(0.3f, 4);
 
 
