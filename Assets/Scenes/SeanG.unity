@@ -665,11 +665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.69
+      value: 11.690001
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5000703
+      value: -3.5000706
       objectReference: {fileID: 0}
     - target: {fileID: 6640215520641126130, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -765,11 +765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.69
+      value: 11.690001
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5000703
+      value: -3.5000706
       objectReference: {fileID: 0}
     - target: {fileID: 7283005366104439353, guid: ea099ca6a4f4f3b468a582a8b86d80d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2443,6 +2443,18 @@ PrefabInstance:
       objectReference: {fileID: 2030651058}
     - target: {fileID: 3992453523268866486, guid: ef915b629d69f7b4d997eae57b511617, type: 3}
       propertyPath: bossInteractable
+      value: 
+      objectReference: {fileID: 55364235}
+    - target: {fileID: 3992453523268866486, guid: ef915b629d69f7b4d997eae57b511617, type: 3}
+      propertyPath: bossInteractable1
+      value: 
+      objectReference: {fileID: 55364235}
+    - target: {fileID: 3992453523268866486, guid: ef915b629d69f7b4d997eae57b511617, type: 3}
+      propertyPath: bossInteractable2
+      value: 
+      objectReference: {fileID: 55364235}
+    - target: {fileID: 3992453523268866486, guid: ef915b629d69f7b4d997eae57b511617, type: 3}
+      propertyPath: bossInteractable3
       value: 
       objectReference: {fileID: 55364235}
     - target: {fileID: 3992453523268866486, guid: ef915b629d69f7b4d997eae57b511617, type: 3}
