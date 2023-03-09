@@ -50,8 +50,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.25f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
-[Header("References")] [SerializeField]
+    [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
+    private DashCooldown dashCooldownText;
 
     [SerializeField] private PlayerAim _playerAim;
     
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<PlayerWallCheck>();
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
+        dashCooldownText = GameObject.FindObjectOfType<DashCooldown>();
         canDash = true;
         isFacingRight = true;
         isFacingRightInt = 1;
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 /*            Debug.Log("coyote time counting down");*/
             coyoteTimeCounter -= Time.deltaTime;
         }
-        //dashCooldownText.SetCooldown(canDash);
+        dashCooldownText.SetCooldown(canDash);
 
         //Setting the Ronin animator values
         _animator.SetBool("OnWall", (coll.onWall));
