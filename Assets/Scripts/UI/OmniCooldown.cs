@@ -9,12 +9,19 @@ public class OmniCooldown : MonoBehaviour
     public TextMeshProUGUI omniCooldown;
     private PlayerControls _playerControls;
 
+    private void Awake()
+    {
+        _playerControls = new PlayerControls();
+    }
+
     public void SetCooldown(bool canOmni)
     {
         // 1. Need to grab current input action? And always display
         // 2. Replace True and False with the sprite
         // omniCooldown.text = "Omni Ready: "+canOmni.ToString();
         // Debug.Log(_playerControls.Abilities.OmniReflect.bindings.ToString());
-        omniCooldown.text = "E: " + canOmni.ToString();
+        // string curDeviceBtn = _playerControls.Abilities.OmniReflect.bindings;
+        // Debug.Log(curDeviceBtn);
+        omniCooldown.text = "           " + canOmni.ToString();
     }
 }
