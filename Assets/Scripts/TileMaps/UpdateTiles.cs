@@ -10,6 +10,7 @@ public class UpdateTiles : MonoBehaviour
     public List<Vector3Int> positions = new List<Vector3Int>();
     public Sprite disabledSprite;
     public Sprite enabledSprite;
+    public AudioClip doorOpenSFX;
 
     private SpriteRenderer interactableSpriteRenderer;
 
@@ -29,6 +30,7 @@ public class UpdateTiles : MonoBehaviour
             //Remove Midground Tile
             midgroundTileMap.SetTile(position, null);
         }
+        AudioManager.PlayOneShotSFX(doorOpenSFX);
         isEnabled = true;
     }
 
