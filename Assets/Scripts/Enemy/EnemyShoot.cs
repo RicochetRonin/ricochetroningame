@@ -28,6 +28,7 @@ public class EnemyShoot : MonoBehaviour
     private void OnEnable()
     {
         canAttack = false;
+        setAttackStarted = false;
     }
 
     IEnumerator SetCanAttack()
