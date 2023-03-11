@@ -65,6 +65,7 @@ MonoBehaviour:
   _omniReflectCollider: {fileID: 3037906327154491700}
   animator: {fileID: 6701399584559434636}
   shotSpawn: {fileID: 3916933408286027055}
+  bossHealth: {fileID: 3992453523268866486}
   omniReflectDuration: 5
   omniReflectCooldown: 5
 --- !u!1 &1508558382324583792
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508558382324583792}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.770898, y: -0.93511486, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -102,7 +103,7 @@ Transform:
   - {fileID: 7052678608288025639}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &6218130175039808065
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -535,7 +536,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.38
 --- !u!114 &3992453523268866486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +554,6 @@ MonoBehaviour:
   player: {fileID: 0}
   animator: {fileID: 7119103428685423675}
   reflectHitbox: {fileID: 2381050849164192065}
-  bossInteractable: {fileID: 0}
   omniHitBox: {fileID: 498093825391847419}
   bossOmniReflect: {fileID: 5529954873587320144}
   phase2Teleport: {fileID: 0}
@@ -566,6 +566,9 @@ MonoBehaviour:
   iframes: 0.5
   canTakeDamage: 1
   deathDelay: 0.75
+  bossInteractable1: {fileID: 0}
+  bossInteractable2: {fileID: 0}
+  bossInteractable3: {fileID: 0}
 --- !u!1 &6625547614918300385
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +619,7 @@ MonoBehaviour:
   _omniReflectCollider: {fileID: 3037906327154491700}
   animator: {fileID: 0}
   shotSpawn: {fileID: 0}
+  bossHealth: {fileID: 0}
   omniReflectDuration: 5
   omniReflectCooldown: 5
 --- !u!1 &7772292668720079464
