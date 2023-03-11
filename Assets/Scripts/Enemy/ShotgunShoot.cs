@@ -30,6 +30,7 @@ public class ShotgunShoot : MonoBehaviour
     private void OnEnable()
     {
         canAttack = false;
+        setAttackStarted = false;
     }
 
     IEnumerator SetCanAttack()
