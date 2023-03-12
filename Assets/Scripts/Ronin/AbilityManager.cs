@@ -11,14 +11,15 @@ public class AbilityManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _aimGraphics;
     [SerializeField] private GameObject _omniReflectHitBox;
     [SerializeField] private GameObject _omniReflectGraphics;
     [SerializeField] private CircleCollider2D _omniReflectCollider;
     //[SerializeField] private ParticleSystem _omniReflectParticleSystem;
-    [SerializeField] private Animator _omniReflectAnimator;
+    [SerializeField] private Animator _omniReflectAnimator, _aimAnimator;
     [SerializeField] private RoninSoundManager soundManager;
+    [SerializeField] private SpriteRenderer _aimSpriteRenderer;
+    [SerializeField] private Collider2D _aimCollider2D;
 
     //[SerializeField] private AudioClip OmniReflectSFX;
 
@@ -84,10 +85,13 @@ public class AbilityManager : MonoBehaviour
             soundManager.OmniReflect();
 
             //FIX THIS, IT CAUSES ISSUE. DISABLE COLLIDER AND SPRITE, NOT THE WHOLE OBJECT
-            _aim.SetActive(false);
+            //_aim.SetActive(false);
             //playerReflect.DisableReflect();
             //FIX IT
 
+            _aimCollider2D.enabled = false;
+            _aimSpriteRenderer.enabled = false;
+            _aimAnimator.enabled = false;
 
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
@@ -95,9 +99,13 @@ public class AbilityManager : MonoBehaviour
 
             //FIX
             //playerReflect.EnableReflect();
-            _aim.SetActive(true);
+            //_aim.SetActive(true);
             //FIX
 
+            _aimCollider2D.enabled = true;
+            _aimSpriteRenderer.enabled = true;
+            _aimAnimator.enabled = true;
+            
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
             yield return new WaitForSeconds(omniReflectCooldown);
