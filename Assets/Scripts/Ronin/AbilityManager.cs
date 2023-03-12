@@ -27,6 +27,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float omniReflectCooldown = 30f;
 
     private PlayerControls _playerControls;
+    private PlayerReflect playerReflect;
+    private OmniCooldown omniCooldownText;
+
 
     //public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
 
@@ -45,7 +48,7 @@ public class AbilityManager : MonoBehaviour
 
     private void Awake()
     {
-       
+        omniCooldownText = GameObject.FindObjectOfType<OmniCooldown>();
         _playerControls = new PlayerControls();
         _omniReflectCollider.enabled = false;
         //_omniReflectGraphics.SetActive(false);
@@ -62,7 +65,7 @@ public class AbilityManager : MonoBehaviour
     private void Update()
     {
         //Updating Omni Reflect UI
-        //omniCooldownText.SetCooldown(canOmniReflect);
+        omniCooldownText.SetCooldown(canOmniReflect);
         if (omniReflectActive)
         {
             return;
@@ -78,16 +81,23 @@ public class AbilityManager : MonoBehaviour
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
             _omniReflectAnimator.SetTrigger("OmniReflect");
-            //_omniReflectGraphics.SetActive(true);
-
-            //AudioManager.PlayOneShotSFX(OmniReflectSFX);
             soundManager.OmniReflect();
+
+            //FIX THIS, IT CAUSES ISSUE. DISABLE COLLIDER AND SPRITE, NOT THE WHOLE OBJECT
             _aim.SetActive(false);
+            //playerReflect.DisableReflect();
+            //FIX IT
+
+
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
             _omniReflectCollider.enabled = false;
-            //_omniReflectGraphics.SetActive(false);
+
+            //FIX
+            //playerReflect.EnableReflect();
             _aim.SetActive(true);
+            //FIX
+
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
             yield return new WaitForSeconds(omniReflectCooldown);
