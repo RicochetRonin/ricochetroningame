@@ -16,11 +16,14 @@ public class PulseShoot : EnemyShoot
     private bool origCanAim;
     private EnemyAim _enemyAim;
 
-    private GameObject target;
+    private float defaultTimeBetweenPulse;
+
 
 
     private void Start()
     {
+        defaultFireRate = fireRate;
+        defaultTimeBetweenPulse = timeBetweenPulse;
         _enemyAim = this.GetComponentInParent<EnemyAim>();
         origCanAim = _enemyAim.getCanAim();
         target = GameObject.FindGameObjectWithTag("Player");
@@ -46,15 +49,16 @@ public class PulseShoot : EnemyShoot
         }
     }
 
-   private IEnumerator PulseSpawn()
+    private IEnumerator PulseSpawn()
     {
         float angleStep = 360 / numProjectiles;
         float currAngle = 0;
         Quaternion newTransformRotation;
         Quaternion currTransformRotation;
 
-        for (int j = 0; j < numPulse; j++) { 
-            
+        for (int j = 0; j < numPulse; j++)
+        {
+
             currTransformRotation = Quaternion.Euler(transform.parent.transform.rotation.eulerAngles + new Vector3(0, 0, -90));
 
             //Locking enemy aim during firing sequence
@@ -63,7 +67,7 @@ public class PulseShoot : EnemyShoot
 
             for (int i = 0; i < numProjectiles; i++)
             {
-                
+
                 var offSetx = pulseRadius * Mathf.Cos((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
                 var offSety = pulseRadius * Mathf.Sin((currTransformRotation.eulerAngles.z + 90) * Mathf.Deg2Rad);
                 var spawnPosition = transform.parent.transform.parent.position;
@@ -81,8 +85,23 @@ public class PulseShoot : EnemyShoot
             yield return new WaitForSeconds(timeBetweenPulse);
             if (origCanAim) { _enemyAim.setCanAim(true); }
         }
-
-
-        
     }
-}
+
+
+        public override void setMultipliedFireRate(float fireRateMultiplier)
+        {
+            timeBetweenPulse = defaultTimeBetweenPulse * (1 / fireRateMultiplier);
+            fireRate = defaultFireRate * (1 / fireRateMultiplier);
+        }
+
+        public override void setDefaultFireRate()
+        {
+            timeBetweenPulse = defaultTimeBetweenPulse;
+            fireRate = defaultFireRate;
+        }
+
+
+
+    }
+
+
