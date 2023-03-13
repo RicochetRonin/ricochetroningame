@@ -253,20 +253,4 @@ public class GameManager : MonoBehaviour
         checkPointActive = false;
     }
 
-    public void ParamMenuLoadScene(int sceneIndex)
-    {
-        UnPauseGame();
-
-        bulletsReflected = 0;
-        enemiesKilled = 0;
-        damageTaken = 0;
-        playerDeaths = 0;
-        startTime = Time.time;
-
-        SceneManager.LoadScene(sceneIndex);
-        newSceneLoaded = true;
-        checkPointActive = false;
-    }
-
-
 }

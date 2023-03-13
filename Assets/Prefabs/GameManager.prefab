@@ -3828,7 +3828,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: '"Level2Beta"'
+          m_StringArgument: Level2Beta
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &3528184449878522350
@@ -5946,7 +5946,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: '"Level3Beta"'
+          m_StringArgument: Level3Beta
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &4949971892549964156
@@ -9067,7 +9067,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: '"Level1Beta"'
+          m_StringArgument: Level1Beta
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &8708013575574507859
