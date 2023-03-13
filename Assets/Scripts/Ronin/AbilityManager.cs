@@ -96,7 +96,6 @@ public class AbilityManager : MonoBehaviour
             omniParamActive = false;
             omniSoundPlayed = false;
         }
-        Debug.Log("OMNIPARAMACTIVE: " + omniParamActive);
     }
 
     private IEnumerator OmniReflect(float cooldown)
