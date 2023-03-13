@@ -858,6 +858,8 @@ MonoBehaviour:
   _omniReflectHitBox: {fileID: 8746761832924246201}
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
+  playerReflect: {fileID: 5446883132441753985}
+  reflectGraphicsRenderer: {fileID: 3022104866635484261}
   _omniReflectAnimator: {fileID: 2159872659903676269}
   soundManager: {fileID: 9008115518942717753}
   omniReflectDuration: 5
@@ -970,6 +972,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98bf4d09ff4b1848ac28ff6375bc928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesOnScreen: []
+  singleEnemy: {fileID: 0}
+  enemyActivateBasedOnCamera: 1
+  shooterFireRateMultiplier: 2
+  sniperFireRateMultiplier: 2
+  shotgunFireRateMultiplier: 1.5
+  pulseFireRateMultiplier: 1
+  oneEnemyOnScreen: 0
+  fireRateIncreased: 0
+  fireRateDecreased: 0
+  numEnemiesOnScreen: 0
 --- !u!61 &2462511795347687164
 BoxCollider2D:
   m_ObjectHideFlags: 0
