@@ -95,7 +95,7 @@ public class PlayerActivateEnemy : MonoBehaviour
                 transform.GetChild(a).gameObject.SetActive(true);
             }
 
-            if (coll.CompareTag("Enemy"))
+            if (coll.CompareTag("Enemy") && coll.gameObject.GetComponentInChildren<EnemyShoot>() != null)
             {
                 enemiesOnScreen.Add(coll.gameObject);
             }
