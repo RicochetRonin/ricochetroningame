@@ -122,6 +122,7 @@ public class AbilityManager : MonoBehaviour
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
             _omniReflectCollider.enabled = false;
+            playerReflect.OmniResetReflect();
 
             //FIX
             //playerReflect.EnableReflect();
@@ -135,7 +136,6 @@ public class AbilityManager : MonoBehaviour
             if (!omniParamActive)
             {
                 soundManager.Omniready();
-                playerReflect.OmniResetReflect();
                 reflectGraphicsRenderer.sprite = null;
             }
 
