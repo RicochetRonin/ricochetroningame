@@ -606,7 +606,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5446883133551815284}
   soundManager: {fileID: 9008115518942717753}
   _reflectAnimator: {fileID: 7442198271507870336}
-  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: 349fff24656cd7640a4b9754a5a57f18, type: 3}
   detectCoolDown: 0.26
   _cursorColor: {r: 1, g: 1, b: 1, a: 1}
   _cursorColorDeplete: {r: 1, g: 1, b: 1, a: 0.49019608}
@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c455ae4d6390d4595b1484c3e6822e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: 349fff24656cd7640a4b9754a5a57f18, type: 3}
   playSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
