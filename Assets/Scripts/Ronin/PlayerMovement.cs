@@ -356,7 +356,6 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Normal Jump");
                     StartCoroutine(JumpBuffer());
                     rb.velocity = Vector2.up * jumpVelocity;
                 }
@@ -371,7 +370,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jumpStarted) 
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 3f);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2.5f);
                 jumpStarted = false;
             }
         }
