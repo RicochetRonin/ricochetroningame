@@ -11,6 +11,8 @@ public class checkpoint : MonoBehaviour
     [SerializeField] private Sprite activeSprite, inactiveSprite;
     private SpriteRenderer _spriteRenderer;
 
+    [SerializeField] private GameObject cutEffect;
+
 
 /*    void Awake()
     {
@@ -32,6 +34,7 @@ public class checkpoint : MonoBehaviour
             GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
             if (SpawnSet != null) SpawnSet();
             _spriteRenderer.sprite = activeSprite;
+            cutEffect.SetActive(true);
             Debug.LogFormat("Last Checkpoint is now set to: {0}", gameObject.name);
 
         } 

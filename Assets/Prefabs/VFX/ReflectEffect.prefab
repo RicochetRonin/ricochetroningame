@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3378309175508447828}
   - component: {fileID: 8959230871211918270}
   m_Layer: 0
-  m_Name: ReflectGraphic
+  m_Name: ReflectEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
