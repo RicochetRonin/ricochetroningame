@@ -57,7 +57,7 @@ public class AbilityManager : MonoBehaviour
         //_omniReflectGraphics.SetActive(false);
         _omniReflectAnimator.SetFloat("OmniReflectDuration", omniReflectDuration);
 
-        _playerControls.Abilities.OmniReflect.performed += _ => StartCoroutine(OmniReflect(omniReflectDuration));
+        _playerControls.Abilities.OmniReflect.performed += _ => StartCoroutine(OmniReflect(omniReflectCooldown));
 
         omniReflectActive = false;
         canOmniReflect = true;
