@@ -34,7 +34,7 @@ public class AbilityManager : MonoBehaviour
     private OmniCooldown omniCooldownText;
 
 
-    public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
+    // public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
 
 
     #region Initialization
