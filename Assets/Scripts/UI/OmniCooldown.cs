@@ -7,12 +7,6 @@ public class OmniCooldown : MonoBehaviour
 {
     //Attaches to the DashCooldown component, child of UI
     public TextMeshProUGUI omniCooldown;
-    private PlayerControls _playerControls;
-
-    private void Awake()
-    {
-        _playerControls = new PlayerControls();
-    }
 
     public void SetCooldown(bool canOmni)
     {
