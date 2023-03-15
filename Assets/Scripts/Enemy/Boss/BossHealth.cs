@@ -167,12 +167,14 @@ public class BossHealth : MonoBehaviour
             if (health <= 0)
             {
                 animator.SetTrigger("Death");
+                return;
             }
             else
             {
                 animator.SetTrigger("Damage");
             }
 
+            enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetDamageCooldown");
             canTakeDamage = false;
         }
@@ -180,13 +182,32 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator ResetDamageCooldown()
     {
-        yield return new WaitForSeconds(iframes);
+        for (int count = 0; count <= 8; count++)
+        {
+            if(count % 2 == 0)
+            {
+                enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
+            }
+            else
+            {
+                enemyGraphics.color = new Color(255f, 255f, 255f, 1f);
+            }
+            yield return new WaitForSeconds(iframes/8);
+        }
+
         canTakeDamage = true;
+        float colorMultiplier = health / maxHealth;
+        enemyGraphics.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier);
         animator.SetTrigger("Idle");
     }
 
     public bool getIsAlive()
     {
         return isAlive;
+    }
+
+    public float getHealth()
+    {
+        return health;
     }
 }

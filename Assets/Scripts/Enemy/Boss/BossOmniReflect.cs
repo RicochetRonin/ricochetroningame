@@ -10,10 +10,24 @@ public class BossOmniReflect : MonoBehaviour
     [SerializeField] private CircleCollider2D _omniReflectCollider;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject shotSpawn;
+    [SerializeField] public BossHealth bossHealth;
+
 
     [Header("Stats")]
     [SerializeField] private float omniReflectDuration = 5f;
     [SerializeField] private float omniReflectCooldown = 5f;
+
+    private float currentHealth;
+
+    private void Update()
+    {
+        currentHealth = bossHealth.getHealth();
+
+        if (currentHealth <= 0)
+        {
+            canOmniReflect = false;
+        }
+    }
 
     public bool getCanOmni()
     {

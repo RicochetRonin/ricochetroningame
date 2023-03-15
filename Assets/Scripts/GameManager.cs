@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         _playerControls.Pausing.Pause.performed += _ => PauseGame();
-        
+
 
         //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2 (lastCheckPointPos.position.x, lastCheckPointPos.position.y + _offsetY);
 
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(lastCheckPointPos.x, lastCheckPointPos.y + _offsetY);
     }
     */
-    
+
     /*
     public static CurrentInput CurrentInput;
     void Start()
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Start a new timer
-        if (timerVal == "") 
+        if (timerVal == "")
         {
             startTime = Time.time;
         }
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Damage Taken: " + damageTaken);
         Debug.Log("Player deaths: " + playerDeaths);
     }
-    
+
 
     public void PauseGame()
     {
@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour
             PauseMenu.SetActive(false);
         }
     }
-    
+
     public void ExitGame()
     {
         Debug.Log("Quitting Game");
@@ -238,6 +238,19 @@ public class GameManager : MonoBehaviour
         return FindObjectOfType<PlayerHealth>();
     }
 
+    public void ParamMenuLoadScene(string sceneName)
+    {
+        UnPauseGame();
 
+        bulletsReflected = 0;
+        enemiesKilled = 0;
+        damageTaken = 0;
+        playerDeaths = 0;
+        startTime = Time.time;
+
+        SceneManager.LoadScene(sceneName);
+        newSceneLoaded = true;
+        checkPointActive = false;
+    }
 
 }

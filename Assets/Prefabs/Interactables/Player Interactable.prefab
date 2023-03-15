@@ -52,6 +52,7 @@ MonoBehaviour:
   positions: []
   disabledSprite: {fileID: 21300000, guid: b8de4232325ba164b8ca5ee08913b6d7, type: 3}
   enabledSprite: {fileID: 21300000, guid: 10c9c0a2649b84c4086d37f822502928, type: 3}
+  omniReadySFX: {fileID: 8300000, guid: e2d2cab93661b9a42bff55538a2b0ffc, type: 3}
 --- !u!61 &8140810892355796196
 BoxCollider2D:
   m_ObjectHideFlags: 0

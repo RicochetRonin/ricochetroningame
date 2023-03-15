@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Code from Celeste's Movement by Mix and Jam: https://www.youtube.com/watch?v=STyY26a_dPY&ab_channel=MixandJam
     //Code from Better Jumping in Unity With Four Lines of Code by Board To Bits Games: https://www.youtube.com/watch?v=7KiK0Aqtmzc&ab_channel=BoardToBitsGames
 
-    //public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
+    // public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
 
     //Attach to the Player Gameobject, with Rigidbody2D, BoxCollider2D, and Transform
     [Header("Private Components")]
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpDirection;
     private float initalWallJumpX;
     private bool wallJumpInputSwitch;
+    private float currentTime;
+    private bool jumpStarted;
 
 
     //[SerializeField] private AudioClip jumpSFX, dashSFX;
@@ -50,8 +52,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.25f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
-[Header("References")] [SerializeField]
+    [Header("References")] [SerializeField]
     private PlayerHealth _playerHealth;
+    private DashCooldown dashCooldownText;
 
     [SerializeField] private PlayerAim _playerAim;
     
@@ -105,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<PlayerWallCheck>();
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponentInChildren<PlayerHealth>();
+        dashCooldownText = GameObject.FindObjectOfType<DashCooldown>();
         canDash = true;
         isFacingRight = true;
         isFacingRightInt = 1;
@@ -112,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         wallSliding = false;
         prevWallSliding = false;
         jumpBuffer = false;
+        jumpStarted = false;
     }
 
     void SetControls()
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         _playerControls.Moving.Move.performed += context => _move = context.ReadValue<Vector2>();
         _playerControls.Moving.Move.canceled += context => _move = Vector2.zero;
 
-        _playerControls.Moving.Jump.performed += _ => Jump();
+        //_playerControls.Moving.Jump.performed += _ => Jump();
         _playerControls.Moving.Dash.performed += _ => StartCoroutine(Dash());
     }
 
@@ -167,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         Move(dir);
 
         WallSlideCheck();
+        Jump();
         JumpCheck();
         WallJumpingCheck();
 
@@ -183,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
 /*            Debug.Log("coyote time counting down");*/
             coyoteTimeCounter -= Time.deltaTime;
         }
-        //dashCooldownText.SetCooldown(canDash);
+        dashCooldownText.SetCooldown(canDash);
 
         //Setting the Ronin animator values
         _animator.SetBool("OnWall", (coll.onWall));
@@ -318,7 +324,58 @@ public class PlayerMovement : MonoBehaviour
     //Makes Ronin jump when called
     private void Jump()
     {
-        if (jumpCount < maxJumps)
+        currentTime += Time.deltaTime;
+
+        bool isJumpKeyHeld = _playerControls.Moving.Jump.ReadValue<float>() > 0.1f;
+
+        if (isJumpKeyHeld)
+        {
+            if (jumpCount < maxJumps && jumpStarted == false)
+            {
+                jumpStarted = true;
+                //If the Ronin is wall clinging, wall jump
+                if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
+                {
+                    wallJumping = true;
+                    if (coll.onRightWall)
+                    {
+                        wallJumpDirection = -1;
+                    }
+
+                    else { wallJumpDirection = 1; }
+
+                    rb.velocity = new Vector2(wallJumpDirection * wallJumpHorizontalSpeed, wallJumpVerticalSpeed);
+                    initalWallJumpX = playerInputDir;
+                    wallJumpInputSwitch = false;
+                }
+                else if (coyoteTimeCounter < 0f)
+                {
+                    StartCoroutine(JumpBuffer());
+                    rb.velocity = Vector2.up * jumpVelocity;
+                    jumpCount++;
+                }
+                else
+                {
+                    StartCoroutine(JumpBuffer());
+                    rb.velocity = Vector2.up * jumpVelocity;
+                }
+
+                //AudioManager.PlayOneShotSFX(jumpSFX);
+                soundManager.Jump();
+                jumpCount++;
+                currentTime = 0;
+            }
+        }
+        else
+        {
+            if (jumpStarted) 
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2.5f);
+                jumpStarted = false;
+            }
+        }
+
+        /*if (jumpCount < maxJumps)
         {
             //If the Ronin is wall clinging, wall jump
             if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
@@ -350,7 +407,7 @@ public class PlayerMovement : MonoBehaviour
             //AudioManager.PlayOneShotSFX(jumpSFX);
             soundManager.Jump();
             jumpCount++;
-    }
+        }*/
     }
 
     public IEnumerator JumpBuffer()
@@ -446,7 +503,7 @@ public class PlayerMovement : MonoBehaviour
             //Ronin affected by gravity again
             rb.gravityScale = 1;
             rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            
+
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
