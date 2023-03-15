@@ -504,12 +504,9 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 1;
             rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 
-            dashCooldownText.SetCooldown(false);
-
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;
-            dashCooldownText.SetCooldown(true);
         }
 
     }
