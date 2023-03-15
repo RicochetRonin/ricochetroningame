@@ -10,7 +10,6 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject reflectHitbox;
-    [SerializeField] private GameObject bossInteractable;
     [SerializeField] private GameObject omniHitBox;
     [SerializeField] public BossOmniReflect bossOmniReflect;
 
@@ -26,6 +25,12 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private float iframes = 0.5f;
     [SerializeField] private bool canTakeDamage = true;
     [SerializeField] private float deathDelay = 0.75f;
+
+    [Header("Move/Teleport Locations")]
+    [SerializeField] private GameObject bossInteractable1;
+    [SerializeField] private GameObject bossInteractable2;
+    [SerializeField] private GameObject bossInteractable3;
+
 
 
     private BossShoot bossShoot;
@@ -76,6 +81,7 @@ public class BossHealth : MonoBehaviour
                 movedOffScreen1 = true;
                 teleportBoss(2);
                 bossShoot.SetPhaseNumber(2);
+                bossInteractable1.SetActive(true);
                 player.GetComponent<PlayerMovement>().canMove = true;
                 enemy.GetComponentInChildren<LaserAim>().enabled = true;
                 enemy.GetComponentInChildren<LineRenderer>().enabled = true;
@@ -99,6 +105,7 @@ public class BossHealth : MonoBehaviour
 
                 movedOffScreen2 = true;
                 teleportBoss(3);
+                bossInteractable2.SetActive(true);
                 bossShoot.SetPhaseNumber(3);
                 player.GetComponent<PlayerMovement>().canMove = true;
             }
@@ -114,7 +121,7 @@ public class BossHealth : MonoBehaviour
             isAlive = false;
             reflectHitbox.SetActive(false);
             ClearBullets();
-            bossInteractable.SetActive(true);
+            bossInteractable3.SetActive(true);
             enemy.GetComponentInChildren<BossShoot>().enabled = false;
             enemy.GetComponentInChildren<LaserAim>().enabled = false;
             enemy.GetComponentInChildren<LineRenderer>().enabled = false;
@@ -160,12 +167,14 @@ public class BossHealth : MonoBehaviour
             if (health <= 0)
             {
                 animator.SetTrigger("Death");
+                return;
             }
             else
             {
                 animator.SetTrigger("Damage");
             }
 
+            enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
             StartCoroutine("ResetDamageCooldown");
             canTakeDamage = false;
         }
@@ -173,13 +182,32 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator ResetDamageCooldown()
     {
-        yield return new WaitForSeconds(iframes);
+        for (int count = 0; count <= 8; count++)
+        {
+            if(count % 2 == 0)
+            {
+                enemyGraphics.color = new Color(255f, 0f, 0f, 1f);
+            }
+            else
+            {
+                enemyGraphics.color = new Color(255f, 255f, 255f, 1f);
+            }
+            yield return new WaitForSeconds(iframes/8);
+        }
+
         canTakeDamage = true;
+        float colorMultiplier = health / maxHealth;
+        enemyGraphics.color = new Color(255f, 255f * colorMultiplier, 255f * colorMultiplier);
         animator.SetTrigger("Idle");
     }
 
     public bool getIsAlive()
     {
         return isAlive;
+    }
+
+    public float getHealth()
+    {
+        return health;
     }
 }

@@ -142,4 +142,10 @@ public class PlayerReflect : MonoBehaviour
             }
         }
     }
+
+    public void OmniResetReflect()
+    {
+        _spriteRenderer.color = _cursorColor;
+        canReflect = true;
+    }
 }

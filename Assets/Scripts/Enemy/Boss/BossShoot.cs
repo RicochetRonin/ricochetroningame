@@ -36,19 +36,19 @@ public class BossShoot : EnemyShoot
             {
                 if (phaseNum == 1)
                 {
-                    StartCoroutine(PulseSpawn(2, 1, 0f, 0.05f, 1f));
+                    StartCoroutine(PulseSpawn(2, 1, 0f, 0.05f, 2f));
                     canAttack = false;
                     StartCoroutine("ResetAttack");
                 }
                 else if (phaseNum == 2)
                 {
-                    StartCoroutine(PulseSpawn(4, 1, 0f, 0.05f, 1f));
+                    StartCoroutine(PulseSpawn(4, 1, 0f, 0.05f, 2f));
                     canAttack = false;
                     StartCoroutine("ResetAttack");
                 }
                 else if (phaseNum == 3)
                 {
-                    StartCoroutine(PulseSpawn(5, 1, 1f, 0.1f, 1f));
+                    StartCoroutine(PulseSpawn(5, 1, 1f, 0.1f, 2f));
                     canAttack = false;
                     StartCoroutine("ResetAttack");
                 }
@@ -103,15 +103,7 @@ public class BossShoot : EnemyShoot
 
     IEnumerator ResetAttack()
     {
-        if (phaseNum == 3)
-        {
-            yield return new WaitForSeconds(1.5f);
-            canAttack = true;
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.5f);
-            canAttack = true;
-        }
+        yield return new WaitForSeconds(0.5f);
+        canAttack = true;
     }
 }

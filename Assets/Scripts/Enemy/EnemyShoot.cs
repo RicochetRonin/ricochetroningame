@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,23 +12,27 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] protected float fireRate = 3f;
     [SerializeField] protected bool canAttack = false;
     [SerializeField] protected float firstShotDelay = 2f;
-    [SerializeField] private AudioClip ShootSFX;
+    [SerializeField] protected AudioClip ShootSFX;
     [SerializeField] protected Animator bodyAnimator;
     [SerializeField] protected Animator armAnimator;
-    private GameObject target;
+    protected GameObject target;
+
+    protected float defaultFireRate;
 
 
-    [SerializeField] private EnemyHealth enemyHealth;
+    [SerializeField] protected EnemyHealth enemyHealth;
     public bool setAttackStarted = false;
 
 
     private void Start()
     {
+        defaultFireRate = fireRate;
         target = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnEnable()
     {
         canAttack = false;
+        setAttackStarted = false;
     }
 
     IEnumerator SetCanAttack()
@@ -65,5 +70,15 @@ public class EnemyShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRate);
         canAttack = true;
+    }
+
+    public virtual void setMultipliedFireRate(float fireRateMultiplier)
+    {
+        fireRate = defaultFireRate * (1/ fireRateMultiplier);
+    }
+
+    public virtual void setDefaultFireRate()
+    {
+        fireRate = defaultFireRate;
     }
 }

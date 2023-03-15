@@ -2,34 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotgunShoot : MonoBehaviour
+public class ShotgunShoot : EnemyShoot
 {
-    [Header("References")]
-    [SerializeField] protected GameObject bulletPrefab;
-
-    [Header("Settings")]
-    [SerializeField] protected float fireRate = 3f;
+    
+    [Header("Shotgun Settings")]
     [SerializeField] protected float bulletSpread = 15;
-    [SerializeField] protected bool canAttack = false;
-    [SerializeField] protected float firstShotDelay = 2f;
-    [SerializeField] private AudioClip ShootSFX;
-    [SerializeField] private Animator bodyAnimator;
-    [SerializeField] private Animator armAnimator;
 
-    [SerializeField] private EnemyHealth enemyHealth;
-
-    private GameObject target;
-    private bool setAttackStarted = false;
 
 
     private void Start()
     {
+        defaultFireRate = fireRate;
         target = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnEnable()
     {
         canAttack = false;
+        setAttackStarted = false;
     }
 
     IEnumerator SetCanAttack()

@@ -8,10 +8,9 @@ public class SniperShoot : EnemyShoot
     [SerializeField] private AudioClip sniperSFX;
     LaserAim laserAim;
 
-    private GameObject target;
-
     private void Start()
     {
+        defaultFireRate = fireRate;
         laserAim = GetComponentInParent<LaserAim>();
         target = GameObject.FindGameObjectWithTag("Player");
     }

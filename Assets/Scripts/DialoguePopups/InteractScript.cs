@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class InteractScript : MonoBehaviour
 {
@@ -39,7 +40,15 @@ public class InteractScript : MonoBehaviour
     void DisableText()
     {
         dialogueText.SetActive(false);
-        this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
+        
+        if (Gamepad.current == null)
+        {
+            this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
+        }
+        else
+        {
+            this.GetComponent<TextMeshProUGUI>().text = "Press Down on the DPad to interact";
+        }
     }
     private void OnDisable()
     {
@@ -48,7 +57,15 @@ public class InteractScript : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
-        this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
+        
+        if (Gamepad.current == null)
+        {
+            this.GetComponent<TextMeshProUGUI>().text = "Press F to interact";
+        }
+        else
+        {
+            this.GetComponent<TextMeshProUGUI>().text = "Press Down on the DPad to interact";
+        }
     }
 
 }

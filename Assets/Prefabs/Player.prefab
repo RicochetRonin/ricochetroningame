@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4535723059930238413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5231516856501215674}
+  m_Layer: 0
+  m_Name: Aim Camera Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5231516856501215674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535723059930238413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5446883132418489049}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5446883131945973391
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +196,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 85c9170e5cd384e9397d9893157e3650, type: 3}
   - {fileID: 8300000, guid: ef95ea6618d164dbf935bee10b835de1, type: 3}
   - {fileID: 8300000, guid: c553167a93dc748acad17ca6e8fd55d3, type: 3}
-  omniReflectSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
+  omniReflectSFX: {fileID: 8300000, guid: 950c7daf31bab9849a78f955f474d412, type: 3}
+  omniReadySFX: {fileID: 8300000, guid: e2d2cab93661b9a42bff55538a2b0ffc, type: 3}
   reflectSFX: {fileID: 8300000, guid: 879268712188b224d9914166aa2e35b2, type: 3}
   slashSFX: {fileID: 8300000, guid: 161e11bbd56611c42bed5c7cb1b5b6db, type: 3}
   jumpSFX: {fileID: 8300000, guid: 872cca79852ce1640879a3e4768bd420, type: 3}
@@ -479,6 +511,7 @@ Transform:
   - {fileID: 5446883132441753987}
   - {fileID: 5446883133551815275}
   - {fileID: 8677968448183637480}
+  - {fileID: 5231516856501215674}
   m_Father: {fileID: 5446883131945973390}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -573,7 +606,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5446883133551815284}
   soundManager: {fileID: 9008115518942717753}
   _reflectAnimator: {fileID: 7442198271507870336}
-  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: 349fff24656cd7640a4b9754a5a57f18, type: 3}
   detectCoolDown: 0.26
   _cursorColor: {r: 1, g: 1, b: 1, a: 1}
   _cursorColorDeplete: {r: 1, g: 1, b: 1, a: 0.49019608}
@@ -825,6 +858,8 @@ MonoBehaviour:
   _omniReflectHitBox: {fileID: 8746761832924246201}
   _omniReflectGraphics: {fileID: 1516085012480109596}
   _omniReflectCollider: {fileID: 4655902735363691243}
+  playerReflect: {fileID: 5446883132441753985}
+  reflectGraphicsRenderer: {fileID: 3022104866635484261}
   _omniReflectAnimator: {fileID: 2159872659903676269}
   soundManager: {fileID: 9008115518942717753}
   omniReflectDuration: 5
@@ -890,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c455ae4d6390d4595b1484c3e6822e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitParticleSytem: {fileID: 2224266074973808348, guid: d38b791b93ce8cc4fa6b587f2eb0e455, type: 3}
+  _hitParticleSytem: {fileID: 2224266074973808348, guid: 349fff24656cd7640a4b9754a5a57f18, type: 3}
   playSFX: {fileID: 8300000, guid: 4118f362e05d1fa4e929f4d601606232, type: 3}
 --- !u!1 &9189916147902147113
 GameObject:
@@ -937,6 +972,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98bf4d09ff4b1848ac28ff6375bc928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesOnScreen: []
+  singleEnemy: {fileID: 0}
+  enemyActivateBasedOnCamera: 1
+  shooterFireRateMultiplier: 2
+  sniperFireRateMultiplier: 2
+  shotgunFireRateMultiplier: 1.5
+  pulseFireRateMultiplier: 1
+  oneEnemyOnScreen: 0
+  fireRateIncreased: 0
+  fireRateDecreased: 0
+  numEnemiesOnScreen: 0
 --- !u!61 &2462511795347687164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -992,31 +1038,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.52
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9937904
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.11126838
       objectReference: {fileID: 0}
     - target: {fileID: 6537315458511784239, guid: 868fffe47c59eac4ebf549f29f340bed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

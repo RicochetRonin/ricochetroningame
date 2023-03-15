@@ -13,6 +13,7 @@ public class RoninSoundManager : MonoBehaviour
     [Header("AudioClips")]
     [SerializeField] AudioClip[] footsteps;
     [SerializeField] AudioClip omniReflectSFX;
+    [SerializeField] AudioClip omniReadySFX;
     [SerializeField] AudioClip reflectSFX;
     [SerializeField] AudioClip slashSFX;
     [SerializeField] AudioClip jumpSFX;
@@ -37,6 +38,10 @@ public class RoninSoundManager : MonoBehaviour
     public void OmniReflect()
     {
         abilitySource.PlayOneShot(omniReflectSFX);
+    }
+    public void Omniready()
+    {
+        abilitySource.PlayOneShot(omniReadySFX);
     }
     public void Reflect()
     {
