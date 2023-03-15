@@ -193,12 +193,17 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Death UnPause");
+        Time.timeScale = 1;
         newSceneLoaded = false;
+        
+        /*
         Debug.Log("Same scene, does not reset checkpoint");
         Debug.Log("Bullets reflected: " + bulletsReflected);
         Debug.Log("Enemies Killed: " + enemiesKilled);
         Debug.Log("Damage Taken: " + damageTaken);
         Debug.Log("Player deaths: " + playerDeaths);
+        */
     }
 
 
