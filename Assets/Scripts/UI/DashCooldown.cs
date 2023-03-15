@@ -10,9 +10,6 @@ public class DashCooldown : MonoBehaviour
 
     public void SetCooldown(bool canDash)
     {
-        // 1. Need to grab current input action? And always display
-        // 2. Replace True and False with the sprite
-        //dashCooldown.text = "Dash Ready: "+canDash.ToString();
-        dashCooldown.text = "           " + canDash.ToString();
+        dashCooldown.text = "Dash Ready: " + canDash.ToString();
     }
 }
