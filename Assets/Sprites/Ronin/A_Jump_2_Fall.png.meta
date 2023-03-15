@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1cb279b99a70cc5489df978c289d436f
+guid: edf5f5d2111004644825b6807e332e6c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 34
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: A_Jump_Sheet_0
+      name: A_Jump_2_Fall_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,41 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ebd7356027c8244ba6d5577e4be8b5a
-      internalID: 1206293920
+      spriteID: d760b30d40601c64ebb2e7077fe36c3a
+      internalID: -1013984212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_Jump_Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac17b0d5a98d2b345a322223c96fd4ff
-      internalID: -15688283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_Jump_Sheet_2
+      name: A_Jump_2_Fall_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,41 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 832705bde146be140978064962886efa
-      internalID: 650648864
+      spriteID: ac422ed0ff32c2243b9a890899f73e69
+      internalID: -489763269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_Jump_Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df557e2bbb20c7f4383b3ebbf0917534
-      internalID: -1137516246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_Jump_Sheet_4
+      name: A_Jump_2_Fall_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,8 +185,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44d5705045855284892b34b620302575
-      internalID: 205385946
+      spriteID: 3df8a7a6255e6f048be7fb9caf063593
+      internalID: 1771213631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_Jump_2_Fall_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72646a36ef7ab74f95fa302a0cb2f2f
+      internalID: 1110687001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_Jump_2_Fall_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a1f4c270d9d254d83a0b40f2ab3247
+      internalID: -2111277266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_Jump_2_Fall_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a3f8c7393add04b996b43f99adc20d
+      internalID: 212867202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_Jump_2_Fall_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702dd4a28b4de934597fbf916d380c28
+      internalID: -1123888580
       vertices: []
       indices: 
       edges: []
@@ -244,11 +286,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      A_Jump_Sheet_0: 1206293920
-      A_Jump_Sheet_1: -15688283
-      A_Jump_Sheet_2: 650648864
-      A_Jump_Sheet_4: 205385946
-      A_Jump_Sheet_3: -1137516246
+      A_Jump_2_Fall_1: -489763269
+      A_Jump_2_Fall_3: 1110687001
+      A_Jump_2_Fall_5: 212867202
+      A_Jump_2_Fall_4: -2111277266
+      A_Jump_2_Fall_0: -1013984212
+      A_Jump_2_Fall_2: 1771213631
+      A_Jump_2_Fall_6: -1123888580
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
