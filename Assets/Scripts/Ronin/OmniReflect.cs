@@ -19,5 +19,20 @@ public class OmniReflect : MonoBehaviour
                        
             particle.GetComponent<ParticleSystem>().Play();
         }
+
+        //OmniReflect hit an interactable object
+        if (other.CompareTag("Interactable"))
+        {
+            if (other.GetComponent<UpdateTiles>().isEnabled)
+            {
+                //Add tiles to the midground
+                other.GetComponent<UpdateTiles>().AddMidgroundTile();
+            }
+            else
+            {
+                //Removes tiles from midground
+                other.GetComponent<UpdateTiles>().RemoveMidgroundTile();
+            }
+        }
     }
 }

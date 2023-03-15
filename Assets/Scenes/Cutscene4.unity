@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: textSpeed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.size
       value: 5
       objectReference: {fileID: 0}
