@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 8798480067294304217}
   boxes: []
-  textSpeed: 0.1
+  textSpeed: 0.03
   allowFade: 0
 --- !u!1 &5125696502057943887
 GameObject:
