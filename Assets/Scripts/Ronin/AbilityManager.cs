@@ -140,7 +140,7 @@ public class AbilityManager : MonoBehaviour
             }
 
             canOmniReflect = true;
-            omniCooldownText.SetCooldown(true);
+            // omniCooldownText.SetCooldown(true);
         }
     }
 }
