@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -4035,14 +4035,14 @@ TextureImporter:
       Buildings_v1_116: 59691538
       Buildings_v1_40: -1328008610
       Buildings_v1_71: -1546583973
+      Buildings_v1_66: 1459091407
+      Buildings_v1_62: 898500777
+      Buildings_v1_90: -1775544867
       Buildings_v1_0: -538939332
       Buildings_v1_22: 611438999
-      Buildings_v1_90: -1775544867
-      Buildings_v1_66: 1459091407
-      Buildings_v1_45: -1328082928
       Buildings_v1_138: -1246169454
       Buildings_v1_111: 2096002054
-      Buildings_v1_62: 898500777
+      Buildings_v1_45: -1328082928
       Buildings_v1_96: -66329685
       Buildings_v1_113: 747231292
       Buildings_v1_55: -563420551

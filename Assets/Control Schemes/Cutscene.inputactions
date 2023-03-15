@@ -18,22 +18,55 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a96b0a3d-dee9-446b-ba3f-cdd7ab7bd9d0",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "be7a6dd2-6ce1-48b5-8355-9313c7688664",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
                     "action": "ClickThroughText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c157f141-a5d1-4f25-8bde-cfd20b604e34",
-                    "path": "<Mouse>/leftButton",
+                    "id": "0a019100-8d66-4696-9968-d72413a439ac",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "",
+                    "action": "ClickThroughText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b140932-a44b-4ad1-bab9-0a23cc701ed1",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickThroughText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "676528e3-404d-4fba-9137-dc98ec73f5db",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickThroughText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e195415f-ea00-469c-a3b5-c991165de22d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "ClickThroughText",
                     "isComposite": false,
                     "isPartOfComposite": false
