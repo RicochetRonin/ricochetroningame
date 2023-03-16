@@ -41,6 +41,7 @@ public class checkpoint : MonoBehaviour
         } 
     }
 
+
     public void ParamMenuSpawnCheckPoint()
     {
         GameManager.checkPointActive = true;
