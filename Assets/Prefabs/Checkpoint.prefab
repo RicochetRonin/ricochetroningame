@@ -156,7 +156,7 @@ BoxCollider2D:
   m_Offset: {x: 0.15, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.033, y: 0}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -181,6 +181,7 @@ MonoBehaviour:
   activeSprite: {fileID: 21300000, guid: 44beac340eb06d844a1bfc9577c421ed, type: 3}
   inactiveSprite: {fileID: 21300000, guid: 32e6928ad55af4c44aee65bcda32085f, type: 3}
   cutEffect: {fileID: 6302122863824640254}
+  vertOffset: 0.5
 --- !u!212 &1345299098
 SpriteRenderer:
   m_ObjectHideFlags: 0
