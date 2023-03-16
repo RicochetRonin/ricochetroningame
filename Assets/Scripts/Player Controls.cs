@@ -170,6 +170,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4a64830d-a953-42b0-aeda-694ffcc93a56"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""715cf7c9-23e6-40ca-b104-c2da9f454084"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
