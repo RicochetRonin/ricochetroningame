@@ -69,3 +69,5 @@ Packages/manifest.json
 Packages/packages-lock.json
 ProjectSettings/ProjectVersion.txt
 Packages/packages-lock.json
+ProjectSettings/ProjectVersion.txt
+Assets/UI/Animations/Heart_Idle.anim
