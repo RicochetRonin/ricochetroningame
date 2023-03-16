@@ -123,7 +123,7 @@ public class AbilityManager : MonoBehaviour
 
             _aimCollider2D.enabled = false;
             _aimSpriteRenderer.enabled = false;
-            _aimAnimator.enabled = false;
+            //_aimAnimator.enabled = false;
 
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
