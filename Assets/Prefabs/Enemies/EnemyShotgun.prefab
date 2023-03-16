@@ -65,6 +65,7 @@ MonoBehaviour:
   enemy: {fileID: 4780582318247601425}
   enemyAim: {fileID: 8599987345269046681}
   animator: {fileID: 6922248157567319539}
+  DeathSFX: {fileID: 8300000, guid: 2d12c738e91995e4d8f43381d8fb8d5e, type: 3}
   health: 3
   maxHealth: 3
   iframes: 0.5
