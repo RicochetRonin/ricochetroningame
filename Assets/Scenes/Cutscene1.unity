@@ -378,7 +378,57 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: textSpeed
-      value: 0.03
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[0]
+      value: "Long ago, there was a man who swiftly climbed the ranks in the most
+        feared bandit clan in the world. He helped them steal bounties of great riches
+        and became known only as the Ronin.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[1]
+      value: One fateful day, the bandit clan gained control of an all powerful artifact
+        known as the Omnijin.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[2]
+      value: "The Ronin grew uncomfortable with the leader\u2019s plan, knowing his
+        goals of worldwide destruction were attainable with such an artifact."
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[3]
+      value: He escaped with the artifact and moved far away, promising himself he
+        would never again tarnish his blade with blood. He adopted the practice of
+        Yadomejutsu to reflect attacks back at his enemies.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[4]
+      value: "The Ronin\u2019s peace lasted many years, but his past eventually found
+        him. As punishment for his betrayal, the clan slaughtered his wife and children
+        and stole the Omnijin back, leaving him only with a broken blade."
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[5]
+      value: The Ronin now had to avenge his family and protect other innocents from
+        the clan. He set out on his quest to take back the artifact and face his
+        past.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
+      propertyPath: boxes.Array.data[8]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9066384769399483112, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: m_Pivot.x

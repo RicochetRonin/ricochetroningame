@@ -23,7 +23,8 @@ public class DialoguePopupScript : MonoBehaviour
             collision.transform.position - transform.position,
             Vector2.Distance(transform.position, collision.transform.position), groundMask))
         {
-            interactText.SetActive(true);
+            //interactText.SetActive(true);
+            dialogueText.SetActive(true);
             backerImage.SetActive(true);
             inRange = true;
         }
@@ -32,7 +33,7 @@ public class DialoguePopupScript : MonoBehaviour
     {
         if (collision.CompareTag(playerTag))
         {
-            interactText.SetActive(false);
+            //interactText.SetActive(false);
             dialogueText.SetActive(false);
             backerImage.SetActive(false);
             inRange = false;

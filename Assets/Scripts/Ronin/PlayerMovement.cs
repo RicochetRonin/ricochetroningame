@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //Code from Celeste's Movement by Mix and Jam: https://www.youtube.com/watch?v=STyY26a_dPY&ab_channel=MixandJam
     //Code from Better Jumping in Unity With Four Lines of Code by Board To Bits Games: https://www.youtube.com/watch?v=7KiK0Aqtmzc&ab_channel=BoardToBitsGames
 
-    //public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
+    // public DashCooldown dashCooldownText; //Attach UI/DashCooldown to this slot
 
     //Attach to the Player Gameobject, with Rigidbody2D, BoxCollider2D, and Transform
     [Header("Private Components")]
@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJumping;
     private bool wallSliding;
     private bool prevWallSliding;
+    private bool prevMovingIntoWall;
     
     public delegate void SpawnPointEventHandler();
     public static event SpawnPointEventHandler SpawnSet;
@@ -117,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         prevWallSliding = false;
         jumpBuffer = false;
         jumpStarted = false;
+        prevMovingIntoWall = false;
     }
 
     void SetControls()
@@ -177,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         WallJumpingCheck();
 
 /*        Debug.Log(jumpCount);*/
-        if ((coll.onGround || coll.onPlatform || coll.onWall) && !jumpBuffer)
+        if ((coll.onGround || coll.onPlatform || ((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)) || wallSliding) && !jumpBuffer)
         {
             /*            Debug.Log("resetting coyote time");*/
             coyoteTimeCounter = coyoteTime;
@@ -203,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("WallJumping", wallJumping);
         _animator.SetBool("WallSliding", wallSliding);
         _animator.SetBool("WallGrab", wallSliding || ((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)));
+        _animator.SetBool("prevMovingIntoWall", prevMovingIntoWall);
     }
 
 
@@ -288,19 +291,26 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 0;
             rb.velocity = new Vector2(0, 0);
+            prevMovingIntoWall = true;
             
         }
 
         else if (wallSliding)
         {
             rb.gravityScale = 1;
+            prevMovingIntoWall = false;
+            
         }
 
         else
         {
             rb.gravityScale = 1;
             rb.velocity = (new Vector2(playerInputDir * speed, rb.velocity.y));
-            if (playerInputDir != 0 && coll.onGround) { soundManager.Footstep(); }
+
+            if (coll.onGround || coll.onPlatform)
+            {
+                prevMovingIntoWall = false;
+            }
         }
     }
 
@@ -324,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
     //Makes Ronin jump when called
     private void Jump()
     {
+        //Debug.Log(jumpCount + " jumpCOunt");
         currentTime += Time.deltaTime;
 
         bool isJumpKeyHeld = _playerControls.Moving.Jump.ReadValue<float>() > 0.1f;
@@ -334,7 +345,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 jumpStarted = true;
                 //If the Ronin is wall clinging, wall jump
-                if (wallSliding || (coll.onWall && (!coll.onGround && !coll.onPlatform)))
+                if (wallSliding || (((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)) && (!coll.onGround && !coll.onPlatform)))
                 {
                     wallJumping = true;
                     if (coll.onRightWall)
@@ -422,16 +433,18 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Wall slide check called");
         if (coll.onWall && (!coll.onGround && !coll.onPlatform) && playerInputDir == 0 && rb.velocity.y < 5)
         {
+            //Debug.Log("prev moving into wall " + prevMovingIntoWall);
             //Sets the intial wall sliding velocity
-            if (!prevWallSliding)
+            if (!prevWallSliding && (wallJumping || prevMovingIntoWall))
             {
+               // Debug.Log("Set wall Slide!");
                 rb.velocity = new Vector2(0, 0.1f);
                 prevWallSliding = true;
                 wallSliding = true;
             }
 
             //Reduce velocity using wallSlideGravityReducer
-            else if (rb.velocity.y > -7 && _move.y != -1)
+            else if (rb.velocity.y > -7 && _move.y != -1 && prevWallSliding)
             {
                 wallSliding = true;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (1/wallSlideGravityReducer) * Time.deltaTime;
@@ -503,7 +516,7 @@ public class PlayerMovement : MonoBehaviour
             //Ronin affected by gravity again
             rb.gravityScale = 1;
             rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            
+
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
             canDash = true;

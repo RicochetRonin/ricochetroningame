@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -2395,8 +2395,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tilemap2_v1_28: 1603033195
       Tilemap2_v1_86: -355911277
+      Tilemap2_v1_28: 1603033195
       Tilemap2_v1_79: 1698584592
       Tilemap2_v1_11: 201811833
       Tilemap2_v1_98: -1317548893

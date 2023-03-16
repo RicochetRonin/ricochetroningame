@@ -9,7 +9,7 @@ public class StartingSpawn : MonoBehaviour
         if (GameManager.newSceneLoaded && GameManager.checkPointActive == false)
         {
             GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
-            Debug.LogFormat("Starting Spawn Set to: {0}", GameManager.lastCheckPointPos);
+            //Debug.LogFormat("Starting Spawn Set to: {0}", GameManager.lastCheckPointPos);
         }
     }
 
@@ -18,7 +18,7 @@ public class StartingSpawn : MonoBehaviour
         if (GameManager.newSceneLoaded && GameManager.checkPointActive == false)
         {
             GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
-            Debug.LogFormat("Starting Spawn Set to: {0}", GameManager.lastCheckPointPos);
+            //Debug.LogFormat("Starting Spawn Set to: {0}", GameManager.lastCheckPointPos);
         }
     }
 }

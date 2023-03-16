@@ -13,7 +13,6 @@ public class AbilityManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _aimGraphics;
     [SerializeField] private GameObject _omniReflectHitBox;
     [SerializeField] private GameObject _omniReflectGraphics;
@@ -21,8 +20,10 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] public PlayerReflect playerReflect;
     [SerializeField] public SpriteRenderer reflectGraphicsRenderer;
     //[SerializeField] private ParticleSystem _omniReflectParticleSystem;
-    [SerializeField] private Animator _omniReflectAnimator;
+    [SerializeField] private Animator _omniReflectAnimator, _aimAnimator;
     [SerializeField] private RoninSoundManager soundManager;
+    [SerializeField] private SpriteRenderer _aimSpriteRenderer;
+    [SerializeField] private Collider2D _aimCollider2D;
 
     //[SerializeField] private AudioClip OmniReflectSFX;
 
@@ -34,7 +35,7 @@ public class AbilityManager : MonoBehaviour
     private OmniCooldown omniCooldownText;
 
 
-    //public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
+    // public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
 
 
     #region Initialization
@@ -72,6 +73,7 @@ public class AbilityManager : MonoBehaviour
         omniCooldownText.SetCooldown(canOmniReflect);
         if (omniParamActive == true && omniReflectActive == false)
         {
+            //omniReflectCooldown = 0;
             StartCoroutine(OmniReflect(0f));
             if (omniSoundPlayed == false)
             {
@@ -84,6 +86,11 @@ public class AbilityManager : MonoBehaviour
             return;
         }
     }
+
+    /*public bool getCanOmni()
+    {
+        return canOmniReflect;
+    }*/
 
     public void OmniReflectParamToggle()
     {
@@ -102,6 +109,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (canOmniReflect)
         {
+            playerReflect.canReflect = false;
             canOmniReflect = false;
             omniReflectActive = true;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
@@ -113,22 +121,27 @@ public class AbilityManager : MonoBehaviour
                 soundManager.OmniReflect();
             }
 
-            //FIX THIS, IT CAUSES ISSUE. DISABLE COLLIDER AND SPRITE, NOT THE WHOLE OBJECT
-            _aim.SetActive(false);
-            //playerReflect.DisableReflect();
-            //FIX IT
-
+            _aimCollider2D.enabled = false;
+            _aimSpriteRenderer.enabled = false;
+            //_aimAnimator.enabled = false;
 
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
             _omniReflectCollider.enabled = false;
             playerReflect.OmniResetReflect();
 
-            //FIX
-            //playerReflect.EnableReflect();
-            _aim.SetActive(true);
-            //FIX
-
+            if (!omniParamActive)
+            {
+                playerReflect.canReflect = true;
+                _aimCollider2D.enabled = true;
+                _aimSpriteRenderer.enabled = true;
+                _aimAnimator.enabled = true;
+            }
+            
+            /*_aimCollider2D.enabled = true;
+            _aimSpriteRenderer.enabled = true;
+            _aimAnimator.enabled = true;*/
+            
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
             yield return new WaitForSeconds(cooldown);
@@ -140,6 +153,7 @@ public class AbilityManager : MonoBehaviour
             }
 
             canOmniReflect = true;
+            // omniCooldownText.SetCooldown(true);
         }
     }
 }

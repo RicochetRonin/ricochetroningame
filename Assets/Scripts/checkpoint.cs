@@ -13,6 +13,7 @@ public class checkpoint : MonoBehaviour
 
     [SerializeField] private GameObject cutEffect;
 
+    [SerializeField] private float vertOffset;
 
 /*    void Awake()
     {
@@ -31,12 +32,21 @@ public class checkpoint : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.checkPointActive = true;
-            GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y);
+            GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y + vertOffset);
             if (SpawnSet != null) SpawnSet();
             _spriteRenderer.sprite = activeSprite;
             cutEffect.SetActive(true);
             Debug.LogFormat("Last Checkpoint is now set to: {0}", gameObject.name);
 
         } 
+    }
+
+    public void ParamMenuSpawnCheckPoint()
+    {
+        GameManager.checkPointActive = true;
+        GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y + vertOffset);
+        if (SpawnSet != null) SpawnSet();
+        _spriteRenderer.sprite = activeSprite;
+        cutEffect.SetActive(true);
     }
 }
