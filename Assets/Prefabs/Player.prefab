@@ -754,7 +754,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -853,6 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5446883131945973391}
+  _aim: {fileID: 5446883132418489050}
   _aimGraphics: {fileID: 5446883133551815285}
   _omniReflectHitBox: {fileID: 8746761832924246201}
   _omniReflectGraphics: {fileID: 1516085012480109596}
@@ -860,10 +861,7 @@ MonoBehaviour:
   playerReflect: {fileID: 5446883132441753985}
   reflectGraphicsRenderer: {fileID: 3022104866635484261}
   _omniReflectAnimator: {fileID: 2159872659903676269}
-  _aimAnimator: {fileID: 0}
   soundManager: {fileID: 9008115518942717753}
-  _aimSpriteRenderer: {fileID: 0}
-  _aimCollider2D: {fileID: 0}
   omniReflectDuration: 5
   omniReflectCooldown: 30
 --- !u!1 &8746761832924246201
