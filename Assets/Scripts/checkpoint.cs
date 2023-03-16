@@ -40,4 +40,13 @@ public class checkpoint : MonoBehaviour
 
         } 
     }
+
+    public void ParamMenuSpawnCheckPoint()
+    {
+        GameManager.checkPointActive = true;
+        GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y + vertOffset);
+        if (SpawnSet != null) SpawnSet();
+        _spriteRenderer.sprite = activeSprite;
+        cutEffect.SetActive(true);
+    }
 }
