@@ -284,7 +284,7 @@ MonoBehaviour:
   timeBetweenPulse: 2
   timeBetweenShot: 0
   pulseRadius: 1
-  PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  PulseSFX: {fileID: 8300000, guid: 0f7810a7046845b4489ab16a4a85eb73, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0
