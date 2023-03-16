@@ -193,8 +193,8 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Death UnPause");
-        Time.timeScale = 1;
+        //Debug.Log("Death UnPause");
+        //Time.timeScale = 1;
         newSceneLoaded = false;
         
         /*

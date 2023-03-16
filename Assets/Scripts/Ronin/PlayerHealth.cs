@@ -86,8 +86,8 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(deathDelay);
         // isDead = true;
 
-        Debug.Log("Death Pause");
-        Time.timeScale = 0;
+        //Debug.Log("Death Pause");
+        //Time.timeScale = 0;
         
         Destroy(player);
 
