@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         WallJumpingCheck();
 
 /*        Debug.Log(jumpCount);*/
-        if ((coll.onGround || coll.onPlatform || coll.onWall) && !jumpBuffer)
+        if ((coll.onGround || coll.onPlatform || ((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)) || wallSliding) && !jumpBuffer)
         {
             /*            Debug.Log("resetting coyote time");*/
             coyoteTimeCounter = coyoteTime;
@@ -334,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
     //Makes Ronin jump when called
     private void Jump()
     {
+        //Debug.Log(jumpCount + " jumpCOunt");
         currentTime += Time.deltaTime;
 
         bool isJumpKeyHeld = _playerControls.Moving.Jump.ReadValue<float>() > 0.1f;
@@ -344,7 +345,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 jumpStarted = true;
                 //If the Ronin is wall clinging, wall jump
-                if (wallSliding && (!coll.onGround && !coll.onPlatform))
+                if (wallSliding || (((coll.onLeftWall && _move.x < 0) || (coll.onRightWall && _move.x > 0)) && (!coll.onGround && !coll.onPlatform)))
                 {
                     wallJumping = true;
                     if (coll.onRightWall)
@@ -436,7 +437,7 @@ public class PlayerMovement : MonoBehaviour
             //Sets the intial wall sliding velocity
             if (!prevWallSliding && (wallJumping || prevMovingIntoWall))
             {
-                Debug.Log("Set wall Slide!");
+               // Debug.Log("Set wall Slide!");
                 rb.velocity = new Vector2(0, 0.1f);
                 prevWallSliding = true;
                 wallSliding = true;
