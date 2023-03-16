@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEditor;
+using Unity.VisualScripting;
 
 
 //This script check if trigger enters and exits are from enemies. On enter, activates enemy. On exit, deactivates enemy.
@@ -43,6 +44,7 @@ public class PlayerActivateEnemy : MonoBehaviour
             this.gameObject.transform.position = cinemachineBrain.transform.position;
         }
 
+
         if (numEnemiesOnScreen == 1 && !fireRateIncreased)
         {
             Debug.Log("Increase firerate!");
@@ -51,25 +53,27 @@ public class PlayerActivateEnemy : MonoBehaviour
 
             singleEnemy = enemiesOnScreen[0].GetComponentInChildren<EnemyShoot>();
 
-            
-            if (singleEnemy is SniperShoot)
+            if (singleEnemy != null)
             {
-                singleEnemy.setMultipliedFireRate(sniperFireRateMultiplier);
-            }
+                if (singleEnemy is SniperShoot)
+                {
+                    singleEnemy.setMultipliedFireRate(sniperFireRateMultiplier);
+                }
 
-            else if (singleEnemy is ShotgunShoot)
-            {
-                singleEnemy.setMultipliedFireRate(shotgunFireRateMultiplier);
-            }
+                else if (singleEnemy is ShotgunShoot)
+                {
+                    singleEnemy.setMultipliedFireRate(shotgunFireRateMultiplier);
+                }
 
-            else if (singleEnemy is PulseShoot)
-            {
-                singleEnemy.setMultipliedFireRate(pulseFireRateMultiplier);
-            }
+                else if (singleEnemy is PulseShoot)
+                {
+                    singleEnemy.setMultipliedFireRate(pulseFireRateMultiplier);
+                }
 
-            else
-            {
-                singleEnemy.setMultipliedFireRate(shooterFireRateMultiplier);
+                else if (singleEnemy)
+                {
+                    singleEnemy.setMultipliedFireRate(shooterFireRateMultiplier);
+                }
             }
         }
 
@@ -78,8 +82,13 @@ public class PlayerActivateEnemy : MonoBehaviour
             Debug.Log("Decrease firerate");
             oneEnemyOnScreen = false;
             fireRateIncreased = false;
-            singleEnemy.setDefaultFireRate();
-            singleEnemy = null;
+
+            if (singleEnemy != null)
+            {
+                singleEnemy.setDefaultFireRate();
+                singleEnemy = null;
+            }
+            
         }
 
 

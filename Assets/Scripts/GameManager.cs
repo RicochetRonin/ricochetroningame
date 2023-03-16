@@ -258,4 +258,18 @@ public class GameManager : MonoBehaviour
         checkPointActive = false;
     }
 
+    public void ParamMenuSpawnCheckPoint(checkpoint cp)
+    {
+
+
+        cp.ParamMenuSpawnCheckPoint();
+
+        UnPauseGame();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        newSceneLoaded = false;
+
+
+    }
+
 }

@@ -65,6 +65,7 @@ MonoBehaviour:
   enemy: {fileID: 4780582318247601425}
   enemyAim: {fileID: 8599987345269046681}
   animator: {fileID: 3781705684433964122}
+  DeathSFX: {fileID: 8300000, guid: 2d12c738e91995e4d8f43381d8fb8d5e, type: 3}
   health: 2
   maxHealth: 2
   iframes: 0.5
@@ -284,7 +285,7 @@ MonoBehaviour:
   timeBetweenPulse: 2
   timeBetweenShot: 0
   pulseRadius: 1
-  PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  PulseSFX: {fileID: 8300000, guid: 0f7810a7046845b4489ab16a4a85eb73, type: 3}
 --- !u!1 &8599987345269046681
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,7 @@ public class AbilityManager : MonoBehaviour
         omniCooldownText.SetCooldown(canOmniReflect);
         if (omniParamActive == true && omniReflectActive == false)
         {
+            //omniReflectCooldown = 0;
             StartCoroutine(OmniReflect(0f));
             if (omniSoundPlayed == false)
             {
@@ -85,6 +86,11 @@ public class AbilityManager : MonoBehaviour
             return;
         }
     }
+
+    /*public bool getCanOmni()
+    {
+        return canOmniReflect;
+    }*/
 
     public void OmniReflectParamToggle()
     {
@@ -103,6 +109,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (canOmniReflect)
         {
+            playerReflect.canReflect = false;
             canOmniReflect = false;
             omniReflectActive = true;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
@@ -114,28 +121,26 @@ public class AbilityManager : MonoBehaviour
                 soundManager.OmniReflect();
             }
 
-            //FIX THIS, IT CAUSES ISSUE. DISABLE COLLIDER AND SPRITE, NOT THE WHOLE OBJECT
-            //_aim.SetActive(false);
-            //playerReflect.DisableReflect();
-            //FIX IT
-
             _aimCollider2D.enabled = false;
             _aimSpriteRenderer.enabled = false;
-            _aimAnimator.enabled = false;
+            //_aimAnimator.enabled = false;
 
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
             _omniReflectCollider.enabled = false;
             playerReflect.OmniResetReflect();
 
-            //FIX
-            //playerReflect.EnableReflect();
-            //_aim.SetActive(true);
-            //FIX
-
-            _aimCollider2D.enabled = true;
+            if (!omniParamActive)
+            {
+                playerReflect.canReflect = true;
+                _aimCollider2D.enabled = true;
+                _aimSpriteRenderer.enabled = true;
+                _aimAnimator.enabled = true;
+            }
+            
+            /*_aimCollider2D.enabled = true;
             _aimSpriteRenderer.enabled = true;
-            _aimAnimator.enabled = true;
+            _aimAnimator.enabled = true;*/
             
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
