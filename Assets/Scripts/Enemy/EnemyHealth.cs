@@ -19,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float deathDelay = 0.75f;
 
     private bool isAlive;
+    private bool playedSFX;
 
     private void Start()
     {
@@ -60,7 +61,13 @@ public class EnemyHealth : MonoBehaviour
         enemyGraphics.color = new Color(255f, 255f, 255f);
         enemyAim.SetActive(false);
         animator.SetTrigger("Death");
-        AudioManager.PlayOneShotSFX(DeathSFX);
+        
+        if (playedSFX == false)
+        {
+            AudioManager.PlayOneShotSFX(DeathSFX);
+            playedSFX = true;
+        }
+        
         yield return new WaitForSeconds(deathDelay);
         Destroy(enemy);
 
