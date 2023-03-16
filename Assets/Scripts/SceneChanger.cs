@@ -58,6 +58,5 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         GameManager.newSceneLoaded = true;
         GameManager.checkPointActive = false;
-        Debug.Log("New scene, reset checkpoint");
     }
 }

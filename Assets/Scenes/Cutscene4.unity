@@ -132,29 +132,30 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: textSpeed
-      value: 0.03
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[0]
-      value: The Ronin succeeded in his quest, yet something still was not right.
-        The Omnijin artifact was in safe hands again, and his family was avenged.
-        Were they not?
+      value: The Ronin succeeded in his quest, yet he felt there was more for him
+        to do in order to ensure no other innocents would be harmed by corruption
+        and those like the bandits.
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[1]
-      value: He decided then that his work was not yet done. His family would want
-        him to continue to protect innocents from the likes of bandit clans and corruption
-        everywhere.
+      value: After inspecting the Omnijin, the Ronin realized something was off.
+        In fact, it was only a piece of a larger whole. He decided to find the rest
+        of the artifact and ensure no one could weaponize it ever again.
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[2]
-      value: "He needed to know more about the Omnijin. For such a powerful artifact,
-        it seemed\u2026incomplete. In fact it was - several pieces were missing from
-        the artifacts gilded surface."
+      value: 'And so the Ronin set out on his new quest, feeling a renewed sense
+        of purpose in the face of his grief and regret.
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[3]
@@ -163,10 +164,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066384767841792336, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: boxes.Array.data[4]
-      value: 'And so the Ronin set out on his journey once again, feeling a renewed
-        sense of purpose finally overtake his loneliness.
-
-'
+      value: He decided then that his work was not yet done. His family would want
+        him to continue to protect innocents from the likes of bandit clans and corruption
+        everywhere.
       objectReference: {fileID: 0}
     - target: {fileID: 9066384769118728389, guid: 64d56042f9ac7324e829dabda66fa3de, type: 3}
       propertyPath: m_AnchoredPosition.x
