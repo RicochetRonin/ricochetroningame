@@ -133,14 +133,9 @@ public class AbilityManager : MonoBehaviour
             if (!omniParamActive)
             {
                 playerReflect.canReflect = true;
-                _aimCollider2D.enabled = true;
                 _aimSpriteRenderer.enabled = true;
                 _aimAnimator.enabled = true;
             }
-            
-            /*_aimCollider2D.enabled = true;
-            _aimSpriteRenderer.enabled = true;
-            _aimAnimator.enabled = true;*/
             
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
