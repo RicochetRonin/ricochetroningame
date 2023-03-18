@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +17,7 @@ public class CheckpointForm : MonoBehaviour
 
     private void OnEnable()
     {
-        checkpoints = GameObject.FindObjectsOfType<checkpoint>();
+        checkpoints = GameObject.FindObjectsOfType<checkpoint>().OrderBy(go => go.transform.position.x).ToArray(); ;
 
         for (int i = 0; i < checkpoints.Length; i++)
         {
