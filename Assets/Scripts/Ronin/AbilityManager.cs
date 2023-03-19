@@ -31,6 +31,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float omniReflectDuration = 5f;
     [SerializeField] private float omniReflectCooldown = 30f;
 
+    [Header("UI")]
+    public Omni_Manager omni_UI;
+
     private PlayerControls _playerControls;
     private OmniCooldown omniCooldownText;
     private bool omniActive = false;
@@ -119,6 +122,7 @@ public class AbilityManager : MonoBehaviour
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
             _omniReflectAnimator.SetTrigger("OmniReflect");
+            omni_UI.omniActivate();
 
             if (!omniSoundPlayed)
             {
