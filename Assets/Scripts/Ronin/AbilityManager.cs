@@ -33,6 +33,7 @@ public class AbilityManager : MonoBehaviour
 
     private PlayerControls _playerControls;
     private OmniCooldown omniCooldownText;
+    private bool omniActive = false;
 
 
     // public OmniCooldown omniCooldownText; //Attach UI/OmniCooldown to this slot
@@ -87,16 +88,18 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    /*public bool getCanOmni()
+    public bool getOmniActive()
     {
-        return canOmniReflect;
-    }*/
+        return omniActive;
+    }
 
     public void OmniReflectParamToggle()
     {
         if (omniParamActive == false)
         {
             omniParamActive = true;
+            StopCoroutine(OmniReflect(omniReflectCooldown));
+            canOmniReflect = true;
         }
         else
         {
@@ -111,6 +114,7 @@ public class AbilityManager : MonoBehaviour
         {
             playerReflect.canReflect = false;
             canOmniReflect = false;
+            omniActive = true;
             omniReflectActive = true;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
@@ -134,7 +138,7 @@ public class AbilityManager : MonoBehaviour
             {
                 playerReflect.canReflect = true;
                 _aimSpriteRenderer.enabled = true;
-                _aimAnimator.enabled = true;
+                omniActive = false;
             }
             
             omniReflectActive = false;

@@ -9,7 +9,8 @@ public class PlayerReflect : MonoBehaviour
     [Tooltip("The sprite to change colors when detecting")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private RoninSoundManager soundManager;
-    
+    [SerializeField] private AbilityManager abilityManager;
+
     [SerializeField] private Animator _reflectAnimator;
     [SerializeField] private GameObject _hitParticleSytem;
 
@@ -27,6 +28,7 @@ public class PlayerReflect : MonoBehaviour
     public bool canReflect;
     private float reflectTime;
     private bool bulletReflected = false;
+    private bool omniActive;
 
     #region Initialization
 
@@ -61,19 +63,31 @@ public class PlayerReflect : MonoBehaviour
     }
 
     #endregion
-    
+
+
+    public void Update()
+    {
+        if (abilityManager.getOmniActive())
+        {
+            omniActive = true;
+        }
+        else
+        {
+            omniActive = false;
+        }
+    }
+
 
     //Called when the player attempts to reflect.
     private IEnumerator Detect()
     {
-        if (!canReflect)
+        if (!canReflect || omniActive)
         {
             yield return null;
         }
-
-
         else
         {
+
             _collider.enabled = true;
             if (!bulletReflected)
             {
