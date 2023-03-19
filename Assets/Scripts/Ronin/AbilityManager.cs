@@ -85,6 +85,11 @@ public class AbilityManager : MonoBehaviour
             }
         }
 
+        if (canOmniReflect)
+        {
+            omni_UI.omniReady();
+        }
+
         if (omniReflectActive)
         {
             return;
