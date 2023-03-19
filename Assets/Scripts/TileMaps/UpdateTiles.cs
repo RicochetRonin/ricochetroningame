@@ -31,7 +31,9 @@ public class UpdateTiles : MonoBehaviour
             midgroundTileMap.SetTile(position, null);
         }
         AudioManager.PlayOneShotSFX(omniReadySFX);
-        isEnabled = true;
+        // Commenting out to prevent flipping lever multiple times
+        // Can uncomment if want to in the future
+        // isEnabled = true;
     }
 
     public void AddMidgroundTile()
