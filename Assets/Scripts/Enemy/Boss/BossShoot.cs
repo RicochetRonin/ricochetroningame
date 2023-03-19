@@ -48,7 +48,7 @@ public class BossShoot : EnemyShoot
                 }
                 else if (phaseNum == 3)
                 {
-                    StartCoroutine(PulseSpawn(5, 1, 1f, 0.1f, 2f));
+                    StartCoroutine(PulseSpawn(4, 1, 1f, 0.1f, 2f));
                     canAttack = false;
                     StartCoroutine("ResetAttack");
                 }
