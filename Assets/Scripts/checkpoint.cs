@@ -15,10 +15,13 @@ public class checkpoint : MonoBehaviour
 
     [SerializeField] private float vertOffset;
 
-/*    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }*/
+    [SerializeField] protected AudioClip checkpointSFX;
+    private bool alreadyPlayed = false;
+
+    /*    void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }*/
 
 
     private void Start()
@@ -31,6 +34,11 @@ public class checkpoint : MonoBehaviour
     {  
         if (other.gameObject.CompareTag("Player"))
         {
+            if (!alreadyPlayed)
+            {
+                AudioManager.PlayOneShotSFX(checkpointSFX);
+            }
+            alreadyPlayed = true;
             GameManager.checkPointActive = true;
             GameManager.lastCheckPointPos = new Vector2(transform.position.x, transform.position.y + vertOffset);
             if (SpawnSet != null) SpawnSet();

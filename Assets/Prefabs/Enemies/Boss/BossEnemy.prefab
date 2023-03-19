@@ -460,12 +460,12 @@ MonoBehaviour:
   fireRate: 2
   canAttack: 0
   firstShotDelay: 2
-  ShootSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  ShootSFX: {fileID: 8300000, guid: a7f38e579d820e94fab54eff9a1f7af6, type: 3}
   bodyAnimator: {fileID: 7119103428685423675}
   armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
   setAttackStarted: 0
-  PulseSFX: {fileID: 8300000, guid: ecb1523daf5ad4444a2eb82e30a432ab, type: 3}
+  PulseSFX: {fileID: 8300000, guid: a7f38e579d820e94fab54eff9a1f7af6, type: 3}
 --- !u!114 &5331561396427457707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,12 +482,12 @@ MonoBehaviour:
   fireRate: 8.5
   canAttack: 1
   firstShotDelay: 2
-  ShootSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
+  ShootSFX: {fileID: 8300000, guid: d95958bd8e11ec445befc8e268af0e5f, type: 3}
   bodyAnimator: {fileID: 7119103428685423675}
   armAnimator: {fileID: 7119103428685423675}
   enemyHealth: {fileID: 0}
   setAttackStarted: 0
-  sniperSFX: {fileID: 8300000, guid: f16d76a6e91342a43be5bc1afdd76b92, type: 3}
+  sniperSFX: {fileID: 8300000, guid: d95958bd8e11ec445befc8e268af0e5f, type: 3}
 --- !u!1 &5871813232451694208
 GameObject:
   m_ObjectHideFlags: 0
