@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 5446883133551815284}
   soundManager: {fileID: 9008115518942717753}
+  abilityManager: {fileID: 8858559069726242093}
   _reflectAnimator: {fileID: 7442198271507870336}
   _hitParticleSytem: {fileID: 2224266074973808348, guid: 349fff24656cd7640a4b9754a5a57f18, type: 3}
   detectCoolDown: 0.26
