@@ -8,6 +8,7 @@ public class Omni_Manager : MonoBehaviour
 {
 
     public TextMeshProUGUI omni_countdown_text;
+    public TextMeshProUGUI omni_ready_text;
 
     private Animator animator;
 
@@ -20,7 +21,8 @@ public class Omni_Manager : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         omni_countdown_text.enabled = false;
-        
+        omni_ready_text.enabled = true;
+
     }
 
     // Update is called once per frame
@@ -31,7 +33,13 @@ public class Omni_Manager : MonoBehaviour
 
     public void omniActivate()
     {
+        omni_ready_text.enabled = false;
         animator.SetTrigger("WindUp");
+    }
+
+    public void omniReady()
+    {
+        omni_ready_text.enabled = true;
     }
 
     public IEnumerator startCountDown(int time)
