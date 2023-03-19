@@ -137,17 +137,6 @@
                 },
                 {
                     "name": "",
-                    "id": "285f6adc-3924-4aca-bacd-c28a8dd2a5f2",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4a64830d-a953-42b0-aeda-694ffcc93a56",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
