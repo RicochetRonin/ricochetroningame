@@ -13,10 +13,14 @@ public class Omni_Manager : MonoBehaviour
 
     public int loopCount = 0;
 
+    public int countDownTime;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        omni_countdown_text.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -30,17 +34,20 @@ public class Omni_Manager : MonoBehaviour
         animator.SetTrigger("WindUp");
     }
 
-    public int countdown(int timeLeft)
+    public IEnumerator startCountDown(int time)
     {
-      
-        omni_countdown_text.text = timeLeft.ToString();
-        timeLeft--;
-        if (timeLeft < 1)
+        Debug.Log("countdown");
+        animator.SetTrigger("CoolDown");
+        omni_countdown_text.enabled = true;
+        countDownTime = time;
+        while (countDownTime > 0)
         {
-            animator.SetTrigger("CoolDown");
+            omni_countdown_text.text = countDownTime.ToString();
+            yield return new WaitForSeconds(1f);
+            countDownTime--;
         }
-        return timeLeft;
 
+        omni_countdown_text.enabled = false;
     }
 
 }

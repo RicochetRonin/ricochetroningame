@@ -135,6 +135,7 @@ public class AbilityManager : MonoBehaviour
 
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
+            StartCoroutine(omni_UI.startCountDown((int)omniReflectCooldown));
             _omniReflectCollider.enabled = false;
             playerReflect.OmniResetReflect();
 
