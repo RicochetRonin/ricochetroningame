@@ -148,6 +148,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        
         //Start a new timer
         if (timerVal == "")
         {
@@ -190,7 +193,7 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    public void Restart()
+    public void Restart() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //Debug.Log("Death UnPause");
@@ -211,6 +214,9 @@ public class GameManager : MonoBehaviour
     {
         if (!_isPaused)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            
             _isPaused = true;
             Time.timeScale = 0;
             PauseMenu.SetActive(true);
@@ -221,6 +227,9 @@ public class GameManager : MonoBehaviour
     {
         if (_isPaused)
         {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            
             _isPaused = false;
             Time.timeScale = 1;
             PauseMenu.SetActive(false);
