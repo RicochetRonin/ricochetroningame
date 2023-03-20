@@ -15,6 +15,8 @@ public class Health_Manager : MonoBehaviour
 
     private Animator animator;
 
+    public float frameRate;
+
 
     public void Start()
     {
@@ -28,7 +30,8 @@ public class Health_Manager : MonoBehaviour
 
     private void Health_Update(float currentHealth)
     {
-        //health_loop.frameRate = Mathf.Abs(10 - currentHealth);
+        frameRate = Mathf.Abs(20 - currentHealth);
+        health_loop.frameRate = frameRate;
         // Set Loop speed to be dependant on currentHealth
     }
     public void PlayerHit(float currentHealth, float damageDealt)

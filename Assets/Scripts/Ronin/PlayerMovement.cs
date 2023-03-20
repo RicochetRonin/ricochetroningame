@@ -6,6 +6,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer _spriteRenderer;
     public Animator _animator;
+    public VisualEffect _dashTrail;
     [SerializeField] private RoninSoundManager soundManager;
 
     public bool canMove = true;
@@ -222,7 +224,8 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
-                  }
+            _dashTrail.SetBool("flipped", false);
+        }
 
         //If movement is left and Ronin is facing right and Ronin is on ground or platform, flip Ronin to face left
         else if (dir.x < 0 && isFacingRight && (coll.onGround || coll.onPlatform))
@@ -230,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
+            _dashTrail.SetBool("flipped", true);
         }
 
         //If Ronin is on the wall and not on the ground and not on platform and not wall jumping, flip the sprite depending on which wall Ronin is on.
@@ -242,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
                     isFacingRight = !isFacingRight;
                     isFacingRightInt *= -1;
                     _spriteRenderer.flipX = true;
+                    _dashTrail.SetBool("flipped", true);
                 }
                 
             }
@@ -252,6 +257,7 @@ public class PlayerMovement : MonoBehaviour
                     isFacingRight = !isFacingRight;
                     isFacingRightInt *= -1;
                     _spriteRenderer.flipX = false;
+                    _dashTrail.SetBool("flipped", false);
                 }                
             }
         
@@ -263,6 +269,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = true;
+            _dashTrail.SetBool("flipped", true);
         }
 
         //If Ronin is not wall jumping and is in the air and is facing left, but player input is right, make the Ronin face right
@@ -271,6 +278,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             isFacingRightInt *= -1;
             _spriteRenderer.flipX = false;
+            _dashTrail.SetBool("flipped", false);
         }
 
         //Handles walljumping when players presses movement keys mid air
@@ -502,6 +510,9 @@ public class PlayerMovement : MonoBehaviour
             //AudioManager.PlayOneShotSFX(dashSFX);
             soundManager.Dash();
 
+            //show dashTrail effect during dash
+            _dashTrail.Play();
+
             rb.velocity = new Vector2(isFacingRightInt * dashForce * speed, 0);
             dashCount++;
             
@@ -516,6 +527,9 @@ public class PlayerMovement : MonoBehaviour
             //Ronin affected by gravity again
             rb.gravityScale = 1;
             rb.velocity = Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+
+            //hide dashTrail effect after dash
+            _dashTrail.Stop();
 
             //Dash cooldown
             yield return new WaitForSeconds(dashCoolDown);
