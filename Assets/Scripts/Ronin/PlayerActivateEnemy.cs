@@ -47,7 +47,7 @@ public class PlayerActivateEnemy : MonoBehaviour
 
         if (numEnemiesOnScreen == 1 && !fireRateIncreased)
         {
-            Debug.Log("Increase firerate!");
+            //Debug.Log("Increase firerate!");
             oneEnemyOnScreen = true;
             fireRateIncreased = true;
 
@@ -79,7 +79,7 @@ public class PlayerActivateEnemy : MonoBehaviour
 
         else if ((numEnemiesOnScreen > 1 || numEnemiesOnScreen == 0) && fireRateIncreased)
         {
-            Debug.Log("Decrease firerate");
+            //Debug.Log("Decrease firerate");
             oneEnemyOnScreen = false;
             fireRateIncreased = false;
 

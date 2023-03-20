@@ -15,6 +15,7 @@ public class Omni_Manager : MonoBehaviour
     public int loopCount = 0;
 
     public int countDownTime;
+    public int resetCountDownTime;
 
     // Start is called before the first frame update
     void Start()
@@ -44,10 +45,11 @@ public class Omni_Manager : MonoBehaviour
 
     public IEnumerator startCountDown(int time)
     {
-        Debug.Log("countdown");
-        animator.SetTrigger("CoolDown");
+        animator.SetTrigger("WindUp");
         omni_countdown_text.enabled = true;
+        omni_ready_text.enabled = false;
         countDownTime = time;
+        omni_countdown_text.text = countDownTime.ToString();
         while (countDownTime > 0)
         {
             omni_countdown_text.text = countDownTime.ToString();
@@ -55,7 +57,22 @@ public class Omni_Manager : MonoBehaviour
             countDownTime--;
         }
 
+    }
+    public IEnumerator startResetCountDown(int time)
+    {
+        animator.SetTrigger("CoolDown");
+        omni_countdown_text.enabled = true;
+        resetCountDownTime = time;
+        omni_countdown_text.text = resetCountDownTime.ToString();
+        while (resetCountDownTime > 0)
+        {
+            omni_countdown_text.text = resetCountDownTime.ToString();
+            yield return new WaitForSeconds(1f);
+            resetCountDownTime--;
+        }
+
         omni_countdown_text.enabled = false;
+        
     }
 
 }

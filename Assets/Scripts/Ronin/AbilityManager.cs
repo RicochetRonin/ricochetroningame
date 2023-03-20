@@ -6,7 +6,7 @@ public class AbilityManager : MonoBehaviour
 {
 
     [Header("Private Components")]
-    private bool canOmniReflect;
+    public  bool canOmniReflect;
     private bool omniReflectActive;
     private bool omniParamActive;
     private bool omniSoundPlayed;
@@ -85,10 +85,7 @@ public class AbilityManager : MonoBehaviour
             }
         }
 
-        if (canOmniReflect)
-        {
-            omni_UI.omniReady();
-        }
+       
 
         if (omniReflectActive)
         {
@@ -127,7 +124,7 @@ public class AbilityManager : MonoBehaviour
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = false;
             _omniReflectCollider.enabled = true;
             _omniReflectAnimator.SetTrigger("OmniReflect");
-            omni_UI.omniActivate();
+            
 
             if (!omniSoundPlayed)
             {
@@ -137,10 +134,10 @@ public class AbilityManager : MonoBehaviour
             _aimCollider2D.enabled = false;
             _aimSpriteRenderer.enabled = false;
             //_aimAnimator.enabled = false;
-
+            //Don't know why, but this needs plus 1 for duration of 5
+            StartCoroutine(omni_UI.startCountDown((int)omniReflectDuration));
             yield return new WaitForSeconds(omniReflectDuration);
             _omniReflectAnimator.SetTrigger("OmniReflectOver");
-            StartCoroutine(omni_UI.startCountDown((int)omniReflectCooldown));
             _omniReflectCollider.enabled = false;
             playerReflect.OmniResetReflect();
 
@@ -153,6 +150,8 @@ public class AbilityManager : MonoBehaviour
             
             omniReflectActive = false;
             player.GetComponentInChildren<PlayerHealth>().canTakeDamage = true;
+            //Don't know why, but this needs -1
+            StartCoroutine(omni_UI.startResetCountDown((int)cooldown));
             yield return new WaitForSeconds(cooldown);
 
             if (!omniParamActive)
@@ -162,6 +161,7 @@ public class AbilityManager : MonoBehaviour
             }
 
             canOmniReflect = true;
+            omni_UI.omniReady();
             // omniCooldownText.SetCooldown(true);
         }
     }
