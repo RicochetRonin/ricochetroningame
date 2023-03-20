@@ -40,6 +40,7 @@ public class Omni_Manager : MonoBehaviour
 
     public void omniReady()
     {
+        omni_countdown_text.enabled = false;
         omni_ready_text.enabled = true;
     }
 
@@ -56,8 +57,8 @@ public class Omni_Manager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             countDownTime--;
         }
-
     }
+
     public IEnumerator startResetCountDown(int time)
     {
         animator.SetTrigger("CoolDown");
