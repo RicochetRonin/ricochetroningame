@@ -104,6 +104,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &1498297839127042762
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +211,9 @@ MonoBehaviour:
   textureWidth: 1800
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &1903441821657928729
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +318,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &2290903844259436989
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +425,9 @@ MonoBehaviour:
   textureWidth: 1800
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &3387058973718241288
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +532,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &5463070079251269259
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +639,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &5684783571102353493
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +746,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &6281018009422715390
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6281018009422715390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -832,6 +853,9 @@ MonoBehaviour:
   textureWidth: 2688
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &7231458222726519435
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +960,9 @@ MonoBehaviour:
   textureWidth: 1800
   textureHeight: 896
   manualTextureSize: 0
+  gameObject: {fileID: 0}
+  layer1OrigPos: -0.11
+  prefabOrigPos: -1.77
 --- !u!1 &7731809287650245360
 GameObject:
   m_ObjectHideFlags: 0

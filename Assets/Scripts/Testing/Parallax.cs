@@ -15,7 +15,19 @@ public class Parallax : MonoBehaviour
     private float textureUnitSizeY;
 
     public bool manualTextureSize;
-    
+
+    public GameObject gameObject;
+
+
+    // public Vector2 layer1OrigPos = transform.position; 
+    public float layer1OrigPos = -0.11f;
+    public float prefabOrigPos = -1.77f;
+
+    private void Awake()
+    {
+        // gameObject = GameObject.Find("layer 1");
+        // gameObject.transform.position = new Vector3(0,layer1OrigPos,0);
+    }
 
     private void Start()
     {
@@ -23,6 +35,9 @@ public class Parallax : MonoBehaviour
         lastCameraPosition = cameraTransform.position;
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
+        // GameObject.Find("layer 1").transf
+        // gameObject = GameObject.Find("layer 1");
+        // gameObject.transform.position = new Vector3(0,layer1OrigPos,0);
         //Debug.LogFormat("Width:{0}, Height: {1}, PPU: {2}", texture.width, texture.height, pixelsPerUnit);
         
         if (manualTextureSize)
