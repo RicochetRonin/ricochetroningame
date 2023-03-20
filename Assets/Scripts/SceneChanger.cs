@@ -30,6 +30,9 @@ public class SceneChanger : MonoBehaviour
         {
             if (enabled == false && canContinue == false)
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                
                 statsUI.SetActive(true);
                 timeText.text = "Total time: " + GameManager.timerVal;
                 bulletsReflectedText.text = "Bullets Reflected: " + GameManager.bulletsReflected;
@@ -58,5 +61,8 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         GameManager.newSceneLoaded = true;
         GameManager.checkPointActive = false;
+        
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 }
