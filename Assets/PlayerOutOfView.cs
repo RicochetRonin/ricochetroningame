@@ -17,17 +17,17 @@ public class PlayerOutOfView : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         target = vcam.LookAt;
-        vcam.transform.position = target.transform.position;
-        cam.transform.position = target.transform.position;
+        // vcam.transform.position = target.transform.position;
+        // cam.transform.position = target.transform.position;
     }
 
     void Update()
     {
         Vector3 playerOnScreenPos = cam.WorldToScreenPoint(target.position);
 
-        if (playerOnScreenPos.x < 0 || playerOnScreenPos.x > Screen.width ||
-            playerOnScreenPos.y < 0 || playerOnScreenPos.y > Screen.height) 
-            { outOfView?.Invoke(); }
+        // if (playerOnScreenPos.x < 0 || playerOnScreenPos.x > Screen.width ||
+        //     playerOnScreenPos.y < 0 || playerOnScreenPos.y > Screen.height) 
+            // { outOfView?.Invoke(); }
          
     }
 
