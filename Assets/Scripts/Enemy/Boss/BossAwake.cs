@@ -9,6 +9,9 @@ public class BossAwake : MonoBehaviour
     [SerializeField] public AudioSource _BGM;
     [SerializeField] public AudioClip bossMusic;
 
+
+    [SerializeField] private float volumeOffset = -3;
+
     private bool isAwake = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,6 +21,7 @@ public class BossAwake : MonoBehaviour
             animator.SetTrigger("Awake");
             isAwake = true;
             _BGM.Stop();
+            _BGM.volume = volumeOffset / 10;
             _BGM.PlayOneShot(bossMusic);
             
         }
