@@ -6,6 +6,8 @@ public class BossAwake : MonoBehaviour
 {
     [SerializeField] public GameObject awakeTrigger;
     [SerializeField] public Animator animator;
+    [SerializeField] public AudioSource _BGM;
+    [SerializeField] public AudioClip bossMusic;
 
     private bool isAwake = false;
 
@@ -15,6 +17,9 @@ public class BossAwake : MonoBehaviour
         {
             animator.SetTrigger("Awake");
             isAwake = true;
+            _BGM.Stop();
+            _BGM.PlayOneShot(bossMusic);
+            
         }
     }
 }
